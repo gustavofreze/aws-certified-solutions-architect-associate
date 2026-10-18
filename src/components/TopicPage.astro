@@ -1,0 +1,118 @@
+---
+/**
+ * One topic of the roadmap in one language.
+ *
+ * Every topic page has the same structure. The cover is a deep band, the same ground as the home, naming
+ * the topic and where it sits on the roadmap. A bar of pills stays on top while the reader scrolls and
+ * marks the section being read, because a reader comes back to these pages holding one subject in mind.
+ * Each section is a card with the same anatomy (see `SectionCard.astro`).
+ */
+import { renderInline } from '../content/inline'
+import { topicAt, topicsOf } from '../content'
+import { pageHref, pagePaths } from '../i18n'
+import { getCopy, type Locale, MAIN_ID } from '../i18n/strings'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Icon from './Icon.astro'
+import SectionCard from './SectionCard.astro'
+
+interface Props {
+  locale: Locale
+  slug: string
+}
+const { locale, slug } = Astro.props
+const copy = getCopy(locale)
+const { topic, previous, next } = topicAt(locale, slug)
+const total = topicsOf(locale).length
+const index = topicsOf(locale).indexOf(topic) + 1
+const absolute = (path: string): string => new URL(path, Astro.site).href
+const breadcrumb = [
+  { name: copy.nav.home, item: absolute(pageHref(locale)) },
+  { name: topic.title, item: absolute(pageHref(locale, topic.slug)) },
+].map((crumb, position) => ({ '@type': 'ListItem', position: position + 1, ...crumb }))
+---
+
+<BaseLayout
+  locale={locale}
+  title={topic.title}
+  description={topic.summary}
+  paths={pagePaths(topic.slug)}
+  structuredData={{ '@type': 'BreadcrumbList', itemListElement: breadcrumb }}
+>
+  <span class="saa-progress" aria-hidden="true"><span data-read></span></span>
+
+  <main id={MAIN_ID} class="saa-page" data-pagefind-body>
+    <div class="saa-cover">
+      <span class="saa-hero__glow saa-hero__glow--orange" aria-hidden="true"></span>
+      <span class="saa-cover__mark" aria-hidden="true"><Icon name={topic.icon} size={220} /></span>
+      <div class="saa-wrap saa-cover__inner">
+        <nav aria-label={copy.nav.breadcrumb} class="saa-crumbs enter-rise" data-pagefind-ignore>
+          <a href={pageHref(locale)}>{copy.nav.home}</a>
+          <span class="saa-crumbs__sep" aria-hidden="true">/</span>
+          <a href={`${pageHref(locale)}#roadmap`}>{copy.home.groups[topic.group].title}</a>
+          <span class="saa-crumbs__sep" aria-hidden="true">/</span>
+          <span>{copy.topic.step(index, total)}</span>
+        </nav>
+        <div class="saa-cover__head enter-rise" style="--enter-delay:60ms">
+          <span class="saa-tile saa-tile--large saa-tile--deep">
+            <Icon name={topic.icon} size={28} />
+          </span>
+          <h1 class="saa-cover__title">{topic.title}</h1>
+        </div>
+        <p class="saa-cover__lede enter-rise" style="--enter-delay:120ms" set:html={renderInline(topic.lede)} />
+      </div>
+    </div>
+
+    <nav aria-label={copy.topic.onThisPage} class="saa-subnav" data-pagefind-ignore>
+      <div class="saa-wrap">
+        <ul class="saa-subnav__list" data-subnav>
+          {
+            topic.sections.map((section) => (
+              <li>
+                <a href={`#${section.id}`} class="saa-subnav__tab" data-section-link={section.id}>
+                  {section.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </nav>
+
+    <div class="saa-wrap saa-main">
+      {topic.sections.map((section) => <SectionCard section={section} labels={copy.topic} />)}
+
+      <nav class="saa-pager" aria-label={copy.nav.roadmap} data-pagefind-ignore>
+        {
+          previous && (
+            <a href={pageHref(locale, previous.slug)} rel="prev" class="saa-pager__prev">
+              <span class="saa-tile">
+                <Icon name="arrow-left" size={20} />
+              </span>
+              <span class="saa-pager__text">
+                <span class="saa-pager__label">{copy.topic.previous}</span>
+                <span class="saa-pager__title">{previous.title}</span>
+              </span>
+            </a>
+          )
+        }
+        {
+          next && (
+            <a href={pageHref(locale, next.slug)} rel="next" class="saa-pager__next">
+              <span class="saa-pager__text">
+                <span class="saa-pager__label">{copy.topic.next}</span>
+                <span class="saa-pager__title">{next.title}</span>
+              </span>
+              <span class="saa-tile">
+                <Icon name="arrow-right" size={20} />
+              </span>
+            </a>
+          )
+        }
+      </nav>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  import '../scripts/reading.ts'
+</script>

@@ -1,0 +1,118 @@
+---
+/**
+ * One section of a topic. Every section is drawn the same way: the header with the name and the way to
+ * its official page, the summary, then the points that matter beside the note on how the subject shows
+ * up on the exam, and a table below when the subject has one.
+ */
+import { renderInline } from '../content/inline'
+import type { Section } from '../content/types'
+import type { SiteCopy } from '../i18n/strings'
+import Icon from './Icon.astro'
+
+interface Props {
+  section: Section
+  labels: SiteCopy['topic']
+}
+const { section, labels } = Astro.props
+---
+
+<section id={section.id} class="saa-section" aria-labelledby={`${section.id}-title`}>
+  <header class="saa-section__head">
+    <div class="saa-section__name">
+      <h2 id={`${section.id}-title`} class="saa-section__title">
+        <a href={`#${section.id}`} class="saa-section__anchor">
+          {section.name}
+          <Icon name="link" size={16} class="saa-section__link-icon" />
+        </a>
+      </h2>
+      {section.fullName && <p class="saa-section__full">{section.fullName}</p>}
+    </div>
+    {
+      section.link && (
+        <a href={section.link} target="_blank" rel="noopener noreferrer" class="saa-official">
+          {labels.officialPage}
+          <Icon name="external" size={14} />
+        </a>
+      )
+    }
+  </header>
+
+  <p class="saa-prose" set:html={renderInline(section.summary)} />
+
+  <div class="saa-section__grid">
+    <div class="saa-block">
+      {
+        section.points && (
+          <>
+            <p class="saa-block__title">{labels.keyPoints}</p>
+            <ul class="saa-list">
+              {section.points.map((point) => (
+                <li set:html={renderInline(point)} />
+              ))}
+            </ul>
+          </>
+        )
+      }
+      {
+        section.links && (
+          <ul class="saa-links">
+            {section.links.map((link) => (
+              <li>
+                <a href={link.href} target="_blank" rel="noopener noreferrer" class="saa-link-card">
+                  <span>{link.label}</span>
+                  <Icon name="external" size={16} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    <div class="saa-tip">
+      <p class="saa-tip__title">
+        <Icon name="target" size={16} />
+        {labels.examTip}
+      </p>
+      <p class="saa-tip__text" set:html={renderInline(section.tip)} />
+    </div>
+  </div>
+
+  {
+    section.table && (
+      <div class="saa-block">
+        <p class="saa-block__title">{section.table.title}</p>
+        <div class="saa-table-wrap">
+          <table class="saa-table">
+            <thead>
+              <tr>
+                <th scope="col">{section.table.head[0]}</th>
+                <th scope="col">{section.table.head[1]}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {section.table.rows.map((row) => (
+                <tr>
+                  <th scope="row">
+                    <span class="saa-chip">{row.key}</span>
+                  </th>
+                  <td>
+                    {row.cells.length === 1 ? (
+                      <span set:html={renderInline(row.cells[0] ?? '')} />
+                    ) : (
+                      <ul class="saa-list saa-list--tight">
+                        {row.cells.map((cell) => (
+                          <li set:html={renderInline(cell)} />
+                        ))}
+                      </ul>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
+  }
+</section>

@@ -1,0 +1,31 @@
+---
+/**
+ * The page GitHub Pages answers with for any address that publishes nothing, in either language. It is
+ * one file for the whole site, so it speaks both languages instead of guessing which one was asked for,
+ * and it declares no address of its own.
+ */
+import { pageHref } from '../i18n'
+import { getCopy, MAIN_ID } from '../i18n/strings'
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const english = getCopy('en-US').notFound
+const portuguese = getCopy('pt-BR').notFound
+---
+
+<BaseLayout locale="en-US" title={english.title} paths={null}>
+  <main id={MAIN_ID} class="saa-wrap saa-lost">
+    <p class="saa-lost__code" aria-hidden="true">404</p>
+    <div class="saa-lost__languages">
+      <section class="saa-lost__language">
+        <h1 class="saa-cover__title">{english.title}</h1>
+        <p class="saa-lost__lede">{english.lede}</p>
+        <a href={pageHref('en-US')} class="saa-button saa-button--primary">{english.back}</a>
+      </section>
+      <section class="saa-lost__language" lang="pt-BR">
+        <h2 class="saa-cover__title">{portuguese.title}</h2>
+        <p class="saa-lost__lede">{portuguese.lede}</p>
+        <a href={pageHref('pt-BR')} class="saa-button saa-button--primary">{portuguese.back}</a>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

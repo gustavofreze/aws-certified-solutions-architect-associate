@@ -1,0 +1,6 @@
+.idea
+.astro
+dist
+node_modules
+.pnpm-store
+site
