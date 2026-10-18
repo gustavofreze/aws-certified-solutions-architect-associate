@@ -13,18 +13,18 @@ const portuguese = getCopy('pt-BR').notFound
 ---
 
 <BaseLayout locale="en-US" title={english.title} paths={null}>
-  <main id={MAIN_ID} class="saa-wrap saa-lost">
-    <p class="saa-lost__code" aria-hidden="true">404</p>
-    <div class="saa-lost__languages">
-      <section class="saa-lost__language">
-        <h1 class="saa-cover__title">{english.title}</h1>
-        <p class="saa-lost__lede">{english.lede}</p>
-        <a href={pageHref('en-US')} class="saa-button saa-button--primary">{english.back}</a>
+  <main id={MAIN_ID} class="cert-wrap cert-lost">
+    <p class="cert-lost__code" aria-hidden="true">404</p>
+    <div class="cert-lost__languages">
+      <section class="cert-lost__language">
+        <h1 class="cert-cover__title">{english.title}</h1>
+        <p class="cert-lost__lede">{english.lede}</p>
+        <a href={pageHref('en-US')} class="cert-button cert-button--primary">{english.back}</a>
       </section>
-      <section class="saa-lost__language" lang="pt-BR">
-        <h2 class="saa-cover__title">{portuguese.title}</h2>
-        <p class="saa-lost__lede">{portuguese.lede}</p>
-        <a href={pageHref('pt-BR')} class="saa-button saa-button--primary">{portuguese.back}</a>
+      <section class="cert-lost__language" lang="pt-BR">
+        <h2 class="cert-cover__title">{portuguese.title}</h2>
+        <p class="cert-lost__lede">{portuguese.lede}</p>
+        <a href={pageHref('pt-BR')} class="cert-button cert-button--primary">{portuguese.back}</a>
       </section>
     </div>
   </main>
