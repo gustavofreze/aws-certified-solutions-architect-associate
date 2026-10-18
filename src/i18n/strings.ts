@@ -3,7 +3,7 @@
  * live in `content/`, and this table holds only the chrome: the bar, the controls, the home and the
  * labels of a topic page.
  */
-import type { TopicGroup } from '../content/types'
+import { SITE_TEXT, type SiteText } from '../content/site'
 
 export type Locale = 'pt-BR' | 'en-US'
 
@@ -11,7 +11,7 @@ export type Locale = 'pt-BR' | 'en-US'
 export const MAIN_ID = 'content'
 
 export interface SiteCopy {
-  readonly meta: { readonly title: string; readonly description: string; readonly ogLocale: string }
+  readonly meta: SiteText['meta'] & { readonly ogLocale: string }
   readonly brand: string
   readonly skipLink: string
   readonly theme: { readonly label: string; readonly light: string; readonly dark: string }
@@ -24,14 +24,7 @@ export interface SiteCopy {
     readonly search: string
     readonly review: string
   }
-  readonly home: {
-    readonly eyebrow: string
-    readonly title: string
-    readonly lede: string
-    readonly start: string
-    readonly examGuide: string
-    readonly groups: Readonly<Record<TopicGroup, { readonly title: string; readonly lede: string }>>
-  }
+  readonly home: SiteText['home'] & { readonly start: string; readonly examGuide: string }
   readonly topic: {
     readonly onThisPage: string
     readonly previous: string
@@ -70,13 +63,8 @@ export interface SiteCopy {
 }
 
 const ptBR: SiteCopy = {
-  meta: {
-    title: 'AWS Solutions Architect Associate (SAA-C03) · Notas de estudo',
-    description:
-      'Notas de estudo gratuitas para o exame AWS Solutions Architect Associate (SAA-C03): segurança, resiliência, desempenho e custo, com busca e revisão.',
-    ogLocale: 'pt_BR',
-  },
-  brand: 'Solutions Architect',
+  meta: { ...SITE_TEXT['pt-BR'].meta, ogLocale: 'pt_BR' },
+  brand: SITE_TEXT['pt-BR'].brand,
   skipLink: 'Pular para o conteúdo',
   theme: { label: 'Tema', light: 'Tema claro', dark: 'Tema escuro' },
   localeSwitch: {
@@ -92,28 +80,9 @@ const ptBR: SiteCopy = {
     review: 'Revisar',
   },
   home: {
-    eyebrow: 'Associate · SAA-C03',
-    title: 'AWS Certified Solutions Architect Associate',
-    lede: 'Um compilado do conteúdo estudado para a certificação, organizado pelos quatro domínios do exame: arquiteturas seguras, resilientes, de alto desempenho e com custo otimizado.',
+    ...SITE_TEXT['pt-BR'].home,
     start: 'Começar pelo roteiro',
     examGuide: 'Sobre a certificação',
-    groups: {
-      foundations: { title: 'Fundamentos', lede: 'Como é o exame e o framework que guia cada resposta.' },
-      secure: { title: 'Arquiteturas seguras', lede: 'Domínio 1, 30% do exame: acesso, rede e proteção de dados.' },
-      resilient: {
-        title: 'Arquiteturas resilientes',
-        lede: 'Domínio 2, 26% do exame: desacoplamento, alta disponibilidade e recuperação de desastres.',
-      },
-      performing: {
-        title: 'Arquiteturas de alto desempenho',
-        lede: 'Domínio 3, 24% do exame: armazenamento, computação, bancos de dados, rede e dados.',
-      },
-      cost: {
-        title: 'Arquiteturas com custo otimizado',
-        lede: 'Domínio 4, 20% do exame: compra de capacidade, armazenamento, rede e ferramentas de custo.',
-      },
-      resources: { title: 'Materiais', lede: 'O que usar para estudar e praticar.' },
-    },
   },
   topic: {
     onThisPage: 'Nesta página',
@@ -128,7 +97,7 @@ const ptBR: SiteCopy = {
     title: 'Buscar nas notas',
     lede: 'Procure um serviço, um conceito ou uma palavra-chave da prova.',
     label: 'Termo de busca',
-    placeholder: 'Ex.: Multi-AZ, NAT gateway, SQS',
+    placeholder: SITE_TEXT['pt-BR'].searchPlaceholder,
     idle: 'Digite pelo menos duas letras.',
     loading: 'Buscando...',
     empty: 'Nada encontrado. Tente outra palavra.',
@@ -155,13 +124,8 @@ const ptBR: SiteCopy = {
 }
 
 const enUS: SiteCopy = {
-  meta: {
-    title: 'AWS Solutions Architect Associate (SAA-C03) · Study notes',
-    description:
-      'Free study notes for the AWS Solutions Architect Associate (SAA-C03) exam: secure, resilient, high-performing and cost-optimized designs, with search and review.',
-    ogLocale: 'en_US',
-  },
-  brand: 'Solutions Architect',
+  meta: { ...SITE_TEXT['en-US'].meta, ogLocale: 'en_US' },
+  brand: SITE_TEXT['en-US'].brand,
   skipLink: 'Skip to content',
   theme: { label: 'Theme', light: 'Light theme', dark: 'Dark theme' },
   localeSwitch: {
@@ -177,31 +141,9 @@ const enUS: SiteCopy = {
     review: 'Review',
   },
   home: {
-    eyebrow: 'Associate · SAA-C03',
-    title: 'AWS Certified Solutions Architect Associate',
-    lede: 'A compilation of what I studied for the certification, organized by the four domains of the exam: secure, resilient, high-performing and cost-optimized architectures.',
+    ...SITE_TEXT['en-US'].home,
     start: 'Start the roadmap',
     examGuide: 'About the certification',
-    groups: {
-      foundations: { title: 'Foundations', lede: 'How the exam works and the framework behind every answer.' },
-      secure: {
-        title: 'Secure architectures',
-        lede: 'Domain 1, 30% of the exam: access, network and data protection.',
-      },
-      resilient: {
-        title: 'Resilient architectures',
-        lede: 'Domain 2, 26% of the exam: decoupling, high availability and disaster recovery.',
-      },
-      performing: {
-        title: 'High-performing architectures',
-        lede: 'Domain 3, 24% of the exam: storage, compute, databases, networking and data.',
-      },
-      cost: {
-        title: 'Cost-optimized architectures',
-        lede: 'Domain 4, 20% of the exam: buying capacity, storage, networking and cost tools.',
-      },
-      resources: { title: 'Resources', lede: 'What to study and practice with.' },
-    },
   },
   topic: {
     onThisPage: 'On this page',
@@ -216,7 +158,7 @@ const enUS: SiteCopy = {
     title: 'Search the notes',
     lede: 'Look up a service, a concept or an exam keyword.',
     label: 'Search term',
-    placeholder: 'E.g. Multi-AZ, NAT gateway, SQS',
+    placeholder: SITE_TEXT['en-US'].searchPlaceholder,
     idle: 'Type at least two letters.',
     loading: 'Searching...',
     empty: 'Nothing found. Try another word.',

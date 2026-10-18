@@ -1,5 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
+import { SITE } from './src/content/site'
 
 /** The module Vite imports its preload helper from, a virtual one it resolves on its own. */
 const PRELOAD_HELPER = '\0vite/preload-helper.js'
@@ -28,7 +29,7 @@ function importWithoutPreload() {
  */
 export default defineConfig({
   site: 'https://gustavofreze.github.io',
-  base: '/aws-certified-solutions-architect-associate',
+  base: `/${SITE.repository}`,
   trailingSlash: 'always',
   output: 'static',
   i18n: {

@@ -39,8 +39,9 @@ export interface Section {
   readonly table?: Table
 }
 
-/** The groups of the roadmap: the foundations, the four domains of the exam and the study material. */
-export type TopicGroup = 'foundations' | 'secure' | 'resilient' | 'performing' | 'cost' | 'resources'
+import type { TopicGroup } from './site'
+
+export type { TopicGroup }
 
 export interface Topic {
   readonly slug: string
