@@ -124,6 +124,20 @@ export const enUS: readonly Topic[] = [
         ],
         tip: 'Prioritize **S3**, **EC2**, **VPC**, **RDS**, **DynamoDB** and **SQS**: they carry the storage classes, purchase options, networking, Multi-AZ versus read replicas, capacity modes and queue limits that the exam asks most.',
       },
+      {
+        id: 'previous-step',
+        name: 'Previous step',
+        fullName: 'AWS Certified Cloud Practitioner',
+        summary:
+          'The foundational certification that usually comes before this one, with study notes in the same format.',
+        links: [
+          {
+            label: 'AWS Certified Cloud Practitioner (CLF-C02) study notes',
+            href: 'https://gustavofreze.github.io/aws-certified-cloud-practitioner/',
+          },
+        ],
+        tip: 'Cloud Practitioner covers what each service is. The Associate exam assumes that and asks which design best meets a requirement.',
+      },
     ],
   },
 ]
@@ -246,6 +260,19 @@ export const ptBR: readonly Topic[] = [
           { label: 'FAQ do AWS KMS', href: pt.aws('kms/faqs/') },
         ],
         tip: 'Priorize **S3**, **EC2**, **VPC**, **RDS**, **DynamoDB** e **SQS**: ali estão classes de armazenamento, opções de compra, rede, Multi-AZ contra réplicas de leitura, modos de capacidade e limites de fila que o exame mais cobra.',
+      },
+      {
+        id: 'previous-step',
+        name: 'Etapa anterior',
+        fullName: 'AWS Certified Cloud Practitioner',
+        summary: 'A certificação de fundamentos que costuma vir antes desta, com notas de estudo no mesmo formato.',
+        links: [
+          {
+            label: 'Notas de estudo do AWS Certified Cloud Practitioner (CLF-C02)',
+            href: 'https://gustavofreze.github.io/aws-certified-cloud-practitioner/pt-br/',
+          },
+        ],
+        tip: 'O Cloud Practitioner cobre o que cada serviço é. O exame Associate parte disso e pergunta qual arquitetura atende melhor a um requisito.',
       },
     ],
   },

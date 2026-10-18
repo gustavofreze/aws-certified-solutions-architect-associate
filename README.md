@@ -28,6 +28,10 @@ The site is built with [Astro](https://astro.build) and [Tailwind CSS](https://t
 `src/content/topics/`, one file per group of the roadmap, with the same topics and sections in both languages. The build fails
 when the two languages diverge. English is served at the root of the site and Portuguese under `/pt-br/`.
 
+The notes for the foundational certification,
+[AWS Certified Cloud Practitioner](https://gustavofreze.github.io/aws-certified-cloud-practitioner/), follow the same
+format.
+
 ### Topics
 
 - Foundations: the exam format, the Well-Architected Framework and the global infrastructure.
