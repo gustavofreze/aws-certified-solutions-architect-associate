@@ -5,6 +5,9 @@
 **Site:** https://gustavofreze.github.io/aws-certified-solutions-architect-associate/
 ([Português](https://gustavofreze.github.io/aws-certified-solutions-architect-associate/pt-br/))
 
+**Other notes:** [AWS Certified Cloud Practitioner](https://gustavofreze.github.io/aws-certified-cloud-practitioner/)
+([repository](https://github.com/gustavofreze/aws-certified-cloud-practitioner))
+
 * [Overview](#overview)
     - [Topics](#topics)
     - [Study tools](#study-tools)
