@@ -16,7 +16,7 @@
 
 ## Overview
 
-Study notes for the [AWS Certified Solutions Architect - Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate)
+Study notes for the [AWS Certified Solutions Architect - Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
 exam (SAA-C03), in English and Portuguese, published at
 [gustavofreze.github.io/aws-certified-solutions-architect-associate](https://gustavofreze.github.io/aws-certified-solutions-architect-associate/).
 The notes follow the domains of the official exam guide and link to the AWS documentation of every service they cover.

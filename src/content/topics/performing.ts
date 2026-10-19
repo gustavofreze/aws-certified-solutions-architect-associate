@@ -548,7 +548,7 @@ export const enUS: readonly Topic[] = [
         id: 'choosing',
         name: 'Choosing the model',
         fullName: 'Containers or serverless',
-        link: en.docs('decision-guides/latest/containers-on-aws-how-to-choose/choosing-aws-container-service.html'),
+        link: en.docs('decision-guides/latest/decision-guides/choosing-aws-container-service.html'),
         summary:
           'Most designs mix both. The deciding factors are run time, control over the runtime, traffic shape and the operational effort the team can carry.',
         points: [
@@ -1745,7 +1745,7 @@ export const ptBR: readonly Topic[] = [
         id: 'choosing',
         name: 'Escolhendo o modelo',
         fullName: 'Containers or serverless',
-        link: pt.docs('decision-guides/latest/containers-on-aws-how-to-choose/choosing-aws-container-service.html'),
+        link: pt.docs('decision-guides/latest/decision-guides/choosing-aws-container-service.html'),
         summary:
           'A maioria dos projetos mistura os dois. O que decide é o tempo de execução, o controle sobre o runtime, o formato do tráfego e o esforço operacional que o time aguenta.',
         points: [
