@@ -24,8 +24,8 @@ export const enUS: readonly Topic[] = [
         links: [
           { label: 'Certification page', href: en.aws('certification/certified-solutions-architect-associate/') },
           { label: 'Exam guide (SAA-C03)', href: en.docs(`${GUIDE}solutions-architect-associate-03.html`) },
-          { label: 'In-scope services', href: en.docs(`${GUIDE}cert-03-in-scope-services.html`) },
-          { label: 'Out-of-scope services', href: en.docs(`${GUIDE}cert-03-out-of-scope-services.html`) },
+          { label: 'In-scope services', href: en.docs(`${GUIDE}saa-03-in-scope-services.html`) },
+          { label: 'Out-of-scope services', href: en.docs(`${GUIDE}saa-03-out-of-scope-services.html`) },
           { label: 'Exam prep plan on AWS Skill Builder', href: SKILL_BUILDER },
           { label: 'Exam preparation overview', href: en.aws('certification/certification-prep/') },
           {
@@ -161,8 +161,8 @@ export const ptBR: readonly Topic[] = [
         links: [
           { label: 'Página da certificação', href: pt.aws('certification/certified-solutions-architect-associate/') },
           { label: 'Guia do exame (SAA-C03)', href: pt.docs(`${GUIDE}solutions-architect-associate-03.html`) },
-          { label: 'Serviços dentro do escopo', href: pt.docs(`${GUIDE}cert-03-in-scope-services.html`) },
-          { label: 'Serviços fora do escopo', href: pt.docs(`${GUIDE}cert-03-out-of-scope-services.html`) },
+          { label: 'Serviços dentro do escopo', href: pt.docs(`${GUIDE}saa-03-in-scope-services.html`) },
+          { label: 'Serviços fora do escopo', href: pt.docs(`${GUIDE}saa-03-out-of-scope-services.html`) },
           { label: 'Plano de preparação no AWS Skill Builder', href: SKILL_BUILDER },
           { label: 'Visão geral da preparação para exames', href: pt.aws('certification/certification-prep/') },
           { label: 'Nomes curtos dos serviços no exame', href: pt.aws('certification/policies/general-information/') },

@@ -106,13 +106,13 @@ export const enUS: readonly Topic[] = [
       {
         id: 'scope',
         name: 'Candidate and scope',
-        link: en.docs(`${GUIDE}cert-03-in-scope-services.html`),
+        link: en.docs(`${GUIDE}saa-03-in-scope-services.html`),
         summary:
           'The exam targets someone with at least 1 year of hands-on experience designing cloud solutions with AWS services. The guide publishes both an in-scope and an out-of-scope service list.',
         points: [
           '**Target candidate**: at least 1 year designing on AWS. Without IT experience, AWS suggests starting with Cloud Practitioner.',
           '**In scope**: analytics, application integration, cost management, compute, containers, databases, networking, security, serverless, storage, migration and a set of AI services such as Amazon Comprehend and Amazon Rekognition.',
-          `**Out of scope** ([list](${en.docs(`${GUIDE}cert-03-out-of-scope-services.html`)})): Amazon Lightsail, AWS CDK, AWS CodeBuild, AWS CodeDeploy, AWS CodeCommit, all IoT services, Amazon GameLift, Amazon MWAA, AWS Cloud Map, Amazon Braket and AWS Ground Station, among others.`,
+          `**Out of scope** ([list](${en.docs(`${GUIDE}saa-03-out-of-scope-services.html`)})): Amazon Lightsail, AWS CDK, AWS CodeBuild, AWS CodeDeploy, AWS CodeCommit, all IoT services, Amazon GameLift, Amazon MWAA, AWS Cloud Map, Amazon Braket and AWS Ground Station, among others.`,
           '**Short names**: services with abbreviations appear in short form, e.g. Amazon SNS. The in-exam Help feature lists the full names.',
           '**No deep coding**: the exam is about design choices, not writing code, though basic programming familiarity helps.',
         ],
@@ -404,13 +404,13 @@ export const ptBR: readonly Topic[] = [
       {
         id: 'scope',
         name: 'Candidato e escopo',
-        link: pt.docs(`${GUIDE}cert-03-in-scope-services.html`),
+        link: pt.docs(`${GUIDE}saa-03-in-scope-services.html`),
         summary:
           'O exame mira quem tem pelo menos 1 ano de experiência prática projetando soluções com serviços da AWS. O guia publica uma lista de serviços dentro e outra fora do escopo.',
         points: [
           '**Candidato**: pelo menos 1 ano projetando na AWS. Sem experiência em TI, a AWS sugere começar pelo Cloud Practitioner.',
           '**Dentro do escopo**: análise de dados, integração de aplicações, gestão de custos, computação, contêineres, bancos de dados, rede, segurança, serverless, armazenamento, migração e alguns serviços de IA como Amazon Comprehend e Amazon Rekognition.',
-          `**Fora do escopo** ([lista](${pt.docs(`${GUIDE}cert-03-out-of-scope-services.html`)})): Amazon Lightsail, AWS CDK, AWS CodeBuild, AWS CodeDeploy, AWS CodeCommit, todos os serviços de IoT, Amazon GameLift, Amazon MWAA, AWS Cloud Map, Amazon Braket e AWS Ground Station, entre outros.`,
+          `**Fora do escopo** ([lista](${pt.docs(`${GUIDE}saa-03-out-of-scope-services.html`)})): Amazon Lightsail, AWS CDK, AWS CodeBuild, AWS CodeDeploy, AWS CodeCommit, todos os serviços de IoT, Amazon GameLift, Amazon MWAA, AWS Cloud Map, Amazon Braket e AWS Ground Station, entre outros.`,
           '**Nomes curtos**: serviços com siglas aparecem na forma curta, por exemplo Amazon SNS. A ajuda dentro do exame lista os nomes completos.',
           '**Sem código a fundo**: o exame cobra decisões de design, não escrever código, embora noções de programação ajudem.',
         ],

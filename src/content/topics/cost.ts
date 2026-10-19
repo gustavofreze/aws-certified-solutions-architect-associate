@@ -425,7 +425,7 @@ export const enUS: readonly Topic[] = [
         id: 'hybrid-connectivity',
         name: 'Direct Connect vs VPN',
         fullName: 'AWS Direct Connect and AWS Site-to-Site VPN',
-        link: en.aws('directconnect/pricing/'),
+        link: en.aws('directconnect/pricing/pay-as-you-go/'),
         summary:
           'The cheapest link depends on volume and bandwidth. VPN rides the internet and is quick to set up. Direct Connect bills port hours but lowers per-GB egress and gives consistent bandwidth.',
         points: [
@@ -1102,7 +1102,7 @@ export const ptBR: readonly Topic[] = [
         id: 'hybrid-connectivity',
         name: 'Direct Connect vs VPN',
         fullName: 'AWS Direct Connect and AWS Site-to-Site VPN',
-        link: pt.aws('directconnect/pricing/'),
+        link: pt.aws('directconnect/pricing/pay-as-you-go/'),
         summary:
           'O link mais barato depende de volume e banda. A VPN usa a internet e sobe rápido. O Direct Connect cobra horas de porta, mas reduz a saída por GB e dá banda consistente.',
         points: [
