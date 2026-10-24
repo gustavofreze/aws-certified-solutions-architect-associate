@@ -18,7 +18,9 @@ export const enUS: readonly Question[] = [
       'SNS pushes each message to the subscriber right away and does not keep a backlog that an overloaded processing tier can work through later.',
       'A load balancer spreads requests across healthy instances but does not buffer work. When every instance is saturated, requests still fail.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html',
+    evidence: [
+      'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html#sqs-message-lifecycle',
+    ],
   },
   {
     id: 'd2-002',
@@ -37,7 +39,7 @@ export const enUS: readonly Question[] = [
       'A single message group puts every transaction in one ordered sequence, so transactions for different accounts can no longer be processed in parallel.',
       'Standard topics and standard queues guarantee neither ordering nor the absence of duplicates.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-fifo-queues.html',
+    evidence: ['https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-fifo-queues.html'],
   },
   {
     id: 'd2-003',
@@ -56,7 +58,9 @@ export const enUS: readonly Question[] = [
       'The default visibility timeout is 30 seconds. A message that is not deleted before it expires becomes visible again and another worker picks it up, so the timeout must be longer than the 10 minute job.',
       'Retention controls how long an unconsumed message is kept, not whether a message in flight becomes visible to other workers.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html',
+    evidence: [
+      'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#configuring-visibility-timeout',
+    ],
   },
   {
     id: 'd2-004',
@@ -75,7 +79,9 @@ export const enUS: readonly Question[] = [
       'FIFO changes ordering and deduplication. A malformed message would still be retried, and it would also hold up the messages behind it in the same message group.',
       'After a message is received `maxReceiveCount` times without being deleted, SQS moves it to the dead-letter queue, where the team can inspect it and redrive it later.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html',
+    evidence: [
+      'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html#policies-for-dead-letter-queues',
+    ],
   },
   {
     id: 'd2-005',
@@ -96,7 +102,10 @@ export const enUS: readonly Question[] = [
       'Queue depth alone does not account for how many instances are running, so a policy on it can add more instances than needed while the queue drains.',
       'One larger instance cannot scale out and becomes a single point of failure.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html',
+    evidence: [
+      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html#scale-sqs-queue-scale-in-protection',
+      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html#scale-sqs-queue-custom-metric',
+    ],
   },
   {
     id: 'd2-006',
@@ -115,7 +124,7 @@ export const enUS: readonly Question[] = [
       'Chaining functions moves retries, state and waiting into custom code, and a single Lambda invocation cannot wait five days.',
       'Queues decouple the steps but leave the order of steps, the retries and the wait for the human approval to custom code in every function.',
     ],
-    source: 'https://docs.aws.amazon.com/step-functions/latest/dg/choosing-workflow-type.html',
+    evidence: ['https://docs.aws.amazon.com/step-functions/latest/dg/choosing-workflow-type.html'],
   },
   {
     id: 'd2-007',
@@ -134,7 +143,9 @@ export const enUS: readonly Question[] = [
       'Rate-based rules limit requests from an IP address over a few minutes. They do not enforce a monthly quota, and partners may call from many changing addresses.',
       'Account level throttling applies to all callers together and cannot give each partner its own rate or monthly quota.',
     ],
-    source: 'https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html',
+    evidence: [
+      'https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html#api-gateway-api-usage-plans-overview',
+    ],
   },
   {
     id: 'd2-008',
@@ -153,7 +164,7 @@ export const enUS: readonly Question[] = [
       'A message is processed by one consumer and then deleted, so it would not reach every bidder, and browsers are not a practical place to run queue consumers.',
       'WebSocket APIs are bidirectional, so the backend can push the new price to every connected client without a request. They are built for real-time applications such as chat and trading.',
     ],
-    source: 'https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html',
+    evidence: ['https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html'],
   },
   {
     id: 'd2-009',
@@ -172,7 +183,7 @@ export const enUS: readonly Question[] = [
       'FIFO adds ordering and deduplication but still hands each message to one consumer, which deletes it.',
       'Firehose loads streaming data into a destination such as Amazon S3. It does not let several custom applications each read the same records in real time.',
     ],
-    source: 'https://docs.aws.amazon.com/streams/latest/dev/introduction.html',
+    evidence: ['https://docs.aws.amazon.com/streams/latest/dev/introduction.html#using-the-service'],
   },
   {
     id: 'd2-010',
@@ -193,7 +204,10 @@ export const enUS: readonly Question[] = [
       'Each queue gets its own copy of every order and keeps it until that service processes it, so a slow or offline service loses nothing and does not delay the others.',
       'Pushing straight to each service leaves no queue to hold orders while a service is down for a long time, so orders can be lost once delivery retries run out.',
     ],
-    source: 'https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html',
+    evidence: [
+      'https://docs.aws.amazon.com/sns/latest/dg/welcome.html#SNSFanoutScenario',
+      'https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html',
+    ],
   },
   {
     id: 'd2-011',
@@ -212,7 +226,7 @@ export const enUS: readonly Question[] = [
       'Fargate runs containers without servers or clusters of EC2 instances to manage. The team only defines CPU, memory, networking and IAM for each task.',
       'EKS manages the Kubernetes control plane, but self-managed nodes are EC2 instances that the team must patch and scale.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html',
+    evidence: ['https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html'],
   },
   {
     id: 'd2-012',
@@ -231,7 +245,7 @@ export const enUS: readonly Question[] = [
       'Lambda can run container images as functions, but it is not Kubernetes and the services would have to be redesigned.',
       'Kubernetes on EC2 keeps the manifests but leaves the company operating the control plane, which it wants to stop doing.',
     ],
-    source: 'https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html',
+    evidence: ['https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html#eks-features'],
   },
   {
     id: 'd2-013',
@@ -252,7 +266,10 @@ export const enUS: readonly Question[] = [
       'Polling workers must be managed and scaled, and they keep running when there are no uploads.',
       'A second bucket, or a trigger limited to a prefix for incoming objects, keeps the function from triggering itself.',
     ],
-    source: 'https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html',
+    evidence: [
+      'https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html',
+      'https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html#services-s3-runaway',
+    ],
   },
   {
     id: 'd2-014',
@@ -266,7 +283,7 @@ export const enUS: readonly Question[] = [
       'Kinesis is built for streaming data and would require the applications to be rewritten for its API.',
       'Amazon MQ is a managed message broker for Apache ActiveMQ Classic and RabbitMQ that supports industry standard messaging protocols, so existing brokers migrate to it without rewriting messaging code.',
     ],
-    source: 'https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/welcome.html',
+    evidence: ['https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/welcome.html'],
   },
   {
     id: 'd2-015',
@@ -285,7 +302,9 @@ export const enUS: readonly Question[] = [
       'An EBS volume belongs to one instance, so the session is still tied to that instance and is lost to the user when it terminates.',
       'Blocking scale-in keeps idle capacity that costs money, and an instance failure would still log users out.',
     ],
-    source: 'https://aws.amazon.com/caching/session-management/',
+    evidence: [
+      'https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_mitigate_interaction_failure_stateless.html#implementation-steps',
+    ],
   },
   {
     id: 'd2-016',
@@ -304,7 +323,7 @@ export const enUS: readonly Question[] = [
       'DataSync moves data between storage systems that the company controls. It gives partners no SFTP endpoint, and installing agents at partner sites changes their setup.',
       'Presigned URLs use HTTPS, so partners would have to replace their SFTP clients and workflows.',
     ],
-    source: 'https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html',
+    evidence: ['https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html'],
   },
   {
     id: 'd2-017',
@@ -323,7 +342,9 @@ export const enUS: readonly Question[] = [
       'A nightly restore gives analysts data up to a day old, which breaks the requirement for current data.',
       'A read replica receives updates asynchronously and serves read-only queries, so reporting moves off the primary while staying seconds behind it.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html',
+    evidence: [
+      'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.Overview.use-cases',
+    ],
   },
   {
     id: 'd2-018',
@@ -342,7 +363,7 @@ export const enUS: readonly Question[] = [
       'CloudFront caches the files in edge locations and routes each request to the edge with the lowest latency, so repeated requests are served without reaching S3.',
       'Global Accelerator endpoints are load balancers, EC2 instances and Elastic IP addresses, not S3 buckets, and it does not cache content.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html',
+    evidence: ['https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html'],
   },
   {
     id: 'd2-019',
@@ -361,7 +382,9 @@ export const enUS: readonly Question[] = [
       'Two instances remove the single point of failure but run the job twice and still require servers.',
       'A delay queue postpones delivery by at most 15 minutes, so it cannot schedule a nightly job.',
     ],
-    source: 'https://docs.aws.amazon.com/scheduler/latest/UserGuide/what-is-scheduler.html',
+    evidence: [
+      'https://docs.aws.amazon.com/scheduler/latest/UserGuide/what-is-scheduler.html#servicename-feature-overview',
+    ],
   },
   {
     id: 'd2-020',
@@ -382,7 +405,10 @@ export const enUS: readonly Question[] = [
       'Lambda runs code only when a request arrives and scales with the spikes, so idle periods cost nothing for compute.',
       'Container instances are EC2 servers that the startup must manage and pay for while idle.',
     ],
-    source: 'https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html',
+    evidence: [
+      'https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html',
+      'https://docs.aws.amazon.com/lambda/latest/dg/welcome.html#lambda-comparison',
+    ],
   },
   {
     id: 'd2-021',
@@ -401,7 +427,7 @@ export const enUS: readonly Question[] = [
       'EFS is a shared NFS file system that many instances mount at once, and a Regional file system stores data redundantly across multiple Availability Zones.',
       'Multi-Attach works only for instances in the same Availability Zone as the volume, so it cannot serve three zones or survive a zone failure.',
     ],
-    source: 'https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html',
+    evidence: ['https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html'],
   },
   {
     id: 'd2-022',
@@ -420,7 +446,7 @@ export const enUS: readonly Question[] = [
       'Step scaling works but requires the team to create the alarms and define each step adjustment.',
       'Vertical scaling requires replacing instances and does not follow the changes during the day.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html',
+    evidence: ['https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html'],
   },
   {
     id: 'd2-023',
@@ -439,7 +465,7 @@ export const enUS: readonly Question[] = [
       'RDS keeps a synchronous standby in a different Availability Zone and fails over to it automatically, which protects against instance failure and Availability Zone disruption.',
       'A scheduled copy is not synchronous, adds operational work and provides no automatic failover.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html',
+    evidence: ['https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html'],
   },
   {
     id: 'd2-024',
@@ -458,7 +484,9 @@ export const enUS: readonly Question[] = [
       'A global database adds secondary Regions for Regional disaster recovery. It does not add a reader to the primary cluster to speed up local failover.',
       'Backups protect the data but provide no standby instance to fail over to.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html',
+    evidence: [
+      'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance',
+    ],
   },
   {
     id: 'd2-025',
@@ -477,7 +505,7 @@ export const enUS: readonly Question[] = [
       'Writes still go to the primary, and replicas neither pool connections nor help during failover.',
       'RDS Proxy pools and reuses connections, queues or throttles the excess, and preserves application connections while it connects to the standby during a failover, usually with no code changes.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html',
+    evidence: ['https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html#rds-proxy-failover'],
   },
   {
     id: 'd2-026',
@@ -498,7 +526,10 @@ export const enUS: readonly Question[] = [
       'AMIs help rebuild an instance, but recovery is manual and the site is down in the meantime.',
       'The load balancer gives users a single point of contact and distributes their traffic across the instances in every zone.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html',
+    evidence: [
+      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html#arch-AutoScalingMultiAZ',
+      'https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html#application-load-balancer-components',
+    ],
   },
   {
     id: 'd2-027',
@@ -517,7 +548,7 @@ export const enUS: readonly Question[] = [
       'A zonal NAT gateway is redundant only inside its own zone. With one gateway per zone and zone-specific routes, a zone outage affects only the resources in that zone.',
       'A NAT instance in the other zone only moves the single point of failure and adds patching work.',
     ],
-    source: 'https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-basics.html',
+    evidence: ['https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-basics.html'],
   },
   {
     id: 'd2-028',
@@ -531,8 +562,9 @@ export const enUS: readonly Question[] = [
       'Warm standby keeps a scaled down but fully running copy, so application servers run all the time and cost more.',
       'Active/active runs the full workload in both Regions, the most expensive option.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#pilot-light',
+    ],
   },
   {
     id: 'd2-029',
@@ -546,8 +578,9 @@ export const enUS: readonly Question[] = [
       'Active/active meets the timing but runs full capacity in both Regions, the cost the company wants to avoid.',
       'Warm standby keeps a scaled down but fully functional copy that handles traffic immediately and only needs to scale up.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#warm-standby',
+    ],
   },
   {
     id: 'd2-030',
@@ -566,8 +599,9 @@ export const enUS: readonly Question[] = [
       'Backup and restore is the lowest cost strategy. Daily backups copied to another Region meet the one day RPO, and infrastructure as code redeploys the stack within the RTO.',
       'Active/active is the most costly and complex strategy.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#backup-and-restore',
+    ],
   },
   {
     id: 'd2-031',
@@ -588,7 +622,10 @@ export const enUS: readonly Question[] = [
       'S3 needs permission to replicate objects from the source bucket to the destination on your behalf, which the replication rule gets through an IAM role.',
       'MFA delete protects object versions from deletion and is not a requirement for replication.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-requirements.html',
+    evidence: [
+      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-requirements.html',
+      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/setting-repl-config-perm-overview.html',
+    ],
   },
   {
     id: 'd2-032',
@@ -607,8 +644,9 @@ export const enUS: readonly Question[] = [
       'Promoting an RDS read replica takes a few minutes and includes a reboot, so it misses the RTO, and the database would no longer be Aurora.',
       'Aurora Global Database replicates to secondary Regions with typical latency under a second, serves local reads there, and a secondary Region can be promoted to read and write in less than one minute.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#aws-services-1',
+    ],
   },
   {
     id: 'd2-033',
@@ -627,7 +665,7 @@ export const enUS: readonly Question[] = [
       'Daily backups give no local writes in Europe and lose up to a day of data on failover.',
       'CloudFront caches content, but writes still travel to one Region, which remains a single point of failure.',
     ],
-    source: 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html',
+    evidence: ['https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html'],
   },
   {
     id: 'd2-034',
@@ -646,8 +684,9 @@ export const enUS: readonly Question[] = [
       'Detailed monitoring publishes metrics every minute but does not let the group launch more instances.',
       'Larger instances count against the same Regional quotas and could reach the limit even sooner.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#aws-services-2',
+    ],
   },
   {
     id: 'd2-035',
@@ -661,7 +700,7 @@ export const enUS: readonly Question[] = [
       'CloudTrail records calls to AWS APIs for auditing, not the path of application requests.',
       'AWS Config tracks changes to resource configurations, not request latency.',
     ],
-    source: 'https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html',
+    evidence: ['https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html'],
   },
   {
     id: 'd2-036',
@@ -682,7 +721,10 @@ export const enUS: readonly Question[] = [
       'With failover routing, Route 53 answers with the primary record while it is healthy and with the secondary record only when it is not.',
       'Latency routing sends each user to the endpoint with the lowest latency, which could be the maintenance page while the data center is healthy.',
     ],
-    source: 'https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-types.html',
+    evidence: [
+      'https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-types.html',
+      'https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-types.html#dns-failover-types-active-passive-one-resource',
+    ],
   },
   {
     id: 'd2-037',
@@ -701,7 +743,7 @@ export const enUS: readonly Question[] = [
       'CloudFront delivers HTTP and HTTPS content, not UDP game traffic.',
       'Each Elastic IP address belongs to one Region, so clients would still have to switch addresses when a Region fails.',
     ],
-    source: 'https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html',
+    evidence: ['https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html'],
   },
   {
     id: 'd2-038',
@@ -720,7 +762,7 @@ export const enUS: readonly Question[] = [
       'Terminating everything at once causes an outage until the replacements are healthy.',
       'An instance refresh replaces the instances with new ones launched from the updated launch template, so every change arrives as a new AMI and no running instance is touched.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html',
+    evidence: ['https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html'],
   },
   {
     id: 'd2-039',
@@ -739,7 +781,9 @@ export const enUS: readonly Question[] = [
       'CloudWatch action based recovery moves the instance to healthy hardware while keeping its instance ID, IP addresses and EBS volumes, and the alarm can notify an SNS topic.',
       'The instance status check reports problems inside the instance, and a reboot keeps the instance on the same host instead of moving it off failed hardware.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html',
+    evidence: [
+      'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cloudwatch-recovery.html#ec2-instance-recover-cloudwatch-configure',
+    ],
   },
   {
     id: 'd2-040',
@@ -753,7 +797,7 @@ export const enUS: readonly Question[] = [
       'Comprehend extracts insights such as sentiment and entities from text and does not produce speech.',
       'Translate converts text between languages, not into audio.',
     ],
-    source: 'https://docs.aws.amazon.com/polly/latest/dg/what-is.html',
+    evidence: ['https://docs.aws.amazon.com/polly/latest/dg/what-is.html'],
   },
   {
     id: 'd2-041',
@@ -774,7 +818,10 @@ export const enUS: readonly Question[] = [
       'These backups are not objects in a bucket the company manages, so S3 replication does not apply to them.',
       'A copy rule in the backup plan copies each backup to a vault in the destination Region automatically.',
     ],
-    source: 'https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.html',
+    evidence: [
+      'https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#centralized-backup-management',
+      'https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.html#scheduled-crb',
+    ],
   },
   {
     id: 'd2-042',
@@ -793,7 +840,7 @@ export const enUS: readonly Question[] = [
       'Cross-zone load balancing changes how traffic is spread across zones, not how unhealthy instances are replaced.',
       'A nightly replacement leaves a broken instance in service for hours and replaces healthy instances for no reason.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html',
+    evidence: ['https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html'],
   },
   {
     id: 'd2-043',
@@ -812,7 +859,7 @@ export const enUS: readonly Question[] = [
       'Instance store data is lost when the instance stops or fails.',
       'S3 Standard stores data across at least three Availability Zones, is designed for frequent access and stays available if one zone is lost.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html',
+    evidence: ['https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-compare'],
   },
   {
     id: 'd2-044',
@@ -833,7 +880,10 @@ export const enUS: readonly Question[] = [
       'Shutting down production to test it is disruptive, which the company must avoid.',
       'Elastic Disaster Recovery supports non-disruptive drills that launch instances from the replicated data, which proves recovery works without touching production.',
     ],
-    source: 'https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html',
+    evidence: [
+      'https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html',
+      'https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html',
+    ],
   },
   {
     id: 'd2-045',
@@ -852,7 +902,7 @@ export const enUS: readonly Question[] = [
       'Data Lifecycle Manager automates the creation, retention and deletion of EBS snapshots, can copy them to other Regions and has no additional cost.',
       'Fast snapshot restore speeds up creating volumes from snapshots that are already in a Region and adds charges. It does not create, copy or delete snapshots.',
     ],
-    source: 'https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-lifecycle.html',
+    evidence: ['https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-lifecycle.html'],
   },
 ]
 
@@ -874,7 +924,9 @@ export const ptBR: readonly Question[] = [
       'O SNS envia cada mensagem ao assinante na hora e não guarda um acúmulo para uma camada de processamento sobrecarregada tratar depois.',
       'Um load balancer distribui requisições entre instâncias saudáveis, mas não armazena trabalho. Com todas as instâncias saturadas, as requisições continuam falhando.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html#sqs-message-lifecycle',
+    ],
   },
   {
     id: 'd2-002',
@@ -893,7 +945,7 @@ export const ptBR: readonly Question[] = [
       'Um único message group coloca todas as transações em uma só sequência ordenada, então contas diferentes deixam de ser processadas em paralelo.',
       'Tópicos e filas standard não garantem ordem nem ausência de duplicatas.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-fifo-queues.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-fifo-queues.html'],
   },
   {
     id: 'd2-003',
@@ -912,7 +964,9 @@ export const ptBR: readonly Question[] = [
       'O visibility timeout padrão é de 30 segundos. Uma mensagem não apagada antes de ele expirar volta a ficar visível e outro worker a pega, então o timeout precisa ser maior que a tarefa de 10 minutos.',
       'A retenção define por quanto tempo uma mensagem não consumida é guardada, e não se uma mensagem em processamento fica visível para outros workers.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#configuring-visibility-timeout',
+    ],
   },
   {
     id: 'd2-004',
@@ -931,7 +985,9 @@ export const ptBR: readonly Question[] = [
       'A FIFO muda a ordenação e a deduplicação. A mensagem malformada continuaria sendo reprocessada e ainda seguraria as mensagens atrás dela no mesmo message group.',
       'Depois de recebida `maxReceiveCount` vezes sem ser apagada, a mensagem é movida pelo SQS para a dead-letter queue, onde a equipe pode examiná-la e devolvê-la à fila depois.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html#policies-for-dead-letter-queues',
+    ],
   },
   {
     id: 'd2-005',
@@ -952,7 +1008,10 @@ export const ptBR: readonly Question[] = [
       'O tamanho da fila sozinho não considera quantas instâncias estão rodando, então uma política baseada nele pode adicionar mais instâncias que o necessário enquanto a fila esvazia.',
       'Uma única instância maior não escala horizontalmente e vira um ponto único de falha.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/as-using-sqs-queue.html#scale-sqs-queue-scale-in-protection',
+      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/as-using-sqs-queue.html#scale-sqs-queue-custom-metric',
+    ],
   },
   {
     id: 'd2-006',
@@ -971,7 +1030,7 @@ export const ptBR: readonly Question[] = [
       'Encadear funções leva as novas tentativas, o estado e a espera para código próprio, e uma única invocação Lambda não consegue esperar cinco dias.',
       'As filas desacoplam as etapas, mas deixam a ordem, as novas tentativas e a espera pela aprovação humana para código próprio em cada função.',
     ],
-    source: 'https://docs.aws.amazon.com/step-functions/latest/dg/choosing-workflow-type.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/step-functions/latest/dg/choosing-workflow-type.html'],
   },
   {
     id: 'd2-007',
@@ -990,7 +1049,9 @@ export const ptBR: readonly Question[] = [
       'Regras rate-based limitam as requisições de um IP em poucos minutos. Não aplicam uma cota mensal, e os parceiros podem chamar de muitos endereços que mudam.',
       'O throttling da conta vale para todos os clientes juntos e não dá a cada parceiro sua própria taxa ou cota mensal.',
     ],
-    source: 'https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/apigateway/latest/developerguide/api-gateway-api-usage-plans.html#api-gateway-api-usage-plans-overview',
+    ],
   },
   {
     id: 'd2-008',
@@ -1009,7 +1070,7 @@ export const ptBR: readonly Question[] = [
       'Uma mensagem é processada por um consumidor e depois apagada, então não chegaria a todos os participantes, e navegadores não são um lugar prático para rodar consumidores de fila.',
       'WebSocket APIs são bidirecionais, então o backend envia o novo preço a todos os clientes conectados sem que eles peçam. Foram feitas para aplicações em tempo real, como chat e negociação.',
     ],
-    source: 'https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/apigateway/latest/developerguide/apigateway-websocket-api.html'],
   },
   {
     id: 'd2-009',
@@ -1028,7 +1089,7 @@ export const ptBR: readonly Question[] = [
       'A FIFO acrescenta ordenação e deduplicação, mas continua entregando cada mensagem a um único consumidor, que a apaga.',
       'O Firehose carrega dados em streaming em um destino como o Amazon S3. Ele não deixa várias aplicações próprias lerem os mesmos registros em tempo real.',
     ],
-    source: 'https://docs.aws.amazon.com/streams/latest/dev/introduction.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/streams/latest/dev/introduction.html#using-the-service'],
   },
   {
     id: 'd2-010',
@@ -1049,7 +1110,10 @@ export const ptBR: readonly Question[] = [
       'Cada fila recebe sua própria cópia de cada pedido e a guarda até aquele serviço processá-la, então um serviço lento ou fora do ar não perde nada e não atrasa os outros.',
       'Enviar direto a cada serviço não deixa uma fila guardando os pedidos enquanto o serviço fica muito tempo fora do ar, então pedidos podem se perder quando as novas tentativas de entrega acabam.',
     ],
-    source: 'https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/sns/latest/dg/welcome.html#SNSFanoutScenario',
+      'https://docs.aws.amazon.com/pt_br/sns/latest/dg/sns-sqs-as-subscriber.html',
+    ],
   },
   {
     id: 'd2-011',
@@ -1068,7 +1132,7 @@ export const ptBR: readonly Question[] = [
       'O Fargate roda contêineres sem servidores nem clusters de instâncias EC2 para gerenciar. A equipe só define CPU, memória, rede e IAM de cada tarefa.',
       'O EKS gerencia o control plane do Kubernetes, mas nós autogerenciados são instâncias EC2 que a equipe precisa corrigir e escalar.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/AmazonECS/latest/developerguide/AWS_Fargate.html'],
   },
   {
     id: 'd2-012',
@@ -1087,7 +1151,7 @@ export const ptBR: readonly Question[] = [
       'O Lambda roda imagens de contêiner como funções, mas não é Kubernetes e os serviços teriam de ser redesenhados.',
       'Kubernetes em EC2 mantém os manifestos, mas a empresa continua operando o control plane, o que ela quer parar de fazer.',
     ],
-    source: 'https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/eks/latest/userguide/what-is-eks.html#eks-features'],
   },
   {
     id: 'd2-013',
@@ -1108,7 +1172,10 @@ export const ptBR: readonly Question[] = [
       'Workers que fazem polling precisam ser gerenciados e escalados, e continuam rodando quando não há uploads.',
       'Um segundo bucket, ou um gatilho limitado a um prefixo de entrada, impede que a função dispare a si mesma.',
     ],
-    source: 'https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-s3.html',
+      'https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-s3.html#services-s3-runaway',
+    ],
   },
   {
     id: 'd2-014',
@@ -1122,7 +1189,7 @@ export const ptBR: readonly Question[] = [
       'O Kinesis foi feito para dados em streaming e exigiria reescrever as aplicações para a API dele.',
       'O Amazon MQ é um message broker gerenciado para Apache ActiveMQ Classic e RabbitMQ que suporta protocolos de mensageria padrão do mercado, então os brokers existentes migram para ele sem reescrever o código de mensageria.',
     ],
-    source: 'https://docs.aws.amazon.com/pt_br/amazon-mq/latest/developer-guide/welcome.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/amazon-mq/latest/developer-guide/welcome.html'],
   },
   {
     id: 'd2-015',
@@ -1141,7 +1208,9 @@ export const ptBR: readonly Question[] = [
       'Um volume EBS pertence a uma instância, então a sessão continua presa a ela e o usuário a perde quando a instância é encerrada.',
       'Impedir a redução mantém capacidade ociosa que custa dinheiro, e uma falha de instância ainda deslogaria os usuários.',
     ],
-    source: 'https://aws.amazon.com/caching/session-management/',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/wellarchitected/latest/reliability-pillar/rel_mitigate_interaction_failure_stateless.html#implementation-steps',
+    ],
   },
   {
     id: 'd2-016',
@@ -1160,7 +1229,7 @@ export const ptBR: readonly Question[] = [
       'O DataSync move dados entre sistemas de armazenamento que a empresa controla. Ele não oferece um endpoint SFTP aos parceiros, e instalar agentes neles muda a configuração deles.',
       'URLs pré-assinadas usam HTTPS, então os parceiros teriam de trocar os clientes e o fluxo de SFTP.',
     ],
-    source: 'https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/transfer/latest/userguide/what-is-aws-transfer-family.html'],
   },
   {
     id: 'd2-017',
@@ -1179,7 +1248,9 @@ export const ptBR: readonly Question[] = [
       'Uma restauração noturna entrega dados de até um dia atrás, o que viola o requisito de dados atuais.',
       'Uma réplica de leitura recebe as alterações de forma assíncrona e atende consultas somente leitura, então os relatórios saem da primária e ficam poucos segundos atrás dela.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.Overview.use-cases',
+    ],
   },
   {
     id: 'd2-018',
@@ -1198,7 +1269,7 @@ export const ptBR: readonly Question[] = [
       'O CloudFront guarda os arquivos em cache nos edge locations e encaminha cada requisição ao edge de menor latência, então requisições repetidas são atendidas sem chegar ao S3.',
       'Os endpoints do Global Accelerator são load balancers, instâncias EC2 e Elastic IPs, não buckets do S3, e ele não guarda conteúdo em cache.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/Introduction.html'],
   },
   {
     id: 'd2-019',
@@ -1217,7 +1288,9 @@ export const ptBR: readonly Question[] = [
       'Duas instâncias eliminam o ponto único de falha, mas rodam a tarefa duas vezes e ainda exigem servidores.',
       'Uma delay queue adia a entrega por no máximo 15 minutos, então não serve para agendar uma tarefa noturna.',
     ],
-    source: 'https://docs.aws.amazon.com/scheduler/latest/UserGuide/what-is-scheduler.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/scheduler/latest/UserGuide/what-is-scheduler.html#servicename-feature-overview',
+    ],
   },
   {
     id: 'd2-020',
@@ -1238,7 +1311,10 @@ export const ptBR: readonly Question[] = [
       'O Lambda só executa o código quando chega uma requisição e escala com os picos, então os períodos ociosos não custam nada de computação.',
       'Instâncias de contêiner são servidores EC2 que a startup precisa gerenciar e pagar mesmo ociosos.',
     ],
-    source: 'https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-apigateway.html',
+      'https://docs.aws.amazon.com/pt_br/lambda/latest/dg/welcome.html#lambda-comparison',
+    ],
   },
   {
     id: 'd2-021',
@@ -1257,7 +1333,7 @@ export const ptBR: readonly Question[] = [
       'O EFS é um file system NFS compartilhado que muitas instâncias montam ao mesmo tempo, e um file system Regional guarda os dados de forma redundante em várias Zonas de Disponibilidade.',
       'O Multi-Attach só funciona com instâncias na mesma Zona de Disponibilidade do volume, então não atende três zonas nem sobrevive à falha de uma delas.',
     ],
-    source: 'https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/efs/latest/ug/whatisefs.html'],
   },
   {
     id: 'd2-022',
@@ -1276,7 +1352,7 @@ export const ptBR: readonly Question[] = [
       'O step scaling funciona, mas exige que a equipe crie os alarmes e defina cada ajuste por degrau.',
       'O escalonamento vertical exige trocar as instâncias e não acompanha as mudanças ao longo do dia.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/as-scaling-target-tracking.html'],
   },
   {
     id: 'd2-023',
@@ -1295,7 +1371,7 @@ export const ptBR: readonly Question[] = [
       'O RDS mantém uma standby síncrona em outra Zona de Disponibilidade e faz failover para ela automaticamente, o que protege contra falha da instância e indisponibilidade da Zona de Disponibilidade.',
       'Uma cópia agendada não é síncrona, aumenta o trabalho operacional e não oferece failover automático.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html'],
   },
   {
     id: 'd2-024',
@@ -1314,7 +1390,9 @@ export const ptBR: readonly Question[] = [
       'Um global database acrescenta Regiões secundárias para recuperação de desastres regional. Ele não adiciona uma leitora ao cluster primário para acelerar o failover local.',
       'Backups protegem os dados, mas não oferecem uma instância standby para o failover.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance',
+    ],
   },
   {
     id: 'd2-025',
@@ -1333,7 +1411,9 @@ export const ptBR: readonly Question[] = [
       'As gravações continuam indo para a primária, e as réplicas não fazem pool de conexões nem ajudam no failover.',
       'O RDS Proxy mantém um pool de conexões reutilizadas, enfileira ou limita o excesso e preserva as conexões da aplicação enquanto se conecta à standby no failover, normalmente sem mudar o código.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html#rds-proxy-failover',
+    ],
   },
   {
     id: 'd2-026',
@@ -1354,7 +1434,10 @@ export const ptBR: readonly Question[] = [
       'AMIs ajudam a reconstruir uma instância, mas a recuperação é manual e o site fica fora do ar enquanto isso.',
       'O load balancer dá aos usuários um único ponto de contato e distribui o tráfego entre as instâncias de todas as zonas.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/auto-scaling-benefits.html#arch-AutoScalingMultiAZ',
+      'https://docs.aws.amazon.com/pt_br/elasticloadbalancing/latest/application/introduction.html#application-load-balancer-components',
+    ],
   },
   {
     id: 'd2-027',
@@ -1373,7 +1456,7 @@ export const ptBR: readonly Question[] = [
       'Um NAT gateway zonal só é redundante dentro da própria zona. Com um gateway por zona e rotas específicas de cada zona, a queda de uma zona afeta apenas os recursos dela.',
       'Uma NAT instance na outra zona só muda o ponto único de falha de lugar e acrescenta trabalho de correções.',
     ],
-    source: 'https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-basics.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/nat-gateway-basics.html'],
   },
   {
     id: 'd2-028',
@@ -1387,8 +1470,9 @@ export const ptBR: readonly Question[] = [
       'O warm standby mantém uma cópia reduzida mas funcionando, então os servidores de aplicação rodam o tempo todo e custam mais.',
       'O ativo/ativo roda a carga completa nas duas Regiões, a opção mais cara.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#pilot-light',
+    ],
   },
   {
     id: 'd2-029',
@@ -1402,8 +1486,9 @@ export const ptBR: readonly Question[] = [
       'O ativo/ativo cumpre o prazo, mas roda capacidade completa nas duas Regiões, justamente o custo que a empresa quer evitar.',
       'O warm standby mantém uma cópia reduzida e totalmente funcional que atende tráfego na hora e só precisa escalar.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#warm-standby',
+    ],
   },
   {
     id: 'd2-030',
@@ -1422,8 +1507,9 @@ export const ptBR: readonly Question[] = [
       'Backup e restauração é a estratégia de menor custo. Backups diários copiados para outra Região atendem ao RPO de um dia, e a infraestrutura como código reimplanta a pilha dentro do RTO.',
       'O ativo/ativo é a estratégia mais cara e complexa.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#backup-and-restore',
+    ],
   },
   {
     id: 'd2-031',
@@ -1444,7 +1530,10 @@ export const ptBR: readonly Question[] = [
       'O S3 precisa de permissão para replicar os objetos do bucket de origem para o de destino em seu nome, e a regra de replicação recebe essa permissão por uma IAM role.',
       'O MFA delete protege as versões dos objetos contra exclusão e não é requisito da replicação.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-requirements.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/replication-requirements.html',
+      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/setting-repl-config-perm-overview.html',
+    ],
   },
   {
     id: 'd2-032',
@@ -1463,8 +1552,9 @@ export const ptBR: readonly Question[] = [
       'Promover uma réplica de leitura do RDS leva alguns minutos e inclui uma reinicialização, então não cumpre o RTO, e o banco deixaria de ser Aurora.',
       'O Aurora Global Database replica para Regiões secundárias com latência típica abaixo de um segundo, atende leituras locais nelas, e uma Região secundária pode ser promovida para leitura e escrita em menos de um minuto.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#aws-services-1',
+    ],
   },
   {
     id: 'd2-033',
@@ -1483,7 +1573,7 @@ export const ptBR: readonly Question[] = [
       'Backups diários não dão gravação local na Europa e perdem até um dia de dados no failover.',
       'O CloudFront guarda conteúdo em cache, mas as gravações continuam indo para uma Região, que segue como ponto único de falha.',
     ],
-    source: 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/GlobalTables.html'],
   },
   {
     id: 'd2-034',
@@ -1502,8 +1592,9 @@ export const ptBR: readonly Question[] = [
       'O monitoramento detalhado publica métricas a cada minuto, mas não deixa o grupo subir mais instâncias.',
       'Instâncias maiores contam nas mesmas cotas regionais e poderiam atingir o limite ainda mais cedo.',
     ],
-    source:
-      'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#aws-services-2',
+    ],
   },
   {
     id: 'd2-035',
@@ -1517,7 +1608,7 @@ export const ptBR: readonly Question[] = [
       'O CloudTrail registra chamadas às APIs da AWS para auditoria, não o caminho das requisições da aplicação.',
       'O AWS Config acompanha mudanças na configuração dos recursos, não a latência das requisições.',
     ],
-    source: 'https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/xray/latest/devguide/aws-xray.html'],
   },
   {
     id: 'd2-036',
@@ -1538,7 +1629,10 @@ export const ptBR: readonly Question[] = [
       'Com o roteamento de failover, o Route 53 responde com o registro primário enquanto ele está saudável e com o secundário só quando não está.',
       'O roteamento por latência manda cada usuário ao endpoint de menor latência, que pode ser a página de manutenção mesmo com o data center saudável.',
     ],
-    source: 'https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-types.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/Route53/latest/DeveloperGuide/health-checks-types.html',
+      'https://docs.aws.amazon.com/pt_br/Route53/latest/DeveloperGuide/dns-failover-types.html#dns-failover-types-active-passive-one-resource',
+    ],
   },
   {
     id: 'd2-037',
@@ -1557,7 +1651,7 @@ export const ptBR: readonly Question[] = [
       'O CloudFront entrega conteúdo HTTP e HTTPS, não tráfego UDP de jogo.',
       'Cada Elastic IP pertence a uma Região, então os clientes ainda teriam de trocar de endereço quando uma Região falhasse.',
     ],
-    source: 'https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/global-accelerator/latest/dg/what-is-global-accelerator.html'],
   },
   {
     id: 'd2-038',
@@ -1576,7 +1670,7 @@ export const ptBR: readonly Question[] = [
       'Encerrar tudo de uma vez causa uma indisponibilidade até as substitutas ficarem saudáveis.',
       'Um instance refresh substitui as instâncias por novas criadas a partir do launch template atualizado, então toda mudança chega como uma nova AMI e nenhuma instância em execução é alterada.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/asg-instance-refresh.html'],
   },
   {
     id: 'd2-039',
@@ -1595,7 +1689,9 @@ export const ptBR: readonly Question[] = [
       'A recuperação por ação do CloudWatch move a instância para hardware saudável mantendo o ID, os endereços IP e os volumes EBS, e o alarme pode notificar um tópico do SNS.',
       'O status check da instância indica problemas dentro dela, e uma reinicialização mantém a instância no mesmo host em vez de tirá-la do hardware com falha.',
     ],
-    source: 'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/cloudwatch-recovery.html#ec2-instance-recover-cloudwatch-configure',
+    ],
   },
   {
     id: 'd2-040',
@@ -1609,7 +1705,7 @@ export const ptBR: readonly Question[] = [
       'O Comprehend extrai informações como sentimento e entidades de um texto e não gera fala.',
       'O Translate traduz texto entre idiomas, não o transforma em áudio.',
     ],
-    source: 'https://docs.aws.amazon.com/polly/latest/dg/what-is.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/polly/latest/dg/what-is.html'],
   },
   {
     id: 'd2-041',
@@ -1630,7 +1726,10 @@ export const ptBR: readonly Question[] = [
       'Esses backups não são objetos em um bucket gerenciado pela empresa, então a replicação do S3 não se aplica a eles.',
       'Uma regra de cópia no backup plan copia cada backup automaticamente para um vault na Região de destino.',
     ],
-    source: 'https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/aws-backup/latest/devguide/whatisbackup.html#centralized-backup-management',
+      'https://docs.aws.amazon.com/pt_br/aws-backup/latest/devguide/cross-region-backup.html#scheduled-crb',
+    ],
   },
   {
     id: 'd2-042',
@@ -1649,7 +1748,7 @@ export const ptBR: readonly Question[] = [
       'O cross-zone load balancing muda como o tráfego se distribui entre as zonas, não como instâncias com problema são substituídas.',
       'Uma troca noturna deixa uma instância quebrada em serviço por horas e substitui instâncias saudáveis sem motivo.',
     ],
-    source: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/attach-load-balancer-asg.html'],
   },
   {
     id: 'd2-043',
@@ -1668,7 +1767,7 @@ export const ptBR: readonly Question[] = [
       'Os dados de instance store se perdem quando a instância para ou falha.',
       'O S3 Standard guarda os dados em pelo menos três Zonas de Disponibilidade, foi feito para acesso frequente e continua disponível se uma zona for perdida.',
     ],
-    source: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/storage-class-intro.html#sc-compare'],
   },
   {
     id: 'd2-044',
@@ -1689,7 +1788,10 @@ export const ptBR: readonly Question[] = [
       'Desligar a produção para testar atrapalha a operação, o que a empresa precisa evitar.',
       'O Elastic Disaster Recovery permite testes que não interrompem a produção, subindo instâncias a partir dos dados replicados, o que prova que a recuperação funciona.',
     ],
-    source: 'https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html',
+    evidence: [
+      'https://docs.aws.amazon.com/pt_br/drs/latest/userguide/what-is-drs.html',
+      'https://docs.aws.amazon.com/pt_br/drs/latest/userguide/what-is-drs.html',
+    ],
   },
   {
     id: 'd2-045',
@@ -1708,6 +1810,6 @@ export const ptBR: readonly Question[] = [
       'O Data Lifecycle Manager automatiza a criação, a retenção e a exclusão de snapshots do EBS, consegue copiá-los para outras Regiões e não tem custo adicional.',
       'O fast snapshot restore acelera a criação de volumes a partir de snapshots que já estão em uma Região e gera cobranças. Ele não cria, copia nem apaga snapshots.',
     ],
-    source: 'https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-lifecycle.html',
+    evidence: ['https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/snapshot-lifecycle.html'],
   },
 ]
