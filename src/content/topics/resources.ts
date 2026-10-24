@@ -23,6 +23,10 @@ export const enUS: readonly Topic[] = [
           'The exam page, the exam guide with its service lists, and the free and paid prep that AWS publishes on Skill Builder.',
         links: [
           { label: 'Certification page', href: en.aws('certification/certified-solutions-architect-associate/') },
+          {
+            label: 'Practice exam of these notes, with 65 questions and a timer',
+            href: 'https://gustavofreze.github.io/aws-certified-solutions-architect-associate/practice/',
+          },
           { label: 'Exam guide (SAA-C03)', href: en.docs(`${GUIDE}solutions-architect-associate-03.html`) },
           { label: 'In-scope services', href: en.docs(`${GUIDE}saa-03-in-scope-services.html`) },
           { label: 'Out-of-scope services', href: en.docs(`${GUIDE}saa-03-out-of-scope-services.html`) },
@@ -160,6 +164,10 @@ export const ptBR: readonly Topic[] = [
           'A página do exame, o guia com as listas de serviços e a preparação gratuita e paga que a AWS publica no Skill Builder.',
         links: [
           { label: 'Página da certificação', href: pt.aws('certification/certified-solutions-architect-associate/') },
+          {
+            label: 'Simulado destas notas, com 65 questões e cronômetro',
+            href: 'https://gustavofreze.github.io/aws-certified-solutions-architect-associate/pt-br/practice/',
+          },
           { label: 'Guia do exame (SAA-C03)', href: pt.docs(`${GUIDE}solutions-architect-associate-03.html`) },
           { label: 'Serviços dentro do escopo', href: pt.docs(`${GUIDE}saa-03-in-scope-services.html`) },
           { label: 'Serviços fora do escopo', href: pt.docs(`${GUIDE}saa-03-out-of-scope-services.html`) },

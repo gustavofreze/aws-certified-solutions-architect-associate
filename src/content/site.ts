@@ -41,9 +41,9 @@ export interface SiteText {
 export const SITE_TEXT: Readonly<Record<Locale, SiteText>> = {
   'en-US': {
     meta: {
-      title: 'AWS Solutions Architect Associate (SAA-C03) · Study notes',
+      title: 'AWS Solutions Architect Associate (SAA-C03) · Study notes and practice exam',
       description:
-        'Free study notes for the AWS Solutions Architect Associate (SAA-C03) exam: secure, resilient, high-performing and cost-optimized designs, with search and review.',
+        'Free study notes and practice exam for the AWS Solutions Architect Associate (SAA-C03): secure, resilient, high-performing and cost-optimized designs.',
     },
     brand: 'Solutions Architect',
     home: {
@@ -81,9 +81,9 @@ export const SITE_TEXT: Readonly<Record<Locale, SiteText>> = {
   },
   'pt-BR': {
     meta: {
-      title: 'AWS Solutions Architect Associate (SAA-C03) · Notas de estudo',
+      title: 'AWS Solutions Architect Associate (SAA-C03) · Notas de estudo e simulado',
       description:
-        'Notas de estudo gratuitas para o exame AWS Solutions Architect Associate (SAA-C03): segurança, resiliência, desempenho e custo, com busca e revisão.',
+        'Notas de estudo e simulado gratuitos para o exame AWS Solutions Architect Associate (SAA-C03): segurança, resiliência, desempenho e custo.',
     },
     brand: 'Solutions Architect',
     home: {
