@@ -18,6 +18,8 @@ export const SITE = {
   },
   /** The groups of the roadmap, in the order the home lists them. */
   groups: ['foundations', 'secure', 'resilient', 'performing', 'cost', 'resources'],
+  /** The shape of the exam the practice exam copies: questions, minutes, passing score and domain weights. */
+  practice: { questions: 65, scored: 50, minutes: 130, passing: 720, weights: [30, 26, 24, 20] },
 } as const
 
 export type TopicGroup = (typeof SITE.groups)[number]
@@ -32,6 +34,8 @@ export interface SiteText {
     readonly groups: Readonly<Record<TopicGroup, { readonly title: string; readonly lede: string }>>
   }
   readonly searchPlaceholder: string
+  /** The content domains of the exam guide, in its order. */
+  readonly domains: readonly string[]
 }
 
 export const SITE_TEXT: Readonly<Record<Locale, SiteText>> = {
@@ -68,6 +72,12 @@ export const SITE_TEXT: Readonly<Record<Locale, SiteText>> = {
       },
     },
     searchPlaceholder: 'E.g. Multi-AZ, NAT gateway, SQS',
+    domains: [
+      'Design Secure Architectures',
+      'Design Resilient Architectures',
+      'Design High-Performing Architectures',
+      'Design Cost-Optimized Architectures',
+    ],
   },
   'pt-BR': {
     meta: {
@@ -99,5 +109,11 @@ export const SITE_TEXT: Readonly<Record<Locale, SiteText>> = {
       },
     },
     searchPlaceholder: 'Ex.: Multi-AZ, NAT gateway, SQS',
+    domains: [
+      'Projetar arquiteturas seguras',
+      'Projetar arquiteturas resilientes',
+      'Projetar arquiteturas de alto desempenho',
+      'Projetar arquiteturas otimizadas para custos',
+    ],
   },
 }
