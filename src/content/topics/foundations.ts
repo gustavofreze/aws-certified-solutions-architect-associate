@@ -16,7 +16,7 @@ export const enUS: readonly Topic[] = [
       {
         id: 'format',
         name: 'Format',
-        fullName: 'AWS Certified Solutions Architect - Associate (SAA-C03)',
+        fullName: 'AWS Certified Solutions Architect Associate (SAA-C03)',
         link: en.aws('certification/certified-solutions-architect-associate/'),
         summary:
           'An Associate level exam that validates the ability to design solutions based on the AWS Well-Architected Framework, secure, resilient, high-performing and cost-optimized.',
@@ -141,7 +141,7 @@ export const enUS: readonly Topic[] = [
         summary: 'The certification is valid for 3 years. Renewal requires an active certification.',
         points: [
           '**Retake** the current version of the exam: 3 more years of validity.',
-          '**Pass the Professional**: AWS Certified Solutions Architect - Professional also renews the Associate.',
+          '**Pass the Professional**: AWS Certified Solutions Architect Professional also renews the Associate.',
           '**Maintain on AWS Skill Builder**: needs a paid subscription and a certification within 90 days of expiration. It adds 1 year.',
           '**50% voucher**: available in your AWS Certification Account and usable on a future exam, including the recertification.',
         ],
@@ -314,7 +314,7 @@ export const ptBR: readonly Topic[] = [
       {
         id: 'format',
         name: 'Formato',
-        fullName: 'AWS Certified Solutions Architect - Associate (SAA-C03)',
+        fullName: 'AWS Certified Solutions Architect Associate (SAA-C03)',
         link: pt.aws('certification/certified-solutions-architect-associate/'),
         summary:
           'Exame de nível Associate que valida a capacidade de projetar soluções com base no AWS Well-Architected Framework: seguras, resilientes, de alto desempenho e com custo otimizado.',
@@ -439,7 +439,7 @@ export const ptBR: readonly Topic[] = [
         summary: 'A certificação vale por 3 anos. Para renovar, ela precisa estar ativa.',
         points: [
           '**Refazer** a versão atual do exame: mais 3 anos de validade.',
-          '**Passar no Professional**: o AWS Certified Solutions Architect - Professional também renova o Associate.',
+          '**Passar no Professional**: o AWS Certified Solutions Architect Professional também renova o Associate.',
           '**Manter pelo AWS Skill Builder**: exige assinatura paga e certificação a até 90 dias do vencimento. Acrescenta 1 ano.',
           '**Voucher de 50%**: fica na sua AWS Certification Account e vale para um exame futuro, inclusive a recertificação.',
         ],

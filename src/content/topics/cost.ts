@@ -25,7 +25,7 @@ export const enUS: readonly Topic[] = [
           '**Capacity is not a discount**: zonal Reserved Instances and Capacity Reservations hold capacity in one AZ. Regional Reserved Instances and Savings Plans give a discount but reserve no capacity.',
           '**Stacking**: a Capacity Reservation has no discount of its own, but Savings Plans or regional Reserved Instances apply to it.',
         ],
-        tip: '"Steady 24/7 load for 3 years, lowest price" -> **Savings Plans or Standard Reserved Instances**. "Guarantee capacity in one AZ for a launch, no long commitment" -> **On-Demand Capacity Reservation**, not a Reserved Instance.',
+        tip: '"Steady 24/7 load for 3 years, lowest price": **Savings Plans or Standard Reserved Instances**. "Guarantee capacity in one AZ for a launch, no long commitment": **On-Demand Capacity Reservation**, not a Reserved Instance.',
         table: {
           title: 'Purchase options at a glance',
           head: ['Option', 'Fit and maximum discount'],
@@ -77,7 +77,7 @@ export const enUS: readonly Topic[] = [
           '**Database Savings Plans**: 1-year, No Upfront commitment across Aurora, RDS, DynamoDB, ElastiCache, DocumentDB, Neptune, Keyspaces, Timestream, DMS and OpenSearch Service. Up to 35%.',
           '**Sharing**: by default the discount flows to every account in the organization. The management account can restrict it to groups or turn it off per account.',
         ],
-        tip: '"Workloads may move from EC2 to Fargate or Lambda, or to another Region" -> **Compute Savings Plans**. "Highest discount, the instance family will not change" -> **EC2 Instance Savings Plans** or **Standard RIs**. Convertible RIs are the distractor when Fargate or Lambda appear.',
+        tip: '"Workloads may move from EC2 to Fargate or Lambda, or to another Region": **Compute Savings Plans**. "Highest discount, the instance family will not change": **EC2 Instance Savings Plans** or **Standard RIs**. Convertible RIs are the distractor when Fargate or Lambda appear.',
       },
       {
         id: 'spot',
@@ -94,7 +94,7 @@ export const enUS: readonly Topic[] = [
           '**Mixed instances group**: one Auto Scaling group with an On-Demand base and Spot above it, across several types. EC2 Fleet does the same when you manage the lifecycle yourself. Spot Fleet (`RequestSpotFleet`) is a legacy API.',
           '**Fit**: stateless web tiers, batch, CI/CD, big data, HPC, rendering and containers. Not for stateful, tightly coupled or interruption-intolerant work.',
         ],
-        tip: '"Batch job, can restart, lowest cost" -> **Spot** with checkpoints. "Database that must stay up" -> never Spot. "Always keep 2 instances, scale out cheaply" -> **mixed instances group** with an On-Demand base and Spot on top.',
+        tip: '"Batch job, can restart, lowest cost": **Spot** with checkpoints. "Database that must stay up": never Spot. "Always keep 2 instances, scale out cheaply": **mixed instances group** with an On-Demand base and Spot on top.',
       },
       {
         id: 'dedicated-capacity',
@@ -110,7 +110,7 @@ export const enUS: readonly Topic[] = [
           '**Future-dated reservations**: request capacity for a future date with a commitment period, for planned events and launches.',
           '**Capacity Blocks**: reserve a cluster of GPU instances for machine learning.',
         ],
-        tip: '"License priced per socket or per core, keep using it on AWS" -> **Dedicated Hosts**. "Only needs single-tenant hardware, no license visibility" -> **Dedicated Instances**.',
+        tip: '"License priced per socket or per core, keep using it on AWS": **Dedicated Hosts**. "Only needs single-tenant hardware, no license visibility": **Dedicated Instances**.',
       },
       {
         id: 'rightsizing',
@@ -126,7 +126,7 @@ export const enUS: readonly Topic[] = [
           '**Graviton**: Arm-based instances cost up to 20% less than comparable x86 instances and use up to 60% less energy for the same performance. Also offered in RDS, Aurora and EKS.',
           '**Order of work**: rightsize, then buy Savings Plans or Reserved Instances, so the commitment is not sized to waste.',
         ],
-        tip: '"Instances average 10% CPU, cut cost with least effort" -> **Compute Optimizer** recommendations and a smaller size. "Same performance, lower price, code runs on Arm" -> **Graviton**.',
+        tip: '"Instances average 10% CPU, cut cost with least effort": **Compute Optimizer** recommendations and a smaller size. "Same performance, lower price, code runs on Arm": **Graviton**.',
       },
       {
         id: 'serverless-containers',
@@ -143,7 +143,7 @@ export const enUS: readonly Topic[] = [
           '**Fargate Spot and Savings Plans**: Fargate Spot is up to 70% off for interruption-tolerant ECS tasks. Compute Savings Plans cut steady Fargate use by up to 50%.',
           '**Trade-off**: EC2 with Auto Scaling for constant high utilization, Lambda for spiky or event-driven loads, Fargate for containers without cluster management.',
         ],
-        tip: '"Runs a few times a day, a few seconds each time" -> **Lambda**, not an always-on instance. "Containers, no servers to manage, can be interrupted" -> **Fargate Spot**.',
+        tip: '"Runs a few times a day, a few seconds each time": **Lambda**, not an always-on instance. "Containers, no servers to manage, can be interrupted": **Fargate Spot**.',
       },
       {
         id: 'scheduling',
@@ -159,7 +159,7 @@ export const enUS: readonly Topic[] = [
           '**Stopped RDS**: no instance-hour charge, but storage and backups are billed, and RDS starts the instance again after 7 consecutive days.',
           '**Availability by class**: production gets Multi-AZ and headroom. Dev and test can run in one AZ, smaller and only in working hours.',
         ],
-        tip: '"Dev environment used only in business hours" -> **scheduled stop and start** with Instance Scheduler. "App needs 20 minutes to warm its memory before serving" -> **hibernation**, not a plain stop.',
+        tip: '"Dev environment used only in business hours": **scheduled stop and start** with Instance Scheduler. "App needs 20 minutes to warm its memory before serving": **hibernation**, not a plain stop.',
       },
     ],
   },
@@ -186,7 +186,7 @@ export const enUS: readonly Topic[] = [
           '**One Zone-IA**: one AZ and cheaper than Standard-IA, for data you can re-create, such as replicas or derived files.',
           '**Express One Zone**: single-digit millisecond access in one AZ with request costs 50% lower than Standard. A performance class, not an archive.',
         ],
-        tip: '"Millions of 20 KB objects, rarely read" -> keep them in **Standard** or aggregate them, the 128 KB minimum makes IA cost more. "Re-creatable thumbnails, rarely read" -> **One Zone-IA**.',
+        tip: '"Millions of 20 KB objects, rarely read": keep them in **Standard** or aggregate them, the 128 KB minimum makes IA cost more. "Re-creatable thumbnails, rarely read": **One Zone-IA**.',
         table: {
           title: 'S3 classes and their hidden charges',
           head: ['Class', 'Minimums and fees'],
@@ -224,7 +224,7 @@ export const enUS: readonly Topic[] = [
           '**Minimum duration**: moving out of a class early bills the rest of its minimum. One rule cannot go to Glacier Instant Retrieval at day 4 and Deep Archive at day 20, the second step must wait until day 94.',
           '**Billing date**: transitions to Glacier Flexible Retrieval and Deep Archive bill at the new rate from the day the rule is met. Intelligent-Tiering bills after the physical move.',
         ],
-        tip: '"Logs read for 30 days, kept 7 years for audit, lowest cost" -> **Lifecycle** transitions down to **Deep Archive** plus an expiration at 7 years. A scheduled Lambda that copies objects is the distractor.',
+        tip: '"Logs read for 30 days, kept 7 years for audit, lowest cost": **Lifecycle** transitions down to **Deep Archive** plus an expiration at 7 years. A scheduled Lambda that copies objects is the distractor.',
       },
       {
         id: 'intelligent-tiering',
@@ -240,7 +240,7 @@ export const enUS: readonly Topic[] = [
           '**Small objects**: under 128 KB they are not monitored and always stay in Frequent Access.',
           '**Adoption**: set it as the storage class at upload, or move existing objects into it with a Lifecycle rule.',
         ],
-        tip: '"Access pattern unknown or unpredictable, no operational effort" -> **Intelligent-Tiering**. "Known pattern, hot for 30 days and then cold" -> a **Lifecycle** rule, which avoids the per-object monitoring fee.',
+        tip: '"Access pattern unknown or unpredictable, no operational effort": **Intelligent-Tiering**. "Known pattern, hot for 30 days and then cold": a **Lifecycle** rule, which avoids the per-object monitoring fee.',
       },
       {
         id: 's3-visibility',
@@ -254,7 +254,7 @@ export const enUS: readonly Topic[] = [
           '**Storage Class Analysis**: observes a bucket, prefix or tag for 30 days or more and tells when to move Standard objects to Standard-IA. It recommends nothing else.',
           '**Requester Pays**: the requester pays for requests and data download, the bucket owner still pays storage. Requests must be authenticated and send `x-amz-request-payer`, anonymous access is not allowed.',
         ],
-        tip: '"Share a large dataset, the consumers must pay for downloads" -> **Requester Pays**. "Find the age when objects become cold to tune lifecycle" -> **Storage Class Analysis**. "Organization-wide view of storage and waste" -> **Storage Lens**.',
+        tip: '"Share a large dataset, the consumers must pay for downloads": **Requester Pays**. "Find the age when objects become cold to tune lifecycle": **Storage Class Analysis**. "Organization-wide view of storage and waste": **Storage Lens**.',
       },
       {
         id: 'ebs',
@@ -270,7 +270,7 @@ export const enUS: readonly Topic[] = [
           '**Snapshots Archive**: up to 75% lower snapshot storage cost for snapshots kept 90 days or more. Stored as full snapshots, 90-day minimum, restore takes up to 72 hours.',
           '**Clean up**: unattached volumes and old snapshots keep billing. Compute Optimizer and Trusted Advisor flag underutilized volumes.',
         ],
-        tip: '"Lower EBS cost, same performance, no downtime" -> **modify gp2 to gp3**. "Keep yearly snapshots for compliance, rarely restored" -> **EBS Snapshots Archive**.',
+        tip: '"Lower EBS cost, same performance, no downtime": **modify gp2 to gp3**. "Keep yearly snapshots for compliance, rarely restored": **EBS Snapshots Archive**.',
       },
       {
         id: 'file-storage',
@@ -286,7 +286,7 @@ export const enUS: readonly Topic[] = [
           '**FSx for Windows File Server**: HDD for home directories and shares, SSD for latency-sensitive work. Data Deduplication typically saves 50 to 60% on general file shares.',
           '**FSx for Lustre**: scratch file systems for short, temporary processing with no replication, persistent ones for long-term data. The Intelligent-Tiering storage class moves cold data to cheaper tiers.',
         ],
-        tip: '"Shared Linux files, most untouched after a month" -> **EFS lifecycle management** to IA or Archive. "Temporary HPC working space at the lowest cost" -> **FSx for Lustre scratch**, not persistent.',
+        tip: '"Shared Linux files, most untouched after a month": **EFS lifecycle management** to IA or Archive. "Temporary HPC working space at the lowest cost": **FSx for Lustre scratch**, not persistent.',
       },
       {
         id: 'archive',
@@ -302,7 +302,7 @@ export const enUS: readonly Topic[] = [
           '**Restored copy**: a temporary copy is billed at the Standard rate while the archived object keeps billing at its own rate.',
           '**Large restores**: up to 1 to 2 PB per day per account, and S3 Batch Operations to restore many objects with one request.',
         ],
-        tip: '"Archive, occasionally needed within minutes" -> **Glacier Flexible Retrieval** with Expedited. "Kept 10 years, 48 hours is fine, lowest cost" -> **Glacier Deep Archive**. "Rarely read but must open in milliseconds" -> **Glacier Instant Retrieval**.',
+        tip: '"Archive, occasionally needed within minutes": **Glacier Flexible Retrieval** with Expedited. "Kept 10 years, 48 hours is fine, lowest cost": **Glacier Deep Archive**. "Rarely read but must open in milliseconds": **Glacier Instant Retrieval**.',
         table: {
           title: 'Restore times',
           head: ['Class or tier', 'Retrieval options'],
@@ -332,7 +332,7 @@ export const enUS: readonly Topic[] = [
           '**AWS Transfer Family**: managed SFTP, FTPS, FTP, AS2 and browser-based transfers into S3 or EFS, so partners keep their clients and you run no servers.',
           '**Batch uploads**: fewer, larger objects cut per-request charges and lifecycle transition costs.',
         ],
-        tip: '"Partners upload over SFTP, retire the self-managed server" -> **Transfer Family**. "Migrate hundreds of TB from NFS with ongoing sync and integrity checks" -> **DataSync**. Older questions may still offer Snowball Edge as the offline option for huge datasets on thin links.',
+        tip: '"Partners upload over SFTP, retire the self-managed server": **Transfer Family**. "Migrate hundreds of TB from NFS with ongoing sync and integrity checks": **DataSync**. Older questions may still offer Snowball Edge as the offline option for huge datasets on thin links.',
       },
     ],
   },
@@ -359,7 +359,7 @@ export const enUS: readonly Topic[] = [
           '**S3 in the same Region**: transfer from S3 to other AWS services in the same Region, and from S3 to CloudFront, is free.',
           '**Public IPv4**: every public IPv4 address, in use or idle, costs $0.005 per hour.',
         ],
-        tip: '"Cut transfer cost between the app tier and the database" -> keep chatty components in the **same AZ** where availability allows, or cache. Cross-Region replication only pays off when DR or latency requires it.',
+        tip: '"Cut transfer cost between the app tier and the database": keep chatty components in the **same AZ** where availability allows, or cache. Cross-Region replication only pays off when DR or latency requires it.',
         table: {
           title: 'What it costs to move a GB',
           head: ['Path', 'Charge'],
@@ -388,7 +388,7 @@ export const enUS: readonly Topic[] = [
           '**NAT instance**: you pay only for the instance, with no processing fee, but you manage failover, patching and sizing, and bandwidth depends on the instance type. AWS recommends NAT gateways.',
           '**Avoid NAT for AWS services**: gateway endpoints for S3 and DynamoDB, interface endpoints for other services.',
         ],
-        tip: '"Production, must survive an AZ failure" -> **one NAT gateway per AZ** or a regional NAT gateway. "Dev VPC, minimize cost" -> **one shared NAT gateway**. "Large NAT bill caused by S3 traffic" -> **S3 gateway endpoint**.',
+        tip: '"Production, must survive an AZ failure": **one NAT gateway per AZ** or a regional NAT gateway. "Dev VPC, minimize cost": **one shared NAT gateway**. "Large NAT bill caused by S3 traffic": **S3 gateway endpoint**.',
       },
       {
         id: 'vpc-endpoints',
@@ -403,7 +403,7 @@ export const enUS: readonly Topic[] = [
           '**Reach**: a gateway endpoint serves only its own VPC and Region. Resources in a peered VPC cannot use it.',
           '**Break-even**: an interface endpoint pays off when the NAT processing it replaces costs more than its hours and per-GB fee.',
         ],
-        tip: '"Private instances push TBs to S3 through NAT, cut cost" -> **S3 gateway endpoint**. An interface endpoint for S3 is the distractor here, it bills per hour and per GB.',
+        tip: '"Private instances push TBs to S3 through NAT, cut cost": **S3 gateway endpoint**. An interface endpoint for S3 is the distractor here, it bills per hour and per GB.',
       },
       {
         id: 'cloudfront',
@@ -419,7 +419,7 @@ export const enUS: readonly Topic[] = [
           '**Flat-rate plans**: monthly plans with no overage charges, from a Free plan with 100 GB upward. Blocked DDoS attacks and WAF-blocked requests do not count against the allowance.',
           '**vs Global Accelerator**: CloudFront caches HTTP content, Global Accelerator does not cache.',
         ],
-        tip: '"Global users download the same static files, reduce cost and latency" -> **CloudFront** in front of S3. Bigger instances or replicating buckets to more Regions are the distractors.',
+        tip: '"Global users download the same static files, reduce cost and latency": **CloudFront** in front of S3. Bigger instances or replicating buckets to more Regions are the distractors.',
       },
       {
         id: 'hybrid-connectivity',
@@ -434,7 +434,7 @@ export const enUS: readonly Topic[] = [
           '**Direct Connect**: port hours are billed even with no traffic, data in is free, data out has its own lower rate, for example $0.02 per GB from US East (Ohio) to Columbus.',
           '**Port speeds**: dedicated 1, 10, 100 and 400 Gbps, hosted from 50 Mbps to 25 Gbps through partners. Pick the smallest port that meets the peak.',
         ],
-        tip: '"Moves tens of TB per month to on premises, needs consistent throughput" -> **Direct Connect**. "Connect a branch within days, low volume" -> **Site-to-Site VPN**. "Need more than 1.25 Gbps over VPN" -> **several tunnels with ECMP** on a transit gateway.',
+        tip: '"Moves tens of TB per month to on premises, needs consistent throughput": **Direct Connect**. "Connect a branch within days, low volume": **Site-to-Site VPN**. "Need more than 1.25 Gbps over VPN": **several tunnels with ECMP** on a transit gateway.',
         table: {
           title: 'Choosing the link',
           head: ['Link', 'Cheapest fit'],
@@ -465,7 +465,7 @@ export const enUS: readonly Topic[] = [
           '**Scale**: AWS recommends Transit Gateway or PrivateLink to connect hundreds or thousands of VPCs.',
           '**Shared hybrid link**: one VPN or Direct Connect attachment on the transit gateway serves every attached VPC.',
         ],
-        tip: '"3 VPCs exchanging heavy traffic, lowest cost" -> **VPC peering**. "200 VPCs plus on premises, central routing" -> **Transit Gateway**.',
+        tip: '"3 VPCs exchanging heavy traffic, lowest cost": **VPC peering**. "200 VPCs plus on premises, central routing": **Transit Gateway**.',
       },
       {
         id: 'global-accelerator',
@@ -480,7 +480,7 @@ export const enUS: readonly Topic[] = [
           '**Fit**: static IPs, fast failover between Regions, endpoints such as NLB, ALB, EC2 or Elastic IPs. No caching.',
           '**Cost lever**: pay for it only when the requirement is performance or static IPs. For cacheable HTTP content, CloudFront lowers origin cost instead.',
         ],
-        tip: '"Game over UDP, static IPs, fast failover between Regions" -> **Global Accelerator**. "Reduce the cost of serving static content" -> **CloudFront**, not Global Accelerator.',
+        tip: '"Game over UDP, static IPs, fast failover between Regions": **Global Accelerator**. "Reduce the cost of serving static content": **CloudFront**, not Global Accelerator.',
       },
       {
         id: 'api-gateway',
@@ -494,7 +494,7 @@ export const enUS: readonly Topic[] = [
           '**Caching**: REST API stage cache with a TTL of 300 seconds by default and up to 3600, only `GET` cached by default. Fewer calls reach Lambda or the database.',
           '**Cache cost**: billed per hour by cache size and not in the Free Tier, so it pays off only with a good hit rate.',
         ],
-        tip: '"The same reads hit Lambda and DynamoDB over and over" -> **API Gateway caching**. "Limit a partner to 1,000 requests per day" -> **usage plan quota** with an API key.',
+        tip: '"The same reads hit Lambda and DynamoDB over and over": **API Gateway caching**. "Limit a partner to 1,000 requests per day": **usage plan quota** with an API key.',
       },
     ],
   },
@@ -520,7 +520,7 @@ export const enUS: readonly Topic[] = [
           '**Recommendations**: Reserved Instance purchase recommendations. Savings Plans recommendations, based on past usage, sit in the same Billing and Cost Management console and in the Cost Explorer API.',
           '**Cost**: free in the console. The API costs $0.01 per paginated request.',
         ],
-        tip: '"Visualize which service drove last month increase" -> **Cost Explorer**. "Be warned before overspending" is AWS Budgets, not Cost Explorer.',
+        tip: '"Visualize which service drove last month increase": **Cost Explorer**. "Be warned before overspending" is AWS Budgets, not Cost Explorer.',
       },
       {
         id: 'budgets',
@@ -536,7 +536,7 @@ export const enUS: readonly Topic[] = [
           '**Not a hard cap**: data updates up to 3 times a day, so spend can pass the threshold before the alert arrives.',
           '**Organizations**: from the management account an action can apply an SCP to another account, but cannot stop instances in it.',
         ],
-        tip: '"Block new provisioning automatically when the forecast passes 90%" -> **budget action** with a deny IAM policy or SCP. "Notify when Savings Plans utilization drops below 80%" -> **Savings Plans utilization budget**.',
+        tip: '"Block new provisioning automatically when the forecast passes 90%": **budget action** with a deny IAM policy or SCP. "Notify when Savings Plans utilization drops below 80%": **Savings Plans utilization budget**.',
       },
       {
         id: 'anomaly-detection',
@@ -552,7 +552,7 @@ export const enUS: readonly Topic[] = [
           '**Timing**: runs about 3 times a day on net unblended cost and can take up to 24 hours to flag an anomaly. A new service needs 10 days of history.',
           '**Gap**: most AWS Marketplace charges are not monitored, use Budgets for those.',
         ],
-        tip: '"Detect unexpected spend spikes without setting thresholds" -> **Cost Anomaly Detection**. A fixed budget threshold is the distractor.',
+        tip: '"Detect unexpected spend spikes without setting thresholds": **Cost Anomaly Detection**. A fixed budget threshold is the distractor.',
       },
       {
         id: 'data-exports',
@@ -568,7 +568,7 @@ export const enUS: readonly Topic[] = [
           '**Legacy CUR**: still offered as a legacy data export, with a schema that changes with your usage.',
           '**Delivery**: ZIP, GZIP or Parquet to an S3 bucket. A pre-built cost and usage dashboard can be deployed to Amazon Quick.',
         ],
-        tip: '"Most detailed line-item cost data, query it with SQL in Athena" -> **CUR 2.0 through Data Exports**. Cost Explorer is the distractor, it is for interactive analysis, not raw files.',
+        tip: '"Most detailed line-item cost data, query it with SQL in Athena": **CUR 2.0 through Data Exports**. Cost Explorer is the distractor, it is for interactive analysis, not raw files.',
       },
       {
         id: 'cost-allocation-tags',
@@ -583,7 +583,7 @@ export const enUS: readonly Topic[] = [
           '**Backfill**: the management account can backfill activation for up to 12 months, once every 24 hours.',
           '**Use**: filters in Cost Explorer and Budgets, columns in the CUR, monitors in Cost Anomaly Detection.',
         ],
-        tip: '"Resources are tagged but per-project costs do not show in Cost Explorer" -> **activate the cost allocation tags** in the Billing console. Tagging the resources again is the distractor.',
+        tip: '"Resources are tagged but per-project costs do not show in Cost Explorer": **activate the cost allocation tags** in the Billing console. Tagging the resources again is the distractor.',
       },
       {
         id: 'consolidated-billing',
@@ -598,7 +598,7 @@ export const enUS: readonly Topic[] = [
           '**RI and Savings Plans sharing**: on by default, applied first to the owner account and then to the rest. It can be turned off per account or limited to groups defined with Cost Categories.',
           '**Leaving**: an account that leaves the organization loses access to Cost Explorer data from its time in it.',
         ],
-        tip: '"Several accounts, want one invoice and volume discounts" -> **AWS Organizations consolidated billing**. "Keep one unit RI discount away from other accounts" -> **restrict or turn off RI and Savings Plans sharing**.',
+        tip: '"Several accounts, want one invoice and volume discounts": **AWS Organizations consolidated billing**. "Keep one unit RI discount away from other accounts": **restrict or turn off RI and Savings Plans sharing**.',
       },
       {
         id: 'optimization-tools',
@@ -612,7 +612,7 @@ export const enUS: readonly Topic[] = [
           '**Cost Optimization Hub**: rightsizing, idle, Savings Plans and RI recommendations across accounts and Regions in one place, with deduplicated savings that reflect your discounts.',
           '**AWS Pricing Calculator**: free estimates before you build, shared by link or exported to CSV or PDF. Taxes are not included.',
         ],
-        tip: '"Estimate the monthly cost of a planned migration" -> **AWS Pricing Calculator**, not Cost Explorer, which only covers what already runs.',
+        tip: '"Estimate the monthly cost of a planned migration": **AWS Pricing Calculator**, not Cost Explorer, which only covers what already runs.',
         table: {
           title: 'Which tool answers which question',
           head: ['Question', 'Tool'],
@@ -645,7 +645,7 @@ export const enUS: readonly Topic[] = [
           '**RDS**: Reserved Instances save up to 69% at steady state, with size flexibility for most engines. Database Savings Plans cover RDS, Aurora, DynamoDB and more for up to 35%.',
           '**Backups**: automated backup retention from 0 to 35 days (0 disables it). Manual snapshots stay, and keep billing, until you delete them.',
         ],
-        tip: '"New app, unpredictable traffic, no capacity planning" -> **DynamoDB on-demand**. "Steady, well-known traffic, lowest cost" -> **provisioned with auto scaling and reserved capacity**. "Dev database idle most of the day" -> **Aurora Serverless v2 scaling to 0 ACUs**.',
+        tip: '"New app, unpredictable traffic, no capacity planning": **DynamoDB on-demand**. "Steady, well-known traffic, lowest cost": **provisioned with auto scaling and reserved capacity**. "Dev database idle most of the day": **Aurora Serverless v2 scaling to 0 ACUs**.',
         table: {
           title: 'Capacity models',
           head: ['Model', 'Best fit'],
@@ -694,7 +694,7 @@ export const ptBR: readonly Topic[] = [
           '**Capacidade não é desconto**: Reserved Instances zonais e Capacity Reservations seguram capacidade em uma AZ. Reserved Instances regionais e Savings Plans dão desconto, mas não reservam capacidade.',
           '**Combinação**: Capacity Reservation não tem desconto próprio, mas Savings Plans ou Reserved Instances regionais se aplicam a ela.',
         ],
-        tip: '"Carga estável 24/7 por 3 anos, menor preço" -> **Savings Plans ou Standard Reserved Instances**. "Garantir capacidade em uma AZ para um lançamento, sem compromisso longo" -> **On-Demand Capacity Reservation**, não Reserved Instance.',
+        tip: '"Carga estável 24/7 por 3 anos, menor preço": **Savings Plans ou Standard Reserved Instances**. "Garantir capacidade em uma AZ para um lançamento, sem compromisso longo": **On-Demand Capacity Reservation**, não Reserved Instance.',
         table: {
           title: 'Opções de compra em resumo',
           head: ['Opção', 'Uso ideal e desconto máximo'],
@@ -746,7 +746,7 @@ export const ptBR: readonly Topic[] = [
           '**Database Savings Plans**: compromisso de 1 ano, sem pagamento adiantado, para Aurora, RDS, DynamoDB, ElastiCache, DocumentDB, Neptune, Keyspaces, Timestream, DMS e OpenSearch Service. Até 35%.',
           '**Compartilhamento**: por padrão o desconto vale para todas as contas da organização. A conta de gerenciamento pode limitar a grupos ou desligar por conta.',
         ],
-        tip: '"A carga pode migrar de EC2 para Fargate ou Lambda, ou para outra Region" -> **Compute Savings Plans**. "Maior desconto, a família da instância não vai mudar" -> **EC2 Instance Savings Plans** ou **Standard RIs**. Convertible RIs são o distrator quando aparecem Fargate ou Lambda.',
+        tip: '"A carga pode migrar de EC2 para Fargate ou Lambda, ou para outra Region": **Compute Savings Plans**. "Maior desconto, a família da instância não vai mudar": **EC2 Instance Savings Plans** ou **Standard RIs**. Convertible RIs são o distrator quando aparecem Fargate ou Lambda.',
       },
       {
         id: 'spot',
@@ -763,7 +763,7 @@ export const ptBR: readonly Topic[] = [
           '**Mixed instances group**: um único Auto Scaling group com base On-Demand e Spot acima dela, em vários tipos. O EC2 Fleet faz o mesmo quando você gerencia o ciclo de vida. O Spot Fleet (`RequestSpotFleet`) é uma API legada.',
           '**Encaixe**: camadas web sem estado, batch, CI/CD, big data, HPC, renderização e containers. Não serve para carga com estado, fortemente acoplada ou intolerante a interrupção.',
         ],
-        tip: '"Job batch, pode recomeçar, menor custo" -> **Spot** com checkpoints. "Banco de dados que não pode cair" -> nunca Spot. "Manter sempre 2 instâncias e crescer barato" -> **mixed instances group** com base On-Demand e Spot por cima.',
+        tip: '"Job batch, pode recomeçar, menor custo": **Spot** com checkpoints. "Banco de dados que não pode cair": nunca Spot. "Manter sempre 2 instâncias e crescer barato": **mixed instances group** com base On-Demand e Spot por cima.',
       },
       {
         id: 'dedicated-capacity',
@@ -779,7 +779,7 @@ export const ptBR: readonly Topic[] = [
           '**Reservas com data futura**: pedem capacidade para uma data futura com período de compromisso, para eventos e lançamentos planejados.',
           '**Capacity Blocks**: reservam um cluster de instâncias com GPU para machine learning.',
         ],
-        tip: '"Licença cobrada por socket ou por core, continuar usando na AWS" -> **Dedicated Hosts**. "Só precisa de hardware exclusivo, sem visão de licença" -> **Dedicated Instances**.',
+        tip: '"Licença cobrada por socket ou por core, continuar usando na AWS": **Dedicated Hosts**. "Só precisa de hardware exclusivo, sem visão de licença": **Dedicated Instances**.',
       },
       {
         id: 'rightsizing',
@@ -795,7 +795,7 @@ export const ptBR: readonly Topic[] = [
           '**Graviton**: instâncias Arm custam até 20% menos que as x86 equivalentes e usam até 60% menos energia com o mesmo desempenho. Também disponíveis em RDS, Aurora e EKS.',
           '**Ordem do trabalho**: ajuste o tamanho e só depois compre Savings Plans ou Reserved Instances, para o compromisso não cobrir desperdício.',
         ],
-        tip: '"Instâncias com média de 10% de CPU, reduzir custo com o menor esforço" -> recomendações do **Compute Optimizer** e um tamanho menor. "Mesmo desempenho, preço menor, o código roda em Arm" -> **Graviton**.',
+        tip: '"Instâncias com média de 10% de CPU, reduzir custo com o menor esforço": recomendações do **Compute Optimizer** e um tamanho menor. "Mesmo desempenho, preço menor, o código roda em Arm": **Graviton**.',
       },
       {
         id: 'serverless-containers',
@@ -812,7 +812,7 @@ export const ptBR: readonly Topic[] = [
           '**Fargate Spot e Savings Plans**: o Fargate Spot tem até 70% de desconto para tarefas ECS que toleram interrupção. Compute Savings Plans reduzem o uso estável de Fargate em até 50%.',
           '**Trade-off**: EC2 com Auto Scaling para uso alto e constante, Lambda para cargas com picos ou orientadas a eventos, Fargate para containers sem gerenciar cluster.',
         ],
-        tip: '"Roda algumas vezes por dia, poucos segundos cada" -> **Lambda**, não uma instância sempre ligada. "Containers, sem servidores para gerenciar, pode ser interrompido" -> **Fargate Spot**.',
+        tip: '"Roda algumas vezes por dia, poucos segundos cada": **Lambda**, não uma instância sempre ligada. "Containers, sem servidores para gerenciar, pode ser interrompido": **Fargate Spot**.',
       },
       {
         id: 'scheduling',
@@ -828,7 +828,7 @@ export const ptBR: readonly Topic[] = [
           '**RDS parado**: sem cobrança de horas de instância, mas armazenamento e backups são cobrados, e o RDS religa a instância após 7 dias seguidos.',
           '**Disponibilidade por classe**: produção ganha Multi-AZ e folga. Dev e teste podem rodar em uma AZ, menores e só no horário comercial.',
         ],
-        tip: '"Ambiente de dev usado só no horário comercial" -> **parar e ligar por agenda** com o Instance Scheduler. "Aplicação leva 20 minutos para carregar a memória antes de atender" -> **hibernação**, não um stop comum.',
+        tip: '"Ambiente de dev usado só no horário comercial": **parar e ligar por agenda** com o Instance Scheduler. "Aplicação leva 20 minutos para carregar a memória antes de atender": **hibernação**, não um stop comum.',
       },
     ],
   },
@@ -855,7 +855,7 @@ export const ptBR: readonly Topic[] = [
           '**One Zone-IA**: uma AZ e mais barata que a Standard-IA, para dados que dá para recriar, como réplicas ou arquivos derivados.',
           '**Express One Zone**: acesso em milissegundos de um dígito em uma AZ, com custo de requisição 50% menor que o Standard. É classe de desempenho, não de arquivo.',
         ],
-        tip: '"Milhões de objetos de 20 KB, raramente lidos" -> mantenha no **Standard** ou agrupe, o mínimo de 128 KB deixa a IA mais cara. "Miniaturas que podem ser recriadas, raramente lidas" -> **One Zone-IA**.',
+        tip: '"Milhões de objetos de 20 KB, raramente lidos": mantenha no **Standard** ou agrupe, o mínimo de 128 KB deixa a IA mais cara. "Miniaturas que podem ser recriadas, raramente lidas": **One Zone-IA**.',
         table: {
           title: 'Classes do S3 e suas cobranças escondidas',
           head: ['Classe', 'Mínimos e taxas'],
@@ -898,7 +898,7 @@ export const ptBR: readonly Topic[] = [
           '**Duração mínima**: sair de uma classe antes cobra o restante do mínimo. Uma regra não pode ir para Glacier Instant Retrieval no dia 4 e para Deep Archive no dia 20, o segundo passo precisa esperar até o dia 94.',
           '**Data da cobrança**: transições para Glacier Flexible Retrieval e Deep Archive cobram a nova tarifa a partir do dia em que a regra é atendida. No Intelligent-Tiering, só depois da movimentação física.',
         ],
-        tip: '"Logs lidos por 30 dias e guardados 7 anos para auditoria, menor custo" -> transições do **Lifecycle** até o **Deep Archive** e expiração em 7 anos. Uma Lambda agendada copiando objetos é o distrator.',
+        tip: '"Logs lidos por 30 dias e guardados 7 anos para auditoria, menor custo": transições do **Lifecycle** até o **Deep Archive** e expiração em 7 anos. Uma Lambda agendada copiando objetos é o distrator.',
       },
       {
         id: 'intelligent-tiering',
@@ -914,7 +914,7 @@ export const ptBR: readonly Topic[] = [
           '**Objetos pequenos**: abaixo de 128 KB não são monitorados e ficam sempre no Frequent Access.',
           '**Adoção**: defina como classe no upload ou leve objetos existentes para ela com uma regra de Lifecycle.',
         ],
-        tip: '"Padrão de acesso desconhecido ou imprevisível, sem esforço operacional" -> **Intelligent-Tiering**. "Padrão conhecido, quente por 30 dias e depois frio" -> uma regra de **Lifecycle**, que evita a taxa de monitoramento por objeto.',
+        tip: '"Padrão de acesso desconhecido ou imprevisível, sem esforço operacional": **Intelligent-Tiering**. "Padrão conhecido, quente por 30 dias e depois frio": uma regra de **Lifecycle**, que evita a taxa de monitoramento por objeto.',
       },
       {
         id: 's3-visibility',
@@ -928,7 +928,7 @@ export const ptBR: readonly Topic[] = [
           '**Storage Class Analysis**: observa um bucket, prefixo ou tag por 30 dias ou mais e indica quando mover objetos do Standard para o Standard-IA. Não recomenda nenhuma outra classe.',
           '**Requester Pays**: quem faz a requisição paga requisições e download, o dono do bucket continua pagando o armazenamento. As requisições precisam ser autenticadas e enviar `x-amz-request-payer`, acesso anônimo não é permitido.',
         ],
-        tip: '"Compartilhar um dataset grande, quem consome paga o download" -> **Requester Pays**. "Descobrir com que idade os objetos esfriam para ajustar o lifecycle" -> **Storage Class Analysis**. "Visão de armazenamento e desperdício da organização toda" -> **Storage Lens**.',
+        tip: '"Compartilhar um dataset grande, quem consome paga o download": **Requester Pays**. "Descobrir com que idade os objetos esfriam para ajustar o lifecycle": **Storage Class Analysis**. "Visão de armazenamento e desperdício da organização toda": **Storage Lens**.',
       },
       {
         id: 'ebs',
@@ -944,7 +944,7 @@ export const ptBR: readonly Topic[] = [
           '**Snapshots Archive**: até 75% menos no custo de armazenamento de snapshots mantidos por 90 dias ou mais. Guardados como snapshots completos, mínimo de 90 dias, restauração em até 72 horas.',
           '**Faxina**: volumes desanexados e snapshots velhos continuam cobrando. Compute Optimizer e Trusted Advisor apontam volumes subutilizados.',
         ],
-        tip: '"Reduzir custo de EBS, mesmo desempenho, sem parada" -> **modificar gp2 para gp3**. "Guardar snapshots anuais por compliance, raramente restaurados" -> **EBS Snapshots Archive**.',
+        tip: '"Reduzir custo de EBS, mesmo desempenho, sem parada": **modificar gp2 para gp3**. "Guardar snapshots anuais por compliance, raramente restaurados": **EBS Snapshots Archive**.',
       },
       {
         id: 'file-storage',
@@ -960,7 +960,7 @@ export const ptBR: readonly Topic[] = [
           '**FSx for Windows File Server**: HDD para diretórios pessoais e compartilhamentos, SSD para cargas sensíveis a latência. O Data Deduplication costuma economizar de 50 a 60% em compartilhamentos gerais.',
           '**FSx for Lustre**: file systems scratch para processamento curto e temporário, sem replicação, e persistentes para dados de longo prazo. A classe Intelligent-Tiering leva dados frios para camadas mais baratas.',
         ],
-        tip: '"Arquivos Linux compartilhados, a maioria intocada depois de um mês" -> **lifecycle management do EFS** para IA ou Archive. "Espaço de trabalho temporário de HPC pelo menor custo" -> **FSx for Lustre scratch**, não persistente.',
+        tip: '"Arquivos Linux compartilhados, a maioria intocada depois de um mês": **lifecycle management do EFS** para IA ou Archive. "Espaço de trabalho temporário de HPC pelo menor custo": **FSx for Lustre scratch**, não persistente.',
       },
       {
         id: 'archive',
@@ -976,7 +976,7 @@ export const ptBR: readonly Topic[] = [
           '**Cópia restaurada**: a cópia temporária é cobrada na tarifa do Standard enquanto o objeto arquivado continua cobrando a sua.',
           '**Restaurações grandes**: até 1 a 2 PB por dia por conta, e S3 Batch Operations para restaurar muitos objetos com uma única requisição.',
         ],
-        tip: '"Arquivo que às vezes precisa voltar em minutos" -> **Glacier Flexible Retrieval** com Expedited. "Guardado por 10 anos, 48 horas é aceitável, menor custo" -> **Glacier Deep Archive**. "Raramente lido, mas precisa abrir em milissegundos" -> **Glacier Instant Retrieval**.',
+        tip: '"Arquivo que às vezes precisa voltar em minutos": **Glacier Flexible Retrieval** com Expedited. "Guardado por 10 anos, 48 horas é aceitável, menor custo": **Glacier Deep Archive**. "Raramente lido, mas precisa abrir em milissegundos": **Glacier Instant Retrieval**.',
         table: {
           title: 'Tempos de restauração',
           head: ['Classe ou camada', 'Opções de recuperação'],
@@ -1006,7 +1006,7 @@ export const ptBR: readonly Topic[] = [
           '**AWS Transfer Family**: SFTP, FTPS, FTP, AS2 e transferência pelo navegador gerenciados, gravando em S3 ou EFS, para parceiros manterem seus clientes sem você operar servidores.',
           '**Uploads em lote**: menos objetos e maiores reduzem cobranças por requisição e custos de transição de lifecycle.',
         ],
-        tip: '"Parceiros enviam por SFTP, aposentar o servidor próprio" -> **Transfer Family**. "Migrar centenas de TB de NFS com sincronização contínua e verificação de integridade" -> **DataSync**. Questões antigas ainda podem trazer o Snowball Edge como opção offline para datasets enormes com pouca banda.',
+        tip: '"Parceiros enviam por SFTP, aposentar o servidor próprio": **Transfer Family**. "Migrar centenas de TB de NFS com sincronização contínua e verificação de integridade": **DataSync**. Questões antigas ainda podem trazer o Snowball Edge como opção offline para datasets enormes com pouca banda.',
       },
     ],
   },
@@ -1033,7 +1033,7 @@ export const ptBR: readonly Topic[] = [
           '**S3 na mesma Region**: transferência do S3 para outros serviços da AWS na mesma Region, e do S3 para o CloudFront, é gratuita.',
           '**IPv4 público**: todo endereço IPv4 público, em uso ou ocioso, custa US$ 0,005 por hora.',
         ],
-        tip: '"Reduzir custo de transferência entre a aplicação e o banco" -> mantenha componentes muito conversadores na **mesma AZ** quando a disponibilidade permitir, ou use cache. Replicação entre Regions só compensa quando DR ou latência exigem.',
+        tip: '"Reduzir custo de transferência entre a aplicação e o banco": mantenha componentes muito conversadores na **mesma AZ** quando a disponibilidade permitir, ou use cache. Replicação entre Regions só compensa quando DR ou latência exigem.',
         table: {
           title: 'Quanto custa mover um GB',
           head: ['Caminho', 'Cobrança'],
@@ -1065,7 +1065,7 @@ export const ptBR: readonly Topic[] = [
           '**NAT instance**: você paga só a instância, sem taxa de processamento, mas cuida de failover, patches e dimensionamento, e a banda depende do tipo da instância. A AWS recomenda NAT gateways.',
           '**Evite NAT para serviços da AWS**: gateway endpoints para S3 e DynamoDB, interface endpoints para os demais.',
         ],
-        tip: '"Produção, precisa sobreviver à queda de uma AZ" -> **um NAT gateway por AZ** ou um regional NAT gateway. "VPC de dev, menor custo" -> **um NAT gateway compartilhado**. "Conta alta de NAT por causa de tráfego para o S3" -> **gateway endpoint do S3**.',
+        tip: '"Produção, precisa sobreviver à queda de uma AZ": **um NAT gateway por AZ** ou um regional NAT gateway. "VPC de dev, menor custo": **um NAT gateway compartilhado**. "Conta alta de NAT por causa de tráfego para o S3": **gateway endpoint do S3**.',
       },
       {
         id: 'vpc-endpoints',
@@ -1080,7 +1080,7 @@ export const ptBR: readonly Topic[] = [
           '**Alcance**: um gateway endpoint atende só a própria VPC e a própria Region. Recursos de uma VPC com peering não podem usá-lo.',
           '**Ponto de equilíbrio**: o interface endpoint compensa quando o processamento de NAT que ele substitui custa mais que suas horas e sua taxa por GB.',
         ],
-        tip: '"Instâncias privadas enviam TBs ao S3 pelo NAT, reduzir custo" -> **gateway endpoint do S3**. Um interface endpoint para o S3 é o distrator aqui, ele cobra por hora e por GB.',
+        tip: '"Instâncias privadas enviam TBs ao S3 pelo NAT, reduzir custo": **gateway endpoint do S3**. Um interface endpoint para o S3 é o distrator aqui, ele cobra por hora e por GB.',
       },
       {
         id: 'cloudfront',
@@ -1096,7 +1096,7 @@ export const ptBR: readonly Topic[] = [
           '**Planos de preço fixo**: planos mensais sem cobrança excedente, a partir de um plano Free com 100 GB. Ataques DDoS e requisições bloqueadas pelo WAF não contam na franquia.',
           '**vs Global Accelerator**: o CloudFront faz cache de conteúdo HTTP, o Global Accelerator não faz cache.',
         ],
-        tip: '"Usuários no mundo todo baixam os mesmos arquivos estáticos, reduzir custo e latência" -> **CloudFront** na frente do S3. Instâncias maiores ou replicar buckets em mais Regions são os distratores.',
+        tip: '"Usuários no mundo todo baixam os mesmos arquivos estáticos, reduzir custo e latência": **CloudFront** na frente do S3. Instâncias maiores ou replicar buckets em mais Regions são os distratores.',
       },
       {
         id: 'hybrid-connectivity',
@@ -1111,7 +1111,7 @@ export const ptBR: readonly Topic[] = [
           '**Direct Connect**: horas de porta são cobradas mesmo sem tráfego, a entrada é gratuita e a saída tem tarifa própria e menor, por exemplo US$ 0,02 por GB de US East (Ohio) para Columbus.',
           '**Velocidades de porta**: dedicadas de 1, 10, 100 e 400 Gbps, hosted de 50 Mbps a 25 Gbps via parceiros. Escolha a menor porta que atende o pico.',
         ],
-        tip: '"Move dezenas de TB por mês para o on-premises, precisa de throughput consistente" -> **Direct Connect**. "Conectar uma filial em poucos dias, pouco volume" -> **Site-to-Site VPN**. "Precisa de mais de 1,25 Gbps na VPN" -> **vários túneis com ECMP** num transit gateway.',
+        tip: '"Move dezenas de TB por mês para o on-premises, precisa de throughput consistente": **Direct Connect**. "Conectar uma filial em poucos dias, pouco volume": **Site-to-Site VPN**. "Precisa de mais de 1,25 Gbps na VPN": **vários túneis com ECMP** num transit gateway.',
         table: {
           title: 'Escolhendo o link',
           head: ['Link', 'Uso mais barato'],
@@ -1145,7 +1145,7 @@ export const ptBR: readonly Topic[] = [
           '**Escala**: a AWS recomenda Transit Gateway ou PrivateLink para conectar centenas ou milhares de VPCs.',
           '**Link híbrido compartilhado**: um único anexo de VPN ou Direct Connect no transit gateway atende todas as VPCs anexadas.',
         ],
-        tip: '"3 VPCs trocando muito tráfego, menor custo" -> **VPC peering**. "200 VPCs mais o on-premises, roteamento central" -> **Transit Gateway**.',
+        tip: '"3 VPCs trocando muito tráfego, menor custo": **VPC peering**. "200 VPCs mais o on-premises, roteamento central": **Transit Gateway**.',
       },
       {
         id: 'global-accelerator',
@@ -1160,7 +1160,7 @@ export const ptBR: readonly Topic[] = [
           '**Encaixe**: IPs estáticos, failover rápido entre Regions, endpoints como NLB, ALB, EC2 ou Elastic IPs. Sem cache.',
           '**Alavanca de custo**: pague por ele só quando o requisito for desempenho ou IPs estáticos. Para conteúdo HTTP cacheável, o CloudFront é que reduz o custo da origem.',
         ],
-        tip: '"Jogo em UDP, IPs estáticos, failover rápido entre Regions" -> **Global Accelerator**. "Reduzir o custo de servir conteúdo estático" -> **CloudFront**, não Global Accelerator.',
+        tip: '"Jogo em UDP, IPs estáticos, failover rápido entre Regions": **Global Accelerator**. "Reduzir o custo de servir conteúdo estático": **CloudFront**, não Global Accelerator.',
       },
       {
         id: 'api-gateway',
@@ -1174,7 +1174,7 @@ export const ptBR: readonly Topic[] = [
           '**Cache**: cache de stage em REST APIs com TTL de 300 segundos por padrão e até 3600, e só `GET` em cache por padrão. Menos chamadas chegam à Lambda ou ao banco.',
           '**Custo do cache**: cobrado por hora conforme o tamanho e fora do Free Tier, então só compensa com boa taxa de acerto.',
         ],
-        tip: '"As mesmas leituras batem na Lambda e no DynamoDB toda hora" -> **cache do API Gateway**. "Limitar um parceiro a 1.000 requisições por dia" -> **cota de usage plan** com API key.',
+        tip: '"As mesmas leituras batem na Lambda e no DynamoDB toda hora": **cache do API Gateway**. "Limitar um parceiro a 1.000 requisições por dia": **cota de usage plan** com API key.',
       },
     ],
   },
@@ -1200,7 +1200,7 @@ export const ptBR: readonly Topic[] = [
           '**Recomendações**: recomendações de compra de Reserved Instances. As de Savings Plans, baseadas no uso passado, ficam no mesmo console de Billing and Cost Management e na API do Cost Explorer.',
           '**Custo**: gratuito no console. A API custa US$ 0,01 por requisição paginada.',
         ],
-        tip: '"Visualizar qual serviço causou o aumento do mês passado" -> **Cost Explorer**. "Ser avisado antes de estourar o gasto" é AWS Budgets, não Cost Explorer.',
+        tip: '"Visualizar qual serviço causou o aumento do mês passado": **Cost Explorer**. "Ser avisado antes de estourar o gasto" é AWS Budgets, não Cost Explorer.',
       },
       {
         id: 'budgets',
@@ -1216,7 +1216,7 @@ export const ptBR: readonly Topic[] = [
           '**Não é teto rígido**: os dados são atualizados até 3 vezes por dia, então o gasto pode passar do limite antes de o alerta chegar.',
           '**Organizations**: a partir da conta de gerenciamento, uma ação pode aplicar SCP em outra conta, mas não pode parar instâncias nela.',
         ],
-        tip: '"Bloquear novos recursos automaticamente quando a previsão passar de 90%" -> **budget action** com política IAM de deny ou SCP. "Avisar quando a utilização de Savings Plans cair abaixo de 80%" -> **budget de utilização de Savings Plans**.',
+        tip: '"Bloquear novos recursos automaticamente quando a previsão passar de 90%": **budget action** com política IAM de deny ou SCP. "Avisar quando a utilização de Savings Plans cair abaixo de 80%": **budget de utilização de Savings Plans**.',
       },
       {
         id: 'anomaly-detection',
@@ -1232,7 +1232,7 @@ export const ptBR: readonly Topic[] = [
           '**Tempo**: roda cerca de 3 vezes por dia sobre o custo líquido não combinado e pode levar até 24 horas para apontar uma anomalia. Um serviço novo precisa de 10 dias de histórico.',
           '**Lacuna**: a maior parte das cobranças do AWS Marketplace não é monitorada, use Budgets para elas.',
         ],
-        tip: '"Detectar picos inesperados de gasto sem definir limites" -> **Cost Anomaly Detection**. Um limite fixo de budget é o distrator.',
+        tip: '"Detectar picos inesperados de gasto sem definir limites": **Cost Anomaly Detection**. Um limite fixo de budget é o distrator.',
       },
       {
         id: 'data-exports',
@@ -1248,7 +1248,7 @@ export const ptBR: readonly Topic[] = [
           '**CUR legado**: ainda oferecido como export legado, com schema que muda conforme o uso.',
           '**Entrega**: ZIP, GZIP ou Parquet num bucket S3. Um dashboard pronto de custo e uso pode ser implantado no Amazon Quick.',
         ],
-        tip: '"Dados de custo linha a linha, os mais detalhados, consultados com SQL no Athena" -> **CUR 2.0 via Data Exports**. O Cost Explorer é o distrator, ele serve para análise interativa, não para arquivos brutos.',
+        tip: '"Dados de custo linha a linha, os mais detalhados, consultados com SQL no Athena": **CUR 2.0 via Data Exports**. O Cost Explorer é o distrator, ele serve para análise interativa, não para arquivos brutos.',
       },
       {
         id: 'cost-allocation-tags',
@@ -1263,7 +1263,7 @@ export const ptBR: readonly Topic[] = [
           '**Backfill**: a conta de gerenciamento pode aplicar a ativação retroativamente por até 12 meses, uma vez a cada 24 horas.',
           '**Uso**: filtros no Cost Explorer e no Budgets, colunas no CUR, monitores no Cost Anomaly Detection.',
         ],
-        tip: '"Os recursos têm tags, mas o custo por projeto não aparece no Cost Explorer" -> **ativar as cost allocation tags** no console de Billing. Marcar os recursos de novo é o distrator.',
+        tip: '"Os recursos têm tags, mas o custo por projeto não aparece no Cost Explorer": **ativar as cost allocation tags** no console de Billing. Marcar os recursos de novo é o distrator.',
       },
       {
         id: 'consolidated-billing',
@@ -1278,7 +1278,7 @@ export const ptBR: readonly Topic[] = [
           '**Compartilhamento de RI e Savings Plans**: ligado por padrão, aplicado primeiro na conta dona e depois nas demais. Pode ser desligado por conta ou limitado a grupos definidos com Cost Categories.',
           '**Saída**: uma conta que deixa a organização perde acesso aos dados do Cost Explorer do período em que fazia parte dela.',
         ],
-        tip: '"Várias contas, querem uma fatura única e desconto por volume" -> **faturamento consolidado do AWS Organizations**. "Impedir que o desconto de RI de uma unidade vá para outras contas" -> **restringir ou desligar o compartilhamento de RI e Savings Plans**.',
+        tip: '"Várias contas, querem uma fatura única e desconto por volume": **faturamento consolidado do AWS Organizations**. "Impedir que o desconto de RI de uma unidade vá para outras contas": **restringir ou desligar o compartilhamento de RI e Savings Plans**.',
       },
       {
         id: 'optimization-tools',
@@ -1292,7 +1292,7 @@ export const ptBR: readonly Topic[] = [
           '**Cost Optimization Hub**: recomendações de rightsizing, ociosidade, Savings Plans e RIs de todas as contas e Regions num só lugar, com economia sem duplicidade e já considerando seus descontos.',
           '**AWS Pricing Calculator**: estimativas gratuitas antes de construir, compartilhadas por link ou exportadas em CSV ou PDF. Impostos não entram.',
         ],
-        tip: '"Estimar o custo mensal de uma migração planejada" -> **AWS Pricing Calculator**, não Cost Explorer, que só cobre o que já roda.',
+        tip: '"Estimar o custo mensal de uma migração planejada": **AWS Pricing Calculator**, não Cost Explorer, que só cobre o que já roda.',
         table: {
           title: 'Qual ferramenta responde a qual pergunta',
           head: ['Pergunta', 'Ferramenta'],
@@ -1325,7 +1325,7 @@ export const ptBR: readonly Topic[] = [
           '**RDS**: Reserved Instances economizam até 69% em uso estável, com flexibilidade de tamanho na maioria dos engines. Database Savings Plans cobrem RDS, Aurora, DynamoDB e outros com até 35%.',
           '**Backups**: retenção de backups automáticos de 0 a 35 dias (0 desliga). Snapshots manuais ficam, e continuam cobrando, até você apagá-los.',
         ],
-        tip: '"Aplicação nova, tráfego imprevisível, sem planejar capacidade" -> **DynamoDB on-demand**. "Tráfego estável e conhecido, menor custo" -> **provisioned com auto scaling e reserved capacity**. "Banco de dev ocioso a maior parte do dia" -> **Aurora Serverless v2 escalando a 0 ACUs**.',
+        tip: '"Aplicação nova, tráfego imprevisível, sem planejar capacidade": **DynamoDB on-demand**. "Tráfego estável e conhecido, menor custo": **provisioned com auto scaling e reserved capacity**. "Banco de dev ocioso a maior parte do dia": **Aurora Serverless v2 escalando a 0 ACUs**.',
         table: {
           title: 'Modelos de capacidade',
           head: ['Modelo', 'Melhor uso'],

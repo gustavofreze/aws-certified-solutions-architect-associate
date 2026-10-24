@@ -25,7 +25,7 @@ export const enUS: readonly Topic[] = [
           '**Policies**: identity-based policies (managed or inline) attach to principals. Resource-based policies (bucket policy, queue policy, KMS key policy) name a `Principal` and enable cross-account access.',
           '**Least privilege**: start from AWS managed policies, then narrow with customer managed policies, conditions and IAM Access Analyzer policy generation from CloudTrail activity.',
         ],
-        tip: 'An application on EC2 needs S3 access -> **attach an IAM role through an instance profile**. Storing access keys on the instance or in the code is always the wrong answer.',
+        tip: 'An application on EC2 needs S3 access: **attach an IAM role through an instance profile**. Storing access keys on the instance or in the code is always the wrong answer.',
       },
       {
         id: 'policy-evaluation',
@@ -40,7 +40,7 @@ export const enUS: readonly Topic[] = [
           '**Permissions boundary**: a managed policy that sets the maximum permissions of a user or role. Effective permissions are the intersection with the identity policies, and the boundary grants nothing by itself.',
           '**Guardrails**: SCPs, RCPs and session policies only limit. An action must be allowed by every one of them that applies.',
         ],
-        tip: '"Let developers create roles without escalating their own privileges" -> **permissions boundary** required on the roles they create. Limiting a whole account or OU is an **SCP**, not a boundary.',
+        tip: '"Let developers create roles without escalating their own privileges": **permissions boundary** required on the roles they create. Limiting a whole account or OU is an **SCP**, not a boundary.',
         table: {
           title: 'Policy types at a glance',
           head: ['Policy type', 'What it does'],
@@ -72,7 +72,7 @@ export const enUS: readonly Topic[] = [
           '**External ID**: a condition in the trust policy when a third party assumes a role in your account. Its purpose is to prevent the confused deputy problem.',
           '**Federation APIs**: `AssumeRoleWithSAML` for SAML 2.0 IdPs and `AssumeRoleWithWebIdentity` for OIDC tokens.',
         ],
-        tip: '"Give a partner or another account access to resources" -> **cross-account IAM role**, with an **external ID** for third parties. Creating IAM users for them or sharing access keys is the distractor.',
+        tip: '"Give a partner or another account access to resources": **cross-account IAM role**, with an **external ID** for third parties. Creating IAM users for them or sharing access keys is the distractor.',
       },
       {
         id: 'root-user',
@@ -87,7 +87,7 @@ export const enUS: readonly Topic[] = [
           '**Centralized root access**: in AWS Organizations you can remove root credentials from member accounts and run privileged tasks from the management account, such as unlocking a bucket policy that denies everyone.',
           '**SCPs apply**: an SCP restricts the root user of a member account, but never the management account.',
         ],
-        tip: '"Secure the root user" -> **MFA, no access keys, use only for root-only tasks**. When asked which task needs the root user, look for **closing a standalone account** or **restoring a locked-out administrator**.',
+        tip: '"Secure the root user": **MFA, no access keys, use only for root-only tasks**. When asked which task needs the root user, look for **closing a standalone account** or **restoring a locked-out administrator**.',
       },
       {
         id: 'identity-center',
@@ -103,7 +103,7 @@ export const enUS: readonly Topic[] = [
           '**AWS access portal**: one sign-in page that lists every account and application assigned to the user, with short-term credentials for the console and CLI.',
           '**Trusted identity propagation**: AWS managed applications such as Amazon Quick pass the user identity to services like Amazon Redshift for authorization and auditing.',
         ],
-        tip: '"Employees need single sign-on to many accounts with their corporate credentials" -> **IAM Identity Center** connected to the corporate IdP. Cognito serves the customers of your app, not your workforce.',
+        tip: '"Employees need single sign-on to many accounts with their corporate credentials": **IAM Identity Center** connected to the corporate IdP. Cognito serves the customers of your app, not your workforce.',
       },
       {
         id: 'federation',
@@ -118,7 +118,7 @@ export const enUS: readonly Topic[] = [
           '**IAM or Identity Center**: federation directly in IAM fits a single standalone account or machine users. For many accounts, federate once into IAM Identity Center.',
           '**IAM Roles Anywhere**: workloads outside AWS get temporary credentials with an X.509 certificate from your PKI.',
         ],
-        tip: '"On-premises Active Directory users must reach the AWS console without new credentials" -> **SAML 2.0 federation** or IAM Identity Center with AD. "A server or pipeline outside AWS needs credentials" -> **OIDC federation or IAM Roles Anywhere**, not access keys.',
+        tip: '"On-premises Active Directory users must reach the AWS console without new credentials": **SAML 2.0 federation** or IAM Identity Center with AD. "A server or pipeline outside AWS needs credentials": **OIDC federation or IAM Roles Anywhere**, not access keys.',
       },
       {
         id: 'cognito',
@@ -133,7 +133,7 @@ export const enUS: readonly Topic[] = [
           '**API protection**: API Gateway can validate user pool tokens before invoking the backend, and AWS WAF can protect the user pool.',
           '**Access control**: identity pools pick an IAM role per user (role-based) or map claims to session tags (attribute-based).',
         ],
-        tip: '"Mobile app users upload straight to their own S3 prefix" -> **Cognito identity pool** issuing temporary credentials. "Sign-up and sign-in with Google for the app" -> **user pool**.',
+        tip: '"Mobile app users upload straight to their own S3 prefix": **Cognito identity pool** issuing temporary credentials. "Sign-up and sign-in with Google for the app": **user pool**.',
         table: {
           title: 'User pools vs identity pools',
           head: ['Need', 'Use'],
@@ -161,7 +161,7 @@ export const enUS: readonly Topic[] = [
           '**AD Connector**: a proxy that forwards sign-in requests to your on-premises domain controllers, with no directory synchronization. It can use your RADIUS MFA.',
           '**Simple AD**: a low-cost AD-compatible directory powered by Samba 4. No trusts, no MFA and no RDS for SQL Server.',
         ],
-        tip: '"Keep users in the on-premises AD and let them sign in to WorkSpaces" -> **AD Connector**. "Trust with on-premises AD" or "RDS for SQL Server with Windows authentication" -> **AWS Managed Microsoft AD**.',
+        tip: '"Keep users in the on-premises AD and let them sign in to WorkSpaces": **AD Connector**. "Trust with on-premises AD" or "RDS for SQL Server with Windows authentication": **AWS Managed Microsoft AD**.',
       },
     ],
   },
@@ -187,7 +187,7 @@ export const enUS: readonly Topic[] = [
           '**Consolidated billing**: one bill, combined usage for volume discounts, shared Reserved Instance discounts and Savings Plans, at no extra fee.',
           '**Membership**: an account belongs to only one organization at a time.',
         ],
-        tip: '"Isolate environments and apply controls per group of accounts" -> **separate accounts in OUs** with policies attached to each OU. IAM alone inside one account gives no central guardrail.',
+        tip: '"Isolate environments and apply controls per group of accounts": **separate accounts in OUs** with policies attached to each OU. IAM alone inside one account gives no central guardrail.',
       },
       {
         id: 'scp-rcp',
@@ -203,7 +203,7 @@ export const enUS: readonly Topic[] = [
           '**RCP**: limits what anyone, including principals outside the organization, can do on resources of supported services such as S3, KMS, SQS, Secrets Manager, DynamoDB and STS.',
           '**Data perimeter**: an RCP keeps resources reachable only by identities of your organization, and an SCP limits services or Regions that your principals can use.',
         ],
-        tip: '"Stop every account in the OU from disabling CloudTrail or using unapproved Regions, even administrators" -> **SCP**. "Block principals outside the organization from our S3 buckets in all accounts" -> **RCP**.',
+        tip: '"Stop every account in the OU from disabling CloudTrail or using unapproved Regions, even administrators": **SCP**. "Block principals outside the organization from our S3 buckets in all accounts": **RCP**.',
         table: {
           title: 'SCP vs RCP',
           head: ['Aspect', 'SCP and RCP'],
@@ -236,7 +236,7 @@ export const enUS: readonly Topic[] = [
           '**Proactive controls**: implemented with CloudFormation hooks, they stop noncompliant resources before provisioning.',
           '**Guidance**: controls are mandatory (always on), strongly recommended or elective.',
         ],
-        tip: '"Quickly set up a governed multi-account environment with guardrails and account vending" -> **Control Tower**. Assembling the same with Organizations by hand means more operational overhead.',
+        tip: '"Quickly set up a governed multi-account environment with guardrails and account vending": **Control Tower**. Assembling the same with Organizations by hand means more operational overhead.',
       },
       {
         id: 'ram',
@@ -252,7 +252,7 @@ export const enUS: readonly Topic[] = [
           '**Managed permissions**: define what consuming accounts can do with the shared resource. Their own IAM policies and SCPs still apply.',
           '**Cost**: AWS RAM itself has no charge. The shared resource is billed as usual.',
         ],
-        tip: '"Many accounts must place workloads in a centrally managed network" -> **share subnets or a transit gateway with AWS RAM**. Recreating the resource in every account is the distractor.',
+        tip: '"Many accounts must place workloads in a centrally managed network": **share subnets or a transit gateway with AWS RAM**. Recreating the resource in every account is the distractor.',
       },
       {
         id: 'delegated-admin',
@@ -267,7 +267,7 @@ export const enUS: readonly Topic[] = [
           '**Limits**: only the management account creates or invites accounts. A delegated administrator cannot.',
           '**Guardrails still apply**: a delegated administrator is a member account, so SCPs and RCPs affect it.',
         ],
-        tip: '"A central security team must manage GuardDuty findings for all accounts without using the management account" -> **delegated administrator** for GuardDuty in the security account.',
+        tip: '"A central security team must manage GuardDuty findings for all accounts without using the management account": **delegated administrator** for GuardDuty in the security account.',
       },
       {
         id: 'declarative-policies',
@@ -282,7 +282,7 @@ export const enUS: readonly Topic[] = [
           '**Amazon EC2 policies**: declare and enforce EC2 configurations at scale, kept in place even when the service adds new features or APIs.',
           '**AI services opt-out policies**: control data collection by AWS AI services for every account.',
         ],
-        tip: '"Enforce a consistent CostCenter tag format across all accounts" -> **tag policy**. Remember that tag policies do not flag resources that have no tags at all.',
+        tip: '"Enforce a consistent CostCenter tag format across all accounts": **tag policy**. Remember that tag policies do not flag resources that have no tags at all.',
       },
     ],
   },
@@ -309,7 +309,7 @@ export const enUS: readonly Topic[] = [
           '**Regional NAT gateway**: expands across AZs automatically and needs no public subnet, but does not support private NAT.',
           '**IPv6**: an egress-only internet gateway gives outbound-only IPv6 access.',
         ],
-        tip: '"Instances must download patches but must not be reachable from the internet" -> **private subnet with a route to a NAT gateway**. A NAT gateway takes no security group, so filter with instance security groups and NACLs.',
+        tip: '"Instances must download patches but must not be reachable from the internet": **private subnet with a route to a NAT gateway**. A NAT gateway takes no security group, so filter with instance security groups and NACLs.',
       },
       {
         id: 'sg-nacl',
@@ -325,7 +325,7 @@ export const enUS: readonly Topic[] = [
           '**Defaults**: the default NACL allows all traffic. A new custom NACL denies everything through its final `*` rule until you add rules.',
           '**Block an IP**: only a NACL can deny a specific address range, because security groups have no deny rules.',
         ],
-        tip: '"Block a malicious IP range now" -> **NACL deny rule** (or AWS WAF for HTTP). "Allow the app tier only from the web tier" -> **security group that references the web tier security group**.',
+        tip: '"Block a malicious IP range now": **NACL deny rule** (or AWS WAF for HTTP). "Allow the app tier only from the web tier": **security group that references the web tier security group**.',
         table: {
           title: 'Security groups vs network ACLs',
           head: ['Characteristic', 'Security group and network ACL'],
@@ -357,7 +357,7 @@ export const enUS: readonly Topic[] = [
           '**Bucket lock-down**: an S3 bucket policy with the `aws:sourceVpce` condition denies requests that do not come through your endpoint.',
           '**Gateway Load Balancer endpoint**: sends traffic to a fleet of inspection appliances.',
         ],
-        tip: '"Private instances must reach S3 without NAT gateway data charges" -> **S3 gateway endpoint**. "On-premises servers on Direct Connect must reach S3 privately" -> **S3 interface endpoint**.',
+        tip: '"Private instances must reach S3 without NAT gateway data charges": **S3 gateway endpoint**. "On-premises servers on Direct Connect must reach S3 privately": **S3 interface endpoint**.',
         table: {
           title: 'Gateway vs interface endpoints for S3',
           head: ['Aspect', 'Gateway and interface'],
@@ -376,6 +376,22 @@ export const enUS: readonly Topic[] = [
         },
       },
       {
+        id: 'systems-manager',
+        name: 'Systems Manager',
+        fullName: 'AWS Systems Manager',
+        link: en.aws('systems-manager/'),
+        summary:
+          'Operates fleets of EC2 instances and on premises servers through the SSM Agent, with no SSH keys, bastion hosts or inbound ports.',
+        points: [
+          '**Session Manager**: shell access from the console or the CLI, controlled by IAM and logged to S3 or CloudWatch Logs. No inbound port is opened.',
+          '**Requirements**: the SSM Agent, an instance profile with the `AmazonSSMManagedInstanceCore` policy and a path to the service, through a NAT gateway or VPC interface endpoints.',
+          '**Run Command**: runs scripts across many instances at once, selected by tag.',
+          '**Patch Manager**: applies patch baselines during maintenance windows.',
+          '**Automation**: runbooks for common tasks, such as creating an AMI or restarting an instance.',
+        ],
+        tip: '"Reach instances in a private subnet without a bastion host or opening port 22": **Session Manager**. "Patch the whole fleet on a schedule": **Patch Manager**.',
+      },
+      {
         id: 'waf',
         name: 'AWS WAF',
         link: en.aws('waf/'),
@@ -388,7 +404,7 @@ export const enUS: readonly Topic[] = [
           '**Geo and IP**: geographic match and IP set match statements allow or block by country or address range.',
           '**Responses**: a matched request can be blocked with HTTP 403 or receive a custom response.',
         ],
-        tip: '"Block SQL injection and XSS against the web app" -> **AWS WAF** on the ALB or CloudFront. Security groups and NACLs cannot inspect HTTP content, and WAF does not attach to a Network Load Balancer.',
+        tip: '"Block SQL injection and XSS against the web app": **AWS WAF** on the ALB or CloudFront. Security groups and NACLs cannot inspect HTTP content, and WAF does not attach to a Network Load Balancer.',
       },
       {
         id: 'shield',
@@ -404,7 +420,7 @@ export const enUS: readonly Topic[] = [
           '**Pricing**: $3,000 per month with a 1-year commitment, billed per payer account, including AWS WAF usage for protected resources up to a limit.',
           '**Health-based detection**: Route 53 health checks associated with protected resources detect attacks sooner.',
         ],
-        tip: '"DDoS experts on call and no surprise bill after an attack" -> **Shield Advanced**. If the question only asks for basic DDoS protection at no cost, **Shield Standard** is already on.',
+        tip: '"DDoS experts on call and no surprise bill after an attack": **Shield Advanced**. If the question only asks for basic DDoS protection at no cost, **Shield Standard** is already on.',
       },
       {
         id: 'network-firewall',
@@ -419,7 +435,7 @@ export const enUS: readonly Topic[] = [
           '**TLS inspection**: decrypts and re-encrypts traffic with a certificate from ACM.',
           '**At scale**: Firewall Manager deploys firewalls across accounts, and firewall policies can be shared through AWS RAM.',
         ],
-        tip: '"Filter outbound traffic of every VPC by domain name, with IPS signatures" -> **Network Firewall**. WAF only covers HTTP(S) at the application front door.',
+        tip: '"Filter outbound traffic of every VPC by domain name, with IPS signatures": **Network Firewall**. WAF only covers HTTP(S) at the application front door.',
       },
       {
         id: 'firewall-manager',
@@ -435,7 +451,7 @@ export const enUS: readonly Topic[] = [
           '**Requirements**: works across an AWS Organizations organization. Charges come from the underlying services, such as AWS WAF and AWS Config.',
           '**Administrator**: a Firewall Manager administrator account, which can be a delegated member account.',
         ],
-        tip: '"Every ALB in every account must always carry the corporate WAF rules, including future accounts" -> **Firewall Manager**. Configuring WAF account by account does not scale.',
+        tip: '"Every ALB in every account must always carry the corporate WAF rules, including future accounts": **Firewall Manager**. Configuring WAF account by account does not scale.',
       },
       {
         id: 'hybrid-encryption',
@@ -450,7 +466,7 @@ export const enUS: readonly Topic[] = [
           '**MACsec**: layer 2 encryption between your router and the Direct Connect location, on 10, 100 and 400 Gbps dedicated connections.',
           '**VPN over Direct Connect**: an IPsec VPN across the Direct Connect link adds encryption while keeping consistent network performance.',
         ],
-        tip: '"Traffic over Direct Connect must be encrypted" -> **MACsec** on a supported dedicated connection or an **IPsec VPN over Direct Connect**. Direct Connect alone does not meet an encryption requirement.',
+        tip: '"Traffic over Direct Connect must be encrypted": **MACsec** on a supported dedicated connection or an **IPsec VPN over Direct Connect**. Direct Connect alone does not meet an encryption requirement.',
       },
     ],
   },
@@ -477,7 +493,7 @@ export const enUS: readonly Topic[] = [
           '**Multi-Region keys**: related keys with the same key ID and key material in several Regions, so data encrypted in one Region decrypts in another without a cross-Region call.',
           '**Sharing**: resources encrypted under an AWS managed key cannot be shared with other accounts. Use a customer managed key whose key policy allows the other account.',
         ],
-        tip: '"Share an encrypted snapshot or object with another account" -> **customer managed key** with the other account in the **key policy**. AWS managed keys cannot be shared.',
+        tip: '"Share an encrypted snapshot or object with another account": **customer managed key** with the other account in the **key policy**. AWS managed keys cannot be shared.',
         table: {
           title: 'KMS key types',
           head: ['Key type', 'Control and cost'],
@@ -513,7 +529,7 @@ export const enUS: readonly Topic[] = [
           '**KMS custom key store**: a CloudHSM key store keeps KMS integration while key material stays in your cluster, for low request rate workloads.',
           '**Trade-off**: more operational responsibility than KMS, including availability and scaling of the cluster.',
         ],
-        tip: '"Single-tenant HSM", "exclusive control of the keys" or "AWS must not access the keys" -> **CloudHSM**. Plain encryption at rest with an audit trail is **KMS**.',
+        tip: '"Single-tenant HSM", "exclusive control of the keys" or "AWS must not access the keys": **CloudHSM**. Plain encryption at rest with an audit trail is **KMS**.',
       },
       {
         id: 's3-encryption',
@@ -528,7 +544,7 @@ export const enUS: readonly Topic[] = [
           '**SSE-C**: you send the key with every request over HTTPS and S3 never stores it. Since April 2026 it is disabled by default on new buckets and must be enabled explicitly.',
           '**Client-side encryption**: data is encrypted before upload, so it reaches S3 already encrypted.',
         ],
-        tip: '"Audit every use of the key and control who can decrypt" -> **SSE-KMS** with a customer managed key. "Two layers of encryption" -> **DSSE-KMS**. "The company manages its own keys outside AWS" -> **SSE-C or client-side encryption**.',
+        tip: '"Audit every use of the key and control who can decrypt": **SSE-KMS** with a customer managed key. "Two layers of encryption": **DSSE-KMS**. "The company manages its own keys outside AWS": **SSE-C or client-side encryption**.',
       },
       {
         id: 'acm-tls',
@@ -544,7 +560,7 @@ export const enUS: readonly Topic[] = [
           '**Managed renewal**: automatic for DNS-validated certificates in use. Imported certificates are not renewed by ACM, so track their expiry.',
           '**On EC2**: use the ACME protocol for publicly trusted certificates on your own servers. An ACM-managed certificate on an instance requires Nitro Enclaves.',
         ],
-        tip: '"HTTPS on CloudFront with a custom domain" -> **ACM certificate in us-east-1**. "Avoid outages from expired certificates" -> **ACM certificate with DNS validation**, not an imported one.',
+        tip: '"HTTPS on CloudFront with a custom domain": **ACM certificate in us-east-1**. "Avoid outages from expired certificates": **ACM certificate with DNS validation**, not an imported one.',
       },
       {
         id: 'secrets',
@@ -559,7 +575,7 @@ export const enUS: readonly Topic[] = [
           '**Tiers**: standard is free, with 10,000 parameters of up to 4 KB. Advanced allows 100,000 parameters of up to 8 KB, parameter policies and cross-account sharing, for a charge.',
           '**Cost**: Secrets Manager bills per secret per month and per API call.',
         ],
-        tip: '"A database password must rotate automatically" -> **Secrets Manager**. "Store AMI IDs or configuration values cheaply" -> **Parameter Store**.',
+        tip: '"A database password must rotate automatically": **Secrets Manager**. "Store AMI IDs or configuration values cheaply": **Parameter Store**.',
       },
       {
         id: 'threat-detection',
@@ -574,7 +590,7 @@ export const enUS: readonly Topic[] = [
           '**Security Hub CSPM**: checks accounts against standards such as AWS Foundational Security Best Practices and CIS, and aggregates findings from GuardDuty, Inspector and Macie. Most controls need AWS Config.',
           '**Detective**: builds a behavior graph from CloudTrail, VPC Flow Logs and GuardDuty findings to investigate the root cause.',
         ],
-        tip: '"Find PII in S3" -> **Macie**. "Compromised credentials or crypto mining" -> **GuardDuty**. "CVEs in EC2 or container images" -> **Inspector**. "One view of compliance posture" -> **Security Hub**. "Root cause of a finding" -> **Detective**.',
+        tip: '"Find PII in S3": **Macie**. "Compromised credentials or crypto mining": **GuardDuty**. "CVEs in EC2 or container images": **Inspector**. "One view of compliance posture": **Security Hub**. "Root cause of a finding": **Detective**.',
         table: {
           title: 'Which service answers what',
           head: ['Service', 'Typical question'],
@@ -600,7 +616,7 @@ export const enUS: readonly Topic[] = [
           '**Glacier Vault Lock**: a vault lock policy that becomes unchangeable once you complete the lock within 24 hours. The original vault service no longer accepts new customers, so new designs use Object Lock with S3 Glacier storage classes.',
           '**AWS Backup Vault Lock**: governance or compliance mode for backup vaults. In compliance mode the vault becomes immutable after a grace time of at least 72 hours.',
         ],
-        tip: '"Records that nobody, including administrators, may delete for 7 years" -> **S3 Object Lock in compliance mode**. Governance mode still lets privileged users with the bypass permission remove data.',
+        tip: '"Records that nobody, including administrators, may delete for 7 years": **S3 Object Lock in compliance mode**. Governance mode still lets privileged users with the bypass permission remove data.',
       },
       {
         id: 'artifact',
@@ -613,7 +629,7 @@ export const enUS: readonly Topic[] = [
           '**Shared responsibility**: Artifact covers the compliance of AWS. You still document the compliance of your own workloads.',
           '**Marketplace vendors**: security and compliance documents of ISVs that sell on AWS Marketplace are also available.',
         ],
-        tip: '"An auditor asks for the AWS SOC report or PCI attestation" -> **AWS Artifact**. AWS Config and AWS Audit Manager assess your own resources instead.',
+        tip: '"An auditor asks for the AWS SOC report or PCI attestation": **AWS Artifact**. AWS Config and AWS Audit Manager assess your own resources instead.',
       },
     ],
   },
@@ -643,7 +659,7 @@ export const ptBR: readonly Topic[] = [
           '**Políticas**: as baseadas em identidade (gerenciadas ou inline) se anexam a principals. As baseadas em recurso (bucket policy, política de fila, key policy do KMS) indicam um `Principal` e permitem acesso entre contas.',
           '**Menor privilégio**: comece pelas políticas gerenciadas pela AWS e depois restrinja com políticas gerenciadas pelo cliente, condições e a geração de políticas do IAM Access Analyzer a partir da atividade no CloudTrail.',
         ],
-        tip: 'Aplicação no EC2 precisa acessar o S3 -> **anexe uma role do IAM via instance profile**. Guardar chaves de acesso na instância ou no código é sempre a resposta errada.',
+        tip: 'Aplicação no EC2 precisa acessar o S3: **anexe uma role do IAM via instance profile**. Guardar chaves de acesso na instância ou no código é sempre a resposta errada.',
       },
       {
         id: 'policy-evaluation',
@@ -658,7 +674,7 @@ export const ptBR: readonly Topic[] = [
           '**Permissions boundary**: uma política gerenciada que define o máximo de permissões de um usuário ou role. O efetivo é a interseção com as políticas de identidade, e o boundary sozinho não concede nada.',
           '**Guardrails**: SCPs, RCPs e session policies apenas limitam. A ação precisa ser permitida por todas as que se aplicam.',
         ],
-        tip: '"Deixar desenvolvedores criarem roles sem escalar os próprios privilégios" -> **permissions boundary** obrigatório nas roles que eles criam. Limitar uma conta inteira ou uma OU é **SCP**, não boundary.',
+        tip: '"Deixar desenvolvedores criarem roles sem escalar os próprios privilégios": **permissions boundary** obrigatório nas roles que eles criam. Limitar uma conta inteira ou uma OU é **SCP**, não boundary.',
         table: {
           title: 'Tipos de política em resumo',
           head: ['Tipo de política', 'O que faz'],
@@ -693,7 +709,7 @@ export const ptBR: readonly Topic[] = [
           '**External ID**: condição na trust policy quando um terceiro assume uma role na sua conta. Serve para evitar o problema do confused deputy.',
           '**APIs de federação**: `AssumeRoleWithSAML` para IdPs SAML 2.0 e `AssumeRoleWithWebIdentity` para tokens OIDC.',
         ],
-        tip: '"Dar a um parceiro ou a outra conta acesso a recursos" -> **role do IAM entre contas**, com **external ID** para terceiros. Criar usuários do IAM para eles ou compartilhar chaves de acesso é o distrator.',
+        tip: '"Dar a um parceiro ou a outra conta acesso a recursos": **role do IAM entre contas**, com **external ID** para terceiros. Criar usuários do IAM para eles ou compartilhar chaves de acesso é o distrator.',
       },
       {
         id: 'root-user',
@@ -708,7 +724,7 @@ export const ptBR: readonly Topic[] = [
           '**Acesso root centralizado**: no AWS Organizations dá para remover as credenciais root das contas membro e executar tarefas privilegiadas a partir da conta de gerenciamento, como destravar uma bucket policy que nega todo mundo.',
           '**SCPs se aplicam**: uma SCP restringe o root de uma conta membro, mas nunca a conta de gerenciamento.',
         ],
-        tip: '"Proteger o usuário root" -> **MFA, sem chaves de acesso, uso só em tarefas exclusivas**. Quando perguntarem qual tarefa exige root, procure **encerrar uma conta avulsa** ou **restaurar um administrador trancado para fora**.',
+        tip: '"Proteger o usuário root": **MFA, sem chaves de acesso, uso só em tarefas exclusivas**. Quando perguntarem qual tarefa exige root, procure **encerrar uma conta avulsa** ou **restaurar um administrador trancado para fora**.',
       },
       {
         id: 'identity-center',
@@ -724,7 +740,7 @@ export const ptBR: readonly Topic[] = [
           '**AWS access portal**: uma página de login que lista todas as contas e aplicações atribuídas ao usuário, com credenciais de curto prazo para console e CLI.',
           '**Trusted identity propagation**: aplicações gerenciadas pela AWS, como o Amazon Quick, repassam a identidade do usuário a serviços como o Amazon Redshift para autorização e auditoria.',
         ],
-        tip: '"Funcionários precisam de single sign-on em várias contas com as credenciais corporativas" -> **IAM Identity Center** ligado ao IdP corporativo. O Cognito atende os clientes da sua aplicação, não a força de trabalho.',
+        tip: '"Funcionários precisam de single sign-on em várias contas com as credenciais corporativas": **IAM Identity Center** ligado ao IdP corporativo. O Cognito atende os clientes da sua aplicação, não a força de trabalho.',
       },
       {
         id: 'federation',
@@ -739,7 +755,7 @@ export const ptBR: readonly Topic[] = [
           '**IAM ou Identity Center**: a federação direta no IAM serve para uma conta avulsa ou para usuários de máquina. Para muitas contas, federe uma vez no IAM Identity Center.',
           '**IAM Roles Anywhere**: workloads fora da AWS obtêm credenciais temporárias com um certificado X.509 da sua PKI.',
         ],
-        tip: '"Usuários do Active Directory on-premises precisam acessar o console sem novas credenciais" -> **federação SAML 2.0** ou IAM Identity Center com AD. "Servidor ou pipeline fora da AWS precisa de credenciais" -> **federação OIDC ou IAM Roles Anywhere**, não chaves de acesso.',
+        tip: '"Usuários do Active Directory on-premises precisam acessar o console sem novas credenciais": **federação SAML 2.0** ou IAM Identity Center com AD. "Servidor ou pipeline fora da AWS precisa de credenciais": **federação OIDC ou IAM Roles Anywhere**, não chaves de acesso.',
       },
       {
         id: 'cognito',
@@ -754,7 +770,7 @@ export const ptBR: readonly Topic[] = [
           '**Proteção de APIs**: o API Gateway valida tokens do user pool antes de chamar o backend, e o AWS WAF pode proteger o user pool.',
           '**Controle de acesso**: identity pools escolhem uma role do IAM por usuário (baseado em role) ou mapeiam claims para session tags (baseado em atributos).',
         ],
-        tip: '"Usuários do app mobile enviam arquivos direto para o próprio prefixo no S3" -> **identity pool do Cognito** emitindo credenciais temporárias. "Cadastro e login com Google no app" -> **user pool**.',
+        tip: '"Usuários do app mobile enviam arquivos direto para o próprio prefixo no S3": **identity pool do Cognito** emitindo credenciais temporárias. "Cadastro e login com Google no app": **user pool**.',
         table: {
           title: 'User pools vs identity pools',
           head: ['Necessidade', 'Use'],
@@ -788,7 +804,7 @@ export const ptBR: readonly Topic[] = [
           '**AD Connector**: proxy que encaminha os logins para os controladores de domínio on-premises, sem sincronizar o diretório. Pode usar o seu MFA via RADIUS.',
           '**Simple AD**: diretório compatível com AD, de baixo custo, baseado em Samba 4. Sem trusts, sem MFA e sem RDS for SQL Server.',
         ],
-        tip: '"Manter os usuários no AD on-premises e deixá-los entrar no WorkSpaces" -> **AD Connector**. "Trust com o AD on-premises" ou "RDS for SQL Server com autenticação Windows" -> **AWS Managed Microsoft AD**.',
+        tip: '"Manter os usuários no AD on-premises e deixá-los entrar no WorkSpaces": **AD Connector**. "Trust com o AD on-premises" ou "RDS for SQL Server com autenticação Windows": **AWS Managed Microsoft AD**.',
       },
     ],
   },
@@ -814,7 +830,7 @@ export const ptBR: readonly Topic[] = [
           '**Faturamento consolidado**: uma fatura, uso somado para descontos por volume, descontos de Reserved Instances e Savings Plans compartilhados, sem custo extra.',
           '**Participação**: uma conta pertence a apenas uma organização por vez.',
         ],
-        tip: '"Isolar ambientes e aplicar controles por grupo de contas" -> **contas separadas em OUs** com políticas anexadas a cada OU. Só IAM dentro de uma conta não dá guardrail central.',
+        tip: '"Isolar ambientes e aplicar controles por grupo de contas": **contas separadas em OUs** com políticas anexadas a cada OU. Só IAM dentro de uma conta não dá guardrail central.',
       },
       {
         id: 'scp-rcp',
@@ -830,7 +846,7 @@ export const ptBR: readonly Topic[] = [
           '**RCP**: limita o que qualquer um, inclusive principals de fora da organização, pode fazer em recursos de serviços suportados, como S3, KMS, SQS, Secrets Manager, DynamoDB e STS.',
           '**Perímetro de dados**: uma RCP garante que só identidades da sua organização alcancem os recursos, e uma SCP limita serviços ou Regiões que seus principals podem usar.',
         ],
-        tip: '"Impedir que qualquer conta da OU desative o CloudTrail ou use Regiões não aprovadas, mesmo administradores" -> **SCP**. "Bloquear principals de fora da organização nos buckets S3 de todas as contas" -> **RCP**.',
+        tip: '"Impedir que qualquer conta da OU desative o CloudTrail ou use Regiões não aprovadas, mesmo administradores": **SCP**. "Bloquear principals de fora da organização nos buckets S3 de todas as contas": **RCP**.',
         table: {
           title: 'SCP vs RCP',
           head: ['Aspecto', 'SCP e RCP'],
@@ -863,7 +879,7 @@ export const ptBR: readonly Topic[] = [
           '**Controles proativos**: implementados com hooks do CloudFormation, barram recursos fora de conformidade antes do provisionamento.',
           '**Orientação**: os controles são obrigatórios (sempre ativos), fortemente recomendados ou eletivos.',
         ],
-        tip: '"Montar rápido um ambiente com várias contas, guardrails e criação automática de contas" -> **Control Tower**. Fazer o mesmo à mão com o Organizations dá mais trabalho operacional.',
+        tip: '"Montar rápido um ambiente com várias contas, guardrails e criação automática de contas": **Control Tower**. Fazer o mesmo à mão com o Organizations dá mais trabalho operacional.',
       },
       {
         id: 'ram',
@@ -879,7 +895,7 @@ export const ptBR: readonly Topic[] = [
           '**Managed permissions**: definem o que as contas consumidoras podem fazer com o recurso compartilhado. As políticas do IAM e as SCPs delas continuam valendo.',
           '**Custo**: o AWS RAM em si não cobra nada. O recurso compartilhado é cobrado normalmente.',
         ],
-        tip: '"Várias contas precisam colocar workloads numa rede gerenciada de forma central" -> **compartilhe subnets ou um transit gateway com o AWS RAM**. Recriar o recurso em cada conta é o distrator.',
+        tip: '"Várias contas precisam colocar workloads numa rede gerenciada de forma central": **compartilhe subnets ou um transit gateway com o AWS RAM**. Recriar o recurso em cada conta é o distrator.',
       },
       {
         id: 'delegated-admin',
@@ -894,7 +910,7 @@ export const ptBR: readonly Topic[] = [
           '**Limites**: só a conta de gerenciamento cria ou convida contas. Um administrador delegado não pode.',
           '**Guardrails continuam valendo**: o administrador delegado é uma conta membro, então SCPs e RCPs o afetam.',
         ],
-        tip: '"Um time central de segurança precisa gerenciar os findings do GuardDuty de todas as contas sem usar a conta de gerenciamento" -> **administrador delegado** do GuardDuty na conta de segurança.',
+        tip: '"Um time central de segurança precisa gerenciar os findings do GuardDuty de todas as contas sem usar a conta de gerenciamento": **administrador delegado** do GuardDuty na conta de segurança.',
       },
       {
         id: 'declarative-policies',
@@ -909,7 +925,7 @@ export const ptBR: readonly Topic[] = [
           '**Políticas do Amazon EC2**: declaram e impõem configurações do EC2 em escala, mantidas mesmo quando o serviço ganha recursos ou APIs novas.',
           '**Políticas de opt-out de serviços de IA**: controlam a coleta de dados pelos serviços de IA da AWS em todas as contas.',
         ],
-        tip: '"Impor um formato consistente para a tag CostCenter em todas as contas" -> **tag policy**. Lembre que tag policies não apontam recursos que não têm tag nenhuma.',
+        tip: '"Impor um formato consistente para a tag CostCenter em todas as contas": **tag policy**. Lembre que tag policies não apontam recursos que não têm tag nenhuma.',
       },
     ],
   },
@@ -936,7 +952,7 @@ export const ptBR: readonly Topic[] = [
           '**NAT gateway regional**: se expande sozinho entre AZs e dispensa subnet pública, mas não suporta NAT privado.',
           '**IPv6**: um egress-only internet gateway dá saída IPv6 sem permitir entrada.',
         ],
-        tip: '"Instâncias precisam baixar patches mas não podem ser alcançadas pela internet" -> **subnet privada com rota para um NAT gateway**. NAT gateway não aceita security group, então filtre com os security groups das instâncias e NACLs.',
+        tip: '"Instâncias precisam baixar patches mas não podem ser alcançadas pela internet": **subnet privada com rota para um NAT gateway**. NAT gateway não aceita security group, então filtre com os security groups das instâncias e NACLs.',
       },
       {
         id: 'sg-nacl',
@@ -952,7 +968,7 @@ export const ptBR: readonly Topic[] = [
           '**Padrões**: a NACL padrão libera todo o tráfego. Uma NACL customizada nova nega tudo pela regra final `*` até você adicionar regras.',
           '**Bloquear um IP**: só a NACL consegue negar uma faixa de endereços, porque security groups não têm regras de deny.',
         ],
-        tip: '"Bloquear agora uma faixa de IP maliciosa" -> **regra de deny na NACL** (ou AWS WAF para HTTP). "Liberar a camada de aplicação só para a camada web" -> **security group que referencia o security group da camada web**.',
+        tip: '"Bloquear agora uma faixa de IP maliciosa": **regra de deny na NACL** (ou AWS WAF para HTTP). "Liberar a camada de aplicação só para a camada web": **security group que referencia o security group da camada web**.',
         table: {
           title: 'Security groups vs network ACLs',
           head: ['Característica', 'Security group e network ACL'],
@@ -987,7 +1003,7 @@ export const ptBR: readonly Topic[] = [
           '**Trancar o bucket**: uma bucket policy do S3 com a condição `aws:sourceVpce` nega requisições que não passam pelo seu endpoint.',
           '**Gateway Load Balancer endpoint**: envia o tráfego para uma frota de appliances de inspeção.',
         ],
-        tip: '"Instâncias privadas precisam acessar o S3 sem custo de dados do NAT gateway" -> **gateway endpoint do S3**. "Servidores on-premises no Direct Connect precisam acessar o S3 de forma privada" -> **interface endpoint do S3**.',
+        tip: '"Instâncias privadas precisam acessar o S3 sem custo de dados do NAT gateway": **gateway endpoint do S3**. "Servidores on-premises no Direct Connect precisam acessar o S3 de forma privada": **interface endpoint do S3**.',
         table: {
           title: 'Gateway vs interface endpoint para o S3',
           head: ['Aspecto', 'Gateway e interface'],
@@ -1006,6 +1022,22 @@ export const ptBR: readonly Topic[] = [
         },
       },
       {
+        id: 'systems-manager',
+        name: 'Systems Manager',
+        fullName: 'AWS Systems Manager',
+        link: pt.aws('systems-manager/'),
+        summary:
+          'Opera frotas de instâncias EC2 e servidores on premises pelo SSM Agent, sem chaves SSH, bastion hosts ou portas de entrada.',
+        points: [
+          '**Session Manager**: acesso ao shell pelo console ou pela CLI, controlado pelo IAM e registrado no S3 ou no CloudWatch Logs. Nenhuma porta de entrada é aberta.',
+          '**Requisitos**: o SSM Agent, um instance profile com a política `AmazonSSMManagedInstanceCore` e um caminho até o serviço, por NAT gateway ou VPC interface endpoints.',
+          '**Run Command**: executa scripts em muitas instâncias de uma vez, escolhidas por tag.',
+          '**Patch Manager**: aplica patch baselines em janelas de manutenção.',
+          '**Automation**: runbooks para tarefas comuns, como criar uma AMI ou reiniciar uma instância.',
+        ],
+        tip: '"Acessar instâncias em sub-rede privada sem bastion host e sem abrir a porta 22": **Session Manager**. "Aplicar patches na frota toda com agenda": **Patch Manager**.',
+      },
+      {
         id: 'waf',
         name: 'AWS WAF',
         link: pt.aws('waf/'),
@@ -1018,7 +1050,7 @@ export const ptBR: readonly Topic[] = [
           '**Geo e IP**: as instruções de geographic match e IP set match liberam ou bloqueiam por país ou faixa de endereços.',
           '**Respostas**: uma requisição bloqueada recebe HTTP 403 ou uma resposta customizada.',
         ],
-        tip: '"Bloquear SQL injection e XSS contra a aplicação web" -> **AWS WAF** no ALB ou no CloudFront. Security groups e NACLs não inspecionam o conteúdo HTTP, e o WAF não se associa a um Network Load Balancer.',
+        tip: '"Bloquear SQL injection e XSS contra a aplicação web": **AWS WAF** no ALB ou no CloudFront. Security groups e NACLs não inspecionam o conteúdo HTTP, e o WAF não se associa a um Network Load Balancer.',
       },
       {
         id: 'shield',
@@ -1034,7 +1066,7 @@ export const ptBR: readonly Topic[] = [
           '**Preço**: US$ 3.000 por mês com compromisso de 1 ano, cobrado por conta pagadora, incluindo uso do AWS WAF nos recursos protegidos até um limite.',
           '**Detecção por saúde**: health checks do Route 53 associados aos recursos protegidos detectam ataques mais cedo.',
         ],
-        tip: '"Especialistas em DDoS de plantão e nada de conta surpresa depois de um ataque" -> **Shield Advanced**. Se a pergunta só pede proteção básica contra DDoS sem custo, o **Shield Standard** já está ativo.',
+        tip: '"Especialistas em DDoS de plantão e nada de conta surpresa depois de um ataque": **Shield Advanced**. Se a pergunta só pede proteção básica contra DDoS sem custo, o **Shield Standard** já está ativo.',
       },
       {
         id: 'network-firewall',
@@ -1049,7 +1081,7 @@ export const ptBR: readonly Topic[] = [
           '**Inspeção TLS**: descriptografa e criptografa de novo o tráfego com um certificado do ACM.',
           '**Em escala**: o Firewall Manager implanta firewalls entre contas, e as políticas de firewall podem ser compartilhadas pelo AWS RAM.',
         ],
-        tip: '"Filtrar a saída de todas as VPCs por nome de domínio, com assinaturas de IPS" -> **Network Firewall**. O WAF cobre só HTTP(S) na porta de entrada da aplicação.',
+        tip: '"Filtrar a saída de todas as VPCs por nome de domínio, com assinaturas de IPS": **Network Firewall**. O WAF cobre só HTTP(S) na porta de entrada da aplicação.',
       },
       {
         id: 'firewall-manager',
@@ -1065,7 +1097,7 @@ export const ptBR: readonly Topic[] = [
           '**Requisitos**: atua sobre uma organização do AWS Organizations. As cobranças vêm dos serviços por baixo, como AWS WAF e AWS Config.',
           '**Administrador**: uma conta administradora do Firewall Manager, que pode ser uma conta membro delegada.',
         ],
-        tip: '"Todo ALB de toda conta precisa ter sempre as regras de WAF corporativas, inclusive em contas futuras" -> **Firewall Manager**. Configurar o WAF conta por conta não escala.',
+        tip: '"Todo ALB de toda conta precisa ter sempre as regras de WAF corporativas, inclusive em contas futuras": **Firewall Manager**. Configurar o WAF conta por conta não escala.',
       },
       {
         id: 'hybrid-encryption',
@@ -1080,7 +1112,7 @@ export const ptBR: readonly Topic[] = [
           '**MACsec**: criptografia na camada 2 entre o seu roteador e a localização do Direct Connect, em conexões dedicadas de 10, 100 e 400 Gbps.',
           '**VPN sobre Direct Connect**: uma VPN IPsec pelo link do Direct Connect acrescenta criptografia mantendo o desempenho de rede consistente.',
         ],
-        tip: '"O tráfego pelo Direct Connect precisa ser criptografado" -> **MACsec** numa conexão dedicada suportada ou **VPN IPsec sobre o Direct Connect**. Só o Direct Connect não atende a um requisito de criptografia.',
+        tip: '"O tráfego pelo Direct Connect precisa ser criptografado": **MACsec** numa conexão dedicada suportada ou **VPN IPsec sobre o Direct Connect**. Só o Direct Connect não atende a um requisito de criptografia.',
       },
     ],
   },
@@ -1107,7 +1139,7 @@ export const ptBR: readonly Topic[] = [
           '**Chaves multi-Região**: chaves relacionadas com o mesmo key ID e material em várias Regiões, então o que foi criptografado numa Região é descriptografado em outra sem chamada entre Regiões.',
           '**Compartilhamento**: recursos criptografados com uma chave gerenciada pela AWS não podem ser compartilhados com outras contas. Use uma chave gerenciada pelo cliente cuja key policy libere a outra conta.',
         ],
-        tip: '"Compartilhar um snapshot ou objeto criptografado com outra conta" -> **chave gerenciada pelo cliente** com a outra conta na **key policy**. Chaves gerenciadas pela AWS não podem ser compartilhadas.',
+        tip: '"Compartilhar um snapshot ou objeto criptografado com outra conta": **chave gerenciada pelo cliente** com a outra conta na **key policy**. Chaves gerenciadas pela AWS não podem ser compartilhadas.',
         table: {
           title: 'Tipos de chave do KMS',
           head: ['Tipo de chave', 'Controle e custo'],
@@ -1143,7 +1175,7 @@ export const ptBR: readonly Topic[] = [
           '**Custom key store do KMS**: um CloudHSM key store mantém a integração com o KMS enquanto o material da chave fica no seu cluster, para workloads com poucas requisições por segundo.',
           '**Trade-off**: mais responsabilidade operacional que o KMS, incluindo disponibilidade e escala do cluster.',
         ],
-        tip: '"HSM single-tenant", "controle exclusivo das chaves" ou "a AWS não pode acessar as chaves" -> **CloudHSM**. Criptografia em repouso comum com trilha de auditoria é **KMS**.',
+        tip: '"HSM single-tenant", "controle exclusivo das chaves" ou "a AWS não pode acessar as chaves": **CloudHSM**. Criptografia em repouso comum com trilha de auditoria é **KMS**.',
       },
       {
         id: 's3-encryption',
@@ -1158,7 +1190,7 @@ export const ptBR: readonly Topic[] = [
           '**SSE-C**: você envia a chave em toda requisição via HTTPS e o S3 nunca a armazena. Desde abril de 2026 vem desativada por padrão em buckets novos e precisa ser habilitada explicitamente.',
           '**Criptografia no cliente**: os dados são criptografados antes do upload e chegam ao S3 já cifrados.',
         ],
-        tip: '"Auditar cada uso da chave e controlar quem descriptografa" -> **SSE-KMS** com chave gerenciada pelo cliente. "Duas camadas de criptografia" -> **DSSE-KMS**. "A empresa gerencia as próprias chaves fora da AWS" -> **SSE-C ou criptografia no cliente**.',
+        tip: '"Auditar cada uso da chave e controlar quem descriptografa": **SSE-KMS** com chave gerenciada pelo cliente. "Duas camadas de criptografia": **DSSE-KMS**. "A empresa gerencia as próprias chaves fora da AWS": **SSE-C ou criptografia no cliente**.',
       },
       {
         id: 'acm-tls',
@@ -1174,7 +1206,7 @@ export const ptBR: readonly Topic[] = [
           '**Renovação gerenciada**: automática para certificados validados por DNS e em uso. Certificados importados não são renovados pelo ACM, então acompanhe a expiração.',
           '**No EC2**: use o protocolo ACME para certificados publicamente confiáveis nos seus servidores. Um certificado gerenciado pelo ACM numa instância exige Nitro Enclaves.',
         ],
-        tip: '"HTTPS no CloudFront com domínio próprio" -> **certificado do ACM em us-east-1**. "Evitar indisponibilidade por certificado vencido" -> **certificado do ACM validado por DNS**, não um importado.',
+        tip: '"HTTPS no CloudFront com domínio próprio": **certificado do ACM em us-east-1**. "Evitar indisponibilidade por certificado vencido": **certificado do ACM validado por DNS**, não um importado.',
       },
       {
         id: 'secrets',
@@ -1189,7 +1221,7 @@ export const ptBR: readonly Topic[] = [
           '**Camadas**: a standard é gratuita, com 10.000 parâmetros de até 4 KB. A advanced permite 100.000 parâmetros de até 8 KB, parameter policies e compartilhamento entre contas, com cobrança.',
           '**Custo**: o Secrets Manager cobra por segredo por mês e por chamada de API.',
         ],
-        tip: '"A senha do banco precisa girar automaticamente" -> **Secrets Manager**. "Guardar IDs de AMI ou valores de configuração gastando pouco" -> **Parameter Store**.',
+        tip: '"A senha do banco precisa girar automaticamente": **Secrets Manager**. "Guardar IDs de AMI ou valores de configuração gastando pouco": **Parameter Store**.',
       },
       {
         id: 'threat-detection',
@@ -1204,7 +1236,7 @@ export const ptBR: readonly Topic[] = [
           '**Security Hub CSPM**: verifica as contas contra padrões como AWS Foundational Security Best Practices e CIS, e agrega findings do GuardDuty, do Inspector e do Macie. A maioria dos controles exige o AWS Config.',
           '**Detective**: monta um behavior graph com CloudTrail, VPC Flow Logs e findings do GuardDuty para investigar a causa raiz.',
         ],
-        tip: '"Encontrar PII no S3" -> **Macie**. "Credenciais comprometidas ou mineração de cripto" -> **GuardDuty**. "CVEs no EC2 ou em imagens de contêiner" -> **Inspector**. "Visão única da postura de conformidade" -> **Security Hub**. "Causa raiz de um finding" -> **Detective**.',
+        tip: '"Encontrar PII no S3": **Macie**. "Credenciais comprometidas ou mineração de cripto": **GuardDuty**. "CVEs no EC2 ou em imagens de contêiner": **Inspector**. "Visão única da postura de conformidade": **Security Hub**. "Causa raiz de um finding": **Detective**.',
         table: {
           title: 'Qual serviço responde o quê',
           head: ['Serviço', 'Pergunta típica'],
@@ -1230,7 +1262,7 @@ export const ptBR: readonly Topic[] = [
           '**Glacier Vault Lock**: uma vault lock policy que fica imutável quando você conclui o bloqueio dentro de 24 horas. O serviço original de vaults não aceita mais clientes novos, então projetos novos usam Object Lock com as classes de armazenamento S3 Glacier.',
           '**AWS Backup Vault Lock**: modo governance ou compliance para backup vaults. No modo compliance o vault fica imutável depois de um período de carência de no mínimo 72 horas.',
         ],
-        tip: '"Registros que ninguém, nem administradores, pode apagar por 7 anos" -> **S3 Object Lock em modo compliance**. O modo governance ainda deixa usuários privilegiados com a permissão de bypass removerem dados.',
+        tip: '"Registros que ninguém, nem administradores, pode apagar por 7 anos": **S3 Object Lock em modo compliance**. O modo governance ainda deixa usuários privilegiados com a permissão de bypass removerem dados.',
       },
       {
         id: 'artifact',
@@ -1243,7 +1275,7 @@ export const ptBR: readonly Topic[] = [
           '**Responsabilidade compartilhada**: o Artifact cobre a conformidade da AWS. A conformidade dos seus workloads continua sendo documentada por você.',
           '**Fornecedores do Marketplace**: documentos de segurança e conformidade de ISVs que vendem no AWS Marketplace também estão disponíveis.',
         ],
-        tip: '"Um auditor pede o relatório SOC ou o atestado PCI da AWS" -> **AWS Artifact**. O AWS Config e o AWS Audit Manager avaliam os seus próprios recursos.',
+        tip: '"Um auditor pede o relatório SOC ou o atestado PCI da AWS": **AWS Artifact**. O AWS Config e o AWS Audit Manager avaliam os seus próprios recursos.',
       },
     ],
   },
