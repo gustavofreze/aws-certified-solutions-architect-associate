@@ -23,7 +23,7 @@ export const enUS: readonly Topic[] = [
           '**Object** (Amazon S3): objects with metadata in a flat namespace, accessed through HTTPS APIs, with near-unlimited scale.',
           '**Hybrid** (AWS Storage Gateway): on-premises applications reach cloud storage through file, volume or tape interfaces.',
         ],
-        tip: '"Shared file system for many Linux instances" -> **EFS**, not EBS. "Lowest latency disk for one database instance" -> **EBS** (or instance store if the data is temporary). "Millions of images or a data lake" -> **S3**.',
+        tip: '"Shared file system for many Linux instances": **EFS**, not EBS. "Lowest latency disk for one database instance": **EBS** (or instance store if the data is temporary). "Millions of images or a data lake": **S3**.',
       },
       {
         id: 's3-performance',
@@ -39,7 +39,7 @@ export const enUS: readonly Topic[] = [
           '**Byte-range fetches**: `GET` requests with the `Range` header read parts of one object over concurrent connections, which raises aggregate throughput and makes retries cheaper.',
           '**Locality and caching**: read the bucket from EC2 in the same Region, and put CloudFront or ElastiCache in front of S3 for repeated reads that need lower latency.',
         ],
-        tip: '"Large uploads from offices on other continents are slow" -> **Transfer Acceleration** plus **multipart upload**. "503 errors on a hot prefix" -> spread keys across **more prefixes**. "Read only a part of a huge file" -> **byte-range fetch**.',
+        tip: '"Large uploads from offices on other continents are slow": **Transfer Acceleration** plus **multipart upload**. "503 errors on a hot prefix": spread keys across **more prefixes**. "Read only a part of a huge file": **byte-range fetch**.',
       },
       {
         id: 's3-storage-classes',
@@ -54,7 +54,7 @@ export const enUS: readonly Topic[] = [
           '**Archive retrieval**: Glacier Flexible Retrieval restores in 1 to 5 minutes (Expedited), 3 to 5 hours (Standard) or 5 to 12 hours (Bulk, free). Deep Archive restores within 12 hours (Standard) or 48 hours (Bulk).',
           '**Lifecycle rules**: transition objects to cheaper classes as they age, expire them, and abort incomplete multipart uploads.',
         ],
-        tip: '"Unknown or changing access pattern" -> **Intelligent-Tiering**. "Read once a quarter but needs milliseconds" -> **Glacier Instant Retrieval**. "Compliance archive, 48 hours to retrieve is fine, lowest cost" -> **Glacier Deep Archive**.',
+        tip: '"Unknown or changing access pattern": **Intelligent-Tiering**. "Read once a quarter but needs milliseconds": **Glacier Instant Retrieval**. "Compliance archive, 48 hours to retrieve is fine, lowest cost": **Glacier Deep Archive**.',
         table: {
           title: 'S3 storage classes',
           head: ['Class', 'Profile'],
@@ -110,7 +110,7 @@ export const enUS: readonly Topic[] = [
           '**Elastic Volumes**: change the type, IOPS and throughput of a volume in use without interrupting the instance, such as gp2 to gp3.',
           '**Instance side**: use EBS-optimized instances to reach provisioned IOPS. Volumes above 64,000 IOPS need Nitro-based instances.',
         ],
-        tip: '"More IOPS without paying for more GiB" -> **gp3** (gp2 ties IOPS to size). "More than 80,000 IOPS or sub-millisecond latency" -> **io2 Block Express**. "Cheapest EBS for sequential logs" -> **st1**, or **sc1** if rarely read.',
+        tip: '"More IOPS without paying for more GiB": **gp3** (gp2 ties IOPS to size). "More than 80,000 IOPS or sub-millisecond latency": **io2 Block Express**. "Cheapest EBS for sequential logs": **st1**, or **sc1** if rarely read.',
         table: {
           title: 'EBS volume types',
           head: ['Type', 'Limits and fit'],
@@ -144,7 +144,7 @@ export const enUS: readonly Topic[] = [
           '**Instance store**: disks physically attached to the host, included in the instance price. Ideal for buffers, caches, scratch data and data replicated across a fleet.',
           '**Ephemeral data**: it survives a reboot but is lost on stop, hibernation, termination or disk failure. It can only be added at launch and never detached.',
         ],
-        tip: '"Clustered application in one AZ needs a shared block device" -> **EBS Multi-Attach** with io2. "Highest disk I/O for temporary data, loss is acceptable" -> **instance store**. Data that must survive a stop belongs on **EBS**.',
+        tip: '"Clustered application in one AZ needs a shared block device": **EBS Multi-Attach** with io2. "Highest disk I/O for temporary data, loss is acceptable": **instance store**. Data that must survive a stop belongs on **EBS**.',
       },
       {
         id: 'efs',
@@ -161,7 +161,7 @@ export const enUS: readonly Topic[] = [
           '**Storage classes**: Standard (SSD, sub-millisecond reads), Infrequent Access and Archive (tens of milliseconds, 90-day minimum for Archive). Lifecycle management moves files between them.',
           '**Replication**: keeps a copy in another Region with RPO and RTO measured in minutes.',
         ],
-        tip: '"Hundreds of Linux instances across AZs share the same files" -> **EFS Regional**. "File system throttled in Bursting mode" -> switch to **Elastic** or **Provisioned** throughput. "Windows file shares" is never EFS.',
+        tip: '"Hundreds of Linux instances across AZs share the same files": **EFS Regional**. "File system throttled in Bursting mode": switch to **Elastic** or **Provisioned** throughput. "Windows file shares" is never EFS.',
       },
       {
         id: 'fsx',
@@ -176,7 +176,7 @@ export const enUS: readonly Topic[] = [
           '**FSx for NetApp ONTAP**: multiprotocol NFS, SMB, iSCSI and NVMe access from Linux, Windows and macOS. Snapshots, clones, SnapMirror replication, compression, deduplication and automatic tiering of cold data.',
           '**FSx for OpenZFS**: NFS access for moving ZFS or Linux file servers, with latencies of hundreds of microseconds, snapshots, clones and compression. Multi-AZ or Single-AZ deployments.',
         ],
-        tip: '"Windows shares joined to Active Directory" -> **FSx for Windows File Server**. "HPC job over a dataset stored in S3" -> **FSx for Lustre**. "Move a NetApp NAS without changing tools" -> **FSx for NetApp ONTAP**. "Lift a ZFS server" -> **FSx for OpenZFS**.',
+        tip: '"Windows shares joined to Active Directory": **FSx for Windows File Server**. "HPC job over a dataset stored in S3": **FSx for Lustre**. "Move a NetApp NAS without changing tools": **FSx for NetApp ONTAP**. "Lift a ZFS server": **FSx for OpenZFS**.',
       },
       {
         id: 'storage-gateway',
@@ -192,7 +192,7 @@ export const enUS: readonly Topic[] = [
           '**FSx File Gateway**: no longer available to new customers. New designs reach FSx for Windows File Server directly over Direct Connect or Site-to-Site VPN.',
           '**Deployment**: VM on VMware ESXi, Microsoft Hyper-V or Linux KVM, a hardware appliance, or an EC2 instance.',
         ],
-        tip: '"Replace physical tapes without changing the backup software" -> **Tape Gateway**. "On-premises app writes files over NFS or SMB that must land in S3" -> **S3 File Gateway**. "Whole dataset on site with low latency, backups in AWS" -> **Volume Gateway stored volumes**.',
+        tip: '"Replace physical tapes without changing the backup software": **Tape Gateway**. "On-premises app writes files over NFS or SMB that must land in S3": **S3 File Gateway**. "Whole dataset on site with low latency, backups in AWS": **Volume Gateway stored volumes**.',
       },
     ],
   },
@@ -219,7 +219,7 @@ export const enUS: readonly Topic[] = [
           '**Rightsizing**: AWS Compute Optimizer analyzes 14 days of CloudWatch metrics and recommends instance types for EC2 instances and Auto Scaling groups.',
           '**Fixed performance** families (M, C, R and others) sustain full CPU at any time, the right choice for video encoding, high volume websites and HPC.',
         ],
-        tip: '"In-memory database or real-time analytics" -> **memory optimized** (R, X). "Batch processing, transcoding, game servers" -> **compute optimized** (C). "High random I/O on large local datasets" -> **storage optimized** (I, D).',
+        tip: '"In-memory database or real-time analytics": **memory optimized** (R, X). "Batch processing, transcoding, game servers": **compute optimized** (C). "High random I/O on large local datasets": **storage optimized** (I, D).',
         table: {
           title: 'Instance categories',
           head: ['Category', 'Series and use cases'],
@@ -262,7 +262,7 @@ export const enUS: readonly Topic[] = [
           '**Spread**: each instance on distinct racks, at most 7 running instances per AZ per group. The group can span AZs. For a few critical instances.',
           '**Capacity**: an On-Demand Capacity Reservation can target a cluster placement group. Capacity Reservations do not reserve capacity in partition or spread groups.',
         ],
-        tip: '"HPC nodes exchange data constantly" -> **cluster** (with EFA or enhanced networking). "Cassandra or HDFS rack awareness" -> **partition**. "A handful of critical instances must not fail together" -> **spread**.',
+        tip: '"HPC nodes exchange data constantly": **cluster** (with EFA or enhanced networking). "Cassandra or HDFS rack awareness": **partition**. "A handful of critical instances must not fail together": **spread**.',
         table: {
           title: 'Placement strategies',
           head: ['Strategy', 'Layout and limits'],
@@ -299,7 +299,7 @@ export const enUS: readonly Topic[] = [
           '**EFA limits**: EFA traffic cannot cross AZs or VPCs and is not routable. Only supported instance types, and not on AWS Outposts.',
           '**Instance choice**: the `n` option means network and EBS optimized. Between two instances, the slower one caps the throughput.',
         ],
-        tip: '"Tightly coupled HPC or distributed ML training with MPI or NCCL" -> **EFA** inside a **cluster placement group**. "More PPS and lower latency for a regular application tier" -> **ENA** enhanced networking, not EFA.',
+        tip: '"Tightly coupled HPC or distributed ML training with MPI or NCCL": **EFA** inside a **cluster placement group**. "More PPS and lower latency for a regular application tier": **ENA** enhanced networking, not EFA.',
       },
       {
         id: 'auto-scaling',
@@ -316,7 +316,7 @@ export const enUS: readonly Topic[] = [
           '**Reaction time**: enable EC2 detailed monitoring (1-minute metrics instead of 5) and set an instance warmup so new instances do not distort the average.',
           '**AWS Auto Scaling**: one place to build scaling plans for EC2 Auto Scaling groups, Spot Fleets, ECS tasks, DynamoDB tables and indexes, and Aurora Replicas.',
         ],
-        tip: '"Workers consuming an SQS queue fall behind" -> target tracking on **backlog per instance**. "Load jumps every weekday at 9 AM and instances boot slowly" -> **predictive** or **scheduled** scaling. "Keep CPU around 50%" -> **target tracking**.',
+        tip: '"Workers consuming an SQS queue fall behind": target tracking on **backlog per instance**. "Load jumps every weekday at 9 AM and instances boot slowly": **predictive** or **scheduled** scaling. "Keep CPU around 50%": **target tracking**.',
       },
       {
         id: 'hibernation',
@@ -331,7 +331,7 @@ export const enUS: readonly Topic[] = [
           '**Limits**: no changes while hibernated, at most 60 days hibernated, and no hibernation for instances in an Auto Scaling group or used by ECS.',
           '**Billing**: no instance usage charge while stopped. You pay for the EBS volumes, including the saved RAM, and associated Elastic IPs.',
         ],
-        tip: '"Application takes too long to rebuild its in-memory state after a restart" -> **hibernate** instead of stop. If the instance belongs to an **Auto Scaling group**, hibernation is not an option.',
+        tip: '"Application takes too long to rebuild its in-memory state after a restart": **hibernate** instead of stop. If the instance belongs to an **Auto Scaling group**, hibernation is not an option.',
       },
       {
         id: 'batch-emr',
@@ -347,7 +347,7 @@ export const enUS: readonly Topic[] = [
           '**EMR nodes**: primary (coordinates), core (runs tasks and stores HDFS) and optional task nodes (run tasks only). Task nodes hold no HDFS data, which makes them the natural place for Spot Instances.',
           '**Transient clusters**: keep input and output in S3 and let the cluster terminate after its last step.',
         ],
-        tip: '"Thousands of containerized jobs, no scheduler to run" -> **AWS Batch**. "Petabyte-scale Spark or Hive processing" -> **Amazon EMR** (EMR Serverless to skip cluster management). A job over 15 minutes rules out **Lambda**.',
+        tip: '"Thousands of containerized jobs, no scheduler to run": **AWS Batch**. "Petabyte-scale Spark or Hive processing": **Amazon EMR** (EMR Serverless to skip cluster management). A job over 15 minutes rules out **Lambda**.',
       },
       {
         id: 'edge-compute',
@@ -363,7 +363,7 @@ export const enUS: readonly Topic[] = [
           '**VPC extension**: a VPC spans Availability Zones, Local Zones and Wavelength Zones through subnets created in each zone.',
           '**Data residency**: all three keep data inside a chosen country, state or site to meet regulatory requirements.',
         ],
-        tip: '"Low latency to systems that must stay in our data center" -> **Outposts**. "Low latency for users in a city far from any Region" -> **Local Zones**. "Mobile app on a 5G carrier network" -> **Wavelength**.',
+        tip: '"Low latency to systems that must stay in our data center": **Outposts**. "Low latency for users in a city far from any Region": **Local Zones**. "Mobile app on a 5G carrier network": **Wavelength**.',
       },
       {
         id: 'elastic-beanstalk',
@@ -378,7 +378,7 @@ export const enUS: readonly Topic[] = [
           '**Worker environment**: a managed SQS queue plus a daemon that POSTs each message to the application. Offloads long tasks from the web tier and runs periodic jobs from `cron.yaml`.',
           '**Control**: the resources are created in your account, so you keep access to the instances and their configuration.',
         ],
-        tip: '"Developers want to deploy a web app fast without managing infrastructure" -> **Elastic Beanstalk**. "Long background tasks slow the web tier" -> a **worker environment** with SQS.',
+        tip: '"Developers want to deploy a web app fast without managing infrastructure": **Elastic Beanstalk**. "Long background tasks slow the web tier": a **worker environment** with SQS.',
       },
     ],
   },
@@ -406,7 +406,7 @@ export const enUS: readonly Topic[] = [
           '**Layers**: up to 5 per function, extracted to `/opt`, to share libraries across functions. Only for .zip functions, not container images.',
           '**Tuning**: AWS Lambda Power Tuning and AWS Compute Optimizer help pick the memory setting.',
         ],
-        tip: '"CPU-bound function is slow" -> **raise memory** (CPU follows). "Processing takes 40 minutes" -> not Lambda, use **ECS on Fargate** or **AWS Batch**. "Same library in many functions" -> **layers**.',
+        tip: '"CPU-bound function is slow": **raise memory** (CPU follows). "Processing takes 40 minutes": not Lambda, use **ECS on Fargate** or **AWS Batch**. "Same library in many functions": **layers**.',
       },
       {
         id: 'lambda-concurrency',
@@ -422,7 +422,7 @@ export const enUS: readonly Topic[] = [
           '**SnapStart**: snapshots the initialized environment when a version is published and resumes from it, with startup as low as sub-second. Java 11+, Python 3.12+ and .NET 8+. Free on Java, caching and restore charges on the others.',
           '**SnapStart limits**: published versions only, and no combination with provisioned concurrency, EFS or `/tmp` above 512 MB.',
         ],
-        tip: '"Cold starts unacceptable on a latency-sensitive API" -> **provisioned concurrency** (or **SnapStart** for Java, Python, .NET). "A function overwhelms the database" -> **reserved concurrency** as a cap.',
+        tip: '"Cold starts unacceptable on a latency-sensitive API": **provisioned concurrency** (or **SnapStart** for Java, Python, .NET). "A function overwhelms the database": **reserved concurrency** as a cap.',
       },
       {
         id: 'event-sources',
@@ -437,7 +437,7 @@ export const enUS: readonly Topic[] = [
           '**At least once**: mappings can process a record more than once, so make the handler idempotent. On error, stream batches are retried and the shard pauses to keep order.',
           '**Provisioned mode**: dedicated pollers with a minimum and maximum for SQS, Amazon MSK and Kafka mappings, when latency must stay consistent. Extra charge.',
         ],
-        tip: '"Process SQS messages with Lambda in batches" -> **event source mapping**. "Run code when an object arrives in S3" -> **S3 event notification** trigger. "Duplicates broke the results" -> make the handler **idempotent**.',
+        tip: '"Process SQS messages with Lambda in batches": **event source mapping**. "Run code when an object arrives in S3": **S3 event notification** trigger. "Duplicates broke the results": make the handler **idempotent**.',
       },
       {
         id: 'ecs-eks',
@@ -453,7 +453,7 @@ export const enUS: readonly Topic[] = [
           '**Scaling**: ECS Service Auto Scaling changes the number of tasks, and Cluster Auto Scaling changes the EC2 instances registered to the cluster.',
           '**Cost**: ECS orchestration has no additional charge. EKS adds a per-cluster charge on top of the compute.',
         ],
-        tip: '"Team already runs Kubernetes and wants a managed control plane" -> **EKS**. "Simplest AWS-native container orchestration with least overhead" -> **ECS**, usually on Fargate.',
+        tip: '"Team already runs Kubernetes and wants a managed control plane": **EKS**. "Simplest AWS-native container orchestration with least overhead": **ECS**, usually on Fargate.',
         table: {
           title: 'ECS or EKS',
           head: ['Criterion', 'ECS and EKS'],
@@ -490,7 +490,7 @@ export const enUS: readonly Topic[] = [
           '**Fargate Spot**: up to 70% off for interruption-tolerant ECS tasks, with a 2-minute warning. Linux only.',
           '**EC2 launch type**: you manage instances, AMIs and cluster capacity, and in return get GPUs, privileged containers and any instance type, none of which Fargate supports.',
         ],
-        tip: '"Run containers without managing or patching servers" -> **Fargate**. "Containers need GPUs or privileged mode" -> **EC2 launch type**. "Cheap, interruptible container jobs" -> **Fargate Spot**.',
+        tip: '"Run containers without managing or patching servers": **Fargate**. "Containers need GPUs or privileged mode": **EC2 launch type**. "Cheap, interruptible container jobs": **Fargate Spot**.',
         table: {
           title: 'Fargate or EC2 capacity',
           head: ['Aspect', 'Fargate and EC2'],
@@ -526,7 +526,7 @@ export const enUS: readonly Topic[] = [
           '**Containerizing**: package the app and its dependencies in an image, push it to ECR, describe it in a task definition or pod spec, and run it on Fargate or EC2. The same image runs the same way in every environment.',
           '**Private pulls**: tasks in private subnets pull from ECR through an interface VPC endpoint instead of a NAT gateway.',
         ],
-        tip: '"Store and scan images, copy them to a DR Region" -> **ECR** with replication. "Fargate tasks in private subnets cannot pull images" -> add an **ECR interface endpoint** or a NAT gateway.',
+        tip: '"Store and scan images, copy them to a DR Region": **ECR** with replication. "Fargate tasks in private subnets cannot pull images": add an **ECR interface endpoint** or a NAT gateway.',
       },
       {
         id: 'hybrid-containers',
@@ -542,7 +542,7 @@ export const enUS: readonly Topic[] = [
           '**EKS Distro**: the Kubernetes distribution used by Amazon EKS and the base of EKS Anywhere.',
           '**EKS Hybrid Nodes**: on-premises and edge servers joined as nodes of an Amazon EKS cluster.',
         ],
-        tip: '"Run containers on premises, managed from the ECS console" -> **ECS Anywhere**. "Kubernetes in a disconnected data center" -> **EKS Anywhere**. "On-premises service needs inbound traffic through a load balancer" -> ECS Anywhere is a poor fit.',
+        tip: '"Run containers on premises, managed from the ECS console": **ECS Anywhere**. "Kubernetes in a disconnected data center": **EKS Anywhere**. "On-premises service needs inbound traffic through a load balancer": ECS Anywhere is a poor fit.',
       },
       {
         id: 'choosing',
@@ -558,7 +558,7 @@ export const enUS: readonly Topic[] = [
           '**Decoupling**: put SQS, SNS or EventBridge between components so each tier scales independently on its own metric.',
           '**AWS Serverless Application Repository**: publish and deploy reusable serverless applications defined with AWS SAM templates, shared publicly or with specific accounts. No charge beyond the deployed resources.',
         ],
-        tip: '"Unpredictable traffic, no servers, pay only when it runs" -> **Lambda**. "Containerized service running 24/7 without host management" -> **ECS on Fargate**. "Reuse a published serverless app across accounts" -> **Serverless Application Repository**.',
+        tip: '"Unpredictable traffic, no servers, pay only when it runs": **Lambda**. "Containerized service running 24/7 without host management": **ECS on Fargate**. "Reuse a published serverless app across accounts": **Serverless Application Repository**.',
       },
     ],
   },
@@ -585,7 +585,7 @@ export const enUS: readonly Topic[] = [
           '**Storage autoscaling**: grows storage when free space is at or below 10% for at least 5 minutes, up to the maximum storage threshold you set. It never shrinks storage.',
           '**Magnetic storage** is deprecated. New instances use gp3 or Provisioned IOPS SSD.',
         ],
-        tip: '"Reporting queries slow down the production database" -> **read replica**, not Multi-AZ (the Multi-AZ standby instance serves no reads). "Consistent low-latency I/O for OLTP" -> **Provisioned IOPS (io2 Block Express)**, not gp2.',
+        tip: '"Reporting queries slow down the production database": **read replica**, not Multi-AZ (the Multi-AZ standby instance serves no reads). "Consistent low-latency I/O for OLTP": **Provisioned IOPS (io2 Block Express)**, not gp2.',
         table: {
           title: 'RDS storage types',
           head: ['Type', 'When to use'],
@@ -626,7 +626,7 @@ export const enUS: readonly Topic[] = [
           '**Global Database**: up to 10 secondary Regions with replication typically under 1 second, RPO of 1 second and RTO under 1 minute. Up to 16 read-only instances per secondary. Write forwarding sends writes to the primary.',
           '**I/O-Optimized**: no charge for read and write I/O. Worth it when I/O is 25% or more of the Aurora bill (savings up to 40%). Standard to I/O-Optimized once every 30 days.',
         ],
-        tip: '"Unpredictable or spiky relational load, pay for what is used" -> **Aurora Serverless v2**. "Global reads with sub-second lag and Regional DR" -> **Aurora Global Database**, not cross-Region RDS read replicas.',
+        tip: '"Unpredictable or spiky relational load, pay for what is used": **Aurora Serverless v2**. "Global reads with sub-second lag and Regional DR": **Aurora Global Database**, not cross-Region RDS read replicas.',
       },
       {
         id: 'dynamodb',
@@ -641,7 +641,7 @@ export const enUS: readonly Topic[] = [
           '**Item size**: up to 400 KB. Store large objects in S3 and keep the key in the item.',
           '**PITR**: restore to any second in a recovery period you set from 1 to 35 days.',
         ],
-        tip: '"Millions of requests per second, schemaless, single-digit ms" -> **DynamoDB**, not RDS. Throttling on a few keys points to a **bad partition key**, not to a lack of total capacity.',
+        tip: '"Millions of requests per second, schemaless, single-digit ms": **DynamoDB**, not RDS. Throttling on a few keys points to a **bad partition key**, not to a lack of total capacity.',
       },
       {
         id: 'dynamodb-features',
@@ -656,7 +656,7 @@ export const enUS: readonly Topic[] = [
           '**Streams**: ordered item changes kept for 24 hours, consumed by Lambda for event-driven processing. **TTL** deletes expired items within a few days, without consuming write throughput.',
           '**Global tables**: multi-active, multi-Region replicas. Default **MREC** replicates typically within a second. **MRSC** gives strong consistency across Regions, chosen at creation.',
         ],
-        tip: '"Read-heavy DynamoDB, microsecond latency, no code change" -> **DAX**, not ElastiCache. "Query by another attribute after the table exists" -> **GSI** (an LSI cannot be added later).',
+        tip: '"Read-heavy DynamoDB, microsecond latency, no code change": **DAX**, not ElastiCache. "Query by another attribute after the table exists": **GSI** (an LSI cannot be added later).',
       },
       {
         id: 'elasticache',
@@ -671,7 +671,7 @@ export const enUS: readonly Topic[] = [
           '**Write-through**: update the cache on every database write. Data is never stale, but every write takes 2 trips and unread data fills the cache.',
           '**TTL**: add an expiry to either strategy to bound staleness and free memory.',
         ],
-        tip: '"Leaderboard, sorted ranking, HA cache, session store with failover" -> **ElastiCache for Valkey or Redis OSS**. "Simple multithreaded cache, no persistence" -> **Memcached**.',
+        tip: '"Leaderboard, sorted ranking, HA cache, session store with failover": **ElastiCache for Valkey or Redis OSS**. "Simple multithreaded cache, no persistence": **Memcached**.',
       },
       {
         id: 'purpose-built',
@@ -685,7 +685,7 @@ export const enUS: readonly Topic[] = [
           '**Amazon Neptune**: graph database for highly connected data, queried with Gremlin, openCypher or SPARQL.',
           '**Amazon Redshift**: columnar data warehouse for analytics (OLAP) over large data sets, not for transactions.',
         ],
-        tip: '"Migrate MongoDB with minimal changes" -> **DocumentDB**. "Cassandra workload, no servers" -> **Keyspaces**. "Social network, fraud rings, recommendations" -> **Neptune**.',
+        tip: '"Migrate MongoDB with minimal changes": **DocumentDB**. "Cassandra workload, no servers": **Keyspaces**. "Social network, fraud rings, recommendations": **Neptune**.',
         table: {
           title: 'Requirement to database',
           head: ['Requirement', 'Choice'],
@@ -713,7 +713,7 @@ export const enUS: readonly Topic[] = [
           '**Security**: credentials stay in AWS Secrets Manager and IAM authentication can be enforced. The proxy is never publicly accessible and runs in the database VPC.',
           '**Engines**: Aurora MySQL, Aurora PostgreSQL, RDS for MySQL, PostgreSQL, MariaDB and SQL Server.',
         ],
-        tip: '"Lambda functions exhaust database connections" or "too many connections errors" -> **RDS Proxy**, not a larger instance class.',
+        tip: '"Lambda functions exhaust database connections" or "too many connections errors": **RDS Proxy**, not a larger instance class.',
       },
       {
         id: 'migration',
@@ -728,7 +728,7 @@ export const enUS: readonly Topic[] = [
           '**CDC**: change data capture keeps replicating ongoing changes for a near-zero downtime cutover.',
           '**Source stays online**: applications keep using the source during the migration.',
         ],
-        tip: '"Oracle to PostgreSQL with minimal downtime" -> **DMS Schema Conversion (or SCT) + DMS with CDC**. DMS alone does not convert stored procedures or schema.',
+        tip: '"Oracle to PostgreSQL with minimal downtime": **DMS Schema Conversion (or SCT) + DMS with CDC**. DMS alone does not convert stored procedures or schema.',
       },
     ],
   },
@@ -755,7 +755,7 @@ export const enUS: readonly Topic[] = [
           '**Route tables**: a subnet is **public** when its route table has a route to an internet gateway. Private subnets route outbound traffic through NAT.',
           '**VPC Flow Logs**: IP traffic metadata to CloudWatch Logs, S3 or Data Firehose for troubleshooting.',
         ],
-        tip: '"Running out of IPs in the VPC" -> **add a secondary CIDR block**, not a new VPC. A /28 subnet has only 11 usable addresses because 5 are reserved.',
+        tip: '"Running out of IPs in the VPC": **add a secondary CIDR block**, not a new VPC. A /28 subnet has only 11 usable addresses because 5 are reserved.',
       },
       {
         id: 'internet-egress',
@@ -770,7 +770,7 @@ export const enUS: readonly Topic[] = [
           '**Egress-only internet gateway**: IPv6 outbound only and stateful. IPv6 addresses are public, so this is the IPv6 equivalent of NAT.',
           '**Elastic IP**: static public IPv4, 5 per Region by default. AWS charges for every public IPv4 address, in use or idle.',
         ],
-        tip: '"Private instances need patches from the internet, highly available" -> **NAT gateway in each AZ**, not a NAT instance. "IPv6 outbound only" -> **egress-only internet gateway**.',
+        tip: '"Private instances need patches from the internet, highly available": **NAT gateway in each AZ**, not a NAT instance. "IPv6 outbound only": **egress-only internet gateway**.',
       },
       {
         id: 'vpc-to-vpc',
@@ -785,7 +785,7 @@ export const enUS: readonly Topic[] = [
           '**Peering attachments** connect transit gateways across Regions. Share a transit gateway with other accounts through AWS RAM.',
           '**ECMP** over several VPN tunnels with BGP aggregates VPN bandwidth to the transit gateway.',
         ],
-        tip: '"Dozens of VPCs and on premises sites, full mesh is unmanageable" -> **Transit Gateway**. "Two VPCs, lowest cost, no transit" -> **VPC peering**. A peered VPC never forwards traffic for a third one.',
+        tip: '"Dozens of VPCs and on premises sites, full mesh is unmanageable": **Transit Gateway**. "Two VPCs, lowest cost, no transit": **VPC peering**. A peered VPC never forwards traffic for a third one.',
       },
       {
         id: 'privatelink',
@@ -800,7 +800,7 @@ export const enUS: readonly Topic[] = [
           '**Gateway endpoint**: only for S3 and DynamoDB, no extra cost, a route in the route table, same Region only. It is not PrivateLink.',
           '**Consumer initiated**: the consumer opens the connection and the provider accepts or rejects the request.',
         ],
-        tip: '"Expose one service to hundreds of customer VPCs with overlapping CIDRs" -> **PrivateLink endpoint service**, not peering. "EC2 to S3 without NAT, no cost" -> **gateway endpoint**.',
+        tip: '"Expose one service to hundreds of customer VPCs with overlapping CIDRs": **PrivateLink endpoint service**, not peering. "EC2 to S3 without NAT, no cost": **gateway endpoint**.',
       },
       {
         id: 'vpn',
@@ -814,7 +814,7 @@ export const enUS: readonly Topic[] = [
           '**Accelerated Site-to-Site VPN**: enters the AWS global network at the nearest edge through Global Accelerator. Requires a transit gateway.',
           '**AWS Client VPN**: managed, OpenVPN-based remote access for users, authenticated with Active Directory, SAML federation or mutual certificates.',
         ],
-        tip: '"Connect the office this week, encrypted, low cost" -> **Site-to-Site VPN**. "Remote employees on laptops" -> **Client VPN**. More than 1.25 Gbps over VPN -> **ECMP on a transit gateway** or Large Bandwidth Tunnels.',
+        tip: '"Connect the office this week, encrypted, low cost": **Site-to-Site VPN**. "Remote employees on laptops": **Client VPN**. More than 1.25 Gbps over VPN: **ECMP on a transit gateway** or Large Bandwidth Tunnels.',
       },
       {
         id: 'direct-connect',
@@ -830,7 +830,7 @@ export const enUS: readonly Topic[] = [
           '**Direct Connect gateway**: global resource that links one connection to VPCs in many Regions (except China). It does not route VPC to VPC.',
           '**Resiliency**: maximum resiliency (separate devices in more than 1 location, 99.99% SLA) or high resiliency (connections at multiple locations, 99.9%). A Site-to-Site VPN is the low-cost backup.',
         ],
-        tip: '"Consistent throughput, large daily transfers, no internet" -> **Direct Connect**. "Needed now" is a VPN, because a new connection takes time to provision. "Encrypted private link" -> **DX + IPsec VPN** or MACsec.',
+        tip: '"Consistent throughput, large daily transfers, no internet": **Direct Connect**. "Needed now" is a VPN, because a new connection takes time to provision. "Encrypted private link": **DX + IPsec VPN** or MACsec.',
         table: {
           title: 'Hybrid connectivity',
           head: ['Option', 'Fits when'],
@@ -854,7 +854,7 @@ export const enUS: readonly Topic[] = [
           '**Network Load Balancer**: layer 4 (TCP, UDP, TLS, QUIC), millions of requests per second, a static IP per AZ and optional Elastic IPs.',
           '**Gateway Load Balancer**: layer 3, inserts third-party appliances (firewalls, IDS) using GENEVE on port 6081.',
         ],
-        tip: '"Path-based routing to microservices" -> **ALB**. "Static IP for allowlisting, UDP, extreme throughput" -> **NLB**. "Inline third-party firewall fleet" -> **Gateway Load Balancer**.',
+        tip: '"Path-based routing to microservices": **ALB**. "Static IP for allowlisting, UDP, extreme throughput": **NLB**. "Inline third-party firewall fleet": **Gateway Load Balancer**.',
       },
     ],
   },
@@ -880,7 +880,7 @@ export const enUS: readonly Topic[] = [
           '**Alias**: points to AWS resources (CloudFront, ELB, S3 website, API Gateway, Global Accelerator, VPC interface endpoint or another record in the zone), works at the apex and queries to AWS resources are free.',
           '**Private hosted zone**: DNS names resolvable only inside associated VPCs.',
         ],
-        tip: '"Point the root domain to a load balancer or CloudFront" -> **alias record**, never a CNAME. Alias also avoids query charges.',
+        tip: '"Point the root domain to a load balancer or CloudFront": **alias record**, never a CNAME. Alias also avoids query charges.',
       },
       {
         id: 'route53-routing',
@@ -894,7 +894,7 @@ export const enUS: readonly Topic[] = [
           '**Multivalue answer** returns up to 8 healthy records at random. It is not a substitute for a load balancer.',
           '**IP-based** routes by the client CIDR (CIDR collections), useful for ISP-specific routing. Not available in private hosted zones.',
         ],
-        tip: '"Lowest latency for global users" -> **latency**, not geolocation. "Content rights or language by country" -> **geolocation**. "Send 10% to the new version" -> **weighted**.',
+        tip: '"Lowest latency for global users": **latency**, not geolocation. "Content rights or language by country": **geolocation**. "Send 10% to the new version": **weighted**.',
         table: {
           title: 'Route 53 routing policies',
           head: ['Policy', 'Use it for'],
@@ -922,7 +922,7 @@ export const enUS: readonly Topic[] = [
           '**CloudWatch alarm check**: follows an alarm. Required for resources with only private IPs, because the checkers run outside the VPC.',
           '**Failover routing** uses the check on the primary record to switch to the secondary (for example, a static S3 site).',
         ],
-        tip: '"Fail over to a backup Region automatically when the primary is unhealthy" -> **failover routing + health check**. "Health of a private resource" -> **CloudWatch alarm based check**.',
+        tip: '"Fail over to a backup Region automatically when the primary is unhealthy": **failover routing + health check**. "Health of a private resource": **CloudWatch alarm based check**.',
       },
       {
         id: 'cloudfront',
@@ -937,7 +937,7 @@ export const enUS: readonly Topic[] = [
           '**Origin failover**: an origin group with primary and secondary origins, for GET, HEAD and OPTIONS requests.',
           '**HTTPS**: the ACM certificate for a custom domain must be in `us-east-1`.',
         ],
-        tip: '"Global users, static content from S3, lower latency and lower origin load" -> **CloudFront**. A cache hit ratio problem points to **cache policy and TTLs**, not to a bigger origin.',
+        tip: '"Global users, static content from S3, lower latency and lower origin load": **CloudFront**. A cache hit ratio problem points to **cache policy and TTLs**, not to a bigger origin.',
       },
       {
         id: 'cloudfront-security',
@@ -952,7 +952,7 @@ export const enUS: readonly Topic[] = [
           '**Field-level encryption**: encrypts up to 10 POST fields at the edge with a public key, so only the backend with the private key reads them.',
           '**AWS WAF** and **Shield Standard** protect the distribution at the edge.',
         ],
-        tip: '"Users must not reach the S3 bucket directly" -> **OAC**. "Paid video library, many files per subscriber" -> **signed cookies**. "One download link" -> **signed URL**, not presigned S3 URLs when CloudFront is in front.',
+        tip: '"Users must not reach the S3 bucket directly": **OAC**. "Paid video library, many files per subscriber": **signed cookies**. "One download link": **signed URL**, not presigned S3 URLs when CloudFront is in front.',
       },
       {
         id: 'edge-functions',
@@ -966,7 +966,7 @@ export const enUS: readonly Topic[] = [
           '**Typical CloudFront Functions jobs**: header manipulation, URL rewrites and redirects, cache key normalization, simple token checks.',
           '**Typical Lambda@Edge jobs**: calls to external services, larger bodies, origin selection, logic that needs more memory or time.',
         ],
-        tip: '"Rewrite URLs or add headers at massive scale, lowest cost" -> **CloudFront Functions**. "Call a third-party API or change the origin request" -> **Lambda@Edge**.',
+        tip: '"Rewrite URLs or add headers at massive scale, lowest cost": **CloudFront Functions**. "Call a third-party API or change the origin request": **Lambda@Edge**.',
         table: {
           title: 'CloudFront Functions or Lambda@Edge',
           head: ['Aspect', 'CloudFront Functions and Lambda@Edge'],
@@ -1005,7 +1005,7 @@ export const enUS: readonly Topic[] = [
           '**Failover**: detects an unhealthy endpoint and takes it out of service in less than 1 minute, with no DNS caching delay.',
           '**Traffic dials** per Region and **weights** per endpoint, plus client affinity.',
         ],
-        tip: '"Static IPs for allowlisting, UDP, fast Regional failover" -> **Global Accelerator**. "Cache content at the edge, HTTP" -> **CloudFront**. Both use the edge, only CloudFront caches.',
+        tip: '"Static IPs for allowlisting, UDP, fast Regional failover": **Global Accelerator**. "Cache content at the edge, HTTP": **CloudFront**. Both use the edge, only CloudFront caches.',
       },
       {
         id: 'transfer-acceleration',
@@ -1020,7 +1020,7 @@ export const enUS: readonly Topic[] = [
           '**Pricing**: you pay only for accelerated transfers. If it would not be faster, there is no charge.',
           '**Speed Comparison tool** shows the gain for your location before you enable it.',
         ],
-        tip: '"Users on other continents upload large files to one bucket" -> **S3 Transfer Acceleration**, combined with **multipart upload** for large objects. Not CloudFront, which is mainly for delivery.',
+        tip: '"Users on other continents upload large files to one bucket": **S3 Transfer Acceleration**, combined with **multipart upload** for large objects. Not CloudFront, which is mainly for delivery.',
       },
     ],
   },
@@ -1047,7 +1047,7 @@ export const enUS: readonly Topic[] = [
           '**Ordering**: the partition key picks the shard, records with the same key stay in order.',
           '**Capacity modes**: on-demand (scales automatically) or provisioned (you manage shards).',
         ],
-        tip: '"Real-time, multiple consumers, replay, ordering per key" -> **Kinesis Data Streams**. Throttled writes -> **more shards** or a better partition key.',
+        tip: '"Real-time, multiple consumers, replay, ordering per key": **Kinesis Data Streams**. Throttled writes: **more shards** or a better partition key.',
       },
       {
         id: 'firehose',
@@ -1062,7 +1062,7 @@ export const enUS: readonly Topic[] = [
           '**Transformation**: a Lambda function can transform records, for example CSV to JSON before conversion.',
           '**Sources** include direct PUT and Kinesis data streams.',
         ],
-        tip: '"Load streaming data into S3 or Redshift with no code, near real time" -> **Data Firehose**. "Custom consumers, replay, milliseconds" -> **Kinesis Data Streams**.',
+        tip: '"Load streaming data into S3 or Redshift with no code, near real time": **Data Firehose**. "Custom consumers, replay, milliseconds": **Kinesis Data Streams**.',
       },
       {
         id: 'msk-video',
@@ -1076,7 +1076,7 @@ export const enUS: readonly Topic[] = [
           '**Kinesis Video Streams**: ingests, stores and indexes video from cameras for playback (HLS, MPEG-DASH), analytics and ML.',
           '**WebRTC** in Kinesis Video Streams supports two-way real-time media.',
         ],
-        tip: '"Migrate an on premises Kafka cluster with minimal changes" -> **Amazon MSK**, not Kinesis. "Camera streams for analysis with Rekognition" -> **Kinesis Video Streams**.',
+        tip: '"Migrate an on premises Kafka cluster with minimal changes": **Amazon MSK**, not Kinesis. "Camera streams for analysis with Rekognition": **Kinesis Video Streams**.',
       },
       {
         id: 'data-lake',
@@ -1091,7 +1091,7 @@ export const enUS: readonly Topic[] = [
           '**AWS Glue DataBrew**: visual data preparation without code.',
           '**Lake Formation**: permissions at database, table, column, row and cell level, **LF-Tags** for tag-based access and cross-account sharing.',
         ],
-        tip: '"Convert CSV in S3 to Parquet on a schedule, serverless" -> **Glue ETL job**. "Column-level access to the data lake for different teams" -> **Lake Formation**, not bucket policies.',
+        tip: '"Convert CSV in S3 to Parquet on a schedule, serverless": **Glue ETL job**. "Column-level access to the data lake for different teams": **Lake Formation**, not bucket policies.',
       },
       {
         id: 'athena-quick',
@@ -1105,7 +1105,7 @@ export const enUS: readonly Topic[] = [
           '**Federated Query**: Lambda-based connectors query sources outside S3 (relational, NoSQL).',
           '**Amazon Quick**: evolved from Amazon QuickSight. Its BI feature, **Amazon Quick Sight**, builds dashboards with the SPICE in-memory engine and natural language questions.',
         ],
-        tip: '"Ad hoc SQL on logs in S3, no infrastructure" -> **Athena**. "Athena too slow and costly on CSV" -> **convert to Parquet and partition**. "Interactive BI dashboards" -> **Amazon Quick**.',
+        tip: '"Ad hoc SQL on logs in S3, no infrastructure": **Athena**. "Athena too slow and costly on CSV": **convert to Parquet and partition**. "Interactive BI dashboards": **Amazon Quick**.',
       },
       {
         id: 'processing',
@@ -1119,7 +1119,7 @@ export const enUS: readonly Topic[] = [
           '**Redshift features**: concurrency scaling, data sharing and **zero-ETL** from Aurora, RDS and DynamoDB.',
           '**Amazon OpenSearch Service**: full-text search and log analytics with OpenSearch Dashboards. UltraWarm and cold tiers, OpenSearch Serverless and Ingestion.',
         ],
-        tip: '"Existing Spark or Hadoop jobs, full control of the cluster" -> **EMR**. "Complex SQL joins across terabytes for BI" -> **Redshift**. "Full-text search over logs or a catalog" -> **OpenSearch**.',
+        tip: '"Existing Spark or Hadoop jobs, full control of the cluster": **EMR**. "Complex SQL joins across terabytes for BI": **Redshift**. "Full-text search over logs or a catalog": **OpenSearch**.',
         table: {
           title: 'Which analytics service',
           head: ['Service', 'Best for'],
@@ -1145,7 +1145,7 @@ export const enUS: readonly Topic[] = [
           '**AWS Snowball Edge**: since November 7, 2025, available only to existing customers, and support in commercial Regions ends on December 31, 2026.',
           '**AWS Data Transfer Terminal**: physical locations where you bring your own storage devices and upload over a high-bandwidth connection.',
         ],
-        tip: '"Partners send files over SFTP into S3" -> **Transfer Family**. "Recurring sync of an NFS share to S3 or EFS" -> **DataSync**. Exam questions with petabytes and little bandwidth still point to **Snowball Edge**.',
+        tip: '"Partners send files over SFTP into S3": **Transfer Family**. "Recurring sync of an NFS share to S3 or EFS": **DataSync**. Exam questions with petabytes and little bandwidth still point to **Snowball Edge**.',
         table: {
           title: 'Transfer option by need',
           head: ['Need', 'Choice'],
@@ -1172,7 +1172,33 @@ export const enUS: readonly Topic[] = [
           '**AppFlow triggers**: on demand, on a schedule or on an event. Transformations include filtering, masking, mapping and validation. Supports PrivateLink.',
           '**AWS Data Exchange**: find, subscribe to and use third-party data delivered as files, APIs, Redshift datashares or S3 data access.',
         ],
-        tip: '"Import Salesforce data into S3 daily without code" -> **AppFlow**, not a custom Lambda. "Subscribe to a commercial data set" -> **Data Exchange**.',
+        tip: '"Import Salesforce data into S3 daily without code": **AppFlow**, not a custom Lambda. "Subscribe to a commercial data set": **Data Exchange**.',
+      },
+      {
+        id: 'ai-services',
+        name: 'AI services',
+        link: en.aws('ai/services/'),
+        summary:
+          'Pretrained models behind an API, for teams that need a capability and not a model of their own. SageMaker AI is for building one.',
+        points: [
+          'No ML expertise or training is needed. You call the API and pay per request.',
+          '**SageMaker AI**: builds, trains and deploys your own models on managed infrastructure.',
+        ],
+        tip: 'Match the verb in the question to the service: "transcribe calls" is **Transcribe**, "read forms" is **Textract**, "detect faces" is **Rekognition**, "find the sentiment" is **Comprehend**.',
+        table: {
+          title: 'Need to service',
+          head: ['Need', 'Service'],
+          rows: [
+            { key: 'Images and video', cells: ['**Rekognition**: objects, faces, text and unsafe content.'] },
+            { key: 'Documents', cells: ['**Textract**: text, forms and tables from scans.'] },
+            { key: 'Text meaning', cells: ['**Comprehend**: sentiment, entities, key phrases and PII.'] },
+            { key: 'Speech to text', cells: ['**Transcribe**'] },
+            { key: 'Text to speech', cells: ['**Polly**'] },
+            { key: 'Translation', cells: ['**Translate**'] },
+            { key: 'Chatbots', cells: ['**Lex**: voice and text conversations.'] },
+            { key: 'Custom models', cells: ['**SageMaker AI**'] },
+          ],
+        },
       },
     ],
   },
@@ -1200,7 +1226,7 @@ export const ptBR: readonly Topic[] = [
           '**Objeto** (Amazon S3): objetos com metadados em um namespace plano, acessados por APIs HTTPS, com escala praticamente ilimitada.',
           '**Híbrido** (AWS Storage Gateway): aplicações locais acessam o armazenamento na nuvem por interfaces de arquivo, volume ou fita.',
         ],
-        tip: '"Sistema de arquivos compartilhado por muitas instâncias Linux" -> **EFS**, não EBS. "Disco de menor latência para uma instância de banco" -> **EBS** (ou instance store se o dado for temporário). "Milhões de imagens ou um data lake" -> **S3**.',
+        tip: '"Sistema de arquivos compartilhado por muitas instâncias Linux": **EFS**, não EBS. "Disco de menor latência para uma instância de banco": **EBS** (ou instance store se o dado for temporário). "Milhões de imagens ou um data lake": **S3**.',
       },
       {
         id: 's3-performance',
@@ -1216,7 +1242,7 @@ export const ptBR: readonly Topic[] = [
           '**Byte-range fetches**: requisições `GET` com o cabeçalho `Range` leem partes de um mesmo objeto em conexões simultâneas, o que aumenta o throughput agregado e barateia as novas tentativas.',
           '**Proximidade e cache**: leia o bucket a partir do EC2 na mesma Região e coloque CloudFront ou ElastiCache na frente do S3 para leituras repetidas que precisam de menos latência.',
         ],
-        tip: '"Uploads grandes de escritórios em outros continentes estão lentos" -> **Transfer Acceleration** mais **multipart upload**. "Erros 503 em um prefixo muito acessado" -> espalhe as chaves em **mais prefixos**. "Ler só um pedaço de um arquivo enorme" -> **byte-range fetch**.',
+        tip: '"Uploads grandes de escritórios em outros continentes estão lentos": **Transfer Acceleration** mais **multipart upload**. "Erros 503 em um prefixo muito acessado": espalhe as chaves em **mais prefixos**. "Ler só um pedaço de um arquivo enorme": **byte-range fetch**.',
       },
       {
         id: 's3-storage-classes',
@@ -1232,7 +1258,7 @@ export const ptBR: readonly Topic[] = [
           '**Recuperação de arquivo**: o Glacier Flexible Retrieval restaura em 1 a 5 minutos (Expedited), 3 a 5 horas (Standard) ou 5 a 12 horas (Bulk, gratuito). O Deep Archive restaura em até 12 horas (Standard) ou 48 horas (Bulk).',
           '**Regras de lifecycle**: movem objetos para classes mais baratas conforme envelhecem, expiram objetos e abortam multipart uploads incompletos.',
         ],
-        tip: '"Padrão de acesso desconhecido ou variável" -> **Intelligent-Tiering**. "Lido uma vez por trimestre, mas precisa de milissegundos" -> **Glacier Instant Retrieval**. "Arquivo de compliance, 48 horas para recuperar é aceitável, menor custo" -> **Glacier Deep Archive**.',
+        tip: '"Padrão de acesso desconhecido ou variável": **Intelligent-Tiering**. "Lido uma vez por trimestre, mas precisa de milissegundos": **Glacier Instant Retrieval**. "Arquivo de compliance, 48 horas para recuperar é aceitável, menor custo": **Glacier Deep Archive**.',
         table: {
           title: 'Classes de armazenamento do S3',
           head: ['Classe', 'Perfil'],
@@ -1294,7 +1320,7 @@ export const ptBR: readonly Topic[] = [
           '**Elastic Volumes**: muda tipo, IOPS e throughput de um volume em uso sem interromper a instância, por exemplo de gp2 para gp3.',
           '**Lado da instância**: use instâncias EBS-optimized para alcançar os IOPS provisionados. Volumes acima de 64.000 IOPS exigem instâncias baseadas em Nitro.',
         ],
-        tip: '"Mais IOPS sem pagar por mais GiB" -> **gp3** (no gp2 o IOPS depende do tamanho). "Mais de 80.000 IOPS ou latência abaixo de 1 milissegundo" -> **io2 Block Express**. "EBS mais barato para logs sequenciais" -> **st1**, ou **sc1** se quase não for lido.',
+        tip: '"Mais IOPS sem pagar por mais GiB": **gp3** (no gp2 o IOPS depende do tamanho). "Mais de 80.000 IOPS ou latência abaixo de 1 milissegundo": **io2 Block Express**. "EBS mais barato para logs sequenciais": **st1**, ou **sc1** se quase não for lido.',
         table: {
           title: 'Tipos de volume EBS',
           head: ['Tipo', 'Limites e uso'],
@@ -1328,7 +1354,7 @@ export const ptBR: readonly Topic[] = [
           '**Instance store**: discos fisicamente ligados ao host, incluídos no preço da instância. Ideal para buffers, caches, dados de rascunho e dados replicados entre várias instâncias.',
           '**Dado efêmero**: sobrevive a um reboot, mas se perde em stop, hibernação, término ou falha do disco. Só pode ser adicionado no launch e nunca desanexado.',
         ],
-        tip: '"Aplicação em cluster em uma AZ precisa de um dispositivo de bloco compartilhado" -> **EBS Multi-Attach** com io2. "Maior I/O de disco para dado temporário, perda aceitável" -> **instance store**. Dado que precisa sobreviver a um stop fica no **EBS**.',
+        tip: '"Aplicação em cluster em uma AZ precisa de um dispositivo de bloco compartilhado": **EBS Multi-Attach** com io2. "Maior I/O de disco para dado temporário, perda aceitável": **instance store**. Dado que precisa sobreviver a um stop fica no **EBS**.',
       },
       {
         id: 'efs',
@@ -1345,7 +1371,7 @@ export const ptBR: readonly Topic[] = [
           '**Classes de armazenamento**: Standard (SSD, leitura abaixo de 1 milissegundo), Infrequent Access e Archive (dezenas de milissegundos, mínimo de 90 dias no Archive). O lifecycle management move os arquivos entre elas.',
           '**Replicação**: mantém uma cópia em outra Região com RPO e RTO medidos em minutos.',
         ],
-        tip: '"Centenas de instâncias Linux em várias AZs compartilham os mesmos arquivos" -> **EFS Regional**. "Sistema de arquivos limitado no modo Bursting" -> mude para throughput **Elastic** ou **Provisioned**. "Compartilhamento de arquivos Windows" nunca é EFS.',
+        tip: '"Centenas de instâncias Linux em várias AZs compartilham os mesmos arquivos": **EFS Regional**. "Sistema de arquivos limitado no modo Bursting": mude para throughput **Elastic** ou **Provisioned**. "Compartilhamento de arquivos Windows" nunca é EFS.',
       },
       {
         id: 'fsx',
@@ -1360,7 +1386,7 @@ export const ptBR: readonly Topic[] = [
           '**FSx for NetApp ONTAP**: acesso multiprotocolo NFS, SMB, iSCSI e NVMe a partir de Linux, Windows e macOS. Snapshots, clones, replicação SnapMirror, compressão, deduplicação e tiering automático de dados frios.',
           '**FSx for OpenZFS**: acesso NFS para migrar servidores ZFS ou Linux, com latência de centenas de microssegundos, snapshots, clones e compressão. Implantações Multi-AZ ou Single-AZ.',
         ],
-        tip: '"Compartilhamentos Windows integrados ao Active Directory" -> **FSx for Windows File Server**. "Job de HPC sobre um dataset guardado no S3" -> **FSx for Lustre**. "Migrar um NAS NetApp sem trocar ferramentas" -> **FSx for NetApp ONTAP**. "Levar um servidor ZFS" -> **FSx for OpenZFS**.',
+        tip: '"Compartilhamentos Windows integrados ao Active Directory": **FSx for Windows File Server**. "Job de HPC sobre um dataset guardado no S3": **FSx for Lustre**. "Migrar um NAS NetApp sem trocar ferramentas": **FSx for NetApp ONTAP**. "Levar um servidor ZFS": **FSx for OpenZFS**.',
       },
       {
         id: 'storage-gateway',
@@ -1376,7 +1402,7 @@ export const ptBR: readonly Topic[] = [
           '**FSx File Gateway**: não está mais disponível para novos clientes. Projetos novos acessam o FSx for Windows File Server direto por Direct Connect ou Site-to-Site VPN.',
           '**Implantação**: VM em VMware ESXi, Microsoft Hyper-V ou Linux KVM, appliance de hardware ou instância EC2.',
         ],
-        tip: '"Substituir fitas físicas sem trocar o software de backup" -> **Tape Gateway**. "Aplicação local grava arquivos via NFS ou SMB que precisam ir para o S3" -> **S3 File Gateway**. "Dataset inteiro no local com baixa latência e backup na AWS" -> **Volume Gateway stored volumes**.',
+        tip: '"Substituir fitas físicas sem trocar o software de backup": **Tape Gateway**. "Aplicação local grava arquivos via NFS ou SMB que precisam ir para o S3": **S3 File Gateway**. "Dataset inteiro no local com baixa latência e backup na AWS": **Volume Gateway stored volumes**.',
       },
     ],
   },
@@ -1403,7 +1429,7 @@ export const ptBR: readonly Topic[] = [
           '**Rightsizing**: o AWS Compute Optimizer analisa 14 dias de métricas do CloudWatch e recomenda tipos de instância para instâncias EC2 e grupos de Auto Scaling.',
           '**Desempenho fixo**: famílias como M, C e R sustentam CPU cheia a qualquer momento, a escolha para codificação de vídeo, sites de alto volume e HPC.',
         ],
-        tip: '"Banco em memória ou análise em tempo real" -> **memory optimized** (R, X). "Processamento em lote, transcodificação, servidores de jogos" -> **compute optimized** (C). "Muito I/O aleatório em grandes datasets locais" -> **storage optimized** (I, D).',
+        tip: '"Banco em memória ou análise em tempo real": **memory optimized** (R, X). "Processamento em lote, transcodificação, servidores de jogos": **compute optimized** (C). "Muito I/O aleatório em grandes datasets locais": **storage optimized** (I, D).',
         table: {
           title: 'Categorias de instância',
           head: ['Categoria', 'Séries e usos'],
@@ -1450,7 +1476,7 @@ export const ptBR: readonly Topic[] = [
           '**Spread**: cada instância em racks distintos, no máximo 7 instâncias em execução por AZ por grupo. O grupo pode abranger várias AZs. Para poucas instâncias críticas.',
           '**Capacidade**: uma On-Demand Capacity Reservation pode apontar para um cluster placement group. Capacity Reservations não reservam capacidade em grupos partition ou spread.',
         ],
-        tip: '"Nós de HPC trocam dados o tempo todo" -> **cluster** (com EFA ou enhanced networking). "Cassandra ou HDFS cientes de rack" -> **partition**. "Poucas instâncias críticas não podem falhar juntas" -> **spread**.',
+        tip: '"Nós de HPC trocam dados o tempo todo": **cluster** (com EFA ou enhanced networking). "Cassandra ou HDFS cientes de rack": **partition**. "Poucas instâncias críticas não podem falhar juntas": **spread**.',
         table: {
           title: 'Estratégias de placement',
           head: ['Estratégia', 'Disposição e limites'],
@@ -1489,7 +1515,7 @@ export const ptBR: readonly Topic[] = [
           '**Limites do EFA**: o tráfego EFA não cruza AZs nem VPCs e não é roteável. Só em tipos de instância suportados e não funciona no AWS Outposts.',
           '**Escolha da instância**: a opção `n` indica otimizada para rede e EBS. Entre duas instâncias, a mais lenta limita o throughput.',
         ],
-        tip: '"HPC fortemente acoplado ou treino distribuído de ML com MPI ou NCCL" -> **EFA** em um **cluster placement group**. "Mais PPS e menos latência para uma camada de aplicação comum" -> enhanced networking com **ENA**, não EFA.',
+        tip: '"HPC fortemente acoplado ou treino distribuído de ML com MPI ou NCCL": **EFA** em um **cluster placement group**. "Mais PPS e menos latência para uma camada de aplicação comum": enhanced networking com **ENA**, não EFA.',
       },
       {
         id: 'auto-scaling',
@@ -1506,7 +1532,7 @@ export const ptBR: readonly Topic[] = [
           '**Tempo de reação**: ative o monitoramento detalhado do EC2 (métricas de 1 minuto em vez de 5) e defina um warmup para que instâncias novas não distorçam a média.',
           '**AWS Auto Scaling**: um só lugar para montar scaling plans de grupos do EC2 Auto Scaling, Spot Fleets, tarefas ECS, tabelas e índices do DynamoDB e Aurora Replicas.',
         ],
-        tip: '"Workers que consomem uma fila SQS ficam para trás" -> target tracking sobre **backlog por instância**. "A carga sobe todo dia útil às 9h e as instâncias demoram a subir" -> escala **preditiva** ou **agendada**. "Manter a CPU perto de 50%" -> **target tracking**.',
+        tip: '"Workers que consomem uma fila SQS ficam para trás": target tracking sobre **backlog por instância**. "A carga sobe todo dia útil às 9h e as instâncias demoram a subir": escala **preditiva** ou **agendada**. "Manter a CPU perto de 50%": **target tracking**.',
       },
       {
         id: 'hibernation',
@@ -1521,7 +1547,7 @@ export const ptBR: readonly Topic[] = [
           '**Limites**: nada pode ser alterado durante a hibernação, no máximo 60 dias hibernada, e instâncias em grupo de Auto Scaling ou usadas pelo ECS não hibernam.',
           '**Cobrança**: sem cobrança de uso da instância enquanto parada. Você paga os volumes EBS, incluindo a RAM salva, e os Elastic IPs associados.',
         ],
-        tip: '"A aplicação demora demais para reconstruir o estado em memória após reiniciar" -> **hibernar** em vez de parar. Se a instância está em um **grupo de Auto Scaling**, hibernação não é opção.',
+        tip: '"A aplicação demora demais para reconstruir o estado em memória após reiniciar": **hibernar** em vez de parar. Se a instância está em um **grupo de Auto Scaling**, hibernação não é opção.',
       },
       {
         id: 'batch-emr',
@@ -1537,7 +1563,7 @@ export const ptBR: readonly Topic[] = [
           '**Nós do EMR**: primary (coordena), core (executa tarefas e guarda o HDFS) e task, opcional (só executa tarefas). Nós task não guardam dados do HDFS, o que os torna o lugar natural para Spot Instances.',
           '**Clusters transitórios**: mantenha entrada e saída no S3 e deixe o cluster terminar após o último step.',
         ],
-        tip: '"Milhares de jobs em contêiner, sem scheduler para operar" -> **AWS Batch**. "Processamento Spark ou Hive em escala de petabytes" -> **Amazon EMR** (EMR Serverless para não gerenciar cluster). Job com mais de 15 minutos descarta o **Lambda**.',
+        tip: '"Milhares de jobs em contêiner, sem scheduler para operar": **AWS Batch**. "Processamento Spark ou Hive em escala de petabytes": **Amazon EMR** (EMR Serverless para não gerenciar cluster). Job com mais de 15 minutos descarta o **Lambda**.',
       },
       {
         id: 'edge-compute',
@@ -1553,7 +1579,7 @@ export const ptBR: readonly Topic[] = [
           '**Extensão da VPC**: uma VPC abrange Availability Zones, Local Zones e Wavelength Zones por meio de subnets criadas em cada zona.',
           '**Residência de dados**: os três mantêm o dado dentro de um país, estado ou local escolhido para cumprir exigências regulatórias.',
         ],
-        tip: '"Baixa latência até sistemas que precisam ficar no nosso data center" -> **Outposts**. "Baixa latência para usuários em uma cidade longe de qualquer Região" -> **Local Zones**. "App móvel em rede 5G de operadora" -> **Wavelength**.',
+        tip: '"Baixa latência até sistemas que precisam ficar no nosso data center": **Outposts**. "Baixa latência para usuários em uma cidade longe de qualquer Região": **Local Zones**. "App móvel em rede 5G de operadora": **Wavelength**.',
       },
       {
         id: 'elastic-beanstalk',
@@ -1568,7 +1594,7 @@ export const ptBR: readonly Topic[] = [
           '**Worker environment**: uma fila SQS gerenciada mais um daemon que faz POST de cada mensagem para a aplicação. Tira tarefas longas da camada web e executa jobs periódicos do `cron.yaml`.',
           '**Controle**: os recursos são criados na sua conta, então você mantém acesso às instâncias e à configuração.',
         ],
-        tip: '"Desenvolvedores querem publicar um app web rápido sem gerenciar infraestrutura" -> **Elastic Beanstalk**. "Tarefas longas em segundo plano deixam a camada web lenta" -> um **worker environment** com SQS.',
+        tip: '"Desenvolvedores querem publicar um app web rápido sem gerenciar infraestrutura": **Elastic Beanstalk**. "Tarefas longas em segundo plano deixam a camada web lenta": um **worker environment** com SQS.',
       },
     ],
   },
@@ -1596,7 +1622,7 @@ export const ptBR: readonly Topic[] = [
           '**Layers**: até 5 por função, extraídas em `/opt`, para compartilhar bibliotecas entre funções. Só para funções .zip, não para imagens de contêiner.',
           '**Ajuste**: o AWS Lambda Power Tuning e o AWS Compute Optimizer ajudam a escolher a memória.',
         ],
-        tip: '"Função limitada por CPU está lenta" -> **aumente a memória** (a CPU acompanha). "O processamento leva 40 minutos" -> não é Lambda, use **ECS no Fargate** ou **AWS Batch**. "A mesma biblioteca em muitas funções" -> **layers**.',
+        tip: '"Função limitada por CPU está lenta": **aumente a memória** (a CPU acompanha). "O processamento leva 40 minutos": não é Lambda, use **ECS no Fargate** ou **AWS Batch**. "A mesma biblioteca em muitas funções": **layers**.',
       },
       {
         id: 'lambda-concurrency',
@@ -1612,7 +1638,7 @@ export const ptBR: readonly Topic[] = [
           '**SnapStart**: tira um snapshot do ambiente inicializado ao publicar uma versão e retoma a partir dele, com inicialização que pode ficar abaixo de 1 segundo. Java 11+, Python 3.12+ e .NET 8+. Gratuito no Java, com cobrança de cache e restauração nos demais.',
           '**Limites do SnapStart**: só em versões publicadas e sem combinar com provisioned concurrency, EFS ou `/tmp` acima de 512 MB.',
         ],
-        tip: '"Cold start inaceitável em uma API sensível a latência" -> **provisioned concurrency** (ou **SnapStart** para Java, Python, .NET). "Uma função derruba o banco de dados" -> **reserved concurrency** como teto.',
+        tip: '"Cold start inaceitável em uma API sensível a latência": **provisioned concurrency** (ou **SnapStart** para Java, Python, .NET). "Uma função derruba o banco de dados": **reserved concurrency** como teto.',
       },
       {
         id: 'event-sources',
@@ -1627,7 +1653,7 @@ export const ptBR: readonly Topic[] = [
           '**Pelo menos uma vez**: mappings podem processar um registro mais de uma vez, então o handler precisa ser idempotente. Em erro, lotes de stream são reprocessados e o shard pausa para manter a ordem.',
           '**Provisioned mode**: pollers dedicados com mínimo e máximo para mappings de SQS, Amazon MSK e Kafka, quando a latência precisa ser constante. Tem custo adicional.',
         ],
-        tip: '"Processar mensagens SQS com Lambda em lotes" -> **event source mapping**. "Rodar código quando um objeto chega ao S3" -> trigger de **S3 event notification**. "Duplicatas estragaram o resultado" -> torne o handler **idempotente**.',
+        tip: '"Processar mensagens SQS com Lambda em lotes": **event source mapping**. "Rodar código quando um objeto chega ao S3": trigger de **S3 event notification**. "Duplicatas estragaram o resultado": torne o handler **idempotente**.',
       },
       {
         id: 'ecs-eks',
@@ -1643,7 +1669,7 @@ export const ptBR: readonly Topic[] = [
           '**Escala**: o Service Auto Scaling do ECS muda o número de tasks, e o Cluster Auto Scaling muda as instâncias EC2 registradas no cluster.',
           '**Custo**: a orquestração do ECS não tem cobrança adicional. O EKS cobra por cluster, além da computação.',
         ],
-        tip: '"Time já usa Kubernetes e quer um control plane gerenciado" -> **EKS**. "Orquestração de contêineres nativa da AWS com o menor esforço" -> **ECS**, em geral no Fargate.',
+        tip: '"Time já usa Kubernetes e quer um control plane gerenciado": **EKS**. "Orquestração de contêineres nativa da AWS com o menor esforço": **ECS**, em geral no Fargate.',
         table: {
           title: 'ECS ou EKS',
           head: ['Critério', 'ECS e EKS'],
@@ -1682,7 +1708,7 @@ export const ptBR: readonly Topic[] = [
           '**Fargate Spot**: até 70% de desconto para tasks ECS que toleram interrupção, com aviso de 2 minutos. Só Linux.',
           '**Launch type EC2**: você gerencia instâncias, AMIs e capacidade do cluster e, em troca, tem GPUs, contêineres privilegiados e qualquer tipo de instância, nada disso suportado no Fargate.',
         ],
-        tip: '"Rodar contêineres sem gerenciar nem aplicar patches em servidores" -> **Fargate**. "Contêineres precisam de GPU ou modo privilegiado" -> **launch type EC2**. "Jobs em contêiner baratos e interrompíveis" -> **Fargate Spot**.',
+        tip: '"Rodar contêineres sem gerenciar nem aplicar patches em servidores": **Fargate**. "Contêineres precisam de GPU ou modo privilegiado": **launch type EC2**. "Jobs em contêiner baratos e interrompíveis": **Fargate Spot**.',
         table: {
           title: 'Capacidade Fargate ou EC2',
           head: ['Aspecto', 'Fargate e EC2'],
@@ -1723,7 +1749,7 @@ export const ptBR: readonly Topic[] = [
           '**Conteinerização**: empacote a aplicação e suas dependências em uma imagem, envie ao ECR, descreva-a em uma task definition ou pod spec e rode no Fargate ou no EC2. A mesma imagem roda igual em todo ambiente.',
           '**Pull privado**: tasks em subnets privadas baixam imagens do ECR por um interface VPC endpoint, sem NAT gateway.',
         ],
-        tip: '"Guardar e escanear imagens e copiá-las para uma Região de DR" -> **ECR** com replicação. "Tasks Fargate em subnets privadas não conseguem baixar imagens" -> adicione um **interface endpoint do ECR** ou um NAT gateway.',
+        tip: '"Guardar e escanear imagens e copiá-las para uma Região de DR": **ECR** com replicação. "Tasks Fargate em subnets privadas não conseguem baixar imagens": adicione um **interface endpoint do ECR** ou um NAT gateway.',
       },
       {
         id: 'hybrid-containers',
@@ -1739,7 +1765,7 @@ export const ptBR: readonly Topic[] = [
           '**EKS Distro**: a distribuição Kubernetes usada pelo Amazon EKS e a base do EKS Anywhere.',
           '**EKS Hybrid Nodes**: servidores locais e de borda que entram como nós de um cluster Amazon EKS.',
         ],
-        tip: '"Rodar contêineres no local, gerenciados pelo console do ECS" -> **ECS Anywhere**. "Kubernetes em um data center desconectado" -> **EKS Anywhere**. "Serviço local precisa receber tráfego por load balancer" -> ECS Anywhere não serve bem.',
+        tip: '"Rodar contêineres no local, gerenciados pelo console do ECS": **ECS Anywhere**. "Kubernetes em um data center desconectado": **EKS Anywhere**. "Serviço local precisa receber tráfego por load balancer": ECS Anywhere não serve bem.',
       },
       {
         id: 'choosing',
@@ -1755,7 +1781,7 @@ export const ptBR: readonly Topic[] = [
           '**Desacoplamento**: coloque SQS, SNS ou EventBridge entre os componentes para que cada camada escale sozinha pela própria métrica.',
           '**AWS Serverless Application Repository**: publica e implanta aplicações serverless reutilizáveis, definidas em templates AWS SAM, compartilhadas publicamente ou com contas específicas. Sem custo além dos recursos implantados.',
         ],
-        tip: '"Tráfego imprevisível, sem servidores, pagar só quando roda" -> **Lambda**. "Serviço em contêiner rodando 24/7 sem gerenciar hosts" -> **ECS no Fargate**. "Reaproveitar um app serverless publicado entre contas" -> **Serverless Application Repository**.',
+        tip: '"Tráfego imprevisível, sem servidores, pagar só quando roda": **Lambda**. "Serviço em contêiner rodando 24/7 sem gerenciar hosts": **ECS no Fargate**. "Reaproveitar um app serverless publicado entre contas": **Serverless Application Repository**.',
       },
     ],
   },
@@ -1782,7 +1808,7 @@ export const ptBR: readonly Topic[] = [
           '**Autoscaling de armazenamento**: aumenta o disco quando o espaço livre fica em 10% ou menos por pelo menos 5 minutos, até o limite máximo definido. Nunca reduz.',
           '**Armazenamento magnético** foi descontinuado. Instâncias novas usam gp3 ou SSD com IOPS provisionadas.',
         ],
-        tip: '"Relatórios deixam o banco de produção lento" -> **réplica de leitura**, não Multi-AZ (a standby do Multi-AZ em instância não atende leituras). "I/O consistente e de baixa latência para OLTP" -> **IOPS provisionadas (io2 Block Express)**, não gp2.',
+        tip: '"Relatórios deixam o banco de produção lento": **réplica de leitura**, não Multi-AZ (a standby do Multi-AZ em instância não atende leituras). "I/O consistente e de baixa latência para OLTP": **IOPS provisionadas (io2 Block Express)**, não gp2.',
         table: {
           title: 'Tipos de armazenamento do RDS',
           head: ['Tipo', 'Quando usar'],
@@ -1820,7 +1846,7 @@ export const ptBR: readonly Topic[] = [
           '**Global Database**: até 10 Regiões secundárias, replicação normalmente abaixo de 1 segundo, RPO de 1 segundo e RTO abaixo de 1 minuto. Até 16 instâncias de leitura por secundária. Write forwarding encaminha escritas para a primária.',
           '**I/O-Optimized**: sem cobrança por I/O de leitura e escrita. Compensa quando o I/O passa de 25% da conta do Aurora (economia de até 40%). De Standard para I/O-Optimized uma vez a cada 30 dias.',
         ],
-        tip: '"Carga relacional imprevisível ou com picos, pagar pelo uso" -> **Aurora Serverless v2**. "Leituras globais com atraso abaixo de 1 segundo e DR entre Regiões" -> **Aurora Global Database**, não réplicas de leitura do RDS entre Regiões.',
+        tip: '"Carga relacional imprevisível ou com picos, pagar pelo uso": **Aurora Serverless v2**. "Leituras globais com atraso abaixo de 1 segundo e DR entre Regiões": **Aurora Global Database**, não réplicas de leitura do RDS entre Regiões.',
       },
       {
         id: 'dynamodb',
@@ -1835,7 +1861,7 @@ export const ptBR: readonly Topic[] = [
           '**Tamanho do item**: até 400 KB. Objetos grandes vão para o S3 e o item guarda a chave.',
           '**PITR**: restaura para qualquer segundo dentro de um período configurável de 1 a 35 dias.',
         ],
-        tip: '"Milhões de requisições por segundo, sem esquema, latência de poucos ms" -> **DynamoDB**, não RDS. Throttling em poucas chaves indica **chave de partição ruim**, não falta de capacidade total.',
+        tip: '"Milhões de requisições por segundo, sem esquema, latência de poucos ms": **DynamoDB**, não RDS. Throttling em poucas chaves indica **chave de partição ruim**, não falta de capacidade total.',
       },
       {
         id: 'dynamodb-features',
@@ -1850,7 +1876,7 @@ export const ptBR: readonly Topic[] = [
           '**Streams**: alterações de itens em ordem, guardadas por 24 horas e consumidas pelo Lambda para processamento por eventos. **TTL** apaga itens expirados em poucos dias, sem consumir capacidade de escrita.',
           '**Global tables**: réplicas multiativas em várias Regiões. O padrão **MREC** replica normalmente em até 1 segundo. **MRSC** dá consistência forte entre Regiões e é escolhido na criação.',
         ],
-        tip: '"DynamoDB com muita leitura, latência de microssegundos, sem mudar código" -> **DAX**, não ElastiCache. "Consultar por outro atributo depois que a tabela existe" -> **GSI** (LSI não pode ser adicionado depois).',
+        tip: '"DynamoDB com muita leitura, latência de microssegundos, sem mudar código": **DAX**, não ElastiCache. "Consultar por outro atributo depois que a tabela existe": **GSI** (LSI não pode ser adicionado depois).',
       },
       {
         id: 'elasticache',
@@ -1865,7 +1891,7 @@ export const ptBR: readonly Topic[] = [
           '**Write-through**: atualiza o cache a cada escrita no banco. O dado nunca fica velho, mas toda escrita faz 2 idas e dados nunca lidos ocupam memória.',
           '**TTL**: some uma expiração a qualquer estratégia para limitar dados velhos e liberar memória.',
         ],
-        tip: '"Ranking, ordenação, cache com alta disponibilidade, sessões com failover" -> **ElastiCache para Valkey ou Redis OSS**. "Cache simples e multithread, sem persistência" -> **Memcached**.',
+        tip: '"Ranking, ordenação, cache com alta disponibilidade, sessões com failover": **ElastiCache para Valkey ou Redis OSS**. "Cache simples e multithread, sem persistência": **Memcached**.',
       },
       {
         id: 'purpose-built',
@@ -1879,7 +1905,7 @@ export const ptBR: readonly Topic[] = [
           '**Amazon Neptune**: banco de grafos para dados muito conectados, consultado com Gremlin, openCypher ou SPARQL.',
           '**Amazon Redshift**: data warehouse colunar para análises (OLAP) sobre grandes volumes, não para transações.',
         ],
-        tip: '"Migrar MongoDB com o mínimo de mudanças" -> **DocumentDB**. "Carga Cassandra, sem servidores" -> **Keyspaces**. "Rede social, fraude em rede, recomendações" -> **Neptune**.',
+        tip: '"Migrar MongoDB com o mínimo de mudanças": **DocumentDB**. "Carga Cassandra, sem servidores": **Keyspaces**. "Rede social, fraude em rede, recomendações": **Neptune**.',
         table: {
           title: 'Requisito para banco',
           head: ['Requisito', 'Escolha'],
@@ -1907,7 +1933,7 @@ export const ptBR: readonly Topic[] = [
           '**Segurança**: as credenciais ficam no AWS Secrets Manager e a autenticação IAM pode ser exigida. O proxy nunca é público e roda na VPC do banco.',
           '**Motores**: Aurora MySQL, Aurora PostgreSQL, RDS for MySQL, PostgreSQL, MariaDB e SQL Server.',
         ],
-        tip: '"Funções Lambda esgotam as conexões do banco" ou "erros de too many connections" -> **RDS Proxy**, não uma classe de instância maior.',
+        tip: '"Funções Lambda esgotam as conexões do banco" ou "erros de too many connections": **RDS Proxy**, não uma classe de instância maior.',
       },
       {
         id: 'migration',
@@ -1922,7 +1948,7 @@ export const ptBR: readonly Topic[] = [
           '**CDC**: a captura de alterações replica as mudanças contínuas para um corte com downtime quase zero.',
           '**Origem continua no ar**: as aplicações seguem usando a origem durante a migração.',
         ],
-        tip: '"Oracle para PostgreSQL com downtime mínimo" -> **DMS Schema Conversion (ou SCT) + DMS com CDC**. O DMS sozinho não converte procedures nem esquema.',
+        tip: '"Oracle para PostgreSQL com downtime mínimo": **DMS Schema Conversion (ou SCT) + DMS com CDC**. O DMS sozinho não converte procedures nem esquema.',
       },
     ],
   },
@@ -1949,7 +1975,7 @@ export const ptBR: readonly Topic[] = [
           '**Tabelas de rotas**: uma sub-rede é **pública** quando sua tabela tem rota para um internet gateway. Sub-redes privadas saem pela NAT.',
           '**VPC Flow Logs**: metadados do tráfego IP para CloudWatch Logs, S3 ou Data Firehose, para diagnóstico.',
         ],
-        tip: '"Acabando os IPs da VPC" -> **adicione um bloco CIDR secundário**, não uma VPC nova. Uma sub-rede /28 tem só 11 endereços utilizáveis porque 5 são reservados.',
+        tip: '"Acabando os IPs da VPC": **adicione um bloco CIDR secundário**, não uma VPC nova. Uma sub-rede /28 tem só 11 endereços utilizáveis porque 5 são reservados.',
       },
       {
         id: 'internet-egress',
@@ -1964,7 +1990,7 @@ export const ptBR: readonly Topic[] = [
           '**Egress-only internet gateway**: só saída IPv6, com estado. Como endereços IPv6 são públicos, é o equivalente à NAT no IPv6.',
           '**Elastic IP**: IPv4 público fixo, 5 por Região por padrão. A AWS cobra por todo IPv4 público, em uso ou parado.',
         ],
-        tip: '"Instâncias privadas precisam baixar patches da internet, com alta disponibilidade" -> **NAT gateway em cada AZ**, não instância NAT. "Só saída IPv6" -> **egress-only internet gateway**.',
+        tip: '"Instâncias privadas precisam baixar patches da internet, com alta disponibilidade": **NAT gateway em cada AZ**, não instância NAT. "Só saída IPv6": **egress-only internet gateway**.',
       },
       {
         id: 'vpc-to-vpc',
@@ -1979,7 +2005,7 @@ export const ptBR: readonly Topic[] = [
           '**Anexos de peering** ligam transit gateways entre Regiões. O compartilhamento com outras contas é feito pelo AWS RAM.',
           '**ECMP** sobre vários túneis VPN com BGP soma a banda de VPN até o transit gateway.',
         ],
-        tip: '"Dezenas de VPCs e sites locais, malha completa impossível de gerenciar" -> **Transit Gateway**. "Duas VPCs, menor custo, sem trânsito" -> **VPC peering**. Uma VPC pareada nunca encaminha tráfego para uma terceira.',
+        tip: '"Dezenas de VPCs e sites locais, malha completa impossível de gerenciar": **Transit Gateway**. "Duas VPCs, menor custo, sem trânsito": **VPC peering**. Uma VPC pareada nunca encaminha tráfego para uma terceira.',
       },
       {
         id: 'privatelink',
@@ -1994,7 +2020,7 @@ export const ptBR: readonly Topic[] = [
           '**Gateway endpoint**: só para S3 e DynamoDB, sem custo extra, uma rota na tabela de rotas, só na mesma Região. Não é PrivateLink.',
           '**Iniciado pelo consumidor**: o consumidor abre a conexão e o provedor aceita ou rejeita o pedido.',
         ],
-        tip: '"Expor um serviço para centenas de VPCs de clientes com CIDRs sobrepostos" -> **endpoint service do PrivateLink**, não peering. "EC2 acessando S3 sem NAT e sem custo" -> **gateway endpoint**.',
+        tip: '"Expor um serviço para centenas de VPCs de clientes com CIDRs sobrepostos": **endpoint service do PrivateLink**, não peering. "EC2 acessando S3 sem NAT e sem custo": **gateway endpoint**.',
       },
       {
         id: 'vpn',
@@ -2008,7 +2034,7 @@ export const ptBR: readonly Topic[] = [
           '**Accelerated Site-to-Site VPN**: entra na rede global da AWS pela borda mais próxima via Global Accelerator. Exige transit gateway.',
           '**AWS Client VPN**: acesso remoto gerenciado, baseado em OpenVPN, para usuários, com autenticação via Active Directory, federação SAML ou certificados mútuos.',
         ],
-        tip: '"Conectar o escritório nesta semana, criptografado, barato" -> **Site-to-Site VPN**. "Funcionários remotos em notebooks" -> **Client VPN**. Mais de 1,25 Gbps por VPN -> **ECMP em transit gateway** ou Large Bandwidth Tunnels.',
+        tip: '"Conectar o escritório nesta semana, criptografado, barato": **Site-to-Site VPN**. "Funcionários remotos em notebooks": **Client VPN**. Mais de 1,25 Gbps por VPN: **ECMP em transit gateway** ou Large Bandwidth Tunnels.',
       },
       {
         id: 'direct-connect',
@@ -2024,7 +2050,7 @@ export const ptBR: readonly Topic[] = [
           '**Direct Connect gateway**: recurso global que liga uma conexão a VPCs em várias Regiões (exceto China). Não roteia de VPC para VPC.',
           '**Resiliência**: máxima (dispositivos separados em mais de 1 local, SLA de 99,99%) ou alta (conexões em locais diferentes, 99,9%). Um Site-to-Site VPN é o backup de baixo custo.',
         ],
-        tip: '"Banda consistente, grandes transferências diárias, sem internet" -> **Direct Connect**. "Precisa para agora" é VPN, porque uma conexão nova leva tempo para ser provisionada. "Link privado e criptografado" -> **DX + VPN IPsec** ou MACsec.',
+        tip: '"Banda consistente, grandes transferências diárias, sem internet": **Direct Connect**. "Precisa para agora" é VPN, porque uma conexão nova leva tempo para ser provisionada. "Link privado e criptografado": **DX + VPN IPsec** ou MACsec.',
         table: {
           title: 'Conectividade híbrida',
           head: ['Opção', 'Serve quando'],
@@ -2051,7 +2077,7 @@ export const ptBR: readonly Topic[] = [
           '**Network Load Balancer**: camada 4 (TCP, UDP, TLS, QUIC), milhões de requisições por segundo, um IP fixo por AZ e Elastic IPs opcionais.',
           '**Gateway Load Balancer**: camada 3, insere appliances de terceiros (firewalls, IDS) usando GENEVE na porta 6081.',
         ],
-        tip: '"Roteamento por caminho para microsserviços" -> **ALB**. "IP fixo para allowlist, UDP, vazão extrema" -> **NLB**. "Frota de firewalls de terceiros no caminho do tráfego" -> **Gateway Load Balancer**.',
+        tip: '"Roteamento por caminho para microsserviços": **ALB**. "IP fixo para allowlist, UDP, vazão extrema": **NLB**. "Frota de firewalls de terceiros no caminho do tráfego": **Gateway Load Balancer**.',
       },
     ],
   },
@@ -2077,7 +2103,7 @@ export const ptBR: readonly Topic[] = [
           '**Alias**: aponta para recursos da AWS (CloudFront, ELB, site do S3, API Gateway, Global Accelerator, interface endpoint de VPC ou outro registro da zona), funciona no apex e consultas a recursos da AWS são gratuitas.',
           '**Zona hospedada privada**: nomes DNS resolvidos só dentro das VPCs associadas.',
         ],
-        tip: '"Apontar o domínio raiz para um load balancer ou CloudFront" -> **registro alias**, nunca CNAME. O alias também evita cobrança por consulta.',
+        tip: '"Apontar o domínio raiz para um load balancer ou CloudFront": **registro alias**, nunca CNAME. O alias também evita cobrança por consulta.',
       },
       {
         id: 'route53-routing',
@@ -2091,7 +2117,7 @@ export const ptBR: readonly Topic[] = [
           '**Multivalue answer** devolve até 8 registros saudáveis ao acaso. Não substitui um load balancer.',
           '**IP-based** roteia pelo CIDR do cliente (CIDR collections), útil para rotas por provedor. Não existe em zonas privadas.',
         ],
-        tip: '"Menor latência para usuários globais" -> **latency**, não geolocation. "Direitos de conteúdo ou idioma por país" -> **geolocation**. "Mandar 10% para a nova versão" -> **weighted**.',
+        tip: '"Menor latência para usuários globais": **latency**, não geolocation. "Direitos de conteúdo ou idioma por país": **geolocation**. "Mandar 10% para a nova versão": **weighted**.',
         table: {
           title: 'Políticas de roteamento do Route 53',
           head: ['Política', 'Use para'],
@@ -2119,7 +2145,7 @@ export const ptBR: readonly Topic[] = [
           '**Checagem por alarme do CloudWatch**: segue um alarme. Obrigatória para recursos só com IP privado, porque os verificadores ficam fora da VPC.',
           '**Roteamento failover** usa a checagem do registro primário para trocar para o secundário (por exemplo, um site estático no S3).',
         ],
-        tip: '"Trocar para uma Região de backup automaticamente quando a primária falhar" -> **roteamento failover + health check**. "Saúde de um recurso privado" -> **checagem baseada em alarme do CloudWatch**.',
+        tip: '"Trocar para uma Região de backup automaticamente quando a primária falhar": **roteamento failover + health check**. "Saúde de um recurso privado": **checagem baseada em alarme do CloudWatch**.',
       },
       {
         id: 'cloudfront',
@@ -2134,7 +2160,7 @@ export const ptBR: readonly Topic[] = [
           '**Failover de origem**: um origin group com origem primária e secundária, para requisições GET, HEAD e OPTIONS.',
           '**HTTPS**: o certificado do ACM para domínio próprio precisa estar em `us-east-1`.',
         ],
-        tip: '"Usuários globais, conteúdo estático no S3, menos latência e menos carga na origem" -> **CloudFront**. Problema de taxa de acerto de cache aponta para **política de cache e TTLs**, não para uma origem maior.',
+        tip: '"Usuários globais, conteúdo estático no S3, menos latência e menos carga na origem": **CloudFront**. Problema de taxa de acerto de cache aponta para **política de cache e TTLs**, não para uma origem maior.',
       },
       {
         id: 'cloudfront-security',
@@ -2149,7 +2175,7 @@ export const ptBR: readonly Topic[] = [
           '**Field-level encryption**: criptografa até 10 campos de POST na borda com chave pública, e só o backend com a chave privada consegue lê-los.',
           '**AWS WAF** e **Shield Standard** protegem a distribuição na borda.',
         ],
-        tip: '"Usuários não podem acessar o bucket S3 diretamente" -> **OAC**. "Biblioteca de vídeos paga, muitos arquivos por assinante" -> **cookies assinados**. "Um link de download" -> **URL assinada**, não URL pré-assinada do S3 quando há CloudFront na frente.',
+        tip: '"Usuários não podem acessar o bucket S3 diretamente": **OAC**. "Biblioteca de vídeos paga, muitos arquivos por assinante": **cookies assinados**. "Um link de download": **URL assinada**, não URL pré-assinada do S3 quando há CloudFront na frente.',
       },
       {
         id: 'edge-functions',
@@ -2163,7 +2189,7 @@ export const ptBR: readonly Topic[] = [
           '**Usos típicos de CloudFront Functions**: manipular cabeçalhos, reescrever URLs e redirecionar, normalizar a chave de cache, validar tokens simples.',
           '**Usos típicos de Lambda@Edge**: chamar serviços externos, corpos maiores, escolher a origem, lógica que precisa de mais memória ou tempo.',
         ],
-        tip: '"Reescrever URLs ou adicionar cabeçalhos em escala massiva, menor custo" -> **CloudFront Functions**. "Chamar uma API de terceiros ou alterar a requisição à origem" -> **Lambda@Edge**.',
+        tip: '"Reescrever URLs ou adicionar cabeçalhos em escala massiva, menor custo": **CloudFront Functions**. "Chamar uma API de terceiros ou alterar a requisição à origem": **Lambda@Edge**.',
         table: {
           title: 'CloudFront Functions ou Lambda@Edge',
           head: ['Aspecto', 'CloudFront Functions e Lambda@Edge'],
@@ -2202,7 +2228,7 @@ export const ptBR: readonly Topic[] = [
           '**Failover**: detecta um endpoint não saudável e o tira de serviço em menos de 1 minuto, sem esperar cache de DNS.',
           '**Traffic dials** por Região e **pesos** por endpoint, além de afinidade de cliente.',
         ],
-        tip: '"IPs fixos para allowlist, UDP, failover regional rápido" -> **Global Accelerator**. "Cache de conteúdo na borda, HTTP" -> **CloudFront**. Os dois usam a borda, só o CloudFront faz cache.',
+        tip: '"IPs fixos para allowlist, UDP, failover regional rápido": **Global Accelerator**. "Cache de conteúdo na borda, HTTP": **CloudFront**. Os dois usam a borda, só o CloudFront faz cache.',
       },
       {
         id: 'transfer-acceleration',
@@ -2217,7 +2243,7 @@ export const ptBR: readonly Topic[] = [
           '**Preço**: só paga pelas transferências aceleradas. Se não ficar mais rápido, não há cobrança.',
           '**Speed Comparison tool** mostra o ganho para a sua localização antes de ativar.',
         ],
-        tip: '"Usuários em outros continentes enviam arquivos grandes para um bucket" -> **S3 Transfer Acceleration**, junto com **multipart upload** para objetos grandes. Não CloudFront, que é voltado à entrega.',
+        tip: '"Usuários em outros continentes enviam arquivos grandes para um bucket": **S3 Transfer Acceleration**, junto com **multipart upload** para objetos grandes. Não CloudFront, que é voltado à entrega.',
       },
     ],
   },
@@ -2244,7 +2270,7 @@ export const ptBR: readonly Topic[] = [
           '**Ordem**: a chave de partição escolhe o shard, e registros com a mesma chave ficam em ordem.',
           '**Modos de capacidade**: on-demand (escala sozinho) ou provisionado (você gerencia os shards).',
         ],
-        tip: '"Tempo real, vários consumidores, reprocessamento, ordem por chave" -> **Kinesis Data Streams**. Escritas com throttling -> **mais shards** ou uma chave de partição melhor.',
+        tip: '"Tempo real, vários consumidores, reprocessamento, ordem por chave": **Kinesis Data Streams**. Escritas com throttling: **mais shards** ou uma chave de partição melhor.',
       },
       {
         id: 'firehose',
@@ -2259,7 +2285,7 @@ export const ptBR: readonly Topic[] = [
           '**Transformação**: uma função Lambda pode transformar registros, por exemplo CSV para JSON antes da conversão.',
           '**Origens** incluem PUT direto e Kinesis data streams.',
         ],
-        tip: '"Carregar dados de streaming no S3 ou no Redshift sem código, quase em tempo real" -> **Data Firehose**. "Consumidores próprios, reprocessamento, milissegundos" -> **Kinesis Data Streams**.',
+        tip: '"Carregar dados de streaming no S3 ou no Redshift sem código, quase em tempo real": **Data Firehose**. "Consumidores próprios, reprocessamento, milissegundos": **Kinesis Data Streams**.',
       },
       {
         id: 'msk-video',
@@ -2273,7 +2299,7 @@ export const ptBR: readonly Topic[] = [
           '**Kinesis Video Streams**: ingere, armazena e indexa vídeo de câmeras para reprodução (HLS, MPEG-DASH), análise e ML.',
           '**WebRTC** no Kinesis Video Streams permite mídia em tempo real nos dois sentidos.',
         ],
-        tip: '"Migrar um cluster Kafka local com o mínimo de mudanças" -> **Amazon MSK**, não Kinesis. "Streams de câmeras para análise com Rekognition" -> **Kinesis Video Streams**.',
+        tip: '"Migrar um cluster Kafka local com o mínimo de mudanças": **Amazon MSK**, não Kinesis. "Streams de câmeras para análise com Rekognition": **Kinesis Video Streams**.',
       },
       {
         id: 'data-lake',
@@ -2288,7 +2314,7 @@ export const ptBR: readonly Topic[] = [
           '**AWS Glue DataBrew**: preparação visual de dados, sem código.',
           '**Lake Formation**: permissões por banco, tabela, coluna, linha e célula, **LF-Tags** para acesso baseado em tags e compartilhamento entre contas.',
         ],
-        tip: '"Converter CSV do S3 para Parquet com agendamento, sem servidores" -> **job de ETL do Glue**. "Acesso por coluna ao data lake para equipes diferentes" -> **Lake Formation**, não políticas de bucket.',
+        tip: '"Converter CSV do S3 para Parquet com agendamento, sem servidores": **job de ETL do Glue**. "Acesso por coluna ao data lake para equipes diferentes": **Lake Formation**, não políticas de bucket.',
       },
       {
         id: 'athena-quick',
@@ -2303,7 +2329,7 @@ export const ptBR: readonly Topic[] = [
           '**Federated Query**: conectores baseados em Lambda consultam fontes fora do S3 (relacionais, NoSQL).',
           '**Amazon Quick**: evoluiu do Amazon QuickSight. Seu recurso de BI, o **Amazon Quick Sight**, cria dashboards com o motor em memória SPICE e perguntas em linguagem natural.',
         ],
-        tip: '"SQL ad hoc sobre logs no S3, sem infraestrutura" -> **Athena**. "Athena lento e caro sobre CSV" -> **converta para Parquet e particione**. "Dashboards de BI interativos" -> **Amazon Quick**.',
+        tip: '"SQL ad hoc sobre logs no S3, sem infraestrutura": **Athena**. "Athena lento e caro sobre CSV": **converta para Parquet e particione**. "Dashboards de BI interativos": **Amazon Quick**.',
       },
       {
         id: 'processing',
@@ -2317,7 +2343,7 @@ export const ptBR: readonly Topic[] = [
           '**Recursos do Redshift**: concurrency scaling, data sharing e **zero-ETL** a partir de Aurora, RDS e DynamoDB.',
           '**Amazon OpenSearch Service**: busca textual e análise de logs com OpenSearch Dashboards. Camadas UltraWarm e cold, OpenSearch Serverless e Ingestion.',
         ],
-        tip: '"Jobs Spark ou Hadoop existentes, controle total do cluster" -> **EMR**. "Joins SQL complexos sobre terabytes para BI" -> **Redshift**. "Busca textual em logs ou num catálogo" -> **OpenSearch**.',
+        tip: '"Jobs Spark ou Hadoop existentes, controle total do cluster": **EMR**. "Joins SQL complexos sobre terabytes para BI": **Redshift**. "Busca textual em logs ou num catálogo": **OpenSearch**.',
         table: {
           title: 'Qual serviço de análise',
           head: ['Serviço', 'Melhor para'],
@@ -2343,7 +2369,7 @@ export const ptBR: readonly Topic[] = [
           '**AWS Snowball Edge**: desde 7 de novembro de 2025, só para clientes existentes, e o suporte nas Regiões comerciais termina em 31 de dezembro de 2026.',
           '**AWS Data Transfer Terminal**: locais físicos onde você leva seus próprios dispositivos de armazenamento e envia os dados por uma conexão de alta banda.',
         ],
-        tip: '"Parceiros enviam arquivos por SFTP para o S3" -> **Transfer Family**. "Sincronizar um compartilhamento NFS com S3 ou EFS periodicamente" -> **DataSync**. Questões com petabytes e pouca banda ainda apontam para **Snowball Edge**.',
+        tip: '"Parceiros enviam arquivos por SFTP para o S3": **Transfer Family**. "Sincronizar um compartilhamento NFS com S3 ou EFS periodicamente": **DataSync**. Questões com petabytes e pouca banda ainda apontam para **Snowball Edge**.',
         table: {
           title: 'Opção de transferência por necessidade',
           head: ['Necessidade', 'Escolha'],
@@ -2370,7 +2396,33 @@ export const ptBR: readonly Topic[] = [
           '**Gatilhos do AppFlow**: sob demanda, agendado ou por evento. As transformações incluem filtro, mascaramento, mapeamento e validação. Suporta PrivateLink.',
           '**AWS Data Exchange**: encontre, assine e use dados de terceiros entregues como arquivos, APIs, datashares do Redshift ou acesso a dados no S3.',
         ],
-        tip: '"Importar dados do Salesforce para o S3 todo dia sem código" -> **AppFlow**, não um Lambda próprio. "Assinar um conjunto de dados comercial" -> **Data Exchange**.',
+        tip: '"Importar dados do Salesforce para o S3 todo dia sem código": **AppFlow**, não um Lambda próprio. "Assinar um conjunto de dados comercial": **Data Exchange**.',
+      },
+      {
+        id: 'ai-services',
+        name: 'Serviços de IA',
+        link: pt.aws('ai/services/'),
+        summary:
+          'Modelos pré-treinados atrás de uma API, para quem precisa de uma capacidade e não de um modelo próprio. O SageMaker AI serve para criar um.',
+        points: [
+          'Não exigem conhecimento de ML nem treinamento. Você chama a API e paga por requisição.',
+          '**SageMaker AI**: cria, treina e implanta seus próprios modelos em infraestrutura gerenciada.',
+        ],
+        tip: 'Associe o verbo da questão ao serviço: "transcrever ligações" é **Transcribe**, "ler formulários" é **Textract**, "detectar rostos" é **Rekognition**, "descobrir o sentimento" é **Comprehend**.',
+        table: {
+          title: 'Necessidade e serviço',
+          head: ['Necessidade', 'Serviço'],
+          rows: [
+            { key: 'Imagens e vídeo', cells: ['**Rekognition**: objetos, rostos, texto e conteúdo impróprio.'] },
+            { key: 'Documentos', cells: ['**Textract**: texto, formulários e tabelas de digitalizações.'] },
+            { key: 'Significado do texto', cells: ['**Comprehend**: sentimento, entidades, frases-chave e PII.'] },
+            { key: 'Fala para texto', cells: ['**Transcribe**'] },
+            { key: 'Texto para fala', cells: ['**Polly**'] },
+            { key: 'Tradução', cells: ['**Translate**'] },
+            { key: 'Chatbots', cells: ['**Lex**: conversas por voz e texto.'] },
+            { key: 'Modelos próprios', cells: ['**SageMaker AI**'] },
+          ],
+        },
       },
     ],
   },

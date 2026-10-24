@@ -26,7 +26,7 @@ export const enUS: readonly Topic[] = [
           '**Dead-letter queue**: after `maxReceiveCount` receives (1 to 1,000) a message moves to a DLQ of the same type, in the same account and Region. Standard queues keep the original enqueue timestamp, so give the DLQ a longer retention.',
           '**Scaling workers**: scale an Auto Scaling group on backlog per instance (`ApproximateNumberOfMessages` divided by in-service instances). Messages held by a terminated instance return to the queue.',
         ],
-        tip: '"Decouple the tiers and absorb traffic spikes" -> **SQS standard**. "Process orders exactly once and in order" -> **SQS FIFO**. Messages processed twice point to a **visibility timeout** shorter than the processing time, not to a missing DLQ.',
+        tip: '"Decouple the tiers and absorb traffic spikes": **SQS standard**. "Process orders exactly once and in order": **SQS FIFO**. Messages processed twice point to a **visibility timeout** shorter than the processing time, not to a missing DLQ.',
       },
       {
         id: 'sns',
@@ -41,7 +41,7 @@ export const enUS: readonly Topic[] = [
           '**Message filtering**: a filter policy on the subscription, applied to message attributes or to the message body, delivers only matching messages to that subscriber.',
           '**FIFO topics**: strict ordering and deduplication, delivered only to SQS FIFO or standard queues. Email, SMS, mobile push and HTTP/S cannot subscribe to a FIFO topic.',
         ],
-        tip: '"One event must trigger several independent processes" -> **SNS + SQS fan-out**. Writing the same message to several queues from the application is the distractor: it couples the producer to every consumer.',
+        tip: '"One event must trigger several independent processes": **SNS + SQS fan-out**. Writing the same message to several queues from the application is the distractor: it couples the producer to every consumer.',
       },
       {
         id: 'eventbridge',
@@ -56,7 +56,7 @@ export const enUS: readonly Topic[] = [
           '**Scheduler**: serverless cron, rate and one-time schedules with flexible time windows and retry limits.',
           '**Archive and replay**: keep events (indefinitely by default) and replay them to the source bus to recover from errors or test new consumers.',
         ],
-        tip: '"React to a change in an AWS service" or "route events by content to many targets" -> **EventBridge rule**. "Run a task every night without servers" -> **EventBridge Scheduler**, not a cron job on an EC2 instance.',
+        tip: '"React to a change in an AWS service" or "route events by content to many targets": **EventBridge rule**. "Run a task every night without servers": **EventBridge Scheduler**, not a cron job on an EC2 instance.',
       },
       {
         id: 'step-functions',
@@ -71,7 +71,7 @@ export const enUS: readonly Topic[] = [
           '**Callbacks and jobs**: only Standard supports the `.sync` job-run and `.waitForTaskToken` callback patterns, e.g. waiting for a human approval.',
           '**Fixed type**: the workflow type cannot be changed after the state machine is created.',
         ],
-        tip: '"Coordinate several Lambda functions with retries and a manual approval step" -> **Step Functions Standard**. Lambda functions calling each other is the distractor. "Thousands of short events per second" -> **Express**.',
+        tip: '"Coordinate several Lambda functions with retries and a manual approval step": **Step Functions Standard**. Lambda functions calling each other is the distractor. "Thousands of short events per second": **Express**.',
       },
       {
         id: 'api-gateway',
@@ -86,7 +86,7 @@ export const enUS: readonly Topic[] = [
           '**Integration timeout**: 50 milliseconds to 29 seconds for REST APIs. Regional and private APIs can raise it, possibly with a lower throttle quota. Long jobs go asynchronous through SQS or Step Functions.',
           '**Endpoint types**: edge-optimized, Regional and private. Edge-optimized and private endpoints exist only for REST APIs.',
         ],
-        tip: '"Limit each partner by API key with a monthly quota" -> **REST API with usage plans**. "Cheapest proxy to Lambda with JWT auth" -> **HTTP API**. "Server pushes updates to clients" -> **WebSocket API**, not polling.',
+        tip: '"Limit each partner by API key with a monthly quota": **REST API with usage plans**. "Cheapest proxy to Lambda with JWT auth": **HTTP API**. "Server pushes updates to clients": **WebSocket API**, not polling.',
         table: {
           title: 'API types',
           head: ['Type', 'When to use'],
@@ -124,7 +124,7 @@ export const enUS: readonly Topic[] = [
           '**Cross-Region**: ActiveMQ cross-Region data replication copies messages asynchronously to a replica broker that can be promoted.',
           '**New designs**: for brand new cloud applications AWS recommends SQS and SNS instead.',
         ],
-        tip: '"Migrate an on-premises app that uses JMS or AMQP with minimal code changes" -> **Amazon MQ**. Rewriting it for SQS is the distractor when the question stresses keeping the existing code.',
+        tip: '"Migrate an on-premises app that uses JMS or AMQP with minimal code changes": **Amazon MQ**. Rewriting it for SQS is the distractor when the question stresses keeping the existing code.',
       },
       {
         id: 'kinesis-vs-sqs',
@@ -139,7 +139,7 @@ export const enUS: readonly Topic[] = [
           '**Retention and replay**: 24 hours by default, up to 365 days. Each application reads independently and can re-read, unlike SQS where a deleted message is gone.',
           '**Record size**: a data blob of up to 1 MB.',
         ],
-        tip: '"Several applications must process the same clickstream in real time and replay it" -> **Kinesis Data Streams**. SQS is the distractor: each message is processed by one consumer and then deleted.',
+        tip: '"Several applications must process the same clickstream in real time and replay it": **Kinesis Data Streams**. SQS is the distractor: each message is processed by one consumer and then deleted.',
         table: {
           title: 'Which service',
           head: ['Need', 'Service'],
@@ -168,7 +168,7 @@ export const enUS: readonly Topic[] = [
           '**Shared files**: uploads go to S3 or Amazon EFS, never to the local disk of one instance.',
           '**Horizontal over vertical**: adding instances behind a load balancer scales without the ceiling and the stop of resizing a single instance.',
         ],
-        tip: '"Users are logged out when Auto Scaling terminates an instance" -> move sessions to **ElastiCache** or **DynamoDB**. Enabling sticky sessions is the distractor: it keeps the state on the instance.',
+        tip: '"Users are logged out when Auto Scaling terminates an instance": move sessions to **ElastiCache** or **DynamoDB**. Enabling sticky sessions is the distractor: it keeps the state on the instance.',
       },
     ],
   },
@@ -194,7 +194,7 @@ export const enUS: readonly Topic[] = [
           '**Zonal shift**: Amazon Application Recovery Controller (ARC) moves load balancer traffic away from an impaired AZ with a single action.',
           '**Multi-AZ vs multi-Region**: Multi-AZ covers the loss of a data center or an AZ. Losing a whole Region is disaster recovery and needs a second Region.',
         ],
-        tip: '"Survive the failure of one Availability Zone at the lowest cost" -> **Multi-AZ** (ALB, Auto Scaling across AZs, RDS Multi-AZ). A second Region is the distractor unless the question mentions a Region-wide outage.',
+        tip: '"Survive the failure of one Availability Zone at the lowest cost": **Multi-AZ** (ALB, Auto Scaling across AZs, RDS Multi-AZ). A second Region is the distractor unless the question mentions a Region-wide outage.',
       },
       {
         id: 'load-balancing',
@@ -209,7 +209,7 @@ export const enUS: readonly Topic[] = [
           '**Auto Scaling integration**: instances launched by the group register in the target group and deregister on termination. Turn on ELB health checks in the group so it replaces instances the load balancer marks unhealthy.',
           '**Internal vs internet-facing**: an internet-facing load balancer for the web tier and an internal one for the app tier build a multi-tier design.',
         ],
-        tip: '"Clients must allowlist fixed IP addresses" or "UDP traffic" -> **NLB**. "Route /api and /images to different services" -> **ALB**. "Insert third-party firewalls transparently" -> **GWLB**.',
+        tip: '"Clients must allowlist fixed IP addresses" or "UDP traffic": **NLB**. "Route /api and /images to different services": **ALB**. "Insert third-party firewalls transparently": **GWLB**.',
         table: {
           title: 'Load balancer types',
           head: ['Type', 'When to use'],
@@ -250,7 +250,7 @@ export const enUS: readonly Topic[] = [
           '**Lifecycle hooks**: hold an instance in a wait state (1 hour by default) to bootstrap it before it enters service or to copy logs before it terminates.',
           '**Instance refresh**: replaces instances in a rolling way after a new launch template or AMI.',
         ],
-        tip: '"Traffic rises every weekday at 9 a.m. and instances take minutes to boot" -> **predictive** or **scheduled scaling**, plus a **warm pool**. "Keep CPU near a value" -> **target tracking**. Simple scaling is rarely the best answer.',
+        tip: '"Traffic rises every weekday at 9 a.m. and instances take minutes to boot": **predictive** or **scheduled scaling**, plus a **warm pool**. "Keep CPU near a value": **target tracking**. Simple scaling is rarely the best answer.',
       },
       {
         id: 'rds-availability',
@@ -265,7 +265,7 @@ export const enUS: readonly Topic[] = [
           '**Read replicas**: asynchronous, up to 15 per source, in the same or another Region. Use them for read scaling, reporting and cross-Region DR by promotion. RDS does not auto scale them.',
           '**Reconnect**: applications must reconnect after failover and should not cache DNS for more than 60 seconds.',
         ],
-        tip: '"Automatic failover with no application changes" -> **Multi-AZ**. "Offload reporting queries" -> **read replica**. A read replica is the distractor for HA: it is asynchronous and must be promoted.',
+        tip: '"Automatic failover with no application changes": **Multi-AZ**. "Offload reporting queries": **read replica**. A read replica is the distractor for HA: it is asynchronous and must be promoted.',
         table: {
           title: 'RDS and Aurora options',
           head: ['Option', 'What it gives you'],
@@ -300,7 +300,7 @@ export const enUS: readonly Topic[] = [
           '**Promotion tiers**: priority 0 (highest) to 15 decides which replica becomes the writer. Ties go to the largest replica.',
           '**Cluster endpoint**: always points to the current writer, so the connection string survives failover.',
         ],
-        tip: '"Fastest failover for a relational database with many read replicas" -> **Aurora** with replicas in other AZs. "Choose which replica becomes the writer" -> **promotion tier**.',
+        tip: '"Fastest failover for a relational database with many read replicas": **Aurora** with replicas in other AZs. "Choose which replica becomes the writer": **promotion tier**.',
       },
       {
         id: 'rds-proxy',
@@ -315,7 +315,7 @@ export const enUS: readonly Topic[] = [
           '**Security**: can require IAM authentication from clients and reads database credentials from AWS Secrets Manager.',
           '**No code changes**: most applications only switch the endpoint. The proxy lives in the same VPC as the database and is never publicly accessible.',
         ],
-        tip: '"Lambda functions exhaust database connections" -> **RDS Proxy**. A bigger instance class is the distractor. "Make an app tolerate database failover without changing code" -> **RDS Proxy**.',
+        tip: '"Lambda functions exhaust database connections": **RDS Proxy**. A bigger instance class is the distractor. "Make an app tolerate database failover without changing code": **RDS Proxy**.',
       },
       {
         id: 'route-53-failover',
@@ -331,7 +331,7 @@ export const enUS: readonly Topic[] = [
           '**Alias records**: for AWS targets such as an ALB, set **Evaluate Target Health** instead of creating a separate health check.',
           '**Private resources**: endpoint checks come from the internet, so monitor private resources with a health check on a CloudWatch alarm.',
         ],
-        tip: '"Send users to a backup site only when the primary fails" -> **failover routing** with health checks. "Spread traffic and skip unhealthy Regions" -> **latency** or **weighted** routing with health checks.',
+        tip: '"Send users to a backup site only when the primary fails": **failover routing** with health checks. "Spread traffic and skip unhealthy Regions": **latency** or **weighted** routing with health checks.',
       },
       {
         id: 'operations',
@@ -344,9 +344,11 @@ export const enUS: readonly Topic[] = [
           '**Throttling**: retry with exponential backoff and jitter, cap the number of retries and retry only idempotent operations.',
           '**Immutable infrastructure**: never change production in place. Deploy new resources (new AMI, new launch template) and shift traffic with canary or blue/green, keeping the old version for rollback.',
           '**AWS X-Ray**: traces requests across services and draws a trace map that shows bottlenecks, latency spikes and errors.',
+          '**Amazon Managed Service for Prometheus** and **Amazon Managed Grafana**: Prometheus metrics from containers and Grafana dashboards, with no servers to run.',
+          '**AWS Health Dashboard**: AWS events that affect your resources, such as scheduled maintenance, also delivered to EventBridge.',
           '**Legacy apps that cannot change**: put them behind an ALB with an Auto Scaling group across AZs, move the database to RDS Multi-AZ with RDS Proxy, and buffer fragile back ends with SQS.',
         ],
-        tip: '"The failover Region could not launch enough instances" -> **raise service quotas in the standby Region** beforehand. "Find which microservice adds latency" -> **X-Ray**, not CloudWatch Logs alone.',
+        tip: '"The failover Region could not launch enough instances": **raise service quotas in the standby Region** beforehand. "Find which microservice adds latency": **X-Ray**, not CloudWatch Logs alone.',
       },
     ],
   },
@@ -389,7 +391,7 @@ export const enUS: readonly Topic[] = [
           '**Multi-site active/active**: every Region serves traffic. Hot standby is the active/passive variant at full scale.',
           '**Data plane failover**: fail over with data plane operations such as Route 53 health checks or ARC routing controls, not control plane changes.',
         ],
-        tip: '"Data must be live in the second Region but servers can start on failover" -> **pilot light**. "Must take traffic immediately at reduced capacity" -> **warm standby**. The difference is whether the DR copy serves requests without being switched on first.',
+        tip: '"Data must be live in the second Region but servers can start on failover": **pilot light**. "Must take traffic immediately at reduced capacity": **warm standby**. The difference is whether the DR copy serves requests without being switched on first.',
         table: {
           title: 'DR strategies compared',
           head: ['Strategy', 'RPO / RTO and cost'],
@@ -420,7 +422,7 @@ export const enUS: readonly Topic[] = [
           '**Vault Lock**: WORM protection. Governance mode can be removed with IAM permissions. Compliance mode becomes immutable after a grace time of at least 72 hours, even for the root user and AWS.',
           '**Audit Manager**: built-in controls and daily reports show whether backups meet policy.',
         ],
-        tip: '"Centralize backups across many accounts and copy them to another Region" -> **AWS Backup** with Organizations. "Ransomware must not delete backups" -> **Vault Lock in compliance mode** plus cross-account copies.',
+        tip: '"Centralize backups across many accounts and copy them to another Region": **AWS Backup** with Organizations. "Ransomware must not delete backups": **Vault Lock in compliance mode** plus cross-account copies.',
       },
       {
         id: 'elastic-disaster-recovery',
@@ -436,7 +438,7 @@ export const enUS: readonly Topic[] = [
           '**Failback**: once the primary site is fixed, replicate back and fail back when ready.',
           '**Scope**: applications and databases running on servers, not managed services such as RDS. It follows the pilot light pattern.',
         ],
-        tip: '"Replicate on-premises servers to AWS with RPO in seconds and RTO in minutes" -> **Elastic Disaster Recovery**. AWS Backup is the distractor: it takes point-in-time backups, not continuous replication.',
+        tip: '"Replicate on-premises servers to AWS with RPO in seconds and RTO in minutes": **Elastic Disaster Recovery**. AWS Backup is the distractor: it takes point-in-time backups, not continuous replication.',
       },
       {
         id: 's3-replication',
@@ -452,7 +454,7 @@ export const enUS: readonly Topic[] = [
           '**S3 Replication Time Control**: replicates most objects in seconds with a 15-minute SLA, plus metrics and events for late objects.',
           '**CRR vs SRR**: CRR for compliance distance, lower latency and DR. SRR for log aggregation, prod to test copies and data sovereignty inside one Region.',
         ],
-        tip: '"Copy objects to another Region within a predictable 15 minutes" -> **CRR with S3 RTC**. "Objects that existed before the rule were not copied" -> **Batch Replication**.',
+        tip: '"Copy objects to another Region within a predictable 15 minutes": **CRR with S3 RTC**. "Objects that existed before the rule were not copied": **Batch Replication**.',
       },
       {
         id: 'database-replication',
@@ -467,7 +469,7 @@ export const enUS: readonly Topic[] = [
           '**DynamoDB global tables**: multi-active, every replica takes reads and writes. Multi-Region eventual consistency (default) resolves conflicts by last writer wins, multi-Region strong consistency is the other mode. 99.999% availability SLA.',
           '**RDS cross-Region read replicas**: asynchronous, promoted by hand during DR, which takes a few minutes and includes a reboot.',
         ],
-        tip: '"Relational database, Region outage, RPO in seconds and RTO under 1 minute" -> **Aurora Global Database**. "Users in several Regions must write locally" -> **DynamoDB global tables**.',
+        tip: '"Relational database, Region outage, RPO in seconds and RTO under 1 minute": **Aurora Global Database**. "Users in several Regions must write locally": **DynamoDB global tables**.',
         table: {
           title: 'Cross-Region data options',
           head: ['Service', 'DR role'],
@@ -493,7 +495,7 @@ export const enUS: readonly Topic[] = [
           '**Fast snapshot restore**: volumes created from the snapshot are fully initialized at creation, without first-read latency. Billed per snapshot per AZ per hour.',
           '**Recycle Bin**: restores accidentally deleted snapshots, volumes and EBS-backed AMIs before their retention period ends.',
         ],
-        tip: '"Automate daily EBS snapshots and copy them to another Region at no extra cost" -> **Data Lifecycle Manager**. Pick **AWS Backup** when the scope spans many services and accounts.',
+        tip: '"Automate daily EBS snapshots and copy them to another Region at no extra cost": **Data Lifecycle Manager**. Pick **AWS Backup** when the scope spans many services and accounts.',
       },
       {
         id: 'regional-failover',
@@ -508,7 +510,7 @@ export const enUS: readonly Topic[] = [
           '**Service quotas in the standby Region**: raise them in advance so a pilot light or warm standby can scale to production size.',
           '**Infrastructure as code**: CloudFormation (StackSets across accounts and Regions) and golden AMIs copied to both Regions rebuild the environment consistently. Test the plan regularly.',
         ],
-        tip: '"The DR Region could not scale during the test" -> **service quotas** were not raised there. "Clients cache DNS and fail over too slowly" -> **Global Accelerator** instead of DNS failover.',
+        tip: '"The DR Region could not scale during the test": **service quotas** were not raised there. "Clients cache DNS and fail over too slowly": **Global Accelerator** instead of DNS failover.',
       },
     ],
   },
@@ -539,7 +541,7 @@ export const ptBR: readonly Topic[] = [
           '**Dead-letter queue**: depois de `maxReceiveCount` recebimentos (1 a 1.000) a mensagem vai para uma DLQ do mesmo tipo, na mesma conta e Região. Filas standard mantêm o horário original de entrada, então dê à DLQ uma retenção maior.',
           '**Escalar workers**: escale um grupo do Auto Scaling pelo backlog por instância (`ApproximateNumberOfMessages` dividido pelas instâncias em serviço). Mensagens de uma instância encerrada voltam para a fila.',
         ],
-        tip: '"Desacoplar as camadas e absorver picos de tráfego" -> **SQS standard**. "Processar pedidos uma única vez e em ordem" -> **SQS FIFO**. Mensagem processada duas vezes indica **visibility timeout** menor que o processamento, não falta de DLQ.',
+        tip: '"Desacoplar as camadas e absorver picos de tráfego": **SQS standard**. "Processar pedidos uma única vez e em ordem": **SQS FIFO**. Mensagem processada duas vezes indica **visibility timeout** menor que o processamento, não falta de DLQ.',
       },
       {
         id: 'sns',
@@ -554,7 +556,7 @@ export const ptBR: readonly Topic[] = [
           '**Filtro de mensagens**: uma filter policy na assinatura, aplicada aos atributos ou ao corpo da mensagem, entrega a esse assinante só o que combina.',
           '**Tópicos FIFO**: ordem estrita e deduplicação, entregues apenas a filas SQS FIFO ou standard. E-mail, SMS, push e HTTP/S não podem assinar um tópico FIFO.',
         ],
-        tip: '"Um evento precisa disparar vários processos independentes" -> **fan-out SNS + SQS**. Gravar a mesma mensagem em várias filas pela aplicação é o distrator: acopla o produtor a todos os consumidores.',
+        tip: '"Um evento precisa disparar vários processos independentes": **fan-out SNS + SQS**. Gravar a mesma mensagem em várias filas pela aplicação é o distrator: acopla o produtor a todos os consumidores.',
       },
       {
         id: 'eventbridge',
@@ -569,7 +571,7 @@ export const ptBR: readonly Topic[] = [
           '**Scheduler**: agendamentos serverless por cron, por intervalo ou de execução única, com janelas flexíveis e limite de tentativas.',
           '**Archive e replay**: guarda eventos (indefinidamente por padrão) e os reenvia ao bus de origem para corrigir erros ou testar novos consumidores.',
         ],
-        tip: '"Reagir a uma mudança em um serviço da AWS" ou "rotear eventos pelo conteúdo para vários destinos" -> **regra do EventBridge**. "Rodar uma tarefa toda noite sem servidor" -> **EventBridge Scheduler**, não um cron em uma instância EC2.',
+        tip: '"Reagir a uma mudança em um serviço da AWS" ou "rotear eventos pelo conteúdo para vários destinos": **regra do EventBridge**. "Rodar uma tarefa toda noite sem servidor": **EventBridge Scheduler**, não um cron em uma instância EC2.',
       },
       {
         id: 'step-functions',
@@ -584,7 +586,7 @@ export const ptBR: readonly Topic[] = [
           '**Callbacks e jobs**: só o Standard aceita os padrões `.sync` e `.waitForTaskToken`, por exemplo para esperar uma aprovação humana.',
           '**Tipo fixo**: o tipo do fluxo não muda depois que a máquina de estados é criada.',
         ],
-        tip: '"Coordenar várias funções Lambda com novas tentativas e uma etapa de aprovação manual" -> **Step Functions Standard**. Funções Lambda chamando umas às outras é o distrator. "Milhares de eventos curtos por segundo" -> **Express**.',
+        tip: '"Coordenar várias funções Lambda com novas tentativas e uma etapa de aprovação manual": **Step Functions Standard**. Funções Lambda chamando umas às outras é o distrator. "Milhares de eventos curtos por segundo": **Express**.',
       },
       {
         id: 'api-gateway',
@@ -599,7 +601,7 @@ export const ptBR: readonly Topic[] = [
           '**Timeout de integração**: de 50 milissegundos a 29 segundos em REST APIs. APIs regionais e privadas podem aumentar, talvez com uma cota de throttling menor. Trabalhos longos ficam assíncronos com SQS ou Step Functions.',
           '**Tipos de endpoint**: edge-optimized, regional e privado. Edge-optimized e privado existem só para REST APIs.',
         ],
-        tip: '"Limitar cada parceiro por API key com cota mensal" -> **REST API com usage plans**. "Proxy mais barato para Lambda com JWT" -> **HTTP API**. "O servidor envia atualizações aos clientes" -> **WebSocket API**, não polling.',
+        tip: '"Limitar cada parceiro por API key com cota mensal": **REST API com usage plans**. "Proxy mais barato para Lambda com JWT": **HTTP API**. "O servidor envia atualizações aos clientes": **WebSocket API**, não polling.',
         table: {
           title: 'Tipos de API',
           head: ['Tipo', 'Quando usar'],
@@ -637,7 +639,7 @@ export const ptBR: readonly Topic[] = [
           '**Entre Regiões**: a replicação entre Regiões do ActiveMQ copia mensagens de forma assíncrona para um broker réplica que pode ser promovido.',
           '**Projetos novos**: para aplicações novas na nuvem a AWS recomenda SQS e SNS.',
         ],
-        tip: '"Migrar uma aplicação on-premises que usa JMS ou AMQP com o mínimo de mudança no código" -> **Amazon MQ**. Reescrever para SQS é o distrator quando a questão enfatiza manter o código.',
+        tip: '"Migrar uma aplicação on-premises que usa JMS ou AMQP com o mínimo de mudança no código": **Amazon MQ**. Reescrever para SQS é o distrator quando a questão enfatiza manter o código.',
       },
       {
         id: 'kinesis-vs-sqs',
@@ -652,7 +654,7 @@ export const ptBR: readonly Topic[] = [
           '**Retenção e replay**: 24 horas por padrão, até 365 dias. Cada aplicação lê de forma independente e pode reler, ao contrário do SQS, em que a mensagem apagada some.',
           '**Tamanho do registro**: um blob de dados de até 1 MB.',
         ],
-        tip: '"Várias aplicações precisam processar o mesmo clickstream em tempo real e reprocessá-lo" -> **Kinesis Data Streams**. O SQS é o distrator: cada mensagem é processada por um consumidor e depois apagada.',
+        tip: '"Várias aplicações precisam processar o mesmo clickstream em tempo real e reprocessá-lo": **Kinesis Data Streams**. O SQS é o distrator: cada mensagem é processada por um consumidor e depois apagada.',
         table: {
           title: 'Qual serviço',
           head: ['Necessidade', 'Serviço'],
@@ -693,7 +695,7 @@ export const ptBR: readonly Topic[] = [
           '**Arquivos compartilhados**: uploads vão para o S3 ou o Amazon EFS, nunca para o disco local de uma instância.',
           '**Horizontal antes de vertical**: somar instâncias atrás de um load balancer escala sem o teto e sem a parada de redimensionar uma única instância.',
         ],
-        tip: '"Usuários são deslogados quando o Auto Scaling encerra uma instância" -> mova as sessões para **ElastiCache** ou **DynamoDB**. Ativar sticky sessions é o distrator: mantém o estado na instância.',
+        tip: '"Usuários são deslogados quando o Auto Scaling encerra uma instância": mova as sessões para **ElastiCache** ou **DynamoDB**. Ativar sticky sessions é o distrator: mantém o estado na instância.',
       },
     ],
   },
@@ -719,7 +721,7 @@ export const ptBR: readonly Topic[] = [
           '**Zonal shift**: o Amazon Application Recovery Controller (ARC) tira o tráfego do load balancer de uma AZ com problema em uma única ação.',
           '**Multi-AZ vs multi-Região**: Multi-AZ cobre a perda de um data center ou de uma AZ. Perder uma Região inteira é recuperação de desastres e exige uma segunda Região.',
         ],
-        tip: '"Sobreviver à falha de uma Availability Zone com o menor custo" -> **Multi-AZ** (ALB, Auto Scaling entre AZs, RDS Multi-AZ). Uma segunda Região é o distrator, a menos que a questão fale em falha de Região inteira.',
+        tip: '"Sobreviver à falha de uma Availability Zone com o menor custo": **Multi-AZ** (ALB, Auto Scaling entre AZs, RDS Multi-AZ). Uma segunda Região é o distrator, a menos que a questão fale em falha de Região inteira.',
       },
       {
         id: 'load-balancing',
@@ -734,7 +736,7 @@ export const ptBR: readonly Topic[] = [
           '**Integração com Auto Scaling**: instâncias criadas pelo grupo entram no target group e saem ao serem encerradas. Ative os health checks do ELB no grupo para que ele troque as instâncias que o load balancer marca como não saudáveis.',
           '**Interno vs voltado à internet**: um load balancer público para a camada web e um interno para a camada de aplicação formam um design em camadas.',
         ],
-        tip: '"Clientes precisam liberar IPs fixos no firewall" ou "tráfego UDP" -> **NLB**. "Rotear /api e /images para serviços diferentes" -> **ALB**. "Inserir firewalls de terceiros de forma transparente" -> **GWLB**.',
+        tip: '"Clientes precisam liberar IPs fixos no firewall" ou "tráfego UDP": **NLB**. "Rotear /api e /images para serviços diferentes": **ALB**. "Inserir firewalls de terceiros de forma transparente": **GWLB**.',
         table: {
           title: 'Tipos de load balancer',
           head: ['Tipo', 'Quando usar'],
@@ -775,7 +777,7 @@ export const ptBR: readonly Topic[] = [
           '**Lifecycle hooks**: seguram a instância em estado de espera (1 hora por padrão) para prepará-la antes de entrar em serviço ou copiar logs antes de encerrar.',
           '**Instance refresh**: troca as instâncias de forma gradual depois de um novo launch template ou AMI.',
         ],
-        tip: '"O tráfego sobe todo dia útil às 9h e as instâncias levam minutos para subir" -> **escalonamento preditivo** ou **agendado**, mais um **warm pool**. "Manter a CPU perto de um valor" -> **target tracking**. Simple scaling raramente é a melhor resposta.',
+        tip: '"O tráfego sobe todo dia útil às 9h e as instâncias levam minutos para subir": **escalonamento preditivo** ou **agendado**, mais um **warm pool**. "Manter a CPU perto de um valor": **target tracking**. Simple scaling raramente é a melhor resposta.',
       },
       {
         id: 'rds-availability',
@@ -790,7 +792,7 @@ export const ptBR: readonly Topic[] = [
           '**Réplicas de leitura**: assíncronas, até 15 por origem, na mesma Região ou em outra. Servem para escalar leituras, relatórios e DR entre Regiões por promoção. O RDS não as escala automaticamente.',
           '**Reconexão**: a aplicação precisa reconectar depois do failover e não deve guardar DNS em cache por mais de 60 segundos.',
         ],
-        tip: '"Failover automático sem mudar a aplicação" -> **Multi-AZ**. "Tirar as consultas de relatório do banco principal" -> **réplica de leitura**. A réplica de leitura é o distrator para HA: é assíncrona e precisa ser promovida.',
+        tip: '"Failover automático sem mudar a aplicação": **Multi-AZ**. "Tirar as consultas de relatório do banco principal": **réplica de leitura**. A réplica de leitura é o distrator para HA: é assíncrona e precisa ser promovida.',
         table: {
           title: 'Opções de RDS e Aurora',
           head: ['Opção', 'O que entrega'],
@@ -825,7 +827,7 @@ export const ptBR: readonly Topic[] = [
           '**Promotion tiers**: a prioridade de 0 (maior) a 15 decide qual réplica vira writer. No empate vence a maior réplica.',
           '**Cluster endpoint**: sempre aponta para o writer atual, então a string de conexão sobrevive ao failover.',
         ],
-        tip: '"Failover mais rápido para um banco relacional com muitas réplicas de leitura" -> **Aurora** com réplicas em outras AZs. "Escolher qual réplica vira writer" -> **promotion tier**.',
+        tip: '"Failover mais rápido para um banco relacional com muitas réplicas de leitura": **Aurora** com réplicas em outras AZs. "Escolher qual réplica vira writer": **promotion tier**.',
       },
       {
         id: 'rds-proxy',
@@ -840,7 +842,7 @@ export const ptBR: readonly Topic[] = [
           '**Segurança**: pode exigir autenticação IAM dos clientes e lê as credenciais do banco no AWS Secrets Manager.',
           '**Sem mudar código**: a maioria das aplicações só troca o endpoint. O proxy fica na mesma VPC do banco e nunca é acessível publicamente.',
         ],
-        tip: '"Funções Lambda esgotam as conexões do banco" -> **RDS Proxy**. Aumentar a classe da instância é o distrator. "Fazer uma aplicação tolerar o failover do banco sem mudar código" -> **RDS Proxy**.',
+        tip: '"Funções Lambda esgotam as conexões do banco": **RDS Proxy**. Aumentar a classe da instância é o distrator. "Fazer uma aplicação tolerar o failover do banco sem mudar código": **RDS Proxy**.',
       },
       {
         id: 'route-53-failover',
@@ -856,7 +858,7 @@ export const ptBR: readonly Topic[] = [
           '**Registros alias**: para destinos da AWS como um ALB, ative **Evaluate Target Health** em vez de criar um health check separado.',
           '**Recursos privados**: as verificações de endpoint partem da internet, então monitore recursos privados com um health check sobre um alarme do CloudWatch.',
         ],
-        tip: '"Mandar usuários para um site reserva só quando o principal falhar" -> **roteamento failover** com health checks. "Distribuir tráfego e pular Regiões com problema" -> roteamento **latency** ou **weighted** com health checks.',
+        tip: '"Mandar usuários para um site reserva só quando o principal falhar": **roteamento failover** com health checks. "Distribuir tráfego e pular Regiões com problema": roteamento **latency** ou **weighted** com health checks.',
       },
       {
         id: 'operations',
@@ -869,9 +871,11 @@ export const ptBR: readonly Topic[] = [
           '**Throttling**: repita com exponential backoff e jitter, limite o número de tentativas e repita só operações idempotentes.',
           '**Infraestrutura imutável**: nunca altere produção no lugar. Suba novos recursos (nova AMI, novo launch template) e mude o tráfego com canary ou blue/green, mantendo a versão anterior para rollback.',
           '**AWS X-Ray**: rastreia requisições entre serviços e desenha um trace map que mostra gargalos, picos de latência e erros.',
+          '**Amazon Managed Service for Prometheus** e **Amazon Managed Grafana**: métricas Prometheus de contêineres e dashboards do Grafana, sem servidores para operar.',
+          '**AWS Health Dashboard**: eventos da AWS que afetam seus recursos, como manutenções agendadas, também entregues ao EventBridge.',
           '**Aplicações legadas que não podem mudar**: coloque-as atrás de um ALB com um grupo do Auto Scaling entre AZs, leve o banco para RDS Multi-AZ com RDS Proxy e proteja back ends frágeis com SQS.',
         ],
-        tip: '"A Região de failover não conseguiu subir instâncias suficientes" -> **aumentar as service quotas na Região standby** com antecedência. "Descobrir qual microsserviço adiciona latência" -> **X-Ray**, não só o CloudWatch Logs.',
+        tip: '"A Região de failover não conseguiu subir instâncias suficientes": **aumentar as service quotas na Região standby** com antecedência. "Descobrir qual microsserviço adiciona latência": **X-Ray**, não só o CloudWatch Logs.',
       },
     ],
   },
@@ -914,7 +918,7 @@ export const ptBR: readonly Topic[] = [
           '**Multi-site active/active**: todas as Regiões atendem tráfego. Hot standby é a variante ativo-passivo em escala total.',
           '**Failover pelo data plane**: faça o failover com operações de data plane, como health checks do Route 53 ou routing controls do ARC, e não com mudanças de control plane.',
         ],
-        tip: '"Os dados precisam estar ao vivo na segunda Região, mas os servidores podem subir no failover" -> **pilot light**. "Precisa receber tráfego na hora com capacidade reduzida" -> **warm standby**. A diferença é se a cópia de DR atende requisições sem antes ser ligada.',
+        tip: '"Os dados precisam estar ao vivo na segunda Região, mas os servidores podem subir no failover": **pilot light**. "Precisa receber tráfego na hora com capacidade reduzida": **warm standby**. A diferença é se a cópia de DR atende requisições sem antes ser ligada.',
         table: {
           title: 'Estratégias de DR comparadas',
           head: ['Estratégia', 'RPO / RTO e custo'],
@@ -948,7 +952,7 @@ export const ptBR: readonly Topic[] = [
           '**Vault Lock**: proteção WORM. O modo governance pode ser removido com permissões IAM. O modo compliance fica imutável depois de um período de carência de pelo menos 72 horas, até para o usuário root e para a AWS.',
           '**Audit Manager**: controles prontos e relatórios diários mostram se os backups seguem a política.',
         ],
-        tip: '"Centralizar backups de muitas contas e copiá-los para outra Região" -> **AWS Backup** com Organizations. "Ransomware não pode apagar os backups" -> **Vault Lock em modo compliance** mais cópias para outra conta.',
+        tip: '"Centralizar backups de muitas contas e copiá-los para outra Região": **AWS Backup** com Organizations. "Ransomware não pode apagar os backups": **Vault Lock em modo compliance** mais cópias para outra conta.',
       },
       {
         id: 'elastic-disaster-recovery',
@@ -964,7 +968,7 @@ export const ptBR: readonly Topic[] = [
           '**Failback**: depois de corrigir o site principal, replique de volta e faça o failback quando quiser.',
           '**Escopo**: aplicações e bancos que rodam em servidores, não serviços gerenciados como o RDS. Segue o padrão pilot light.',
         ],
-        tip: '"Replicar servidores on-premises para a AWS com RPO de segundos e RTO de minutos" -> **Elastic Disaster Recovery**. O AWS Backup é o distrator: faz backups pontuais, não replicação contínua.',
+        tip: '"Replicar servidores on-premises para a AWS com RPO de segundos e RTO de minutos": **Elastic Disaster Recovery**. O AWS Backup é o distrator: faz backups pontuais, não replicação contínua.',
       },
       {
         id: 's3-replication',
@@ -980,7 +984,7 @@ export const ptBR: readonly Topic[] = [
           '**S3 Replication Time Control**: replica a maioria dos objetos em segundos com SLA de 15 minutos, mais métricas e eventos para objetos atrasados.',
           '**CRR vs SRR**: CRR para distância exigida por compliance, menor latência e DR. SRR para juntar logs, copiar de produção para teste e soberania de dados dentro de uma Região.',
         ],
-        tip: '"Copiar objetos para outra Região em até 15 minutos previsíveis" -> **CRR com S3 RTC**. "Objetos que já existiam antes da regra não foram copiados" -> **Batch Replication**.',
+        tip: '"Copiar objetos para outra Região em até 15 minutos previsíveis": **CRR com S3 RTC**. "Objetos que já existiam antes da regra não foram copiados": **Batch Replication**.',
       },
       {
         id: 'database-replication',
@@ -995,7 +999,7 @@ export const ptBR: readonly Topic[] = [
           '**DynamoDB global tables**: multiativo, toda réplica aceita leitura e escrita. A consistência eventual entre Regiões (padrão) resolve conflitos pela última escrita, e a consistência forte entre Regiões é o outro modo. SLA de 99,999% de disponibilidade.',
           '**Réplicas de leitura do RDS entre Regiões**: assíncronas, promovidas manualmente no DR, o que leva alguns minutos e inclui um reboot.',
         ],
-        tip: '"Banco relacional, queda de Região, RPO de segundos e RTO abaixo de 1 minuto" -> **Aurora Global Database**. "Usuários em várias Regiões precisam escrever localmente" -> **DynamoDB global tables**.',
+        tip: '"Banco relacional, queda de Região, RPO de segundos e RTO abaixo de 1 minuto": **Aurora Global Database**. "Usuários em várias Regiões precisam escrever localmente": **DynamoDB global tables**.',
         table: {
           title: 'Opções de dados entre Regiões',
           head: ['Serviço', 'Papel no DR'],
@@ -1024,7 +1028,7 @@ export const ptBR: readonly Topic[] = [
           '**Fast snapshot restore**: volumes criados a partir do snapshot já nascem totalmente inicializados, sem latência na primeira leitura. Cobrado por snapshot, por AZ, por hora.',
           '**Recycle Bin**: recupera snapshots, volumes e AMIs com EBS apagados por engano antes do fim do período de retenção.',
         ],
-        tip: '"Automatizar snapshots diários do EBS e copiá-los para outra Região sem custo extra" -> **Data Lifecycle Manager**. Escolha o **AWS Backup** quando o escopo cobre muitos serviços e contas.',
+        tip: '"Automatizar snapshots diários do EBS e copiá-los para outra Região sem custo extra": **Data Lifecycle Manager**. Escolha o **AWS Backup** quando o escopo cobre muitos serviços e contas.',
       },
       {
         id: 'regional-failover',
@@ -1039,7 +1043,7 @@ export const ptBR: readonly Topic[] = [
           '**Service quotas na Região standby**: aumente com antecedência para que o pilot light ou o warm standby escale até o tamanho de produção.',
           '**Infraestrutura como código**: CloudFormation (StackSets entre contas e Regiões) e golden AMIs copiadas para as duas Regiões reconstroem o ambiente de forma consistente. Teste o plano com frequência.',
         ],
-        tip: '"A Região de DR não conseguiu escalar no teste" -> as **service quotas** não foram aumentadas lá. "Clientes guardam DNS em cache e o failover demora" -> **Global Accelerator** em vez de failover por DNS.',
+        tip: '"A Região de DR não conseguiu escalar no teste": as **service quotas** não foram aumentadas lá. "Clientes guardam DNS em cache e o failover demora": **Global Accelerator** em vez de failover por DNS.',
       },
     ],
   },
