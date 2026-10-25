@@ -18,7 +18,13 @@ export const enUS: readonly Question[] = [
       'FSx for Lustre is a POSIX file system for Linux HPC and machine learning workloads. It does not provide SMB shares with Active Directory permissions.',
       'Multi-Attach shares a block volume only among instances in one Availability Zone, and it needs a cluster-aware file system instead of an SMB share.',
     ],
-    evidence: ['https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#what-is'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#what-is',
+        quote:
+          'Amazon FSx has native support for Windows file system features and for the industry-standard Server Message Block (SMB) protocol to access file storage over a network.',
+      },
+    ],
   },
   {
     id: 'd3-002',
@@ -37,7 +43,13 @@ export const enUS: readonly Question[] = [
       'gp3 lets the company provision IOPS independently of volume size, and it is the lowest cost SSD volume type that Amazon EBS offers.',
       'st1 is an HDD volume built for large sequential throughput, not for the random IOPS that a database needs.',
     ],
-    evidence: ['https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type',
+        quote:
+          'It also helps you to scale volume performance independently of volume size. This means that you can provision the required performance without needing to provision additional block storage capacity.',
+      },
+    ],
   },
   {
     id: 'd3-003',
@@ -57,7 +69,11 @@ export const enUS: readonly Question[] = [
       'Versioning keeps previous versions of objects. It adds no request capacity.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html#optimizing-performance',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html#optimizing-performance',
+        quote:
+          'For example, your application can achieve at least 3,500 PUT/COPY/POST/DELETE or 5,500 GET/HEAD requests per second per partitioned Amazon S3 prefix. There are no limits to the number of prefixes in a bucket.',
+      },
     ],
   },
   {
@@ -77,7 +93,13 @@ export const enUS: readonly Question[] = [
       'Multi-Attach supports a limited number of instances in one Availability Zone and does not integrate with S3, so it cannot feed hundreds of nodes.',
       'FSx for Lustre is built for HPC and machine learning, offers sub-millisecond latency and high throughput, presents linked S3 objects as files and can write data back to S3.',
     ],
-    evidence: ['https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#s3-integration'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#s3-integration',
+        quote:
+          'When linked to an Amazon S3 bucket, an FSx for Lustre file system transparently presents S3 objects as files.',
+      },
+    ],
   },
   {
     id: 'd3-005',
@@ -96,7 +118,13 @@ export const enUS: readonly Question[] = [
       'Tape Gateway presents a virtual tape library for backup software. It is not a file share for running applications.',
       'DataSync copies data between storage systems, but the applications would keep writing to on-premises storage, which the company wants to stop expanding.',
     ],
-    evidence: ['https://docs.aws.amazon.com/filegateway/latest/files3/what-is-file-s3.html#what-is-file-s3'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/filegateway/latest/files3/what-is-file-s3.html#what-is-file-s3',
+        quote:
+          'A S3 File Gateway simplifies file storage in Amazon S3, integrates to existing applications through industry-standard file system protocols, and provides a cost-effective alternative to on-premises storage. It also provides low-latency access to data through transparent local caching.',
+      },
+    ],
   },
   {
     id: 'd3-006',
@@ -118,8 +146,16 @@ export const enUS: readonly Question[] = [
       'More prefixes raise the request rate a bucket supports. The problem here is distance and large files, not the number of requests per second.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-guidelines.html#optimizing-performance-guidelines-acceleration',
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html#mpuoverview',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-guidelines.html#optimizing-performance-guidelines-acceleration',
+        quote:
+          "Transfer Acceleration is ideal for transferring gigabytes to terabytes of data regularly across continents. It's also useful for clients that upload to a centralized bucket from all over the world.",
+      },
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html#mpuoverview',
+        quote:
+          'If you upload over a spotty network, use multipart upload to increase resiliency against network errors by avoiding upload restarts. When using multipart upload, you only need to retry uploading the parts that are interrupted during the upload.',
+      },
     ],
   },
   {
@@ -139,7 +175,13 @@ export const enUS: readonly Question[] = [
       'Elastic throughput scales automatically with the workload, is recommended for spiky and unpredictable workloads and uses no burst credits.',
       'An EBS volume attaches to a single instance in one Availability Zone, so the application would lose its shared file system.',
     ],
-    evidence: ['https://docs.aws.amazon.com/efs/latest/ug/performance.html#elastic'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/efs/latest/ug/performance.html#elastic',
+        quote:
+          'Elastic throughput is the best throughput mode for spiky or unpredictable workloads with performance requirements that are difficult to forecast, or for applications that drive throughput at 5% or less of the peak throughput on average (the average-to-peak ratio).',
+      },
+    ],
   },
   {
     id: 'd3-008',
@@ -158,7 +200,13 @@ export const enUS: readonly Question[] = [
       'EFS One Zone is a shared network file system with higher latency than local disks, and it is billed separately.',
       'S3 Express One Zone is object storage accessed through an API, not a local block device, and it is billed separately.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage',
+        quote:
+          'This storage is provided by disks that are physically attached to the host computer. Instance store is ideal for temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content.',
+      },
+    ],
   },
   {
     id: 'd3-009',
@@ -180,8 +228,16 @@ export const enUS: readonly Question[] = [
       'A warm pool keeps instances that already finished their initialization in the Stopped state, where the company pays only for their volumes and Elastic IP addresses, and the group moves them into service when it scales out.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/advanced-settings-for-your-launch-template.html#configure-required-settings',
-      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts',
+      {
+        url: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/advanced-settings-for-your-launch-template.html#configure-required-settings',
+        quote:
+          'For best scaling efficiency, choose a custom AMI that is fully configured to launch an instance with your application code and requires few modifications on launch.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts',
+        quote:
+          'A warm pool is a pool of pre-initialized EC2 instances that sits alongside an Auto Scaling group. Whenever your application needs to scale out, the Auto Scaling group can draw on the warm pool to meet its new desired capacity.',
+      },
     ],
   },
   {
@@ -201,7 +257,13 @@ export const enUS: readonly Question[] = [
       'Reserved concurrency guarantees and caps the number of concurrent instances. It does not change the power of each instance.',
       'Lambda allocates CPU in proportion to the memory setting, so raising memory gives a CPU-bound function more compute power even if it does not need the extra memory.',
     ],
-    evidence: ['https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html#configuration-memory'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html#configuration-memory',
+        quote:
+          'Adding more memory proportionally increases the amount of CPU, increasing the overall computational power available. If a function is CPU, network or memory-bound, then increasing the memory setting can dramatically improve its performance.',
+      },
+    ],
   },
   {
     id: 'd3-011',
@@ -220,7 +282,13 @@ export const enUS: readonly Question[] = [
       'A self-managed scheduler is exactly the software the team does not want to install and operate.',
       'EMR runs big data frameworks such as Spark and Hive. It is not a scheduler for arbitrary containerized simulation jobs.',
     ],
-    evidence: ['https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html#what-is-batch'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html#what-is-batch',
+        quote:
+          "AWS Batch automatically provisions compute resources and optimizes the workload distribution based on the quantity and scale of the workloads. With AWS Batch, there's no need to install or manage batch computing software, so you can focus your time on analyzing results and solving problems.",
+      },
+    ],
   },
   {
     id: 'd3-012',
@@ -240,7 +308,11 @@ export const enUS: readonly Question[] = [
       'The grace period delays health checks on new instances. It does not launch capacity any earlier.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-predictive-scaling.html#ec2-auto-scaling-predictive-scaling',
+      {
+        url: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-predictive-scaling.html#ec2-auto-scaling-predictive-scaling',
+        quote:
+          'Predictive scaling works by analyzing historical load data to detect daily or weekly patterns in traffic flows. It uses this information to forecast future capacity needs so Amazon EC2 Auto Scaling can proactively increase the capacity of your Auto Scaling group to match the anticipated load.',
+      },
     ],
   },
   {
@@ -261,7 +333,11 @@ export const enUS: readonly Question[] = [
       'Spreading nodes across Availability Zones adds latency between them, and a load balancer does not carry node-to-node traffic.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-strategies.html#placement-groups-cluster',
+      {
+        url: 'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-strategies.html#placement-groups-cluster',
+        quote:
+          'Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both. They are also recommended when the majority of the network traffic is between the instances in the group.',
+      },
     ],
   },
   {
@@ -281,7 +357,13 @@ export const enUS: readonly Question[] = [
       'Fargate runs containers without servers to manage, but the company would still have to build and run its own Spark and Hadoop setup inside the containers.',
       'Amazon EMR is a managed cluster platform that runs big data frameworks such as Apache Hadoop and Apache Spark, so the existing jobs can move without being rewritten.',
     ],
-    evidence: ['https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html#emr-what-is-emr'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html#emr-what-is-emr',
+        quote:
+          'Amazon EMR, which was previously called Amazon Elastic MapReduce, is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark, on AWS to process and analyze vast amounts of data.',
+      },
+    ],
   },
   {
     id: 'd3-015',
@@ -300,7 +382,13 @@ export const enUS: readonly Question[] = [
       'Storage optimized instances deliver fast random I/O on local storage, but the goal is to keep the dataset in memory instead of reading it from disk.',
       'Burstable instances suit workloads with a low CPU baseline that occasionally burst, and they do not add the memory that the engine lacks.',
     ],
-    evidence: ['https://aws.amazon.com/ec2/instance-types/#instance-categories'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/ec2/instance-types/#instance-categories',
+        quote:
+          'Memory optimized instances are designed to deliver fast performance for workloads that process large data sets in memory. For example, these instances are good for in-memory databases, data analytics, and enterprise applications.',
+      },
+    ],
   },
   {
     id: 'd3-016',
@@ -319,7 +407,13 @@ export const enUS: readonly Question[] = [
       'A longer timeout lets slow requests finish. It does not remove the initialization delay.',
       'A queue makes the call asynchronous, so the API could no longer return the result to the user in the same request.',
     ],
-    evidence: ['https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html#provisioned-concurrency'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html#provisioned-concurrency',
+        quote:
+          'These execution environments are ready to respond immediately to incoming function requests. Provisioned concurrency is useful for reducing cold start latencies for functions and designed to make functions available with double-digit millisecond response times.',
+      },
+    ],
   },
   {
     id: 'd3-017',
@@ -341,8 +435,16 @@ export const enUS: readonly Question[] = [
       'Bigger tasks do not help tasks that are waiting on other services, and a fixed number of tasks still does not follow the traffic.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html#service-auto-scaling',
-      'https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html#predefined-metrics',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html#service-auto-scaling',
+        quote:
+          'Automatic scaling is the ability to increase or decrease the desired number of tasks in your Amazon ECS service automatically. Amazon ECS leverages the Application Auto Scaling service to provide this functionality.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html#target-metric-table',
+        quote:
+          'This count uses the total number of requests received by the target group, divided by the number of healthy targets in the target group.',
+      },
     ],
   },
   {
@@ -365,8 +467,16 @@ export const enUS: readonly Question[] = [
       'Aurora is a relational database, so the documents would need a new schema and the application would need new queries.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/keyspaces/latest/devguide/what-is-keyspaces.html#what-is-keyspaces',
-      'https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is',
+      {
+        url: 'https://docs.aws.amazon.com/keyspaces/latest/devguide/what-is-keyspaces.html#what-is-keyspaces',
+        quote:
+          'With Amazon Keyspaces, you can run your existing Cassandra workloads on AWS using the same Cassandra application code and developer tools that you use today.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is',
+        quote:
+          'Amazon DocumentDB makes it easy to set up, operate, and scale MongoDB-compatible databases in the cloud. With Amazon DocumentDB, you can run the same application code and use the same drivers and tools that you use with MongoDB.',
+      },
     ],
   },
   {
@@ -386,7 +496,13 @@ export const enUS: readonly Question[] = [
       'Neptune is a graph database built for highly connected data. Its engine is optimized to store billions of relationships and query the graph with millisecond latency.',
       'Redshift is a data warehouse for analytical queries over large datasets. It is not built for low-latency traversals of relationships inside an application.',
     ],
-    evidence: ['https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro',
+        quote:
+          'The core of Neptune is a purpose-built, high-performance graph database engine. This engine is optimized for storing billions of relationships and querying the graph with milliseconds latency.',
+      },
+    ],
   },
   {
     id: 'd3-020',
@@ -405,7 +521,13 @@ export const enUS: readonly Question[] = [
       'More capacity prevents throttling, but it does not bring DynamoDB latency down to microseconds.',
       'DAX is an in-memory cache that is API-compatible with DynamoDB and cuts read latency from milliseconds to microseconds with minimal application changes.',
     ],
-    evidence: ['https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html#DAX'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html#DAX',
+        quote:
+          'As an in-memory cache, DAX reduces the response times of eventually consistent read workloads by an order of magnitude from single-digit milliseconds to microseconds.',
+      },
+    ],
   },
   {
     id: 'd3-021',
@@ -425,7 +547,11 @@ export const enUS: readonly Question[] = [
       'The largest instance class handles the peaks, but the company pays for that capacity all night while the database is idle.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html#aurora-serverless-v2.use-cases',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html#aurora-serverless-v2.use-cases',
+        quote:
+          "With Aurora serverless, your database automatically scales capacity to meet the needs of the application's peak load and scales back down when the surge of activity is over. With Aurora serverless, you no longer need to provision for peak or average capacity.",
+      },
     ],
   },
   {
@@ -446,7 +572,11 @@ export const enUS: readonly Question[] = [
       'A full hourly refresh also caches every item and adds a scheduled job to operate.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html#Strategies.LazyLoading.Evaluation',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html#Strategies.LazyLoading.Evaluation',
+        quote:
+          "Because most data is never requested, lazy loading avoids filling up the cache with data that isn't requested.",
+      },
     ],
   },
   {
@@ -467,7 +597,11 @@ export const enUS: readonly Question[] = [
       'DAX caches reads. It does not spread writes across partitions.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-uniform-load.html#bp-partition-key-uniform-load',
+      {
+        url: 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-uniform-load.html#bp-partition-key-uniform-load',
+        quote:
+          'A partition key design that doesn\'t distribute I/O requests effectively can create "hot" partitions that result in throttling and use your provisioned I/O capacity inefficiently.',
+      },
     ],
   },
   {
@@ -490,8 +624,15 @@ export const enUS: readonly Question[] = [
       'Aurora PostgreSQL cannot be a read replica of an Oracle database. Replicas work only within the same engine family.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#schema-conversion-features',
-      'https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC',
+      {
+        url: 'https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#schema-conversion-features',
+        quote: 'DMS Schema Conversion converts tables, views, stored procedures, functions, and other objects.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC',
+        quote:
+          'You can create an AWS DMS task that captures ongoing changes from the source data store. You can do this capture while you are migrating your data.',
+      },
     ],
   },
   {
@@ -512,7 +653,11 @@ export const enUS: readonly Question[] = [
       'Aurora Global Database replicates to read-only clusters in other Regions, giving local low-latency reads and fast recovery from a Regional outage.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.advantages',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.advantages',
+        quote:
+          'If you have offices around the world, you can use Aurora Global Database to keep your main sources of information updated in the primary AWS Region. Offices in your other Regions can access the information in their own Region, with local latency.',
+      },
     ],
   },
   {
@@ -533,7 +678,11 @@ export const enUS: readonly Question[] = [
       'A load balancer in front of database instances is extra infrastructure to manage, and its targets would also have to follow every replica change.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Reader.html#Aurora.Endpoints.Reader',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Reader.html#Aurora.Endpoints.Reader',
+        quote:
+          'If the cluster contains one or more Aurora Replicas, the reader endpoint balances each connection request among the Aurora Replicas.',
+      },
     ],
   },
   {
@@ -556,8 +705,16 @@ export const enUS: readonly Question[] = [
       'Origin access control signs requests from CloudFront to S3, and the bucket policy denies everyone else, so users must go through the distribution.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction',
-      'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction',
+        quote:
+          "When a user requests content that you're serving with CloudFront, the request is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.",
+      },
+      {
+        url: 'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3',
+        quote:
+          'Use a Condition element in the policy to allow CloudFront to access the bucket only when the request is on behalf of the CloudFront distribution that contains the S3 origin.',
+      },
     ],
   },
   {
@@ -578,7 +735,11 @@ export const enUS: readonly Question[] = [
       'CloudFront is a content delivery network for web traffic. It does not proxy raw TCP connections from clients to an application.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html#network-load-balancer-overview',
+      {
+        url: 'https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html#network-load-balancer-overview',
+        quote:
+          'Elastic Load Balancing creates a network interface for each Availability Zone you enable. Each load balancer node in the Availability Zone uses this network interface to get a static IP address.',
+      },
     ],
   },
   {
@@ -599,7 +760,11 @@ export const enUS: readonly Question[] = [
       'Weighted routing splits DNS answers by percentage. DNS never sees the URL path.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions',
+      {
+        url: 'https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html#application-load-balancer-benefits',
+        quote:
+          'You can configure rules for your listener that forward requests based on the URL in the request. This enables you to structure your application as smaller services, and route requests to the correct service based on the content of the URL.',
+      },
     ],
   },
   {
@@ -620,7 +785,11 @@ export const enUS: readonly Question[] = [
       'With AWS PrivateLink, customers create interface endpoints in their own VPCs that reach only the endpoint service, without peering or route changes, so overlapping ranges do not matter.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/aws-privatelink.html#aws-privatelink',
+      {
+        url: 'https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/aws-privatelink.html#aws-privatelink',
+        quote:
+          'The consumer and service are not required to be in the same VPC. If the VPC is different, the consumer and service provider VPCs can have overlapping IP address ranges.',
+      },
     ],
   },
   {
@@ -640,7 +809,12 @@ export const enUS: readonly Question[] = [
       'A second VPC works but adds peering, routing and security rules to manage, which is more overhead than extending the existing VPC.',
       'Elastic IP addresses are public addresses. They do not add private address space for subnets.',
     ],
-    evidence: ['https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html#vpc-resize'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html#vpc-resize',
+        quote: 'You can associate secondary IPv4 CIDR blocks with your VPC.',
+      },
+    ],
   },
   {
     id: 'd3-032',
@@ -659,7 +833,13 @@ export const enUS: readonly Question[] = [
       'Interface endpoints expose specific services privately. They do not route traffic between whole networks.',
       'A VPN per VPC multiplies tunnels to manage and still provides no routing between the VPCs.',
     ],
-    evidence: ['https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html#what-is-transit-gateway'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html#what-is-transit-gateway',
+        quote:
+          'AWS Transit Gateway is a network transit hub used to interconnect virtual private clouds (VPCs) and on-premises networks.',
+      },
+    ],
   },
   {
     id: 'd3-033',
@@ -681,8 +861,16 @@ export const enUS: readonly Question[] = [
       'Global Accelerator speeds up traffic from internet users to applications. It is not a private connection from a data center to VPCs.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html#aws-direct-connect',
-      'https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-site-to-site-vpn.html#aws-direct-connect-site-to-site-vpn',
+      {
+        url: 'https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html#aws-direct-connect',
+        quote:
+          'AWS Direct Connect makes it easy to establish a dedicated connection from an on-premises network to one or more VPCs. Direct Connect can reduce network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-site-to-site-vpn.html#aws-direct-connect-site-to-site-vpn',
+        quote:
+          'This solution combines the benefits of the end-to-end secure IPsec connection with low latency and increased bandwidth of the AWS Direct Connect to provide a more consistent network experience than internet-based VPN connections.',
+      },
     ],
   },
   {
@@ -698,7 +886,11 @@ export const enUS: readonly Question[] = [
       'Failover routing sends all traffic to a primary resource and uses the secondary only when the primary is unhealthy.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-latency.html#routing-policy-latency',
+      {
+        url: 'https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-latency.html#routing-policy-latency',
+        quote:
+          "When Route 53 gets a DNS query for your domain or subdomain (example.com or acme.example.com), it checks which AWS Regions you've created latency records for, finds which Region gives the user the lowest latency, and then picks a latency record for that Region.",
+      },
     ],
   },
   {
@@ -713,7 +905,13 @@ export const enUS: readonly Question[] = [
       'Amazon MQ is a managed broker for Apache ActiveMQ and RabbitMQ, not for Apache Kafka.',
       'Amazon MSK is a fully managed service that runs open source Apache Kafka, so existing applications, tools and plugins work without changes to application code.',
     ],
-    evidence: ['https://docs.aws.amazon.com/msk/latest/developerguide/what-is-msk.html#what-is-msk-intro'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/msk/latest/developerguide/what-is-msk.html#what-is-msk-intro',
+        quote:
+          'It runs open-source versions of Apache Kafka. This means existing applications, tooling, and plugins from partners and the Apache Kafka community are supported without requiring changes to application code.',
+      },
+    ],
   },
   {
     id: 'd3-036',
@@ -733,7 +931,11 @@ export const enUS: readonly Question[] = [
       'An EMR cluster adds cluster management and a scheduled job, which is more overhead than a managed conversion.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html#record-format-conversion',
+      {
+        url: 'https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html#record-format-conversion',
+        quote:
+          'Amazon Data Firehose can convert the format of your input data from JSON to Apache Parquet or Apache ORC before storing the data in Amazon S3.',
+      },
     ],
   },
   {
@@ -756,8 +958,16 @@ export const enUS: readonly Question[] = [
       'Parquet is a compressed columnar format, so queries read only the columns they need and skip blocks, which reduces the data scanned.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/athena/latest/ug/what-is.html#what-is',
-      'https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html#columnar-storage',
+      {
+        url: 'https://docs.aws.amazon.com/athena/latest/ug/what-is.html#what-is',
+        quote:
+          'Athena SQL and Apache Spark on Amazon Athena are serverless, so there is no infrastructure to set up or manage, and you pay only for the queries you run.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html#columnar-storage',
+        quote:
+          'Predicate pushdown in Parquet and ORC enables Athena queries to fetch only the blocks it needs, improving query performance.',
+      },
     ],
   },
   {
@@ -777,7 +987,13 @@ export const enUS: readonly Question[] = [
       'S3 File Gateway stores files as objects in Amazon S3, not in Amazon EFS.',
       'Transfer Family gives users an SFTP endpoint to upload files. It is not built for bulk migration of a whole file server.',
     ],
-    evidence: ['https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html#benefits'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html#benefits',
+        quote:
+          'DataSync provides end-to-end security, including encryption and data integrity validation, to help ensure that your data arrives securely, intact, and ready to use.',
+      },
+    ],
   },
   {
     id: 'd3-039',
@@ -796,7 +1012,13 @@ export const enUS: readonly Question[] = [
       'Lake Formation centralizes data lake permissions with grant and revoke, and enforces column, row and cell level access in Athena and other services.',
       'Copies of the tables duplicate storage and pipelines and must be kept in sync, which is more overhead than central permissions.',
     ],
-    evidence: ['https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html#Security-management'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html#Security-management',
+        quote:
+          'Lake Formation provides a single place to manage access controls for data in your data lake. You can define security policies that restrict access to data at the database, table, column, row, and cell levels.',
+      },
+    ],
   },
   {
     id: 'd3-040',
@@ -815,7 +1037,13 @@ export const enUS: readonly Question[] = [
       'A custom application on EC2 means writing the dashboards and managing the servers, which the company wants to avoid.',
       'Amazon Quick includes Amazon Quick Sight, a managed business intelligence capability that connects to data sources such as Athena and publishes interactive dashboards to many users.',
     ],
-    evidence: ['https://docs.aws.amazon.com/quick/latest/userguide/what-is.html#what-is'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/quick/latest/userguide/what-is.html#what-is',
+        quote:
+          'Amazon Quick Sight – Interactive data visualization and business intelligence. Connect to data sources, build dashboards, and embed analytics in applications.',
+      },
+    ],
   },
 ]
 
@@ -837,7 +1065,13 @@ export const ptBR: readonly Question[] = [
       'O FSx for Lustre é um file system POSIX para cargas Linux de HPC e machine learning. Ele não oferece compartilhamentos SMB com permissões do Active Directory.',
       'O Multi-Attach compartilha um volume de bloco apenas entre instâncias de uma Zona de Disponibilidade e exige um file system com suporte a cluster, não um compartilhamento SMB.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/fsx/latest/WindowsGuide/what-is.html#what-is'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/fsx/latest/WindowsGuide/what-is.html#what-is',
+        quote:
+          'O Amazon FSx tem suporte nativo para recursos do sistema de arquivos Windows e para o protocolo SMB (Server Message Block) padrão do setor para acessar o armazenamento de arquivos em uma rede.',
+      },
+    ],
   },
   {
     id: 'd3-002',
@@ -856,7 +1090,13 @@ export const ptBR: readonly Question[] = [
       'O gp3 permite provisionar IOPS independentemente do tamanho do volume e é o tipo de volume SSD de menor custo do Amazon EBS.',
       'O st1 é um volume HDD feito para grande throughput sequencial, não para as IOPS aleatórias de que um banco de dados precisa.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type',
+        quote:
+          'Também ajuda a escalar a performance do volume independentemente do tamanho do volume. Isso significa que é possível provisionar a performance necessária sem precisar provisionar capacidade adicional de armazenamento em blocos.',
+      },
+    ],
   },
   {
     id: 'd3-003',
@@ -876,7 +1116,11 @@ export const ptBR: readonly Question[] = [
       'O versionamento guarda versões anteriores dos objetos. Ele não adiciona capacidade de requisições.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/optimizing-performance.html#optimizing-performance',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/optimizing-performance.html#optimizing-performance',
+        quote:
+          'Por exemplo, a aplicação pode atingir pelo menos 3,5 mil solicitações PUT/COPY/POST/DELETE ou 5,5 mil solicitações GET/HEAD por segundo por prefixo particionado do Amazon S3. Não há limite para o número de prefixos em um bucket.',
+      },
     ],
   },
   {
@@ -896,7 +1140,13 @@ export const ptBR: readonly Question[] = [
       'O Multi-Attach suporta um número limitado de instâncias em uma Zona de Disponibilidade e não se integra ao S3, então não alimenta centenas de nós.',
       'O FSx for Lustre foi feito para HPC e machine learning, oferece latência abaixo de um milissegundo e throughput alto, apresenta os objetos do S3 vinculado como arquivos e pode gravar os dados de volta no S3.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/fsx/latest/LustreGuide/what-is.html#s3-integration'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/fsx/latest/LustreGuide/what-is.html#s3-integration',
+        quote:
+          'Quando vinculado a um bucket do Amazon S3, um sistema de arquivos do FSx para Lustre apresenta de forma transparente objetos do S3 como arquivos.',
+      },
+    ],
   },
   {
     id: 'd3-005',
@@ -915,7 +1165,13 @@ export const ptBR: readonly Question[] = [
       'O Tape Gateway apresenta uma biblioteca de fitas virtual para software de backup. Não é um compartilhamento de arquivos para aplicações em execução.',
       'O DataSync copia dados entre sistemas de armazenamento, mas as aplicações continuariam gravando no armazenamento local, que a empresa quer parar de expandir.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/filegateway/latest/files3/what-is-file-s3.html#what-is-file-s3'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/filegateway/latest/files3/what-is-file-s3.html#what-is-file-s3',
+        quote:
+          'O Gateway de Arquivos do S3 simplifica o armazenamento de arquivos no Amazon S3, integra-se a aplicações existentes por meio de protocolos de sistema de arquivos padrão do setor e constitui uma alternativa econômica de armazenamento on-premises. Além disso, oferece acesso de baixa latência aos dados por meio de armazenamento em cache local transparente.',
+      },
+    ],
   },
   {
     id: 'd3-006',
@@ -937,8 +1193,16 @@ export const ptBR: readonly Question[] = [
       'Mais prefixos aumentam a taxa de requisições do bucket. O problema aqui é distância e arquivos grandes, não o número de requisições por segundo.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/optimizing-performance-guidelines.html#optimizing-performance-guidelines-acceleration',
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/mpuoverview.html#mpuoverview',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/optimizing-performance-guidelines.html#optimizing-performance-guidelines-acceleration',
+        quote:
+          'O Transfer Acceleration é ideal para transferir gigabytes a terabytes de dados regularmente entre os continentes. Ele também é útil para clientes que fazem upload em um bucket centralizado do mundo todo.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/mpuoverview.html#mpuoverview',
+        quote:
+          'Se fizer upload em uma rede lenta, use o upload fracionado para aumentar a resiliência contra erros de rede, evitando reinicializações de uploads. Ao usar o upload fracionado, tente carregar novamente apenas as partes que foram interrompidas durante o carregamento.',
+      },
     ],
   },
   {
@@ -958,7 +1222,13 @@ export const ptBR: readonly Question[] = [
       'O Elastic throughput escala automaticamente com a carga, é o recomendado para cargas com picos imprevisíveis e não usa créditos de burst.',
       'Um volume EBS se anexa a uma única instância em uma Zona de Disponibilidade, então a aplicação perderia o file system compartilhado.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/efs/latest/ug/performance.html#elastic'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/efs/latest/ug/performance.html#elastic',
+        quote:
+          'O throughput elástico é o melhor modo de throughput para workloads com picos ou imprevisíveis e requisitos de desempenho difíceis de prever, ou para aplicações que geram um throughput de 5% ou menos do throughput máximo, em média (a relação média/pico).',
+      },
+    ],
   },
   {
     id: 'd3-008',
@@ -977,7 +1247,13 @@ export const ptBR: readonly Question[] = [
       'O EFS One Zone é um file system de rede compartilhado com latência maior que discos locais, e é cobrado à parte.',
       'O S3 Express One Zone é armazenamento de objetos acessado por API, não um dispositivo de bloco local, e é cobrado à parte.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage',
+        quote:
+          'Esse armazenamento é fornecido por discos que estão anexados fisicamente ao computador host. O armazenamento de instância é ideal para armazenamento temporário de informações que mudam com frequência, como buffers, caches, dados temporários e outros conteúdos temporários.',
+      },
+    ],
   },
   {
     id: 'd3-009',
@@ -999,8 +1275,16 @@ export const ptBR: readonly Question[] = [
       'Um warm pool mantém no estado Stopped instâncias que já terminaram a inicialização, e a empresa paga apenas pelos volumes e endereços Elastic IP delas. O grupo coloca essas instâncias em serviço quando precisa de mais capacidade.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/advanced-settings-for-your-launch-template.html#configure-required-settings',
-      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/advanced-settings-for-your-launch-template.html#configure-required-settings',
+        quote:
+          'Para obter a melhor eficiência de escala, escolha uma AMI personalizada que esteja totalmente configurada para iniciar uma instância com o código da sua aplicação e que exija poucas modificações na inicialização.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts',
+        quote:
+          'Um pool ativo é um grupo de instâncias do EC2 pré-inicializadas que permanece ao lado de um grupo do Auto Scaling. Sempre que é necessário aumentar a escala da aplicação na horizontal, o grupo do Auto Scaling pode utilizar o pool ativo para atender à nova capacidade desejada.',
+      },
     ],
   },
   {
@@ -1020,7 +1304,13 @@ export const ptBR: readonly Question[] = [
       'A reserved concurrency garante e limita o número de instâncias simultâneas. Ela não muda a capacidade de cada instância.',
       'O Lambda aloca CPU proporcionalmente à memória configurada, então aumentar a memória dá mais poder de computação a uma função limitada por CPU, mesmo que ela não use a memória extra.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-memory.html#configuration-memory'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-memory.html#configuration-memory',
+        quote:
+          'Adicionar memória aumenta proporcionalmente a quantidade de CPU, aumentando a capacidade computacional geral disponível. Se uma função depender de CPU, rede ou memória, aumentar a configuração de memória pode melhorar muito sua performance.',
+      },
+    ],
   },
   {
     id: 'd3-011',
@@ -1039,7 +1329,13 @@ export const ptBR: readonly Question[] = [
       'Um agendador autogerenciado é justamente o software que a equipe não quer instalar e operar.',
       'O EMR executa frameworks de big data como Spark e Hive. Não é um agendador para jobs de simulação genéricos em contêineres.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/batch/latest/userguide/what-is-batch.html#what-is-batch'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/batch/latest/userguide/what-is-batch.html#what-is-batch',
+        quote:
+          'AWS Batch provisiona automaticamente recursos de computação e otimiza a distribuição da carga de trabalho com base na quantidade e na escala das cargas de trabalho. Com ele AWS Batch, não há necessidade de instalar ou gerenciar software de computação em lote, para que você possa concentrar seu tempo na análise de resultados e na solução de problemas.',
+      },
+    ],
   },
   {
     id: 'd3-012',
@@ -1059,7 +1355,11 @@ export const ptBR: readonly Question[] = [
       'O grace period adia os health checks das novas instâncias. Ele não lança capacidade mais cedo.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/ec2-auto-scaling-predictive-scaling.html#ec2-auto-scaling-predictive-scaling',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/ec2-auto-scaling-predictive-scaling.html#ec2-auto-scaling-predictive-scaling',
+        quote:
+          'A escala preditiva funciona por meio da análise de dados históricos de carga para detectar padrões diários ou semanais nos fluxos de tráfego. Ele usa essas informações para prever as necessidades futuras de capacidade, de modo que o Amazon EC2 Auto Scaling possa aumentar proativamente a capacidade do seu grupo do Auto Scaling para combinar com a carga prevista.',
+      },
     ],
   },
   {
@@ -1080,7 +1380,11 @@ export const ptBR: readonly Question[] = [
       'Distribuir os nós entre Zonas de Disponibilidade aumenta a latência entre eles, e um load balancer não transporta o tráfego entre os nós.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/placement-strategies.html#placement-groups-cluster',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/placement-strategies.html#placement-groups-cluster',
+        quote:
+          'Os grupos de posicionamento de cluster são recomendados para aplicações que se beneficiam de baixa latência de rede, alta throughput de rede ou ambos. Eles também são recomendados quando a maioria do tráfego de rede está entre as instâncias no grupo.',
+      },
     ],
   },
   {
@@ -1100,7 +1404,13 @@ export const ptBR: readonly Question[] = [
       'O Fargate executa contêineres sem servidores para gerenciar, mas a empresa ainda teria que montar e operar seu próprio ambiente de Spark e Hadoop dentro dos contêineres.',
       'O Amazon EMR é uma plataforma gerenciada de clusters que executa frameworks de big data como Apache Hadoop e Apache Spark, então os jobs atuais migram sem ser reescritos.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/emr/latest/ManagementGuide/emr-what-is-emr.html#emr-what-is-emr'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/emr/latest/ManagementGuide/emr-what-is-emr.html#emr-what-is-emr',
+        quote:
+          'O Amazon EMR, anteriormente chamado de Amazon Elastic MapReduce, é uma plataforma de cluster gerenciada que simplifica a execução de estruturas de big data, como Apache Hadoop e Apache Spark, para processar e analisar grandes quantidades de dados.',
+      },
+    ],
   },
   {
     id: 'd3-015',
@@ -1119,7 +1429,13 @@ export const ptBR: readonly Question[] = [
       'Instâncias otimizadas para armazenamento entregam I/O aleatório rápido no armazenamento local, mas o objetivo é manter os dados em memória em vez de lê-los do disco.',
       'Instâncias expansíveis servem para cargas com uso base de CPU baixo que às vezes têm picos, e não acrescentam a memória que falta ao motor.',
     ],
-    evidence: ['https://aws.amazon.com/ec2/instance-types/#instance-categories'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/pt/ec2/instance-types/#categorias-de-instancia',
+        quote:
+          'As instâncias otimizadas para memória são projetadas para fornecer performance rápida para workloads que processam grandes conjuntos de dados na memória. Por exemplo, essas instâncias são úteis para bancos de dados em memória, data analytics e aplicações empresariais.',
+      },
+    ],
   },
   {
     id: 'd3-016',
@@ -1139,7 +1455,11 @@ export const ptBR: readonly Question[] = [
       'Uma fila torna a chamada assíncrona, então a API não conseguiria mais devolver o resultado ao usuário na mesma requisição.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/lambda/latest/dg/provisioned-concurrency.html#provisioned-concurrency',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/lambda/latest/dg/provisioned-concurrency.html#provisioned-concurrency',
+        quote:
+          'Esses ambientes de execução estão prontos para responder imediatamente às solicitações de função de entrada. A simultaneidade provisionada é útil para reduzir as latências de inicialização a frio das funções e foi criada para tornar as funções disponíveis com tempos de resposta na ordem das dezenas de milissegundos.',
+      },
     ],
   },
   {
@@ -1162,8 +1482,16 @@ export const ptBR: readonly Question[] = [
       'Tasks maiores não ajudam tasks que estão esperando outros serviços, e um número fixo de tasks continua sem acompanhar o tráfego.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonECS/latest/developerguide/service-auto-scaling.html#service-auto-scaling',
-      'https://docs.aws.amazon.com/pt_br/autoscaling/application/userguide/monitoring-cloudwatch.html#predefined-metrics',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonECS/latest/developerguide/service-auto-scaling.html#service-auto-scaling',
+        quote:
+          'Escalabilidade automática é a capacidade de aumentar ou diminuir automaticamente o número de tarefas desejadas no serviço do Amazon ECS. O Amazon ECS utiliza o serviço do Application Auto Scaling para fornecer essa funcionalidade.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html#target-metric-table',
+        quote:
+          'Essa contagem usa o número total de solicitações recebidas pelo grupo de destino, dividido pelo número de destinos íntegros no grupo de destino.',
+      },
     ],
   },
   {
@@ -1186,8 +1514,16 @@ export const ptBR: readonly Question[] = [
       'O Aurora é um banco relacional, então os documentos precisariam de um novo schema e a aplicação precisaria de novas consultas.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/keyspaces/latest/devguide/what-is-keyspaces.html#what-is-keyspaces',
-      'https://docs.aws.amazon.com/pt_br/documentdb/latest/devguide/what-is.html#what-is',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/keyspaces/latest/devguide/what-is-keyspaces.html#what-is-keyspaces',
+        quote:
+          'Com o Amazon Keyspaces, você pode executar suas cargas de trabalho existentes do Cassandra AWS usando o mesmo código de aplicativo e as mesmas ferramentas de desenvolvedor do Cassandra que você usa atualmente.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/documentdb/latest/devguide/what-is.html#what-is',
+        quote:
+          'O Amazon DocumentDB facilita a configuração, a operação e a escalabilidade de MongoDB-compatible bancos de dados na nuvem. Com o Amazon DocumentDB, é possível executar o mesmo código de aplicação e usar os mesmos drivers e ferramentas que você usa com o MongoDB.',
+      },
     ],
   },
   {
@@ -1207,7 +1543,13 @@ export const ptBR: readonly Question[] = [
       'O Neptune é um banco de grafos feito para dados altamente conectados. O engine dele é otimizado para guardar bilhões de relacionamentos e consultar o grafo com latência de milissegundos.',
       'O Redshift é um data warehouse para consultas analíticas sobre grandes volumes de dados. Ele não foi feito para percorrer relacionamentos com baixa latência dentro de uma aplicação.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/neptune/latest/userguide/intro.html#intro'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/neptune/latest/userguide/intro.html#intro',
+        quote:
+          'O recurso principal do Neptune é um mecanismo de banco de dados de grafos com projeto específico e alto desempenho. Esse mecanismo é otimizado para armazenar bilhões de relacionamentos e consultar grafos com latência de milissegundos.',
+      },
+    ],
   },
   {
     id: 'd3-020',
@@ -1226,7 +1568,13 @@ export const ptBR: readonly Question[] = [
       'Mais capacidade evita throttling, mas não leva a latência do DynamoDB para microssegundos.',
       'O DAX é um cache em memória compatível com a API do DynamoDB que reduz a latência de leitura de milissegundos para microssegundos com mudanças mínimas na aplicação.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/DAX.html#DAX'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/DAX.html#DAX',
+        quote:
+          'Como um cache na memória, o DAX reduz os tempos de resposta de workloads de leitura final consistente por uma ordem de magnitude que varia de milissegundos de um único dígito até microssegundos.',
+      },
+    ],
   },
   {
     id: 'd3-021',
@@ -1246,7 +1594,11 @@ export const ptBR: readonly Question[] = [
       'A maior classe de instância aguenta os picos, mas a empresa paga por essa capacidade a noite toda com o banco ocioso.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html#aurora-serverless-v2.use-cases',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html#aurora-serverless-v2.use-cases',
+        quote:
+          'Com o Aurora serverless, seu banco de dados faz escalabilidade automática da capacidade para atender às necessidades da carga de pico da aplicação e reduz a escala novamente na vertical quando o pico de atividades termina. Com o Aurora serverless, não é mais necessário provisionar para capacidade de pico ou média.',
+      },
     ],
   },
   {
@@ -1267,7 +1619,11 @@ export const ptBR: readonly Question[] = [
       'Uma atualização completa a cada hora também guarda todos os itens e adiciona um job agendado para operar.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonElastiCache/latest/dg/Strategies.html#Strategies.LazyLoading.Evaluation',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonElastiCache/latest/dg/Strategies.html#Strategies.LazyLoading.Evaluation',
+        quote:
+          'Como a maioria dos dados nunca é solicitada, o carregamento lento evita o preenchimento do cache com dados que não são solicitados.',
+      },
     ],
   },
   {
@@ -1288,7 +1644,11 @@ export const ptBR: readonly Question[] = [
       'O DAX faz cache de leituras. Ele não distribui gravações entre partições.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/bp-partition-key-uniform-load.html#bp-partition-key-uniform-load',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/bp-partition-key-uniform-load.html#bp-partition-key-uniform-load',
+        quote:
+          'Um design de chave de partição que não distribui as solicitações de E/S de maneira eficaz pode criar partições “dinâmicas” que resultam em controle de utilização e usam a capacidade provisionada de E/S de maneira ineficiente.',
+      },
     ],
   },
   {
@@ -1311,8 +1671,16 @@ export const ptBR: readonly Question[] = [
       'O Aurora PostgreSQL não pode ser read replica de um banco Oracle. Réplicas funcionam apenas dentro da mesma família de engine.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/dms/latest/userguide/CHAP_SchemaConversion.html#schema-conversion-features',
-      'https://docs.aws.amazon.com/pt_br/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/dms/latest/userguide/CHAP_SchemaConversion.html#schema-conversion-features',
+        quote:
+          'O DMS Schema Conversion converte tabelas, visualizações, procedimentos armazenados, funções e outros objetos.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC',
+        quote:
+          'Você pode criar uma AWS DMS tarefa que capture as alterações contínuas do armazenamento de dados de origem. É possível fazer essa captura enquanto migra seus dados.',
+      },
     ],
   },
   {
@@ -1333,7 +1701,11 @@ export const ptBR: readonly Question[] = [
       'O Aurora Global Database replica para clusters somente leitura em outras Regiões, o que dá leituras locais de baixa latência e recuperação rápida de uma falha regional.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.advantages',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.advantages',
+        quote:
+          'se você tem escritórios em todo o mundo, pode usar o Aurora Global Database para manter suas principais fontes de informações atualizadas na Região da AWS primária. Escritórios em outras regiões podem acessar as informações em sua própria região com latência local.',
+      },
     ],
   },
   {
@@ -1354,7 +1726,11 @@ export const ptBR: readonly Question[] = [
       'Um load balancer na frente de instâncias de banco é mais infraestrutura para gerenciar, e os destinos dele também teriam de acompanhar cada mudança de réplica.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Reader.html#Aurora.Endpoints.Reader',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Reader.html#Aurora.Endpoints.Reader',
+        quote:
+          'Se o cluster tiver uma ou mais réplicas do Aurora, o endpoint de leitor fará o balanceamento de cada solicitação de conexão entre as respectivas réplicas.',
+      },
     ],
   },
   {
@@ -1377,8 +1753,16 @@ export const ptBR: readonly Question[] = [
       'O origin access control assina as requisições do CloudFront para o S3, e a bucket policy nega todos os demais, então os usuários precisam passar pela distribuição.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction',
-      'https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction',
+        quote:
+          'Quando um usuário solicita um conteúdo que você está disponibilizando com o CloudFront, a solicitação é roteada para o ponto de presença que fornece a menor latência (atraso), assim o conteúdo é entregue com a melhor performance possível.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3',
+        quote:
+          'Use um elemento Condition na política para permitir que o CloudFront acesse o bucket somente quando a solicitação for em nome da distribuição do CloudFront que contém a origem do S3.',
+      },
     ],
   },
   {
@@ -1399,7 +1783,11 @@ export const ptBR: readonly Question[] = [
       'O CloudFront é uma rede de entrega de conteúdo para tráfego web. Ele não encaminha conexões TCP puras de clientes para uma aplicação.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/elasticloadbalancing/latest/network/introduction.html#network-load-balancer-overview',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/elasticloadbalancing/latest/network/introduction.html#network-load-balancer-overview',
+        quote:
+          'O Elastic Load Balancing cria uma interface de rede para cada zona de disponibilidade que você habilita. Cada nó de load balancer na Zona de disponibilidade usa essa interface de rede para obter um endereço IP estático.',
+      },
     ],
   },
   {
@@ -1420,7 +1808,11 @@ export const ptBR: readonly Question[] = [
       'O roteamento ponderado divide respostas DNS por porcentagem. O DNS nunca vê o caminho da URL.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/elasticloadbalancing/latest/application/introduction.html#application-load-balancer-benefits',
+        quote:
+          'Você pode configurar regras para seu listener que encaminhe as solicitações com base no URL da solicitação. Isso permite que você estruture seu aplicativo em serviços menores e roteie-as ao serviço correto com base no conteúdo do URL.',
+      },
     ],
   },
   {
@@ -1441,7 +1833,11 @@ export const ptBR: readonly Question[] = [
       'Com o AWS PrivateLink, os clientes criam interface endpoints nas próprias VPCs que alcançam apenas o endpoint service, sem peering nem mudanças de rota, então faixas sobrepostas não importam.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/aws-privatelink.html#aws-privatelink',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/aws-privatelink.html#aws-privatelink',
+        quote:
+          'O consumidor e o serviço não precisam estar na mesma VPC. Se a VPC for diferente, o consumidor e o provedor de serviços VPCs podem ter intervalos de endereços IP sobrepostos.',
+      },
     ],
   },
   {
@@ -1461,7 +1857,12 @@ export const ptBR: readonly Question[] = [
       'Uma segunda VPC funciona, mas adiciona peering, rotas e regras de segurança para gerenciar, o que dá mais trabalho do que estender a VPC existente.',
       'Endereços Elastic IP são públicos. Eles não adicionam espaço de endereçamento privado para subnets.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/vpc-cidr-blocks.html#vpc-resize'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/vpc-cidr-blocks.html#vpc-resize',
+        quote: 'Você pode associar blocos CIDR IPv4 secundários à VPC.',
+      },
+    ],
   },
   {
     id: 'd3-032',
@@ -1480,7 +1881,13 @@ export const ptBR: readonly Question[] = [
       'Interface endpoints expõem serviços específicos de forma privada. Eles não roteiam tráfego entre redes inteiras.',
       'Uma VPN por VPC multiplica os túneis para gerenciar e ainda não oferece roteamento entre as VPCs.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/vpc/latest/tgw/what-is-transit-gateway.html#what-is-transit-gateway'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/tgw/what-is-transit-gateway.html#what-is-transit-gateway',
+        quote:
+          'AWS O Transit Gateway é um hub de trânsito de rede usado para interconectar nuvens privadas virtuais (VPCs) e redes locais.',
+      },
+    ],
   },
   {
     id: 'd3-033',
@@ -1502,8 +1909,16 @@ export const ptBR: readonly Question[] = [
       'O Global Accelerator acelera o tráfego de usuários da internet até aplicações. Não é uma conexão privada de um data center até VPCs.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html#aws-direct-connect',
-      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-site-to-site-vpn.html#aws-direct-connect-site-to-site-vpn',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html#aws-direct-connect',
+        quote:
+          'AWS Direct Connect facilita o estabelecimento de uma conexão dedicada de uma rede local para uma ou mais VPCs. Direct Connect pode reduzir os custos da rede, aumentar a taxa de transferência da largura de banda e fornecer uma experiência de rede mais consistente do que as conexões baseadas na Internet.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-site-to-site-vpn.html#aws-direct-connect-site-to-site-vpn',
+        quote:
+          'Essa solução combina os benefícios da IPsec conexão end-to-end segura com baixa latência e maior largura de banda AWS Direct Connect para fornecer uma experiência de rede mais consistente do que as conexões VPN baseadas na Internet.',
+      },
     ],
   },
   {
@@ -1524,7 +1939,11 @@ export const ptBR: readonly Question[] = [
       'O roteamento de failover envia todo o tráfego para um recurso primário e só usa o secundário quando o primário não está saudável.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/Route53/latest/DeveloperGuide/routing-policy-latency.html#routing-policy-latency',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/Route53/latest/DeveloperGuide/routing-policy-latency.html#routing-policy-latency',
+        quote:
+          'Quando o Route 53 recebe uma consulta de DNS para seu domínio ou subdomínio (exemplo.com ou acme.exemplo.com), ele verifica para quais registros de latência Regiões da AWS você criou, descobre qual região oferece ao usuário a menor latência e, em seguida, escolhe um registro de latência para essa região.',
+      },
     ],
   },
   {
@@ -1539,7 +1958,13 @@ export const ptBR: readonly Question[] = [
       'O Amazon MQ é um broker gerenciado para Apache ActiveMQ e RabbitMQ, não para Apache Kafka.',
       'O Amazon MSK é um serviço totalmente gerenciado que executa o Apache Kafka open source, então aplicações, ferramentas e plugins existentes funcionam sem mudanças no código.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/msk/latest/developerguide/what-is-msk.html#what-is-msk-intro'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/msk/latest/developerguide/what-is-msk.html#what-is-msk-intro',
+        quote:
+          'Ele executa versões de código aberto do Apache Kafka. Isso significa que aplicativos, ferramentas e plug-ins existentes de parceiros e da comunidade Apache Kafka são compatíveis sem a necessidade de fazer alterações no código do aplicativo.',
+      },
+    ],
   },
   {
     id: 'd3-036',
@@ -1559,7 +1984,11 @@ export const ptBR: readonly Question[] = [
       'Um cluster EMR adiciona gerenciamento de cluster e um job agendado, mais trabalho do que uma conversão gerenciada.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/firehose/latest/dev/record-format-conversion.html#record-format-conversion',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/firehose/latest/dev/record-format-conversion.html#record-format-conversion',
+        quote:
+          'O Amazon Data Firehose pode converter o formato dos dados de entrada de JSON para Apache Parquet ou Apache ORC antes de armazenar os dados no Amazon S3.',
+      },
     ],
   },
   {
@@ -1582,8 +2011,16 @@ export const ptBR: readonly Question[] = [
       'O Parquet é um formato colunar comprimido, então as consultas leem apenas as colunas de que precisam e pulam blocos, o que reduz os dados lidos.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/athena/latest/ug/what-is.html#what-is',
-      'https://docs.aws.amazon.com/pt_br/athena/latest/ug/columnar-storage.html#columnar-storage',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/athena/latest/ug/what-is.html#what-is',
+        quote:
+          'O Athena SQL e o Apache Spark no Amazon Athena são uma tecnologia sem servidor, portanto, não há infraestrutura para configuração ou gerenciamento, e você paga apenas pelas consultas executadas.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/athena/latest/ug/columnar-storage.html#columnar-storage',
+        quote:
+          'A aplicação de predicados em Parquet e ORC permite que as consultas do Athena busquem somente os blocos de que precisa, melhorando a performance das consultas.',
+      },
     ],
   },
   {
@@ -1603,7 +2040,13 @@ export const ptBR: readonly Question[] = [
       'O S3 File Gateway guarda arquivos como objetos no Amazon S3, não no Amazon EFS.',
       'O Transfer Family oferece um endpoint SFTP para usuários enviarem arquivos. Não foi feito para a migração em massa de um servidor de arquivos inteiro.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/datasync/latest/userguide/what-is-datasync.html#benefits'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/datasync/latest/userguide/what-is-datasync.html#benefits',
+        quote:
+          'DataSync fornece end-to-end segurança, incluindo criptografia e validação da integridade dos dados, para ajudar a garantir que seus dados cheguem com segurança, intactos e prontos para uso.',
+      },
+    ],
   },
   {
     id: 'd3-039',
@@ -1623,7 +2066,11 @@ export const ptBR: readonly Question[] = [
       'Cópias das tabelas duplicam armazenamento e pipelines e precisam ficar sincronizadas, o que dá mais trabalho do que permissões centrais.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/lake-formation/latest/dg/what-is-lake-formation.html#Security-management',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/lake-formation/latest/dg/what-is-lake-formation.html#Security-management',
+        quote:
+          'O Lake Formation fornece um único local para gerenciar os controles de acesso aos dados em seu data lake. Você pode definir políticas de segurança que restrinjam o acesso aos dados nos níveis de banco de dados, tabela, coluna, linha e célula.',
+      },
     ],
   },
   {
@@ -1643,6 +2090,12 @@ export const ptBR: readonly Question[] = [
       'Uma aplicação própria no EC2 significa escrever os dashboards e gerenciar os servidores, o que a empresa quer evitar.',
       'O Amazon Quick inclui o Amazon Quick Sight, um recurso gerenciado de business intelligence que se conecta a fontes de dados como o Athena e publica dashboards interativos para muitos usuários.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/quick/latest/userguide/what-is.html#what-is'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/quick/latest/userguide/what-is.html#what-is',
+        quote:
+          'Amazon Quick Sight — Visualização interativa de dados e inteligência de negócios. Conecte-se a fontes de dados, crie painéis e incorpore análises em aplicativos.',
+      },
+    ],
   },
 ]

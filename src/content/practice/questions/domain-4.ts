@@ -19,7 +19,11 @@ export const enUS: readonly Question[] = [
       'Standard-IA is designed for data that still needs millisecond access about once a month. It costs much more per GB than an archive class for logs that are almost never read.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html#lifecycle-config-overview-what',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html#lifecycle-config-overview-what',
+        quote:
+          'At some point, you might not need real-time access to them, but your organization or regulations might require you to archive them for a specific period. After that, you can delete them.',
+      },
     ],
   },
   {
@@ -39,7 +43,13 @@ export const enUS: readonly Question[] = [
       'Objects in Glacier Flexible Retrieval must be restored before they can be read, and Expedited retrievals cost extra. That does not fit assets that can suddenly become popular.',
       'Intelligent-Tiering moves each object between access tiers based on its own access, with no retrieval fees. It is built for data with unknown or changing access patterns and needs no rules to manage.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-dynamic-data-access'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-dynamic-data-access',
+        quote:
+          'S3 Intelligent-Tiering is the ideal storage class when you want to optimize storage costs for data that has unknown or changing access patterns. There are no retrieval fees for S3 Intelligent-Tiering.',
+      },
+    ],
   },
   {
     id: 'd4-003',
@@ -53,7 +63,13 @@ export const enUS: readonly Question[] = [
       'Deep Archive objects must be restored before they can be read, which takes hours. The previews must load in milliseconds.',
       'S3 Express One Zone is built for single-digit millisecond latency on frequently accessed data. Its storage price is higher than the infrequent access classes, so it does not fit data read a few times per month.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-infreq-data-access'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-infreq-data-access',
+        quote:
+          'S3 One Zone-IA (ONEZONE_IA) – Use if you can re-create the data if the Availability Zone fails, for object replicas when configuring S3 Cross-Region Replication (CRR).',
+      },
+    ],
   },
   {
     id: 'd4-004',
@@ -72,7 +88,13 @@ export const enUS: readonly Question[] = [
       'With Requester Pays, the requester pays for the requests and the data downloaded, and the bucket owner keeps paying for storage. Requests must be authenticated, which fits partners that use their own AWS accounts.',
       'The institute would pay for the replication transfer and requests, and partners would pay to store full copies. It does not move download costs away from the institute.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html',
+        quote:
+          'With Requester Pays buckets, the requester instead of the bucket owner pays the cost of the request and the data download from the bucket. The bucket owner always pays the cost of storing data.',
+      },
+    ],
   },
   {
     id: 'd4-005',
@@ -91,7 +113,13 @@ export const enUS: readonly Question[] = [
       'sc1 is designed for cold, large sequential workloads and handles small random I/O poorly. It does not fit volumes sized by IOPS.',
       'gp2 performance scales with size, so a smaller gp2 volume delivers fewer IOPS. Moving to restored volumes also needs downtime.',
     ],
-    evidence: ['https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type',
+        quote:
+          'Additionally, gp3 volumes offer a 20 percent lower price per GiB than General Purpose SSD (gp2) volumes.',
+      },
+    ],
   },
   {
     id: 'd4-006',
@@ -110,7 +138,13 @@ export const enUS: readonly Question[] = [
       'st1 is low-cost HDD storage designed for frequently accessed, throughput-intensive, sequential workloads such as log processing and ETL. It meets the need at a lower price than SSD.',
       'sc1 is the lowest-cost HDD, but it is designed for infrequently accessed data and has lower throughput. Data scanned many times a day calls for st1.',
     ],
-    evidence: ['https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#EBSVolumeTypes_st1'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#EBSVolumeTypes_st1',
+        quote:
+          'Throughput Optimized HDD (st1) volumes provide low-cost magnetic storage that defines performance in terms of throughput rather than IOPS. This volume type is a good fit for large, sequential workloads such as Amazon EMR, ETL, data warehouses, and log processing.',
+      },
+    ],
   },
   {
     id: 'd4-007',
@@ -129,7 +163,13 @@ export const enUS: readonly Question[] = [
       'Scratch file systems are meant for temporary storage and short-term processing, and their data is not replicated. They do not fit a long-lived shared file system.',
       'EBS Multi-Attach works only with Provisioned IOPS volumes in one Availability Zone and needs a cluster-aware file system. It cannot serve instances in several Availability Zones.',
     ],
-    evidence: ['https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html',
+        quote:
+          'Transition into IA – Instructs lifecycle management when to move files in to the Infrequent Access (IA) storage class, which is cost-optimized for data that is accessed only a few times each quarter.',
+      },
+    ],
   },
   {
     id: 'd4-008',
@@ -148,7 +188,13 @@ export const enUS: readonly Question[] = [
       'Deep Archive is low-cost storage, but the company would have to write, run and maintain export and restore scripts for every volume.',
       'The archive tier is built for snapshots kept for 90 days or longer that are rarely accessed, and it offers up to 75 percent lower snapshot storage cost. An archived snapshot is restored to the standard tier when it is needed.',
     ],
-    evidence: ['https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-archive.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-archive.html',
+        quote:
+          'Amazon EBS Snapshots Archive offers up to 75 percent lower snapshot storage costs for snapshots that you plan to store for 90 days or longer and that you rarely need to access.',
+      },
+    ],
   },
   {
     id: 'd4-009',
@@ -170,8 +216,16 @@ export const enUS: readonly Question[] = [
       'Object Lock stops object versions from being deleted or overwritten during a retention period. It would keep old versions longer, not reduce storage.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lifecycle-config-conceptual-ex6',
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lc-expire-mpu',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html#intro-lifecycle-rules-actions',
+        quote:
+          'NoncurrentVersionExpiration action element – Use this action to direct Amazon S3 to permanently delete noncurrent versions of objects.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lc-expire-mpu',
+        quote:
+          "When Amazon S3 aborts a multipart upload, it deletes all the parts associated with the multipart upload. This process helps control your storage costs by ensuring that you don't have incomplete multipart uploads with parts that are stored in Amazon S3.",
+      },
     ],
   },
   {
@@ -194,8 +248,16 @@ export const enUS: readonly Question[] = [
       'A cost budget can be filtered by a cost allocation tag and can alert when spend is forecast to exceed the budgeted amount.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html',
-      'https://docs.aws.amazon.com/cost-management/latest/userguide/create-cost-budget.html#cost-budget.title',
+      {
+        url: 'https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html',
+        quote:
+          'AWS, or AWS Marketplace ISV defines, creates, and applies the AWS-generated tags for you, and you define, create, and apply user-defined tags. You must activate both types of tags separately before they can appear in Cost Explorer or on a cost allocation report.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/cost-management/latest/userguide/create-cost-budget.html#cost-budget.title',
+        quote:
+          'Next to the threshold, choose Actual to create an alert for actual spend. Or, choose Forecasted to create an alert for forecasted spend.',
+      },
     ],
   },
   {
@@ -215,7 +277,13 @@ export const enUS: readonly Question[] = [
       'Compute Savings Plans apply to EC2 regardless of family, size, Region, operating system or tenancy, and also to Fargate and Lambda. The discount follows the workload through every planned change.',
       'Convertible Reserved Instances can be exchanged for other EC2 configurations, but they apply only to EC2 and never cover Fargate or Lambda.',
     ],
-    evidence: ['https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html',
+        quote:
+          'They also apply to your Fargate and Lambda usage. With Compute Savings Plans, you can move a workload from c5 to m5, shift your usage from EU (Ireland) to EU (London), or migrate your application from Amazon EC2 to Amazon ECS using Fargate at any time.',
+      },
+    ],
   },
   {
     id: 'd4-012',
@@ -234,7 +302,13 @@ export const enUS: readonly Question[] = [
       'A Reserved Instance bills every hour of the term, including the daytime hours when the nightly job does not run.',
       'Dedicated Hosts are physical servers for license or compliance needs. They are the most expensive option and add nothing to this workload.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html',
+        quote:
+          'Spot Instances are a cost-effective choice if you can be flexible about when your applications run and if your applications can be interrupted. For example, Spot Instances are well-suited for data analysis, batch jobs, background processing, and optional tasks.',
+      },
+    ],
   },
   {
     id: 'd4-013',
@@ -254,7 +328,11 @@ export const enUS: readonly Question[] = [
       'A mixed instances group launches the On-Demand base capacity first and then uses Spot Instances for the capacity above it. The baseline stays uninterruptible and the peaks run at Spot prices.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/mixed-instances-groups-set-up-overview.html#mixed-instances-group-scaling-behavior',
+      {
+        url: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/mixed-instances-groups-set-up-overview.html#mixed-instances-group-scaling-behavior',
+        quote:
+          'Optionally, you can also designate a base number of On-Demand Instances to start with. If you do so, Amazon EC2 Auto Scaling waits to launch Spot Instances until after it launches the base capacity of On-Demand Instances when the group scales out.',
+      },
     ],
   },
   {
@@ -274,7 +352,13 @@ export const enUS: readonly Question[] = [
       'Spot could lower the EC2 cost, but interruptions disrupt developers during the day, and it does nothing for the RDS instances.',
       'Manual stopping depends on people remembering every day, which is unreliable and the opposite of low operational overhead.',
     ],
-    evidence: ['https://docs.aws.amazon.com/scheduler/latest/UserGuide/managing-targets-universal.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/scheduler/latest/UserGuide/managing-targets-universal.html',
+        quote:
+          'A universal target is a customizable set of parameters that allow you to invoke a wider set of API operation for many AWS services.',
+      },
+    ],
   },
   {
     id: 'd4-015',
@@ -293,7 +377,13 @@ export const enUS: readonly Question[] = [
       'Hibernation saves the RAM contents to the EBS root volume and reloads them on start, so the application resumes with its data already in memory. Instance usage is not billed while hibernated, only the EBS storage.',
       'Larger instances cost more per hour and still need to load the data after each start.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html',
+        quote:
+          'When you hibernate an instance, Amazon EC2 signals the operating system to perform hibernation (suspend-to-disk). Hibernation saves the contents from the instance memory (RAM) to your Amazon Elastic Block Store (Amazon EBS) root volume.',
+      },
+    ],
   },
   {
     id: 'd4-016',
@@ -307,7 +397,13 @@ export const enUS: readonly Question[] = [
       'The Cost and Usage Report gives detailed billing line items without utilization metrics. Turning it into sizing decisions would need custom analysis.',
       'Dashboards show metrics, but someone would have to study hundreds of resources and choose sizes by hand.',
     ],
-    evidence: ['https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html',
+        quote:
+          "AWS Compute Optimizer is a service that analyzes your AWS resources' configuration and utilization metrics to provide you with rightsizing recommendations and identify idle resources.",
+      },
+    ],
   },
   {
     id: 'd4-017',
@@ -326,7 +422,12 @@ export const enUS: readonly Question[] = [
       'Previous generation instances often cost the same or more for less performance, which makes the price performance worse, not better.',
       'Graviton-based instances cost up to 20% less than comparable x86-based instances and are designed for the best price performance on EC2. The application already runs on Arm64, so it can move without code changes.',
     ],
-    evidence: ['https://aws.amazon.com/ec2/graviton/'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/ec2/graviton/',
+        quote: 'AWS Graviton-based instances cost up to 20% less than comparable x86-based Amazon EC2 instances.',
+      },
+    ],
   },
   {
     id: 'd4-018',
@@ -345,7 +446,13 @@ export const enUS: readonly Question[] = [
       'A task that always runs bills around the clock, just like the instance it replaces.',
       'A Spot Instance is cheaper per hour but still runs all day, and interruptions could delay processing.',
     ],
-    evidence: ['https://aws.amazon.com/lambda/pricing/#Lambda_Event_Functions_Pricing'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/lambda/pricing/#Lambda_Event_Functions_Pricing',
+        quote:
+          'Lambda Event Functions are priced based on the number of requests served and the duration your code runs, measured in GB-seconds.',
+      },
+    ],
   },
   {
     id: 'd4-019',
@@ -367,8 +474,16 @@ export const enUS: readonly Question[] = [
       'Sessions kept only in memory would be lost on an interruption. AWS does not recommend Spot for stateful workloads.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html',
-      'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html#prep-instances-for-interruptions',
+      {
+        url: 'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html',
+        quote:
+          'Spot Instances are recommended for stateless, fault-tolerant, flexible applications. For example, Spot Instances work well for big data, containerized workloads, CI/CD, stateless web servers, high performance computing (HPC), and rendering workloads.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html#prep-instances-for-interruptions',
+        quote:
+          'We recommend that you create a rule in Amazon EventBridge that captures the rebalance recommendations and interruption notifications, and then triggers a checkpoint for the progress of your workload or gracefully handles the interruption.',
+      },
     ],
   },
   {
@@ -391,8 +506,16 @@ export const enUS: readonly Question[] = [
       'Manual changes depend on people, react slowly and cannot follow the unpredictable changes during the day.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scheduled-scaling.html',
-      'https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html',
+      {
+        url: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scheduled-scaling.html',
+        quote:
+          "With scheduled scaling, you can set up automatic scaling for your application based on predictable load changes. You create scheduled actions that increase or decrease your group's desired capacity at specific times.",
+      },
+      {
+        url: 'https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html',
+        quote:
+          'A target tracking scaling policy automatically scales the capacity of your Auto Scaling group based on a target metric value. It automatically adapts to the unique usage patterns of your individual applications.',
+      },
     ],
   },
   {
@@ -412,7 +535,13 @@ export const enUS: readonly Question[] = [
       'Reserved capacity is a commitment to a steady baseline of provisioned throughput. Without traffic history, the company cannot size that commitment.',
       'A cache is one more cluster to pay for and manage, and it does not remove the need to size provisioned capacity.',
     ],
-    evidence: ['https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html',
+        quote:
+          'With pay-per-request pricing, you don’t have to worry about idle capacity because you only pay for the throughput you actually use. You are billed per read or write request, so your costs directly reflect your actual usage.',
+      },
+    ],
   },
   {
     id: 'd4-022',
@@ -431,7 +560,13 @@ export const enUS: readonly Question[] = [
       'TTL deletes expired items automatically, without consuming write throughput, usually within a few days of expiration. The application can filter out expired items that are still waiting for deletion.',
       'Moving the records keeps paying to store them and adds jobs to build and maintain.',
     ],
-    evidence: ['https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html',
+        quote:
+          'TTL allows you to define a per-item expiration timestamp that indicates when an item is no longer needed. DynamoDB automatically deletes expired items within a few days of their expiration time, without consuming write throughput.',
+      },
+    ],
   },
   {
     id: 'd4-023',
@@ -451,7 +586,10 @@ export const enUS: readonly Question[] = [
       'Catalog data is read often and changes rarely, which makes it a good fit for caching. Serving it from memory avoids running the same queries again, so the DB instance can stay at its current size.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html#elasticache-use-cases-data-store-what-to-cache',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html#elasticache-use-cases-data-store-what-to-cache',
+        quote: 'For caching to provide a real benefit, the data should be relatively static and frequently accessed.',
+      },
     ],
   },
   {
@@ -472,7 +610,10 @@ export const enUS: readonly Question[] = [
       'A nightly stop needs code, misses idle periods during the day, and starting a stopped cluster takes longer than resuming a paused instance.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-billing',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-billing',
+        quote: 'While an Aurora serverless instance is auto-paused, its instance charge is zero.',
+      },
     ],
   },
   {
@@ -492,7 +633,13 @@ export const enUS: readonly Question[] = [
       'More connections use more memory on an instance that is already short of it.',
       'A concurrency of 1 would protect the database but would throttle the application during the spikes it must handle.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html',
+        quote:
+          'RDS Proxy establishes a database connection pool and reuses connections in this pool. This approach avoids the memory and CPU overhead of opening a new database connection each time.',
+      },
+    ],
   },
   {
     id: 'd4-026',
@@ -511,7 +658,13 @@ export const enUS: readonly Question[] = [
       'Athena charges by the data each query scans and has no cluster to keep running. Parquet is a compressed columnar format, so queries that read a few columns scan far less data.',
       'DynamoDB is a key-value database for known access patterns. Ad hoc analytical scans would consume a large amount of read capacity.',
     ],
-    evidence: ['https://aws.amazon.com/athena/pricing/#SQL_queries'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/athena/pricing/#SQL_queries',
+        quote:
+          'But, in this case, because Parquet is columnar, Athena can read only the column that is relevant for the query being run. Because the query in question only references a single column, Athena reads only that column and can avoid reading three-fourths of the file.',
+      },
+    ],
   },
   {
     id: 'd4-027',
@@ -531,7 +684,11 @@ export const enUS: readonly Question[] = [
       'Aurora Serverless v2 changes how instance capacity is billed, but under Aurora Standard every I/O operation is still charged.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html#aurora-storage-type',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html#aurora-storage-type',
+        quote:
+          'Aurora I/O-Optimized – Improved price performance and predictability for I/O-intensive applications. You pay only for the usage and storage of your DB clusters, with no additional charges for read and write I/O operations.',
+      },
     ],
   },
   {
@@ -551,7 +708,13 @@ export const enUS: readonly Question[] = [
       'Manual snapshots can meet the requirement, but they depend on people for every snapshot and every deletion for 7 years.',
       'A backup plan defines how often to back up and how long to keep each backup. AWS Backup creates the monthly backups and removes them at the end of the retention period automatically.',
     ],
-    evidence: ['https://docs.aws.amazon.com/aws-backup/latest/devguide/about-backup-plans.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/aws-backup/latest/devguide/about-backup-plans.html',
+        quote:
+          'You can assign resources to backup plans, and AWS Backup automatically backs up and retains backups for those resources according to the backup plan.',
+      },
+    ],
   },
   {
     id: 'd4-029',
@@ -573,8 +736,15 @@ export const enUS: readonly Question[] = [
       'DynamoDB also supports gateway endpoints at no additional charge. Routing its traffic through the endpoint removes the NAT processing charge for that traffic.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html',
-      'https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html',
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html',
+        quote:
+          'Gateway VPC endpoints provide reliable connectivity to Amazon S3 and DynamoDB without requiring an internet gateway or a NAT device for your VPC.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html',
+        quote: 'There is no additional charge for using gateway endpoints.',
+      },
     ],
   },
   {
@@ -594,7 +764,13 @@ export const enUS: readonly Question[] = [
       'An egress-only internet gateway works only for IPv6 traffic.',
       'Compute Savings Plans apply to Amazon EC2, AWS Fargate and AWS Lambda usage. They do not discount NAT gateway charges.',
     ],
-    evidence: ['https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-basics.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-basics.html',
+        quote:
+          "If you have resources in multiple Availability Zones and they share one NAT gateway, and if the NAT gateway's Availability Zone is down, resources in the other Availability Zones lose internet access.",
+      },
+    ],
   },
   {
     id: 'd4-031',
@@ -616,8 +792,16 @@ export const enUS: readonly Question[] = [
       'Global Accelerator improves routing to endpoints such as load balancers and EC2 instances. It does not cache content and does not accept S3 buckets as endpoints.',
     ],
     evidence: [
-      'https://aws.amazon.com/cloudfront/pricing/',
-      'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html#cache-hit-ratio-duration',
+      {
+        url: 'https://aws.amazon.com/cloudfront/pricing/',
+        quote:
+          'Data transfer between CloudFront and your AWS origins is automatically waived when serving traffic through CloudFront, giving you a monthly price for both CloudFront delivery and your AWS origin’s data transfer costs to CloudFront.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html#cache-hit-ratio-duration',
+        quote:
+          'The shorter the cache duration, the more frequently CloudFront sends requests to your origin to determine if an object has changed and to get the latest version.',
+      },
     ],
   },
   {
@@ -637,7 +821,13 @@ export const enUS: readonly Question[] = [
       'Direct Connect is a dedicated connection that keeps traffic on the AWS network instead of the public internet. Data transfer out over Direct Connect is billed at lower rates than over the internet.',
       'A closer Region might lower latency, but the traffic still uses the internet and internet data transfer rates.',
     ],
-    evidence: ['https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html',
+        quote:
+          'AWS Direct Connect makes it easy to establish a dedicated connection from an on-premises network to one or more VPCs. Direct Connect can reduce network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.',
+      },
+    ],
   },
   {
     id: 'd4-033',
@@ -656,7 +846,13 @@ export const enUS: readonly Question[] = [
       'VPN instances are more servers to pay for and manage, and encryption on the instances limits throughput.',
       'PrivateLink exposes specific services and bills per endpoint hour and per GB processed. It does not give general network connectivity between VPCs.',
     ],
-    evidence: ['https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#vpc-peering-pricing'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#vpc-peering-pricing',
+        quote:
+          "There is no charge to create a VPC peering connection. All data transfer over a VPC peering connection that stays within an Availability Zone is free, even if it's between different accounts.",
+      },
+    ],
   },
   {
     id: 'd4-034',
@@ -675,7 +871,13 @@ export const enUS: readonly Question[] = [
       'Inter-Region peering still bills data transfer between Regions, and requests to S3 do not travel through a peering connection.',
       'Data transferred from an S3 bucket to AWS services in the same Region has no data transfer charge, so moving the compute next to the data removes the inter-Region charge.',
     ],
-    evidence: ['https://aws.amazon.com/s3/pricing/'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/s3/pricing/',
+        quote:
+          'Data transferred from an Amazon S3 bucket to any AWS service(s) within the same AWS Region as the S3 bucket (including to a different account in the same AWS Region).',
+      },
+    ],
   },
   {
     id: 'd4-035',
@@ -695,7 +897,11 @@ export const enUS: readonly Question[] = [
       'DNS records cannot route by URL path, and pointing DNS at individual tasks loses health-aware load balancing as tasks come and go.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions',
+      {
+        url: 'https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions',
+        quote:
+          'You can use path conditions to define rules that route requests based on the URL in the request (also known as path-based routing).',
+      },
     ],
   },
 ]
@@ -719,7 +925,11 @@ export const ptBR: readonly Question[] = [
       'O Standard-IA foi feito para dados que ainda precisam de acesso em milissegundos cerca de uma vez por mês. Ele custa bem mais por GB que uma classe de arquivamento para logs que quase nunca são lidos.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/object-lifecycle-mgmt.html#lifecycle-config-overview-what',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/object-lifecycle-mgmt.html#lifecycle-config-overview-what',
+        quote:
+          'Em algum ponto, você pode não precisar de acesso em tempo real a esses objetos, mas sua organização ou as regulamentações podem exigir que você os arquive por um período específico. Depois disso, é possível excluí-los.',
+      },
     ],
   },
   {
@@ -740,7 +950,11 @@ export const ptBR: readonly Question[] = [
       'O Intelligent-Tiering move cada objeto entre camadas de acesso conforme o próprio uso, sem taxas de recuperação. Ele foi feito para dados com padrão de acesso desconhecido ou variável e não exige regras para gerenciar.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/storage-class-intro.html#sc-dynamic-data-access',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/storage-class-intro.html#sc-dynamic-data-access',
+        quote:
+          'O S3 Intelligent-Tiering é a classe de armazenamento ideal quando você quer otimizar os custos de armazenamento dos dados com padrões de acesso desconhecidos ou variáveis. Não há taxas de recuperação para o S3 Intelligent-Tiering.',
+      },
     ],
   },
   {
@@ -756,7 +970,11 @@ export const ptBR: readonly Question[] = [
       'O S3 Express One Zone foi feito para latência de um dígito de milissegundo em dados acessados com frequência. O preço de armazenamento dele é maior que o das classes de acesso infrequente, então não serve para dados lidos poucas vezes por mês.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/storage-class-intro.html#sc-infreq-data-access',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/storage-class-intro.html#sc-infreq-data-access',
+        quote:
+          'S3 One Zone-IA (ONEZONE_IA): use se você puder recriar os dados em caso de falha da zona de disponibilidade, e para réplicas de objetos ao configurar a Replicação do S3 Entre Regiões Diferentes (CRR).',
+      },
     ],
   },
   {
@@ -776,7 +994,13 @@ export const ptBR: readonly Question[] = [
       'Com o Requester Pays, quem faz a requisição paga pelas requisições e pelos dados baixados, e o dono do bucket continua pagando pelo armazenamento. As requisições precisam ser autenticadas, o que combina com parceiros que usam as próprias contas AWS.',
       'O instituto pagaria pela transferência e pelas requisições da replicação, e os parceiros pagariam para guardar cópias completas. Isso não tira do instituto o custo dos downloads.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/RequesterPaysBuckets.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/RequesterPaysBuckets.html',
+        quote:
+          'Com buckets de Pagamento pelo solicitante, é o solicitante, em vez de o proprietário do bucket, quem paga pelo custo da solicitação e de download de dados do bucket. O proprietário do bucket sempre paga pelo custo de armazenamento de dados.',
+      },
+    ],
   },
   {
     id: 'd4-005',
@@ -795,7 +1019,12 @@ export const ptBR: readonly Question[] = [
       'O sc1 foi feito para dados frios com grandes leituras sequenciais e lida mal com I/O pequeno e aleatório. Ele não serve para volumes dimensionados por IOPS.',
       'No gp2 o desempenho cresce com o tamanho, então um volume gp2 menor entrega menos IOPS. A troca por volumes restaurados também exige indisponibilidade.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type',
+        quote: 'Além disso, os volumes gp3 oferecem um preço 20% mais baixo por GiB do que os volumes SSD (gp2).',
+      },
+    ],
   },
   {
     id: 'd4-006',
@@ -814,7 +1043,13 @@ export const ptBR: readonly Question[] = [
       'O st1 é um HDD de baixo custo feito para cargas sequenciais acessadas com frequência e intensivas em vazão, como processamento de logs e ETL. Ele atende à necessidade por um preço menor que SSD.',
       'O sc1 é o HDD mais barato, mas foi feito para dados acessados com pouca frequência e tem vazão menor. Dados lidos várias vezes por dia pedem o st1.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/hdd-vols.html#EBSVolumeTypes_st1'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/hdd-vols.html#EBSVolumeTypes_st1',
+        quote:
+          'Os volumes HDD com throughput otimizada (st1) fornecem armazenamento magnético de baixo custo que define a performance em termos de throughput, não IOPS. Esse tipo de volume é ideal para workloads grandes e sequenciais, como Amazon EMR, ETL, datas warehouses e processamento de logs.',
+      },
+    ],
   },
   {
     id: 'd4-007',
@@ -833,7 +1068,13 @@ export const ptBR: readonly Question[] = [
       'Sistemas de arquivos scratch são para armazenamento temporário e processamento de curto prazo, e seus dados não são replicados. Eles não servem para um sistema de arquivos compartilhado de longa duração.',
       'O Multi-Attach do EBS funciona só com volumes Provisioned IOPS em uma Zona de Disponibilidade e exige um sistema de arquivos com suporte a cluster. Ele não atende instâncias em várias Zonas de Disponibilidade.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/efs/latest/ug/lifecycle-management-efs.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/efs/latest/ug/lifecycle-management-efs.html',
+        quote:
+          'Transição para IA: instrui o gerenciamento do ciclo de vida sobre quando mover arquivos para a classe de armazenamento Infrequent Access (IA), que é otimizada em termos de custo para dados acessados apenas algumas vezes a cada trimestre.',
+      },
+    ],
   },
   {
     id: 'd4-008',
@@ -852,7 +1093,13 @@ export const ptBR: readonly Question[] = [
       'O Deep Archive é um armazenamento de baixo custo, mas a empresa teria de escrever, executar e manter scripts de exportação e restauração para cada volume.',
       'O tier de arquivamento foi feito para snapshots guardados por 90 dias ou mais e raramente acessados, e oferece custo de armazenamento de snapshot até 75% menor. Um snapshot arquivado é restaurado para o tier padrão quando for necessário.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/snapshot-archive.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/snapshot-archive.html',
+        quote:
+          'O Arquivo de Snapshots do Amazon EBS oferece custos de armazenamento de snapshots até 75% menores para os snapshots que você planeja armazenar por 90 dias ou mais e que não precisa acessar com frequência.',
+      },
+    ],
   },
   {
     id: 'd4-009',
@@ -874,8 +1121,16 @@ export const ptBR: readonly Question[] = [
       'O Object Lock impede que versões sejam excluídas ou sobrescritas durante um período de retenção. Ele manteria as versões antigas por mais tempo, em vez de reduzir o armazenamento.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lifecycle-config-conceptual-ex6',
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lc-expire-mpu',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/intro-lifecycle-rules.html#intro-lifecycle-rules-actions',
+        quote:
+          'Elemento de ação NoncurrentVersionExpiration: use essa ação para especificar que o Amazon S3 exclua permanentemente versões de objetos não atuais.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lc-expire-mpu',
+        quote:
+          'Ao interromper um carregamento fracionado, o Amazon S3 exclui todas as partes associadas ao carregamento fracionado. Esse processo ajuda a controlar os custos de armazenamento, garantindo que você não tenha carregamentos fracionados incompletos com partes que estão armazenadas no Amazon S3.',
+      },
     ],
   },
   {
@@ -898,8 +1153,16 @@ export const ptBR: readonly Question[] = [
       'Um orçamento de custo pode ser filtrado por uma cost allocation tag e pode alertar quando a previsão de gasto passa do valor orçado.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html',
-      'https://docs.aws.amazon.com/pt_br/cost-management/latest/userguide/create-cost-budget.html#cost-budget.title',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html',
+        quote:
+          'AWS, ou o AWS Marketplace ISV define, cria e aplica as tags AWS geradas para você, e você define, cria e aplica as tags definidas pelo usuário. É necessário ativar os dois tipos de tags separadamente para que elas possam ser exibidas no Cost Explorer ou em um relatório de alocação de custos.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/cost-management/latest/userguide/create-cost-budget.html#cost-budget.title',
+        quote:
+          'Ao lado do limite, escolha Actual (Real) para criar um alerta para os gastos reais. Ou escolha Previsto para criar um alerta para gastos previstos.',
+      },
     ],
   },
   {
@@ -919,7 +1182,13 @@ export const ptBR: readonly Question[] = [
       'Os Compute Savings Plans valem para o EC2 independentemente de família, tamanho, Região, sistema operacional ou tenancy, e também para o Fargate e o Lambda. O desconto acompanha a carga em todas as mudanças planejadas.',
       'As Convertible Reserved Instances podem ser trocadas por outras configurações de EC2, mas valem só para o EC2 e nunca cobrem Fargate ou Lambda.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/savingsplans/latest/userguide/plan-types.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/savingsplans/latest/userguide/plan-types.html',
+        quote:
+          'Eles também se aplicam ao uso do Fargate e do Lambda. Com o Savings Plans para computação, a qualquer momento você pode mover uma carga de trabalho de c5 para m5, transferir o uso da UE (Irlanda) para UE (Londres) ou migrar seu aplicativo do Amazon EC2 para o Amazon ECS usando o Fargate.',
+      },
+    ],
   },
   {
     id: 'd4-012',
@@ -938,7 +1207,13 @@ export const ptBR: readonly Question[] = [
       'Uma Reserved Instance cobra todas as horas do prazo, inclusive as horas do dia em que o job noturno não roda.',
       'Dedicated Hosts são servidores físicos para necessidades de licença ou compliance. São a opção mais cara e não acrescentam nada a esta carga.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/using-spot-instances.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/using-spot-instances.html',
+        quote:
+          'As Instâncias spot são uma opção econômica se houver flexibilidade quanto ao momento em que as aplicações serão executadas e se as aplicações poderão ser interrompidas. Por exemplo, as Instâncias spot são adequadas para análise de dados, trabalhos em lote, processamento em segundo plano e tarefas opcionais.',
+      },
+    ],
   },
   {
     id: 'd4-013',
@@ -958,7 +1233,11 @@ export const ptBR: readonly Question[] = [
       'Um mixed instances group lança primeiro a capacidade base On-Demand e depois usa Spot Instances para a capacidade acima dela. A base continua sem interrupção e os picos rodam a preço de Spot.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/mixed-instances-groups-set-up-overview.html#mixed-instances-group-scaling-behavior',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/mixed-instances-groups-set-up-overview.html#mixed-instances-group-scaling-behavior',
+        quote:
+          'Opcionalmente, você também pode designar um número base de instâncias sob demanda para começar. Se você fizer isso, o Amazon EC2 Auto Scaling aguardará para iniciar instâncias spot até depois de iniciar a capacidade básica de instâncias sob demanda quando o grupo for aumentado na escala horizontalmente.',
+      },
     ],
   },
   {
@@ -978,7 +1257,13 @@ export const ptBR: readonly Question[] = [
       'Spot poderia baixar o custo do EC2, mas as interrupções atrapalhariam os desenvolvedores durante o dia, e não resolve nada para as instâncias RDS.',
       'Parar manualmente depende de as pessoas lembrarem todos os dias, o que não é confiável e é o oposto de baixo esforço operacional.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/scheduler/latest/UserGuide/managing-targets-universal.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/scheduler/latest/UserGuide/managing-targets-universal.html',
+        quote:
+          'Um alvo universal é um conjunto personalizável de parâmetros que permite invocar um conjunto mais amplo de operações de API para muitos AWS serviços.',
+      },
+    ],
   },
   {
     id: 'd4-015',
@@ -997,7 +1282,13 @@ export const ptBR: readonly Question[] = [
       'A hibernação salva o conteúdo da RAM no volume raiz do EBS e o recarrega no início, então a aplicação volta com os dados já na memória. O uso da instância não é cobrado durante a hibernação, só o armazenamento do EBS.',
       'Instâncias maiores custam mais por hora e ainda precisam carregar os dados após cada início.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/Hibernate.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/Hibernate.html',
+        quote:
+          'Ao hibernar uma instância, o Amazon EC2 indica a realização da hibernação (suspend-to-disk) ao sistema operacional. A hibernação salva os conteúdos da memória da instância (RAM) para o volume raiz do Amazon Elastic Block Store (Amazon EBS).',
+      },
+    ],
   },
   {
     id: 'd4-016',
@@ -1011,7 +1302,13 @@ export const ptBR: readonly Question[] = [
       'O Cost and Usage Report traz itens de cobrança detalhados, sem métricas de utilização. Transformá-lo em decisões de tamanho exigiria análise própria.',
       'Dashboards mostram métricas, mas alguém teria de estudar centenas de recursos e escolher os tamanhos manualmente.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/compute-optimizer/latest/ug/what-is-compute-optimizer.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/compute-optimizer/latest/ug/what-is-compute-optimizer.html',
+        quote:
+          'O serviço informa se seus recursos estão em condições ideais e gera recomendações de otimização para reduzir o custo e melhorar a performance de suas workloads.',
+      },
+    ],
   },
   {
     id: 'd4-017',
@@ -1030,7 +1327,13 @@ export const ptBR: readonly Question[] = [
       'Instâncias de geração anterior costumam custar o mesmo ou mais com menos desempenho, o que piora a relação preço e desempenho em vez de melhorá-la.',
       'Instâncias baseadas em Graviton custam até 20% menos que instâncias x86 comparáveis e foram feitas para a melhor relação preço e desempenho no EC2. A aplicação já roda em Arm64, então pode migrar sem mudar o código.',
     ],
-    evidence: ['https://aws.amazon.com/pt/ec2/graviton/'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/pt/ec2/graviton/',
+        quote:
+          'As instâncias baseadas no AWS Graviton custam até 20% menos do que instâncias comparáveis do Amazon EC2 baseadas em x86.',
+      },
+    ],
   },
   {
     id: 'd4-018',
@@ -1049,7 +1352,13 @@ export const ptBR: readonly Question[] = [
       'Uma tarefa sempre em execução é cobrada o dia todo, igual à instância que ela substitui.',
       'Uma Spot Instance é mais barata por hora, mas continua rodando o dia todo, e as interrupções podem atrasar o processamento.',
     ],
-    evidence: ['https://aws.amazon.com/lambda/pricing/#Lambda_Event_Functions_Pricing'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/lambda/pricing/#Lambda_Event_Functions_Pricing',
+        quote:
+          'Lambda Event Functions are priced based on the number of requests served and the duration your code runs, measured in GB-seconds.',
+      },
+    ],
   },
   {
     id: 'd4-019',
@@ -1071,8 +1380,16 @@ export const ptBR: readonly Question[] = [
       'Sessões guardadas só na memória se perderiam em uma interrupção. A AWS não recomenda Spot para cargas com estado.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/spot-best-practices.html',
-      'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/spot-best-practices.html#prep-instances-for-interruptions',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/spot-best-practices.html',
+        quote:
+          'As Instâncias spot são recomendadas para aplicações flexíveis, tolerantes a falhas e sem estado. Por exemplo, as Instâncias spot funcionam bem para big data, workloads em contêineres, CI/CD, servidores Web sem estado, computação de alta performance (HPC) e workloads de renderização.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/spot-best-practices.html#prep-instances-for-interruptions',
+        quote:
+          'Recomendamos que você crie uma regra no Amazon EventBridge que capture as recomendações de rebalanceamento e os avisos de interrupção e acione um ponto de verificação para o andamento da workload ou lide tranquilamente com a interrupção.',
+      },
     ],
   },
   {
@@ -1095,8 +1412,16 @@ export const ptBR: readonly Question[] = [
       'Mudanças manuais dependem de pessoas, reagem devagar e não acompanham as variações imprevisíveis durante o dia.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/ec2-auto-scaling-scheduled-scaling.html',
-      'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/as-scaling-target-tracking.html',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/ec2-auto-scaling-scheduled-scaling.html',
+        quote:
+          'Com o Application Auto Scaling, você pode definir sua própria programação de ajuste de escala de acordo com alterações de carga previsíveis. Você cria ações programadas que aumentam ou diminuem a capacidade desejada do seu grupo em horários específicos.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/autoscaling/ec2/userguide/as-scaling-target-tracking.html',
+        quote:
+          'Uma política de escalabilidade de rastreamento de destinos escala automaticamente a aplicação com base em um valor de métrica de destino. Ele se adapta automaticamente aos padrões de uso exclusivos de suas aplicações individuais.',
+      },
     ],
   },
   {
@@ -1116,7 +1441,13 @@ export const ptBR: readonly Question[] = [
       'A capacidade reservada é um compromisso com uma base estável de throughput provisionado. Sem histórico de tráfego, a empresa não consegue dimensionar esse compromisso.',
       'Um cache é mais um cluster para pagar e gerenciar e não elimina a necessidade de dimensionar a capacidade provisionada.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html',
+        quote:
+          'Com o preço de pagamento por solicitação, você não precisa se preocupar com a capacidade ociosa, pois paga apenas pelo throughput que realmente usa. Você é cobrado por solicitação de leitura ou de gravação, portanto, seus custos refletem diretamente o uso real.',
+      },
+    ],
   },
   {
     id: 'd4-022',
@@ -1135,7 +1466,13 @@ export const ptBR: readonly Question[] = [
       'O TTL exclui automaticamente os itens expirados, sem consumir throughput de escrita, normalmente em poucos dias após a expiração. A aplicação pode filtrar os itens expirados que ainda aguardam a exclusão.',
       'Mover os registros continua pagando para armazená-los e acrescenta jobs para criar e manter.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/TTL.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/TTL.html',
+        quote:
+          'A TTL permite definir um carimbo de data e hora de validade por item que indica quando um item não é mais necessário. O DynamoDB exclui automaticamente os itens expirados alguns dias após o vencimento, sem consumir o throughput de gravação.',
+      },
+    ],
   },
   {
     id: 'd4-023',
@@ -1155,7 +1492,11 @@ export const ptBR: readonly Question[] = [
       'Dados de catálogo são lidos com frequência e mudam pouco, o que os torna ótimos para cache. Servi-los da memória evita rodar as mesmas consultas de novo, então a instância pode continuar do tamanho atual.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonElastiCache/latest/dg/elasticache-use-cases.html#elasticache-use-cases-data-store-what-to-cache',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonElastiCache/latest/dg/elasticache-use-cases.html#elasticache-use-cases-data-store-what-to-cache',
+        quote:
+          'Para que o armazenamento em cache ofereça um benefício real, os dados devem ser relativamente estáticos e frequentemente acessados.',
+      },
     ],
   },
   {
@@ -1176,7 +1517,11 @@ export const ptBR: readonly Question[] = [
       'Parar toda noite exige código, não aproveita os períodos ociosos durante o dia, e iniciar um cluster parado leva mais tempo que retomar uma instância pausada.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-billing',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-billing',
+        quote:
+          'Enquanto uma instância do Aurora serverless está pausada automaticamente, sua cobrança de instância é zero.',
+      },
     ],
   },
   {
@@ -1196,7 +1541,13 @@ export const ptBR: readonly Question[] = [
       'Mais conexões consomem mais memória em uma instância que já está sem memória.',
       'Uma concorrência de 1 protegeria o banco, mas limitaria a aplicação justamente nos picos que ela precisa atender.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/rds-proxy.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/rds-proxy.html',
+        quote:
+          'O RDS Proxy estabelece um grupo de conexões de banco de dados e reutiliza conexões nesse grupo. Essa abordagem evita sobrecarregar a memória e a CPU de abrir uma nova conexão de banco de dados todas as vezes.',
+      },
+    ],
   },
   {
     id: 'd4-026',
@@ -1215,7 +1566,13 @@ export const ptBR: readonly Question[] = [
       'O Athena cobra pelos dados que cada consulta varre e não tem cluster para manter ligado. O Parquet é um formato colunar comprimido, então consultas que leem poucas colunas varrem muito menos dados.',
       'O DynamoDB é um banco chave-valor para padrões de acesso conhecidos. Varreduras analíticas ad hoc consumiriam muita capacidade de leitura.',
     ],
-    evidence: ['https://aws.amazon.com/pt/athena/pricing/#SQL_queries'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/pt/athena/pricing/#SQL_queries',
+        quote:
+          'Mas, neste caso, como o Parquet é colunar, o Athena só poderá ler a coluna que for relevante para a consulta que está sendo executada. Como a consulta em questão é referente apenas a uma única coluna, o Athena apenas lê essa coluna e pode evitar a leitura de três quartos do arquivo.',
+      },
+    ],
   },
   {
     id: 'd4-027',
@@ -1235,7 +1592,11 @@ export const ptBR: readonly Question[] = [
       'O Aurora Serverless v2 muda a forma de cobrança da capacidade das instâncias, mas no Aurora Standard cada operação de I/O continua sendo cobrada.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html#aurora-storage-type',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html#aurora-storage-type',
+        quote:
+          'Aurora I/O-Optimized: melhor preço/performance e previsibilidade para aplicações com uso intenso de E/S. Você paga somente pelo uso e armazenamento de seus clusters de banco de dados, sem custos adicionais pelas operações de E/S de leitura e gravação.',
+      },
     ],
   },
   {
@@ -1255,7 +1616,13 @@ export const ptBR: readonly Question[] = [
       'Snapshots manuais podem atender ao requisito, mas dependem de pessoas para cada snapshot e cada exclusão durante 7 anos.',
       'Um backup plan define com que frequência fazer backup e por quanto tempo guardar cada um. O AWS Backup cria os backups mensais e os remove automaticamente no fim do período de retenção.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/aws-backup/latest/devguide/about-backup-plans.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/aws-backup/latest/devguide/about-backup-plans.html',
+        quote:
+          'Você pode atribuir recursos aos planos de backup e fazer backup e reter AWS Backup automaticamente os backups desses recursos de acordo com o plano de backup.',
+      },
+    ],
   },
   {
     id: 'd4-029',
@@ -1277,8 +1644,15 @@ export const ptBR: readonly Question[] = [
       'O DynamoDB também aceita gateway endpoints sem cobrança adicional. Encaminhar o tráfego dele pelo endpoint elimina a cobrança de processamento do NAT para esse tráfego.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/vpc/latest/privatelink/gateway-endpoints.html',
-      'https://docs.aws.amazon.com/pt_br/vpc/latest/privatelink/gateway-endpoints.html',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/privatelink/gateway-endpoints.html',
+        quote:
+          'Os endpoints da VPC de gateway fornecem conectividade confiável para o Amazon S3 e o DynamoDB sem a necessidade de um gateway da Internet ou um dispositivo NAT para sua VPC.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/privatelink/gateway-endpoints.html',
+        quote: 'Não há cobrança adicional pelo uso de endpoints do gateway.',
+      },
     ],
   },
   {
@@ -1298,7 +1672,13 @@ export const ptBR: readonly Question[] = [
       'Um egress-only internet gateway funciona só para tráfego IPv6.',
       'Os Compute Savings Plans valem para o uso de Amazon EC2, AWS Fargate e AWS Lambda. Eles não dão desconto nas cobranças de NAT gateway.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/nat-gateway-basics.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/nat-gateway-basics.html',
+        quote:
+          'Se você tiver recursos em várias zonas de disponibilidade e eles compartilharem um gateway NAT, caso a zona de disponibilidade do gateway NAT fique inativa, os recursos em outras zonas de disponibilidade perderão o acesso à Internet.',
+      },
+    ],
   },
   {
     id: 'd4-031',
@@ -1320,8 +1700,16 @@ export const ptBR: readonly Question[] = [
       'O Global Accelerator melhora o roteamento para endpoints como load balancers e instâncias EC2. Ele não faz cache de conteúdo e não aceita buckets do S3 como endpoints.',
     ],
     evidence: [
-      'https://aws.amazon.com/pt/cloudfront/pricing/',
-      'https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html#cache-hit-ratio-duration',
+      {
+        url: 'https://aws.amazon.com/pt/cloudfront/pricing/',
+        quote:
+          'A transferência de dados entre o CloudFront e suas origens da AWS é automaticamente dispensada ao servir tráfego através do CloudFront, oferecendo a você um preço mensal tanto para a entrega do CloudFront quanto para os custos de transferência de dados da sua origem da AWS para o CloudFront.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html#cache-hit-ratio-duration',
+        quote:
+          'Quanto menor for a duração do cache, maior será a frequência com que o CloudFront enviará solicitações para a origem a fim de determinar se um objeto foi alterado e para obter a versão mais recente.',
+      },
     ],
   },
   {
@@ -1342,7 +1730,11 @@ export const ptBR: readonly Question[] = [
       'Uma Região mais próxima pode reduzir a latência, mas o tráfego continua usando a internet e as tarifas de transferência pela internet.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html',
+        quote:
+          'Direct Connect pode reduzir os custos da rede, aumentar a taxa de transferência da largura de banda e fornecer uma experiência de rede mais consistente do que as conexões baseadas na Internet.',
+      },
     ],
   },
   {
@@ -1362,7 +1754,13 @@ export const ptBR: readonly Question[] = [
       'Instâncias de VPN são mais servidores para pagar e gerenciar, e a criptografia nas instâncias limita a vazão.',
       'O PrivateLink expõe serviços específicos e cobra por hora de endpoint e por GB processado. Ele não oferece conectividade de rede geral entre VPCs.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/vpc/latest/peering/what-is-vpc-peering.html#vpc-peering-pricing'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/peering/what-is-vpc-peering.html#vpc-peering-pricing',
+        quote:
+          'Não há cobrança para criar uma conexão de emparelhamento da VPC. Todas as transferências de dados por meio de uma conexão de emparelhamento da VPC que permanecem em uma zona de disponibilidade são gratuitas, mesmo que sejam entre contas diferentes.',
+      },
+    ],
   },
   {
     id: 'd4-034',
@@ -1381,7 +1779,13 @@ export const ptBR: readonly Question[] = [
       'O peering entre Regiões continua cobrando a transferência de dados entre Regiões, e as requisições ao S3 não passam por uma conexão de peering.',
       'Dados transferidos de um bucket do S3 para serviços da AWS na mesma Região não têm cobrança de transferência, então levar a computação para perto dos dados elimina a cobrança entre Regiões.',
     ],
-    evidence: ['https://aws.amazon.com/pt/s3/pricing/'],
+    evidence: [
+      {
+        url: 'https://aws.amazon.com/pt/s3/pricing/',
+        quote:
+          'Dados transferidos de um bucket do Amazon S3 para qualquer serviço da AWS dentro da mesma região AWS que o bucket do S3 (incluindo para uma conta diferente na mesma região da AWS).',
+      },
+    ],
   },
   {
     id: 'd4-035',
@@ -1401,7 +1805,11 @@ export const ptBR: readonly Question[] = [
       'Registros DNS não roteiam por caminho de URL, e apontar o DNS para tarefas individuais perde o balanceamento com verificação de saúde à medida que as tarefas mudam.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions',
+        quote:
+          'Você pode usar as condições de caminho para definir regras que roteiam solicitações com base no URL da solicitação (também conhecido como roteamento baseado em caminho).',
+      },
     ],
   },
 ]
