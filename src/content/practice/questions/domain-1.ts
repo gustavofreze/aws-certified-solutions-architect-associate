@@ -21,8 +21,16 @@ export const enUS: readonly Question[] = [
       'Sharing root credentials widens their exposure. AWS recommends sharing them only with people who have a strict business need and using an administrative user for daily work.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-mfa',
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-access',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-mfa',
+        quote:
+          'All AWS account types (standalone, management, and member accounts) require MFA to be configured for their root user.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-access',
+        quote:
+          'We strongly recommend that you do not create access keys for your root user because the root user has full access to all AWS services and resources in the account, including billing information.',
+      },
     ],
   },
   {
@@ -43,7 +51,11 @@ export const enUS: readonly Question[] = [
       'Encryption protects the file at rest, but the long-term access key stays on every instance and still has to be distributed and rotated.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-roles',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-roles',
+        quote:
+          'The temporary security credentials available on the instance automatically update before they expire so that a valid set is always available.',
+      },
     ],
   },
   {
@@ -63,7 +75,13 @@ export const enUS: readonly Question[] = [
       'IAM Identity Center federates once with the external identity provider. Permission sets are defined centrally and provisioned to the accounts, and users reach their accounts from the AWS access portal.',
       'Cognito user pools authenticate the customers of an application. They do not manage workforce access to AWS accounts.',
     ],
-    evidence: ['https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#features'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#features',
+        quote:
+          'By providing one point of federation, IAM Identity Center reduces the administrative effort required to use multiple AWS managed applications and AWS accounts. With IAM Identity Center, you only federate once, and you have only one certificate to manage when using a SAML 2.0 identity provider.',
+      },
+    ],
   },
   {
     id: 'd1-004',
@@ -83,7 +101,11 @@ export const enUS: readonly Question[] = [
       'Account administrators can remove an inline policy, and IAM policies do not restrict the root user.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#scp-effects-on-permissions',
+      {
+        url: 'https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#scp-effects-on-permissions',
+        quote:
+          "An SCP restricts permissions for IAM users and roles in member accounts, including the member account's root user. Any account has only those permissions permitted by every parent above it.",
+      },
     ],
   },
   {
@@ -106,8 +128,16 @@ export const enUS: readonly Question[] = [
       'SCPs never grant permissions. They only set the maximum permissions available to principals in member accounts.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html#tutorial_cross-account-with-roles-1',
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html#tutorial_cross-account-with-roles-2',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html#tutorial_cross-account-with-roles-1',
+        quote:
+          'In this step of the tutorial, you create the role in the Destination account and specify the Originating account as a trusted entity.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html#tutorial_cross-account-with-roles-2',
+        quote:
+          'Add the following policy statement to allow the AssumeRole action on the UpdateData role in the Destination account.',
+      },
     ],
   },
   {
@@ -128,7 +158,11 @@ export const enUS: readonly Question[] = [
       'The provider gets temporary credentials with `sts:AssumeRole`, and the external ID condition in the trust policy ensures the provider assumes the role only when acting for this company.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id',
+        quote:
+          'It also provides a way for the account owner to permit the role to be assumed only under specific circumstances.',
+      },
     ],
   },
   {
@@ -149,7 +183,11 @@ export const enUS: readonly Question[] = [
       'Denying role creation for the whole account blocks the developers completely, which the requirement rules out.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries-delegate',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries-delegate',
+        quote:
+          'You can use permissions boundaries to delegate permissions management tasks, such as user creation, to IAM users in your account. This permits others to perform tasks on your behalf within a specific boundary of permissions.',
+      },
     ],
   },
   {
@@ -169,7 +207,13 @@ export const enUS: readonly Question[] = [
       'Firewall Manager centrally manages firewall rules such as AWS WAF rules and security groups. It does not create accounts or a landing zone.',
       'Control Tower orchestrates AWS Organizations, IAM Identity Center and other services to build a landing zone, applies preventive, detective and proactive controls, and offers Account Factory to provision accounts from a template.',
     ],
-    evidence: ['https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html#features'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html#features',
+        quote:
+          "A landing zone is a well-architected, multi-account environment that's based on security and compliance best practices.",
+      },
+    ],
   },
   {
     id: 'd1-009',
@@ -191,8 +235,16 @@ export const enUS: readonly Question[] = [
       'For cross-account access, the account of the principal must also allow the action. The identity-based policy in account B delegates what the bucket policy grants.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html#access_policies-cross-account-using-resource-based-policies',
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html#access_policies-cross-account-delegating-resource-based-policies',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html#access_policies-cross-account-using-resource-based-policies',
+        quote:
+          'When an account accesses a resource through another account using a resource-based policy, the principal still works in the trusted account and does not have to give up their permissions to receive the role permissions.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html#access_policies-cross-account-delegating-resource-based-policies',
+        quote:
+          'In cross account access, a principal needs an Allow in the identity policy and the resource-based policy.',
+      },
     ],
   },
   {
@@ -213,7 +265,11 @@ export const enUS: readonly Question[] = [
       'A gateway endpoint provides a private route from a VPC to S3. By itself it grants no access to principals in other accounts.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid',
+        quote:
+          "When you add and remove accounts, policies that include the aws:PrincipalOrgID key automatically include the correct accounts and don't require manual updating.",
+      },
     ],
   },
   {
@@ -233,7 +289,13 @@ export const enUS: readonly Question[] = [
       'AWS Managed Microsoft AD runs domain controllers in AWS, so copying users to it stores directory data in the cloud.',
       'Cognito user pools serve the customers of applications. Importing the users stores their profiles in AWS and does not give workforce access to the console.',
     ],
-    evidence: ['https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_ad_connector.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_ad_connector.html',
+        quote:
+          'AD Connector is a directory gateway with which you can redirect directory requests to your on-premises Microsoft Active Directory without caching any information in the cloud.',
+      },
+    ],
   },
   {
     id: 'd1-012',
@@ -252,7 +314,13 @@ export const enUS: readonly Question[] = [
       'Signing URLs on the device still requires the long-term keys of the IAM user to be on the device.',
       'An identity pool exchanges the token from Google, Apple or a user pool for temporary AWS credentials, with the permissions of the IAM role chosen for authenticated users.',
     ],
-    evidence: ['https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html',
+        quote:
+          'An Amazon Cognito identity pool is a directory of federated identities that you can exchange for AWS credentials. Identity pools generate temporary AWS credentials for the users of your app, whether they’ve signed in or you haven’t identified them yet.',
+      },
+    ],
   },
   {
     id: 'd1-013',
@@ -271,7 +339,13 @@ export const enUS: readonly Question[] = [
       'Security in the cloud stays with the customer. The company decides which IP addresses or instances can reach the database through the security group of the DB instance, and it also manages IAM permissions and database users.',
       'Physical security of the facilities belongs to the security of the cloud, which is the responsibility of AWS.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html',
+        quote:
+          'Use security groups to control what IP addresses or Amazon EC2 instances can connect to your databases on a DB instance',
+      },
+    ],
   },
   {
     id: 'd1-014',
@@ -290,7 +364,13 @@ export const enUS: readonly Question[] = [
       'The workflow would still need AWS credentials to read the secret, so a long-term key stays in the pipeline.',
       'IAM Identity Center serves people who sign in interactively, not automated pipelines.',
     ],
-    evidence: ['https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html',
+        quote:
+          'They receive an authentication token, known as a JSON Web Token (JWT), and then exchange that token for temporary security credentials in AWS that map to an IAM role with permissions to use specific resources in your AWS account.',
+      },
+    ],
   },
   {
     id: 'd1-015',
@@ -310,7 +390,11 @@ export const enUS: readonly Question[] = [
       'CloudTrail shows calls that already happened. Reviewing it by hand is slow and misses access that a policy allows but nobody has used yet.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification',
+        quote:
+          'IAM Access Analyzer identifies resources shared with external principals by using logic-based reasoning to analyze the resource-based policies in your AWS environment. For each instance of a resource shared outside of your account, IAM Access Analyzer generates a finding.',
+      },
     ],
   },
   {
@@ -331,7 +415,11 @@ export const enUS: readonly Question[] = [
       'An RCP sets the maximum permissions on resources in member accounts, whoever makes the request. A deny for principals outside the organization applies even when a bucket policy allows them.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html#rcp-effects-on-permissions',
+      {
+        url: 'https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html#rcp-effects-on-permissions',
+        quote:
+          'If a permission is blocked at any level above the account, a resource in the affected account does not have that permission, even if the resource owner attaches a resource-based policy that allows full access to any user.',
+      },
     ],
   },
   {
@@ -352,7 +440,11 @@ export const enUS: readonly Question[] = [
       'SCPs apply to whole accounts and OUs. They are not designed to separate projects that share an account and would also need editing for each project.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html#introduction_attribute-based-access-control_compare-rbac',
+      {
+        url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html#introduction_attribute-based-access-control_compare-rbac',
+        quote:
+          "ABAC permissions scale with innovation. It's no longer necessary for an administrator to update existing policies to allow access to new resources.",
+      },
     ],
   },
   {
@@ -375,8 +467,16 @@ export const enUS: readonly Question[] = [
       'The route table of the private subnets must send internet-bound traffic to the NAT gateway, or the servers have no path out.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html',
-      'https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-scenarios.html#public-nat-gateway-routing',
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html',
+        quote:
+          "You can use a NAT gateway so that instances in a private subnet can connect to services outside your VPC but external services can't initiate a connection with those instances.",
+      },
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-scenarios.html#public-nat-gateway-overview',
+        quote:
+          'In Availability Zone B, the public subnet contains a NAT gateway, and the instances in the private subnet can reach the internet through a route to the NAT gateway in the public subnet.',
+      },
     ],
   },
   {
@@ -396,7 +496,13 @@ export const enUS: readonly Question[] = [
       'The load balancer does not connect to the database. The web servers do, so this rule would block the application.',
       'Security groups support only allow rules. They cannot contain deny rules.',
     ],
-    evidence: ['https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-referencing'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-referencing',
+        quote:
+          'When you specify a security group as the source or destination for a rule, the rule affects all instances that are associated with the security groups.',
+      },
+    ],
   },
   {
     id: 'd1-020',
@@ -415,7 +521,13 @@ export const enUS: readonly Question[] = [
       'Network ACLs work at the subnet level and support deny rules. Rules are evaluated in order from the lowest number, so the deny must come before the rule that allows web traffic.',
       'Removing the route disconnects the whole subnet from the internet.',
     ],
-    evidence: ['https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics',
+        quote:
+          'You can create a custom network ACL and associate it with a subnet to allow or deny specific inbound or outbound traffic at the subnet level.',
+      },
+    ],
   },
   {
     id: 'd1-021',
@@ -434,7 +546,13 @@ export const enUS: readonly Question[] = [
       'Transfer Acceleration speeds up transfers over long distances through edge locations. It does not keep traffic private for instances in the same Region, and it adds cost.',
       'A gateway endpoint adds a route to S3 in the selected route tables. Instances reach S3 without an internet gateway or NAT device, at no additional charge.',
     ],
-    evidence: ['https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html',
+        quote:
+          'With a gateway endpoint, you can access Amazon S3 from your VPC, without requiring an internet gateway or NAT device for your VPC, and with no additional cost.',
+      },
+    ],
   },
   {
     id: 'd1-022',
@@ -456,8 +574,16 @@ export const enUS: readonly Question[] = [
       'A peering connection does not let this VPC use the internet gateway or NAT gateway of the peer VPC, so the application still could not reach Secrets Manager.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html',
-      'https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html',
+      {
+        url: 'https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html',
+        quote:
+          "Instances in your VPC don't need public IP addresses to communicate with Secrets Manager APIs. Traffic between your VPC and Secrets Manager does not leave the AWS network.",
+      },
+      {
+        url: 'https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html',
+        quote:
+          'If you enable private DNS for the endpoint, you can make API requests to Secrets Manager using its default DNS name for the Region',
+      },
     ],
   },
   {
@@ -478,7 +604,11 @@ export const enUS: readonly Question[] = [
       'GuardDuty detects threats in logs and reports findings. It does not inspect or block web requests.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-use-case.html#aws-managed-rule-groups-use-case-sql-db',
+      {
+        url: 'https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-use-case.html#aws-managed-rule-groups-use-case-sql-db',
+        quote:
+          'The SQL database rule group contains rules to block request patterns associated with exploitation of SQL databases, like SQL injection attacks. This can help prevent remote injection of unauthorized queries.',
+      },
     ],
   },
   {
@@ -493,7 +623,13 @@ export const enUS: readonly Question[] = [
       'Shield Advanced adds access to the Shield Response Team during attacks and cost protection, as service credits, for spikes that a DDoS attack causes on protected resources.',
       'GuardDuty detects threats in AWS logs. It does not mitigate DDoS attacks.',
     ],
-    evidence: ['https://docs.aws.amazon.com/waf/latest/developerguide/ddos-advanced-summary-capabilities.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/waf/latest/developerguide/ddos-advanced-summary-capabilities.html',
+        quote:
+          'As an AWS Shield Advanced customer, you can contact the SRT at any time for assistance during a DDoS attack that affects the availability of your application.',
+      },
+    ],
   },
   {
     id: 'd1-025',
@@ -513,7 +649,10 @@ export const enUS: readonly Question[] = [
       'A static list blocks only known addresses and must be maintained by hand, while attackers keep changing addresses.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html',
+      {
+        url: 'https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html',
+        quote: 'By default, a rate-based rule aggregates and rate limits requests based on the request IP address.',
+      },
     ],
   },
   {
@@ -533,7 +672,13 @@ export const enUS: readonly Question[] = [
       'This is custom code that the team must maintain, and the database and the application could get out of sync.',
       'Secrets Manager rotates the secret on a schedule and updates the credentials in both the secret and the database, through managed rotation or a rotation function that AWS provides for Amazon RDS. The application reads the current value at runtime.',
     ],
-    evidence: ['https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_turn-on-for-db.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_turn-on-for-db.html',
+        quote:
+          'When you rotate a secret, you update the credentials in both the secret and the database. In Secrets Manager, you can set up automatic rotation for your database secrets.',
+      },
+    ],
   },
   {
     id: 'd1-027',
@@ -547,7 +692,13 @@ export const enUS: readonly Question[] = [
       'Macie discovers sensitive data in Amazon S3. It does not analyze the network or API activity of instances.',
       'AWS Config records and evaluates resource configurations. It does not detect malicious activity.',
     ],
-    evidence: ['https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty',
+        quote:
+          'When you enable GuardDuty in an AWS account, GuardDuty automatically starts ingesting the foundational data sources associated with that account. These data sources include AWS CloudTrail management events, VPC flow logs (from Amazon EC2 instances), and DNS logs.',
+      },
+    ],
   },
   {
     id: 'd1-028',
@@ -567,7 +718,11 @@ export const enUS: readonly Question[] = [
       'Simple AD is a directory for workloads that need basic Active Directory features. It offers neither customer sign-up nor social sign-in.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools.html#cognito-user-pools-sign-in',
+      {
+        url: 'https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools.html#cognito-user-pools-sign-in',
+        quote:
+          'Users can set up and sign in with usernames and passwords, passkeys, and email and SMS message one-time passwords. You can offer consolidated sign-in with external user directories, multi-factor authentication (MFA) after sign-in, trust remembered devices, and custom authentication flows that you design.',
+      },
     ],
   },
   {
@@ -587,7 +742,12 @@ export const enUS: readonly Question[] = [
       'VPC peering connects VPCs to each other. It cannot connect an on-premises network.',
       'Client VPN serves individual users on their devices. Installing it on every server is not a network-to-network connection and adds work.',
     ],
-    evidence: ['https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts',
+        quote: 'An encrypted link where data can pass from the customer network to or from AWS.',
+      },
+    ],
   },
   {
     id: 'd1-030',
@@ -609,8 +769,16 @@ export const enUS: readonly Question[] = [
       'A LAG bundles connections for more bandwidth and resilience. It does not encrypt traffic.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/directconnect/latest/UserGuide/MACsec.html#mac-sec-prerequisites',
-      'https://docs.aws.amazon.com/directconnect/latest/UserGuide/encryption-in-transit.html',
+      {
+        url: 'https://docs.aws.amazon.com/directconnect/latest/UserGuide/MACsec.html#mac-sec-prerequisites',
+        quote:
+          'MACsec is supported on 10 Gbps , 100 Gbps, and 400 Gbps dedicated Direct Connect connections at selected points of presence.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/directconnect/latest/UserGuide/encryption-in-transit.html',
+        quote:
+          'This combination provides an IPsec-encrypted private connection that also reduces network costs, increases bandwidth throughput, and provides a more consistent network experience than internet-based VPN connections.',
+      },
     ],
   },
   {
@@ -631,7 +799,11 @@ export const enUS: readonly Question[] = [
       'Session Manager provides shell access through the SSM Agent without inbound ports, bastion hosts or SSH keys, and it can log session activity to Amazon S3 or CloudWatch Logs.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html#session-manager-benefits',
+      {
+        url: 'https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html#session-manager-benefits',
+        quote:
+          'Session Manager helps you improve your security posture by letting you close these inbound ports, freeing you from managing SSH keys and certificates, bastion hosts, and jump boxes.',
+      },
     ],
   },
   {
@@ -652,7 +824,11 @@ export const enUS: readonly Question[] = [
       'Encryption protects data at rest. Principals allowed to use the key could still read the objects from any network.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies-vpc-endpoint.html#example-bucket-policies-restrict-accesss-vpc-endpoint',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies-vpc-endpoint.html#example-bucket-policies-restrict-accesss-vpc-endpoint',
+        quote:
+          'If the specified endpoint is not used, the policy denies all access to the bucket. The aws:SourceVpce condition specifies the endpoint.',
+      },
     ],
   },
   {
@@ -673,7 +849,11 @@ export const enUS: readonly Question[] = [
       'The IP ranges are shared by every CloudFront distribution, so distributions of other accounts could still reach the bucket.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3',
+        quote:
+          'Use a Condition element in the policy to allow CloudFront to access the bucket only when the request is on behalf of the CloudFront distribution that contains the S3 origin.',
+      },
     ],
   },
   {
@@ -694,7 +874,11 @@ export const enUS: readonly Question[] = [
       'AWS WAF protects resources such as load balancers, CloudFront distributions and API Gateway APIs from incoming web requests. It cannot be associated with a NAT gateway.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html#stateful-rule-groups-domain-names-match-settings',
+      {
+        url: 'https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html#stateful-rule-groups-domain-names-general-settings',
+        quote:
+          'the firewall denies traffic of the specified protocol type that does not match the domain specifications.',
+      },
     ],
   },
   {
@@ -715,7 +899,11 @@ export const enUS: readonly Question[] = [
       'The company would have to build key storage, access control and auditing itself, and key usage would not appear in CloudTrail.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#aws-managed-customer-managed-keys',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#aws-managed-customer-managed-keys',
+        quote:
+          'For example, you can create, rotate, and disable customer managed keys. You can also define access controls and audit the customer managed key that you use to protect your data.',
+      },
     ],
   },
   {
@@ -738,8 +926,16 @@ export const enUS: readonly Question[] = [
       'Object Lock prevents deletion and overwrites. It has nothing to do with encryption.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html',
-      'https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-use-case-HTTP-HTTPS-1',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html',
+        quote:
+          'If you need more control over your keys, such as managing key rotation and access policy grants, you can choose to use server-side encryption with AWS Key Management Service (AWS KMS) keys (SSE-KMS), or dual-layer server-side encryption with AWS KMS keys (DSSE-KMS).',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-use-case-HTTP-HTTPS-1',
+        quote:
+          'To determine whether the request is HTTP or HTTPS, use the aws:SecureTransport global condition key in your S3 bucket policy. The aws:SecureTransport condition key checks whether a request was sent by using HTTP.',
+      },
     ],
   },
   {
@@ -762,8 +958,16 @@ export const enUS: readonly Question[] = [
       'Restoring from the encrypted copy creates an encrypted DB instance with the same data, and the application can then be pointed to it.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations',
-      'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations',
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations',
+        quote:
+          'That is, you can create a snapshot of your DB instance, and then create an encrypted copy of that snapshot.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations',
+        quote:
+          'You can then restore a DB instance from the encrypted snapshot, and thus you have an encrypted copy of your original DB instance.',
+      },
     ],
   },
   {
@@ -783,7 +987,13 @@ export const enUS: readonly Question[] = [
       'Browsers do not trust self-signed certificates, and the HTTPS connection from clients ends at the load balancer, not at the instances.',
       'This requires custom code to obtain, renew and deploy certificates, which is the overhead the company wants to avoid.',
     ],
-    evidence: ['https://docs.aws.amazon.com/acm/latest/userguide/managed-renewal.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/acm/latest/userguide/managed-renewal.html',
+        quote:
+          'This means that ACM will either renew your certificates automatically (if you are using DNS validation), or it will send you email notices when expiration is approaching.',
+      },
+    ],
   },
   {
     id: 'd1-039',
@@ -802,7 +1012,13 @@ export const enUS: readonly Question[] = [
       'With automatic rotation, KMS creates new key material on the rotation period, 365 days by default. The key ID stays the same, and KMS decrypts older ciphertext with the material that encrypted it.',
       'An alias is only a friendly name that points to a key. A new alias does not change the key material.',
     ],
-    evidence: ['https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works',
+        quote:
+          "AWS KMS rotates the KMS key automatically on the next rotation date defined by your rotation period. You don't need to remember or schedule the update.",
+      },
+    ],
   },
   {
     id: 'd1-040',
@@ -824,8 +1040,16 @@ export const enUS: readonly Question[] = [
       'AWS KMS never exports the key material it generates, and a key in account B would be a different key that cannot decrypt these objects.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-key-policy',
-      'https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-iam-policy',
+      {
+        url: 'https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-key-policy',
+        quote:
+          'When providing cross-account permission, the key policy for the KMS key must give the external account (or users and roles in the external account) permission to use the KMS key.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-iam-policy',
+        quote:
+          'But, users and roles in the external account cannot use the KMS key until you attach IAM policies that delegate those permissions, or use grants to manage access to the KMS key.',
+      },
     ],
   },
   {
@@ -845,7 +1069,13 @@ export const enUS: readonly Question[] = [
       'MFA delete adds a second factor to permanent deletes, but the root user with the MFA device can still delete versions.',
       'In compliance mode, no user, including the root user, can overwrite or delete a protected object version, and its retention period cannot be shortened.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock-retention-modes'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock-retention-modes',
+        quote:
+          "In compliance mode, a protected object version can't be overwritten or deleted by any user, including the root user in your AWS account. When an object is locked in compliance mode, its retention mode can't be changed, and its retention period can't be shortened.",
+      },
+    ],
   },
   {
     id: 'd1-042',
@@ -864,7 +1094,13 @@ export const enUS: readonly Question[] = [
       'Object Lock prevents deletion. It neither moves objects to cheaper storage nor deletes them at the end.',
       'Replication creates more copies and raises cost. It does not manage objects by age.',
     ],
-    evidence: ['https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html',
+        quote:
+          'S3 Lifecycle helps you store objects cost effectively throughout their lifecycle by transitioning them to lower-cost storage classes, or, deleting expired objects on your behalf.',
+      },
+    ],
   },
   {
     id: 'd1-043',
@@ -883,7 +1119,13 @@ export const enUS: readonly Question[] = [
       'Users with sufficient IAM permissions can remove a lock in governance mode, so administrators could still delete backups.',
       'A copy in another Region helps with disaster recovery, but administrators could still delete it unless that vault is also locked.',
     ],
-    evidence: ['https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#backup-vault-lock-modes'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#backup-vault-lock-modes',
+        quote:
+          'A vault lock in Compliance mode cannot be altered or deleted by any user or by AWS. A vault lock in compliance mode has a grace time period you set before it locks and the contents and vault lock become immutable.',
+      },
+    ],
   },
   {
     id: 'd1-044',
@@ -897,7 +1139,13 @@ export const enUS: readonly Question[] = [
       'Macie uses machine learning and pattern matching to discover sensitive data, including many types of PII and financial data, and creates findings for the objects where it finds it.',
       'Access Analyzer reports buckets shared outside the zone of trust. It does not look at what the objects contain.',
     ],
-    evidence: ['https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html#macie-features'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html#macie-features',
+        quote:
+          'To discover sensitive data with Macie, you can use built-in criteria and techniques, such as machine learning and pattern matching, to analyze objects in S3 buckets.',
+      },
+    ],
   },
   {
     id: 'd1-045',
@@ -919,8 +1167,16 @@ export const enUS: readonly Question[] = [
       'A replica key shares the key ID and key material of its primary key, so applications in eu-west-1 decrypt the copies locally without re-encrypting them or calling us-east-1.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#multi-Region-concept',
-      'https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#mrk-replica-key',
+      {
+        url: 'https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#multi-Region-concept',
+        quote:
+          'You set the multi-Region property of a KMS key when you create it. You cannot change the multi-Region property on an existing key.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#mrk-replica-key',
+        quote:
+          'A multi-Region replica key is a KMS key that has the same key ID and key material as its primary key and related replica keys, but exists in a different AWS Region.',
+      },
     ],
   },
   {
@@ -940,7 +1196,13 @@ export const enUS: readonly Question[] = [
       'Security Hub findings describe the security posture of the resources of the bank, not the compliance of the AWS infrastructure.',
       'AWS Artifact provides on-demand downloads of AWS security and compliance documents, such as SOC and PCI reports, that the bank can give to its auditors.',
     ],
-    evidence: ['https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html',
+        quote:
+          'AWS Artifact provides on-demand downloads of AWS security and compliance documents. For example, reports on compliance with International Organization for Standardization (ISO) standards and Payment Card Industry (PCI) Security Standards, and System and Organization Controls (SOC) reports.',
+      },
+    ],
   },
   {
     id: 'd1-047',
@@ -959,7 +1221,13 @@ export const enUS: readonly Question[] = [
       'Amazon Inspector looks for software vulnerabilities and network exposure. It does not evaluate configuration rules such as encryption settings.',
       'Trusted Advisor checks some best practices and reports the results, but it does not remediate resources against the rules of the company.',
     ],
-    evidence: ['https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html',
+        quote:
+          'In the AWS Management Console, you can either choose to automatically remediate noncompliant resources by associating remediation actions with AWS Config rules.',
+      },
+    ],
   },
   {
     id: 'd1-048',
@@ -978,7 +1246,13 @@ export const enUS: readonly Question[] = [
       'Encryption by default is a Region setting that makes Amazon EBS encrypt all new volumes and snapshot copies, so developers cannot create unencrypted volumes in that Region.',
       'This covers only volumes launched from those AMIs, not the other volumes that developers create.',
     ],
-    evidence: ['https://docs.aws.amazon.com/ebs/latest/userguide/encryption-by-default.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/ebs/latest/userguide/encryption-by-default.html',
+        quote:
+          'You can configure your AWS account to enforce the encryption of the new EBS volumes and snapshot copies that you create.',
+      },
+    ],
   },
   {
     id: 'd1-049',
@@ -992,7 +1266,13 @@ export const enUS: readonly Question[] = [
       'ACM issues and manages TLS certificates. It does not provide HSMs for the keys of the application.',
       'CloudHSM provides single-tenant HSMs validated at FIPS 140-2 or FIPS 140-3 Level 3 in FIPS mode, gives the company full control of its keys, and supports PKCS #11, JCE and CNG.',
     ],
-    evidence: ['https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html',
+        quote:
+          'We offer HSMs that are standards-compliant, single-tenant, and are either FIPS 140-2 level-3 or FIPS 140-3 level-3 validated for clusters in FIPS mode.',
+      },
+    ],
   },
   {
     id: 'd1-050',
@@ -1011,7 +1291,13 @@ export const enUS: readonly Question[] = [
       'Streams capture item changes for processing for a limited time. They are not a restore feature.',
       'Global tables replicate every write, including the faulty ones, to the replica.',
     ],
-    evidence: ['https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Point-in-time-recovery.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Point-in-time-recovery.html',
+        quote:
+          "Point-in-time recovery (PITR) backups are fully managed by DynamoDB and provide up to 35 days of recovery points at a per second granularity. With point-in-time recovery, you don't have to worry about creating, maintaining, or scheduling on-demand backups.",
+      },
+    ],
   },
 ]
 
@@ -1036,8 +1322,16 @@ export const ptBR: readonly Question[] = [
       'Compartilhar as credenciais do root aumenta a exposição. A AWS recomenda compartilhá-las só com quem tem uma necessidade estrita e usar um usuário administrativo no dia a dia.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-mfa',
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-access',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-mfa',
+        quote:
+          'Todos os tipos de Conta da AWS (contas autônomas, de gerenciamento e de membros) exigem que a MFA seja configurada para o usuário-raiz.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-access',
+        quote:
+          'É altamente recomendável que você não crie pares de chaves de acesso para seu usuário-raiz porque o usuário-raiz tem acesso total a todos os recursos e Serviços da AWS na conta, incluindo informações de faturamento.',
+      },
     ],
   },
   {
@@ -1058,7 +1352,11 @@ export const ptBR: readonly Question[] = [
       'A criptografia protege o arquivo em repouso, mas a chave de longo prazo continua em todas as instâncias e ainda precisa ser distribuída e rotacionada.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-roles',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-roles',
+        quote:
+          'As credenciais temporárias de segurança disponíveis na instância são atualizadas automaticamente antes de perder a validade. Assim, há sempre um conjunto válido disponível.',
+      },
     ],
   },
   {
@@ -1078,7 +1376,13 @@ export const ptBR: readonly Question[] = [
       'O IAM Identity Center federa uma única vez com o provedor de identidade externo. Os permission sets são definidos de forma central e provisionados nas contas, e os usuários chegam às contas pelo AWS access portal.',
       'Os user pools do Cognito autenticam os clientes de uma aplicação. Eles não gerenciam o acesso da força de trabalho às contas da AWS.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/singlesignon/latest/userguide/what-is.html#features'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/singlesignon/latest/userguide/what-is.html#features',
+        quote:
+          'Com o IAM Identity Center, você só precisa federar uma vez e tem apenas um certificado para gerenciar ao usar um provedor de identidades SAML 2.0',
+      },
+    ],
   },
   {
     id: 'd1-004',
@@ -1098,7 +1402,11 @@ export const ptBR: readonly Question[] = [
       'Os administradores da conta podem remover uma política inline, e as políticas do IAM não restringem o usuário root.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/organizations/latest/userguide/orgs_manage_policies_scps.html#scp-effects-on-permissions',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/organizations/latest/userguide/orgs_manage_policies_scps.html#scp-effects-on-permissions',
+        quote:
+          'Uma SCP restringe as permissões para usuários e funções do IAM em contas-membro, incluindo o usuário-raiz da conta-membro. Qualquer conta tem somente as permissões permitidas por cada pai acima dela.',
+      },
     ],
   },
   {
@@ -1121,8 +1429,16 @@ export const ptBR: readonly Question[] = [
       'SCPs nunca concedem permissões. Elas só definem as permissões máximas dos principals nas contas membro.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html#tutorial_cross-account-with-roles-1',
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html#tutorial_cross-account-with-roles-2',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html#tutorial_cross-account-with-roles-1',
+        quote:
+          'Nesta etapa do tutorial, você cria o perfil na conta Destino e especifica a conta Origem como uma entidade confiável.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html#tutorial_cross-account-with-roles-2',
+        quote:
+          'Adicione a seguinte instrução de política para permitir a ação AssumeRole no perfil UpdateData na conta Destino.',
+      },
     ],
   },
   {
@@ -1143,7 +1459,11 @@ export const ptBR: readonly Question[] = [
       'O provedor obtém credenciais temporárias com `sts:AssumeRole`, e a condição de external ID na trust policy garante que ele assuma a role só quando estiver agindo por esta empresa.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id',
+        quote:
+          'Também oferece uma forma para o proprietário da conta permitir que a função seja assumida apenas em determinadas circunstâncias.',
+      },
     ],
   },
   {
@@ -1164,7 +1484,11 @@ export const ptBR: readonly Question[] = [
       'Negar a criação de roles na conta inteira bloqueia os desenvolvedores por completo, o que o requisito proíbe.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries-delegate',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries-delegate',
+        quote:
+          'Você pode usar limites de permissões para delegar tarefas de gerenciamento de permissões, como a criação de usuários, aos usuários do IAM em sua conta. Isso permite que outras pessoas executem tarefas em seu nome com um limite específico de permissões.',
+      },
     ],
   },
   {
@@ -1184,7 +1508,13 @@ export const ptBR: readonly Question[] = [
       'O Firewall Manager gerencia de forma central regras de firewall, como regras do AWS WAF e security groups. Ele não cria contas nem uma landing zone.',
       'O Control Tower orquestra o AWS Organizations, o IAM Identity Center e outros serviços para montar uma landing zone, aplica controles preventivos, detectivos e proativos e oferece o Account Factory para provisionar contas a partir de um modelo.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/controltower/latest/userguide/what-is-control-tower.html#features'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/controltower/latest/userguide/what-is-control-tower.html#features',
+        quote:
+          'uma zona de pouso é um ambiente de várias contas baseado nas práticas recomendadas de segurança e conformidade.',
+      },
+    ],
   },
   {
     id: 'd1-009',
@@ -1206,8 +1536,16 @@ export const ptBR: readonly Question[] = [
       'No acesso entre contas, a conta do principal também precisa permitir a ação. A política baseada em identidade na conta B delega o que a bucket policy concede.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html#access_policies-cross-account-using-resource-based-policies',
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html#access_policies-cross-account-delegating-resource-based-policies',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html#access_policies-cross-account-using-resource-based-policies',
+        quote:
+          'Quando uma conta acessa um recurso por meio de outra conta usando uma política baseada em recursos, a entidade principal ainda trabalha na conta confiável e não precisa abrir mão de suas permissões para receber as permissões do perfil.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html#access_policies-cross-account-delegating-resource-based-policies',
+        quote:
+          'No acesso entre contas, uma entidade principal precisa de uma Allow na política de identidade e uma política baseada em recursos.',
+      },
     ],
   },
   {
@@ -1228,7 +1566,11 @@ export const ptBR: readonly Question[] = [
       'Um gateway endpoint cria uma rota privada de uma VPC até o S3. Sozinho, ele não concede acesso a principals de outras contas.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid',
+        quote:
+          'Ao adicionar e remover contas, as políticas que incluem a chave aws:PrincipalOrgID incluem automaticamente as contas corretas e não exigem a atualização manual.',
+      },
     ],
   },
   {
@@ -1248,7 +1590,13 @@ export const ptBR: readonly Question[] = [
       'O AWS Managed Microsoft AD roda controladores de domínio na AWS, então copiar os usuários para ele guarda dados do diretório na nuvem.',
       'Os user pools do Cognito atendem os clientes de aplicações. Importar os usuários guarda os perfis deles na AWS e não dá à força de trabalho acesso ao console.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/directoryservice/latest/admin-guide/directory_ad_connector.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/directoryservice/latest/admin-guide/directory_ad_connector.html',
+        quote:
+          'O AD Connector é um gateway de diretório com o qual você pode redirecionar solicitações de diretório para o Microsoft Active Directory on-premises sem armazenar nenhuma informação em cache na nuvem.',
+      },
+    ],
   },
   {
     id: 'd1-012',
@@ -1267,7 +1615,13 @@ export const ptBR: readonly Question[] = [
       'Assinar URLs no aparelho ainda exige que as chaves de longo prazo do usuário do IAM estejam no aparelho.',
       'Um identity pool troca o token do Google, da Apple ou de um user pool por credenciais temporárias da AWS, com as permissões da role do IAM escolhida para usuários autenticados.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/cognito/latest/developerguide/cognito-identity.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/cognito/latest/developerguide/cognito-identity.html',
+        quote:
+          'Um banco de identidades do Amazon Cognito é um diretório de identidades federadas que você pode trocar por credenciais da AWS. Os grupos de identidades geram AWS credenciais temporárias para os usuários do seu aplicativo, independentemente de eles terem feito login ou se você ainda não os tiver identificado.',
+      },
+    ],
   },
   {
     id: 'd1-013',
@@ -1286,7 +1640,13 @@ export const ptBR: readonly Question[] = [
       'A segurança na nuvem fica com o cliente. A empresa decide quais endereços IP ou instâncias chegam ao banco pelo security group da instância de banco, e também gerencia as permissões do IAM e os usuários do banco.',
       'A segurança física das instalações faz parte da segurança da nuvem, que é responsabilidade da AWS.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/UsingWithRDS.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/UsingWithRDS.html',
+        quote:
+          'Use grupos de segurança para controlar quais endereços IP ou instâncias do Amazon EC2 podem se conectar aos seus bancos de dados em uma instância de banco de dados.',
+      },
+    ],
   },
   {
     id: 'd1-014',
@@ -1305,7 +1665,13 @@ export const ptBR: readonly Question[] = [
       'O workflow ainda precisaria de credenciais da AWS para ler o secret, então uma chave de longo prazo continua no pipeline.',
       'O IAM Identity Center atende pessoas que fazem login de forma interativa, não pipelines automatizados.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_roles_providers_oidc.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_roles_providers_oidc.html',
+        quote:
+          'Elas recebem um token de autenticação, conhecido como JSON Web Token (JWT) e, em seguida, trocam esse token por credenciais de segurança temporárias na AWS que são mapeadas em um perfil do IAM com permissões para usar recursos específicos na sua Conta da AWS.',
+      },
+    ],
   },
   {
     id: 'd1-015',
@@ -1325,7 +1691,11 @@ export const ptBR: readonly Question[] = [
       'O CloudTrail mostra chamadas que já aconteceram. Revisar à mão é lento e não revela acessos que uma política permite mas que ninguém usou ainda.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification',
+        quote:
+          'O IAM Access Analyzer identifica recursos compartilhados com entidades externas usando raciocínio baseado em lógica para analisar as políticas baseadas em recurso no ambiente da AWS. Para cada instância de um recurso compartilhado fora de sua conta, o IAM Access Analyzer gera uma descoberta.',
+      },
     ],
   },
   {
@@ -1346,7 +1716,11 @@ export const ptBR: readonly Question[] = [
       'Uma RCP define as permissões máximas sobre os recursos das contas membro, seja quem for o autor da requisição. Uma negação para principals de fora da organização vale mesmo quando a bucket policy os permite.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/organizations/latest/userguide/orgs_manage_policies_rcps.html#rcp-effects-on-permissions',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/organizations/latest/userguide/orgs_manage_policies_rcps.html#rcp-effects-on-permissions',
+        quote:
+          'Se uma permissão for bloqueada em qualquer nível acima da conta, um recurso na conta afetada não terá essa permissão, mesmo que o proprietário do recurso anexe uma política baseada em recursos que permita acesso total a qualquer usuário.',
+      },
     ],
   },
   {
@@ -1367,7 +1741,11 @@ export const ptBR: readonly Question[] = [
       'SCPs se aplicam a contas e OUs inteiras. Elas não foram feitas para separar projetos que dividem uma conta e também precisariam de edição a cada projeto.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/introduction_attribute-based-access-control.html#introduction_attribute-based-access-control_compare-rbac',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/introduction_attribute-based-access-control.html#introduction_attribute-based-access-control_compare-rbac',
+        quote:
+          'As permissões de ABAC são dimensionadas com inovação. Não é mais necessário que um administrador atualize as políticas existentes para permitir o acesso a novos recursos.',
+      },
     ],
   },
   {
@@ -1390,8 +1768,16 @@ export const ptBR: readonly Question[] = [
       'A route table das subnets privadas precisa mandar o tráfego destinado à internet para o NAT gateway, senão os servidores não têm caminho de saída.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/vpc-nat-gateway.html',
-      'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/nat-gateway-scenarios.html#public-nat-gateway-routing',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/vpc-nat-gateway.html',
+        quote:
+          'Você pode usar um gateway NAT para que as instâncias em uma sub-rede privada possam se conectar a serviços fora da VPC, mas os serviços externos não podem iniciar uma conexão com essas instâncias.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/nat-gateway-scenarios.html#public-nat-gateway-overview',
+        quote:
+          'Na zona de disponibilidade B, a sub-rede pública contém um gateway NAT e as instâncias na sub-rede privada podem acessar a Internet por meio de uma rota para o gateway NAT na sub-rede pública.',
+      },
     ],
   },
   {
@@ -1412,7 +1798,11 @@ export const ptBR: readonly Question[] = [
       'Security groups só aceitam regras de permissão. Eles não podem ter regras de negação.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/security-group-rules.html#security-group-referencing',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/security-group-rules.html#security-group-referencing',
+        quote:
+          'Quando você especifica um grupo de segurança como a origem ou o destino de uma regra, a regra afeta todas as instâncias associadas aos grupos de segurança.',
+      },
     ],
   },
   {
@@ -1432,7 +1822,13 @@ export const ptBR: readonly Question[] = [
       'Network ACLs atuam no nível da subnet e aceitam regras de negação. As regras são avaliadas em ordem a partir do menor número, então a negação precisa vir antes da regra que permite o tráfego web.',
       'Remover a rota desconecta a subnet inteira da internet.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/vpc-network-acls.html#nacl-basics'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/vpc-network-acls.html#nacl-basics',
+        quote:
+          'Você pode criar uma ACL de rede personalizada e associá-la a uma sub-rede para permitir ou recusar tráfego de entrada ou de saída específico por sub-rede.',
+      },
+    ],
   },
   {
     id: 'd1-021',
@@ -1451,7 +1847,13 @@ export const ptBR: readonly Question[] = [
       'O Transfer Acceleration acelera transferências de longa distância pelos edge locations. Ele não mantém o tráfego privado para instâncias na mesma Região e aumenta o custo.',
       'Um gateway endpoint adiciona uma rota para o S3 nas route tables escolhidas. As instâncias chegam ao S3 sem internet gateway nem dispositivo NAT, sem custo adicional.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/vpc/latest/privatelink/vpc-endpoints-s3.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpc/latest/privatelink/vpc-endpoints-s3.html',
+        quote:
+          'Com um endpoint de gateway, é possível acessar o Amazon S3 utilizando a sua VPC sem precisar de um gateway de Internet ou um dispositivo de NAT para a sua VPC, e tudo isso sem custos adicionais.',
+      },
+    ],
   },
   {
     id: 'd1-022',
@@ -1473,8 +1875,16 @@ export const ptBR: readonly Question[] = [
       'Uma conexão de peering não deixa esta VPC usar o internet gateway ou o NAT gateway da VPC par, então a aplicação continuaria sem chegar ao Secrets Manager.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/secretsmanager/latest/userguide/vpc-endpoint-overview.html',
-      'https://docs.aws.amazon.com/pt_br/secretsmanager/latest/userguide/vpc-endpoint-overview.html',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/secretsmanager/latest/userguide/vpc-endpoint-overview.html',
+        quote:
+          'É possível estabelecer uma conexão privada entre a sua VPC e o Secrets Manager criando um interface VPC endpoint (Endpoint da VPC de interface).',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/secretsmanager/latest/userguide/vpc-endpoint-overview.html',
+        quote:
+          'Se você habilitar o DNS privado para o endpoint, poderá fazer solicitações de API para o Secrets Manager usando seu nome DNS padrão para a região',
+      },
     ],
   },
   {
@@ -1495,7 +1905,11 @@ export const ptBR: readonly Question[] = [
       'O GuardDuty detecta ameaças em logs e gera findings. Ele não inspeciona nem bloqueia requisições web.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/waf/latest/developerguide/aws-managed-rule-groups-use-case.html#aws-managed-rule-groups-use-case-sql-db',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/waf/latest/developerguide/aws-managed-rule-groups-use-case.html#aws-managed-rule-groups-use-case-sql-db',
+        quote:
+          'O grupo de regras do banco de dados SQL contém regras para bloquear padrões de solicitação associados à exploração de bancos de dados SQL, como ataques de injeção de SQL. Isso pode ajudar a evitar a injeção remota de consultas não autorizadas.',
+      },
     ],
   },
   {
@@ -1510,7 +1924,13 @@ export const ptBR: readonly Question[] = [
       'O Shield Advanced dá acesso ao Shield Response Team durante os ataques e oferece proteção de custos, na forma de créditos de serviço, para picos que um ataque DDoS causa nos recursos protegidos.',
       'O GuardDuty detecta ameaças nos logs da AWS. Ele não mitiga ataques DDoS.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/waf/latest/developerguide/ddos-advanced-summary-capabilities.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/waf/latest/developerguide/ddos-advanced-summary-capabilities.html',
+        quote:
+          'Como AWS Shield Advanced cliente, você pode entrar em contato com o SRT a qualquer momento para obter assistência durante um ataque DDo S que afete a disponibilidade do seu aplicativo.',
+      },
+    ],
   },
   {
     id: 'd1-025',
@@ -1530,7 +1950,11 @@ export const ptBR: readonly Question[] = [
       'Uma lista estática bloqueia só endereços conhecidos e precisa ser mantida à mão, enquanto os atacantes trocam de endereço.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html',
+        quote:
+          'Por padrão, uma regra baseada em intervalo agrega e limita o intervalo das solicitações com base no endereço IP da solicitação.',
+      },
     ],
   },
   {
@@ -1550,7 +1974,13 @@ export const ptBR: readonly Question[] = [
       'Isso é código próprio que a equipe precisa manter, e o banco e a aplicação podem ficar dessincronizados.',
       'O Secrets Manager rotaciona o secret em um agendamento e atualiza as credenciais tanto no secret quanto no banco, com rotação gerenciada ou com uma função de rotação que a AWS fornece para o Amazon RDS. A aplicação lê o valor atual em tempo de execução.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/secretsmanager/latest/userguide/rotate-secrets_turn-on-for-db.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/secretsmanager/latest/userguide/rotate-secrets_turn-on-for-db.html',
+        quote:
+          'Quando o Secrets Manager alterna um segredo, você atualiza as credenciais tanto no segredo como no banco de dados. No Secrets Manager, é possível configurar a alternância automática para seus segredos de banco de dados.',
+      },
+    ],
   },
   {
     id: 'd1-027',
@@ -1564,7 +1994,13 @@ export const ptBR: readonly Question[] = [
       'O Macie descobre dados sensíveis no Amazon S3. Ele não analisa a atividade de rede nem de API das instâncias.',
       'O AWS Config registra e avalia configurações de recursos. Ele não detecta atividade maliciosa.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty',
+        quote:
+          'Essas fontes de dados incluem eventos AWS CloudTrail de gerenciamento, registros de fluxo da VPC (de instâncias do Amazon EC2) e registros de DNS.',
+      },
+    ],
   },
   {
     id: 'd1-028',
@@ -1584,7 +2020,11 @@ export const ptBR: readonly Question[] = [
       'O Simple AD é um diretório para workloads que precisam de recursos básicos do Active Directory. Ele não oferece cadastro de clientes nem login social.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/cognito/latest/developerguide/cognito-user-pools.html#cognito-user-pools-sign-in',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/cognito/latest/developerguide/cognito-user-pools.html#cognito-user-pools-sign-in',
+        quote:
+          'Os usuários podem configurar e assinar com nomes de usuário e senhas, chaves de acesso e senhas de uso único de e-mail e SMS. Você pode oferecer login consolidado com diretórios de usuários externos, autenticação multifator (MFA) após o login, dispositivos confiáveis e fluxos de autenticação personalizados que você cria.',
+      },
     ],
   },
   {
@@ -1604,7 +2044,12 @@ export const ptBR: readonly Question[] = [
       'O VPC peering conecta VPCs entre si. Ele não conecta uma rede on-premises.',
       'O Client VPN atende usuários individuais nos seus dispositivos. Instalá-lo em cada servidor não é uma conexão entre redes e dá mais trabalho.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/vpn/latest/s2svpn/VPC_VPN.html#concepts'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/vpn/latest/s2svpn/VPC_VPN.html#concepts',
+        quote: 'um link criptografado em que os dados podem transmitir da rede do cliente para a AWS ou vice-versa.',
+      },
+    ],
   },
   {
     id: 'd1-030',
@@ -1626,8 +2071,16 @@ export const ptBR: readonly Question[] = [
       'Um LAG agrupa conexões para ter mais banda e resiliência. Ele não criptografa o tráfego.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/directconnect/latest/UserGuide/MACsec.html#mac-sec-prerequisites',
-      'https://docs.aws.amazon.com/pt_br/directconnect/latest/UserGuide/encryption-in-transit.html',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/directconnect/latest/UserGuide/MACsec.html#mac-sec-prerequisites',
+        quote:
+          'O protocolo MACsec é compatível com conexões dedicadas do Direct Connect de 10 Gbps, 100 Gbps e 400 Gbps em pontos de presença selecionados.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/directconnect/latest/UserGuide/encryption-in-transit.html',
+        quote:
+          'Essa combinação fornece uma conexão privada IPsec criptografada que também reduz os custos da rede, aumenta a taxa de transferência da largura de banda e fornece uma experiência de rede mais consistente do que as conexões VPN baseadas na Internet.',
+      },
     ],
   },
   {
@@ -1648,7 +2101,11 @@ export const ptBR: readonly Question[] = [
       'O Session Manager dá acesso ao shell pelo SSM Agent sem portas de entrada, bastion hosts nem chaves SSH, e pode registrar a atividade das sessões no Amazon S3 ou no CloudWatch Logs.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/systems-manager/latest/userguide/session-manager.html#session-manager-benefits',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/systems-manager/latest/userguide/session-manager.html#session-manager-benefits',
+        quote:
+          'O Session Manager ajuda a melhorar o procedimento de segurança, permitindo que você feche essas portas de entrada, eliminando o gerenciamento de chaves e certificados SSH, bastion hosts e caixas de diálogo.',
+      },
     ],
   },
   {
@@ -1669,7 +2126,11 @@ export const ptBR: readonly Question[] = [
       'A criptografia protege os dados em repouso. Principals com permissão para usar a chave ainda poderiam ler os objetos de qualquer rede.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/example-bucket-policies-vpc-endpoint.html#example-bucket-policies-restrict-accesss-vpc-endpoint',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/example-bucket-policies-vpc-endpoint.html#example-bucket-policies-restrict-accesss-vpc-endpoint',
+        quote:
+          'Se o endpoint especificado não for usado, essa política negará todo acesso ao bucket. A condição aws:SourceVpce especifica o endpoint.',
+      },
     ],
   },
   {
@@ -1690,7 +2151,11 @@ export const ptBR: readonly Question[] = [
       'As faixas de IP são compartilhadas por todas as distribuições do CloudFront, então distribuições de outras contas ainda chegariam ao bucket.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3',
+        quote:
+          'Use um elemento Condition na política para permitir que o CloudFront acesse o bucket somente quando a solicitação for em nome da distribuição do CloudFront que contém a origem do S3.',
+      },
     ],
   },
   {
@@ -1711,7 +2176,11 @@ export const ptBR: readonly Question[] = [
       'O AWS WAF protege recursos como load balancers, distribuições do CloudFront e APIs do API Gateway contra requisições web de entrada. Ele não pode ser associado a um NAT gateway.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html#stateful-rule-groups-domain-names-match-settings',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html#stateful-rule-groups-domain-names-general-settings',
+        quote:
+          'the firewall denies traffic of the specified protocol type that does not match the domain specifications.',
+      },
     ],
   },
   {
@@ -1732,7 +2201,11 @@ export const ptBR: readonly Question[] = [
       'A empresa teria de construir sozinha o armazenamento das chaves, o controle de acesso e a auditoria, e o uso das chaves não apareceria no CloudTrail.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/UsingKMSEncryption.html#aws-managed-customer-managed-keys',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/UsingKMSEncryption.html#aws-managed-customer-managed-keys',
+        quote:
+          'Por exemplo, você pode criar, alternar e desabilitar chaves gerenciadas pelo cliente. Você também pode definir controles de acesso e auditar a chave gerenciada pelo cliente que você usa para proteger seus dados.',
+      },
     ],
   },
   {
@@ -1755,8 +2228,16 @@ export const ptBR: readonly Question[] = [
       'O Object Lock impede exclusões e sobrescritas. Ele não tem relação com criptografia.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/bucket-encryption.html',
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-use-case-HTTP-HTTPS-1',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/bucket-encryption.html',
+        quote:
+          'Se você precisar de maior controle sobre suas chaves, como gerenciar a alternância de chaves e as concessões de políticas de acesso, poderá optar por usar a criptografia do lado do servidor chaves do AWS Key Management Service (AWS KMS) (SSE-KMS) ou a criptografia de camada dupla do lado do servidor com chaves do AWS KMS (DSSE-KMS).',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-use-case-HTTP-HTTPS-1',
+        quote:
+          'Para determinar se a solicitação é HTTP ou HTTPS, use a chave de condição global aws:SecureTransport em sua política de bucket do S3. A chave de condição aws:SecureTransport verifica se uma solicitação foi enviada usando HTTP.',
+      },
     ],
   },
   {
@@ -1779,8 +2260,16 @@ export const ptBR: readonly Question[] = [
       'Restaurar a partir da cópia criptografada cria uma instância de banco criptografada com os mesmos dados, e depois a aplicação passa a apontar para ela.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations',
-      'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations',
+        quote:
+          'Ou seja, é possível criar um snapshot da sua instância de banco de dados e depois criar uma cópia criptografada desse snapshot.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations',
+        quote:
+          'Em seguida, você pode restaurar uma instância de banco de dados a partir do snapshot criptografado, logo, você terá uma cópia criptografada da sua instância de banco de dados original.',
+      },
     ],
   },
   {
@@ -1800,7 +2289,13 @@ export const ptBR: readonly Question[] = [
       'Os navegadores não confiam em certificados autoassinados, e a conexão HTTPS dos clientes termina no load balancer, não nas instâncias.',
       'Isso exige código próprio para obter, renovar e implantar certificados, que é justamente o esforço que a empresa quer evitar.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/acm/latest/userguide/managed-renewal.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/acm/latest/userguide/managed-renewal.html',
+        quote:
+          'Isso significa que o ACM renovará seus certificados automaticamente (se você estiver usando a validação por DNS) ou enviará avisos por e-mail quando a expiração da validade estiver se aproximando.',
+      },
+    ],
   },
   {
     id: 'd1-039',
@@ -1819,7 +2314,13 @@ export const ptBR: readonly Question[] = [
       'Com a rotação automática, o KMS cria material de chave novo no período de rotação, 365 dias por padrão. O ID da chave continua o mesmo, e o KMS decifra os dados antigos com o material que os cifrou.',
       'Um alias é só um nome amigável que aponta para uma chave. Um alias novo não troca o material da chave.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works',
+        quote:
+          'AWS KMS gira a chave KMS automaticamente na próxima data de rotação definida pelo seu período de rotação. Você não precisa lembrar nem programar a atualização.',
+      },
+    ],
   },
   {
     id: 'd1-040',
@@ -1841,8 +2342,16 @@ export const ptBR: readonly Question[] = [
       'O AWS KMS nunca exporta o material de chave que ele gera, e uma chave na conta B seria outra chave, incapaz de decifrar esses objetos.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-key-policy',
-      'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-iam-policy',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-key-policy',
+        quote:
+          'Ao fornecer permissões entre contas, a política de chaves para a chave do KMS deve conceder à conta externa (ou aos usuários e perfis na conta externa) permissão para usar a chave do KMS.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-iam-policy',
+        quote:
+          'No entanto, os usuários e as funções na conta externa não poderão usar a chave do KMS até que você anexe as políticas do IAM que deleguem essas permissões ou use concessões para gerenciar o acesso à chave do KMS.',
+      },
     ],
   },
   {
@@ -1863,7 +2372,11 @@ export const ptBR: readonly Question[] = [
       'No modo compliance, nenhum usuário, inclusive o root, consegue sobrescrever ou apagar uma versão protegida, e o período de retenção não pode ser encurtado.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/object-lock.html#object-lock-retention-modes',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/object-lock.html#object-lock-retention-modes',
+        quote:
+          'uma versão do objeto protegida não pode ser substituída nem excluída por qualquer usuário, inclusive o usuário root na Conta da AWS. Quando um objeto estiver bloqueado no modo de conformidade, o modo de retenção não poderá ser alterado nem o período de retenção poderá ser encurtado.',
+      },
     ],
   },
   {
@@ -1883,7 +2396,13 @@ export const ptBR: readonly Question[] = [
       'O Object Lock impede exclusões. Ele não move objetos para armazenamento mais barato nem os apaga no fim.',
       'A replicação cria mais cópias e aumenta o custo. Ela não gerencia os objetos pela idade.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/object-lifecycle-mgmt.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/object-lifecycle-mgmt.html',
+        quote:
+          'O Ciclo de Vida do S3 ajuda você a armazenar objetos de forma econômica durante todo o respectivo ciclo de vida deles ao fazer a transição para classes de armazenamento de menor custo ou excluir objetos expirados em seu nome.',
+      },
+    ],
   },
   {
     id: 'd1-043',
@@ -1902,7 +2421,13 @@ export const ptBR: readonly Question[] = [
       'Usuários com permissões suficientes no IAM podem remover uma trava em modo governance, então os administradores ainda poderiam apagar backups.',
       'Uma cópia em outra Região ajuda na recuperação de desastres, mas os administradores ainda poderiam apagá-la se esse vault não estiver travado também.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/aws-backup/latest/devguide/vault-lock.html#backup-vault-lock-modes'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/aws-backup/latest/devguide/vault-lock.html#backup-vault-lock-modes',
+        quote:
+          'Um bloqueio de cofre no modo de conformidade não pode ser alterado ou excluído por nenhum usuário ou pela AWS. Um bloqueio de cofre no modo de conformidade tem um período de carência que você define antes de ele ser bloqueado e se tornar imutável.',
+      },
+    ],
   },
   {
     id: 'd1-044',
@@ -1916,7 +2441,13 @@ export const ptBR: readonly Question[] = [
       'O Macie usa machine learning e correspondência de padrões para descobrir dados sensíveis, incluindo vários tipos de PII e dados financeiros, e gera findings para os objetos onde os encontra.',
       'O Access Analyzer aponta buckets compartilhados fora da zona de confiança. Ele não olha o que os objetos contêm.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/macie/latest/user/what-is-macie.html#macie-features'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/macie/latest/user/what-is-macie.html#macie-features',
+        quote:
+          'Para descobrir dados confidenciais com o Macie, é possível usar técnicas e critérios incorporados, como machine learning e comparação de padrões, para analisar objetos nos buckets do S3.',
+      },
+    ],
   },
   {
     id: 'd1-045',
@@ -1938,8 +2469,16 @@ export const ptBR: readonly Question[] = [
       'Uma réplica compartilha o ID e o material da chave primária, então as aplicações em eu-west-1 decifram as cópias localmente, sem recriptografá-las nem chamar us-east-1.',
     ],
     evidence: [
-      'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/multi-region-keys-overview.html#multi-Region-concept',
-      'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/multi-region-keys-overview.html#mrk-replica-key',
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/multi-region-keys-overview.html#multi-Region-concept',
+        quote:
+          'Você define a propriedade de várias Regiões de uma chave do KMS ao criá-la. Não é possível alterar a propriedade de várias regiões em uma chave existente.',
+      },
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/kms/latest/developerguide/multi-region-keys-overview.html#mrk-replica-key',
+        quote:
+          'Uma chave de réplica de várias regiões é uma chave do KMS que tem o mesmo ID de chave e material de chave da sua chave primária e chaves de réplica relacionadas, mas existe em outra Região da AWS.',
+      },
     ],
   },
   {
@@ -1959,7 +2498,13 @@ export const ptBR: readonly Question[] = [
       'Os findings do Security Hub descrevem a postura de segurança dos recursos do banco, não a conformidade da infraestrutura da AWS.',
       'O AWS Artifact oferece download sob demanda dos documentos de segurança e conformidade da AWS, como os relatórios SOC e PCI, que o banco pode entregar aos auditores.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/artifact/latest/ug/what-is-aws-artifact.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/artifact/latest/ug/what-is-aws-artifact.html',
+        quote:
+          'AWS Artifact fornece downloads sob demanda de documentos de AWS segurança e conformidade. Por exemplo, relatórios sobre conformidade com os padrões da Organização Internacional de Padronização (ISO) e os Padrões de Segurança do Setor de Cartões de Pagamento (PCI) e relatórios de Controles Organizacionais e de Sistemas (SOC).',
+      },
+    ],
   },
   {
     id: 'd1-047',
@@ -1978,7 +2523,13 @@ export const ptBR: readonly Question[] = [
       'O Amazon Inspector procura vulnerabilidades de software e exposição de rede. Ele não avalia regras de configuração como as de criptografia.',
       'O Trusted Advisor verifica algumas boas práticas e mostra os resultados, mas não corrige recursos de acordo com as regras da empresa.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/config/latest/developerguide/setup-autoremediation.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/config/latest/developerguide/setup-autoremediation.html',
+        quote:
+          'No Console de gerenciamento da AWS, você pode optar por corrigir automaticamente os recursos não compatíveis associando as ações de remediação às regras.',
+      },
+    ],
   },
   {
     id: 'd1-048',
@@ -1997,7 +2548,13 @@ export const ptBR: readonly Question[] = [
       'A criptografia padrão é uma configuração da Região que faz o Amazon EBS criptografar todos os volumes novos e as cópias de snapshots, então os desenvolvedores não conseguem criar volumes sem criptografia nessa Região.',
       'Isso cobre só os volumes lançados a partir dessas AMIs, não os outros volumes que os desenvolvedores criam.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/encryption-by-default.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/ebs/latest/userguide/encryption-by-default.html',
+        quote:
+          'Você pode configurar sua AWS conta para impor a criptografia dos novos volumes do EBS e das cópias de snapshot que você criar.',
+      },
+    ],
   },
   {
     id: 'd1-049',
@@ -2016,7 +2573,13 @@ export const ptBR: readonly Question[] = [
       'O ACM emite e gerencia certificados TLS. Ele não fornece HSMs para as chaves da aplicação.',
       'O CloudHSM oferece HSMs single-tenant validados em FIPS 140-2 ou FIPS 140-3 nível 3 no modo FIPS, dá à empresa controle total das chaves e suporta PKCS #11, JCE e CNG.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/cloudhsm/latest/userguide/introduction.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/cloudhsm/latest/userguide/introduction.html',
+        quote:
+          'Oferecemos soluções HSMs que estão em conformidade com os padrões, são de inquilino único e são validadas com FIPS 140-2 de nível 3 ou FIPS 140-3 de nível 3 para clusters no modo FIPS.',
+      },
+    ],
   },
   {
     id: 'd1-050',
@@ -2035,6 +2598,12 @@ export const ptBR: readonly Question[] = [
       'O Streams captura alterações de itens por tempo limitado para processamento. Ele não é um recurso de restauração.',
       'As global tables replicam todas as gravações, inclusive as erradas, para a réplica.',
     ],
-    evidence: ['https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/Point-in-time-recovery.html'],
+    evidence: [
+      {
+        url: 'https://docs.aws.amazon.com/pt_br/amazondynamodb/latest/developerguide/Point-in-time-recovery.html',
+        quote:
+          'Os backups de recuperação para um ponto no tempo (PITR) são totalmente gerenciados pelo DynamoDB e oferecem até 35 dias de pontos de recuperação em uma granularidade de segundo. Com a recuperação pontual, você não precisa se preocupar com a criação, a manutenção ou a programação de backups sob demanda.',
+      },
+    ],
   },
 ]
