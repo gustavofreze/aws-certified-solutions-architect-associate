@@ -156,13 +156,13 @@ export const enUS: readonly Topic[] = [
     title: 'Well-Architected and global infrastructure',
     summary:
       'The six Well-Architected pillars, Regions, AZs, edge and hybrid locations, and the shared responsibility model.',
-    lede: `The exam validates designs against the [AWS Well-Architected Framework](${en.docs('wellarchitected/latest/framework/welcome.html')}), so this topic underpins all four domains. Global infrastructure and shared responsibility are named in Task 1.1 (**Domain 1**, 30%) and Task 2.2 (**Domain 2**, 26%).`,
+    lede: `The exam validates designs against the [AWS Well-Architected Framework](${en.docs('wellarchitected/latest/framework/framework.html')}), so this topic underpins all four domains. Global infrastructure and shared responsibility are named in Task 1.1 (**Domain 1**, 30%) and Task 2.2 (**Domain 2**, 26%).`,
     sections: [
       {
         id: 'framework',
         name: 'The framework',
         fullName: 'AWS Well-Architected Framework',
-        link: en.docs('wellarchitected/latest/framework/the-pillars-of-the-framework.html'),
+        link: en.docs('wellarchitected/latest/framework/workloads.html'),
         summary:
           'A set of design principles, best practices and questions for building secure, reliable, efficient, cost-effective and sustainable workloads. A review is a conversation about trade-offs, not an audit.',
         points: [
@@ -196,14 +196,14 @@ export const enUS: readonly Topic[] = [
       {
         id: 'security-reliability',
         name: 'Security and reliability',
-        link: en.docs('wellarchitected/latest/framework/sec-design.html'),
+        link: en.docs('wellarchitected/latest/framework/sec-design-principles.html'),
         summary:
           'The design principles behind Domains 1 and 2. Most correct answers in those domains apply one of them.',
         points: [
           '**Strong identity foundation**: least privilege, separation of duties, centralized identity and no long-term static credentials.',
           '**Security at all layers** and **traceability**: defense in depth from the edge to the code, with every action logged and alarmed.',
           '**Protect data in transit and at rest** and **keep people away from data**: encryption, tokenization and automation instead of manual access.',
-          `**Reliability** ([principles](${en.docs('wellarchitected/latest/framework/rel-dp.html')})): automatically recover from failure, test recovery procedures, scale horizontally, stop guessing capacity, manage change through automation.`,
+          `**Reliability** ([principles](${en.docs('wellarchitected/latest/framework/rel-design-principles.html')})): automatically recover from failure, test recovery procedures, scale horizontally, stop guessing capacity, manage change through automation.`,
           '**Scale horizontally**: replace one large resource with several small ones so a single failure has less impact.',
         ],
         tip: 'Long-lived access keys on an instance lose to an **IAM role**. A single large instance loses to an **Auto Scaling group across AZs**. Both are these principles in answer form.',
@@ -211,14 +211,14 @@ export const enUS: readonly Topic[] = [
       {
         id: 'performance-cost',
         name: 'Performance and cost',
-        link: en.docs('wellarchitected/latest/framework/perf-dp.html'),
+        link: en.docs('wellarchitected/latest/framework/perf-design-principles.html'),
         summary:
           'The design principles behind Domains 3 and 4: consume technology as a service, match it to the access pattern and pay only for what delivers value.',
         points: [
           '**Democratize advanced technologies**: consume NoSQL, transcoding or ML as managed services instead of running them yourself.',
           '**Go global in minutes**, **use serverless architectures**, **experiment more often**.',
           '**Mechanical sympathy**: choose the database or storage by data access pattern, not by habit.',
-          `**Cost** ([principles](${en.docs('wellarchitected/latest/framework/cost-dp.html')})): Cloud Financial Management, consumption model, measure overall efficiency, stop undifferentiated heavy lifting, analyze and attribute expenditure.`,
+          `**Cost** ([principles](${en.docs('wellarchitected/latest/framework/cost-design-principles.html')})): Cloud Financial Management, consumption model, measure overall efficiency, stop undifferentiated heavy lifting, analyze and attribute expenditure.`,
           '**Consumption model**: stopping dev and test resources outside a 40 hour work week saves about 75% (40 versus 168 hours).',
         ],
         tip: '"Key-value lookups at any scale" is **mechanical sympathy** pointing to DynamoDB, not a bigger relational instance. "Environments idle at night" is the **consumption model**: schedule them off.',
@@ -226,7 +226,7 @@ export const enUS: readonly Topic[] = [
       {
         id: 'operations-sustainability',
         name: 'Operations and sustainability',
-        link: en.docs('wellarchitected/latest/framework/oe-design-principles.html'),
+        link: en.docs('wellarchitected/latest/framework/ops-design-principles.html'),
         summary:
           'The two pillars without their own domain. They still decide many answers through automation, managed services and utilization.',
         points: [
@@ -454,13 +454,13 @@ export const ptBR: readonly Topic[] = [
     title: 'Well-Architected e infraestrutura global',
     summary:
       'Os seis pilares do Well-Architected, Regiões, AZs, locais de borda e híbridos, e o modelo de responsabilidade compartilhada.',
-    lede: `O exame valida projetos contra o [AWS Well-Architected Framework](${pt.docs('wellarchitected/latest/framework/welcome.html')}), então este tema sustenta os quatro domínios. Infraestrutura global e responsabilidade compartilhada aparecem na Tarefa 1.1 (**Domínio 1**, 30%) e na Tarefa 2.2 (**Domínio 2**, 26%).`,
+    lede: `O exame valida projetos contra o [AWS Well-Architected Framework](${pt.docs('wellarchitected/latest/framework/framework.html')}), então este tema sustenta os quatro domínios. Infraestrutura global e responsabilidade compartilhada aparecem na Tarefa 1.1 (**Domínio 1**, 30%) e na Tarefa 2.2 (**Domínio 2**, 26%).`,
     sections: [
       {
         id: 'framework',
         name: 'O framework',
         fullName: 'AWS Well-Architected Framework',
-        link: pt.docs('wellarchitected/latest/framework/the-pillars-of-the-framework.html'),
+        link: pt.docs('wellarchitected/latest/framework/workloads.html'),
         summary:
           'Um conjunto de princípios de design, boas práticas e perguntas para construir cargas seguras, confiáveis, eficientes, econômicas e sustentáveis. A revisão é uma conversa sobre trade-offs, não uma auditoria.',
         points: [
@@ -500,14 +500,14 @@ export const ptBR: readonly Topic[] = [
       {
         id: 'security-reliability',
         name: 'Segurança e confiabilidade',
-        link: pt.docs('wellarchitected/latest/framework/sec-design.html'),
+        link: pt.docs('wellarchitected/latest/framework/sec-design-principles.html'),
         summary:
           'Os princípios de design por trás dos Domínios 1 e 2. A maioria das respostas certas nesses domínios aplica um deles.',
         points: [
           '**Base de identidade forte**: menor privilégio, separação de funções, identidade centralizada e nada de credenciais estáticas de longo prazo.',
           '**Segurança em todas as camadas** e **rastreabilidade**: defesa em profundidade da borda até o código, com toda ação registrada e com alarme.',
           '**Proteger dados em trânsito e em repouso** e **manter pessoas longe dos dados**: criptografia, tokenização e automação no lugar de acesso manual.',
-          `**Confiabilidade** ([princípios](${pt.docs('wellarchitected/latest/framework/rel-dp.html')})): recuperar automaticamente de falhas, testar a recuperação, escalar horizontalmente, parar de adivinhar capacidade, gerenciar mudanças com automação.`,
+          `**Confiabilidade** ([princípios](${pt.docs('wellarchitected/latest/framework/rel-design-principles.html')})): recuperar automaticamente de falhas, testar a recuperação, escalar horizontalmente, parar de adivinhar capacidade, gerenciar mudanças com automação.`,
           '**Escalar horizontalmente**: trocar um recurso grande por vários pequenos para que uma falha isolada tenha menos impacto.',
         ],
         tip: 'Chaves de acesso de longo prazo numa instância perdem para uma **IAM role**. Uma instância grande sozinha perde para um **Auto Scaling group em várias AZs**. As duas são esses princípios em forma de resposta.',
@@ -515,14 +515,14 @@ export const ptBR: readonly Topic[] = [
       {
         id: 'performance-cost',
         name: 'Performance e custo',
-        link: pt.docs('wellarchitected/latest/framework/perf-dp.html'),
+        link: pt.docs('wellarchitected/latest/framework/perf-design-principles.html'),
         summary:
           'Os princípios de design por trás dos Domínios 3 e 4: consumir tecnologia como serviço, casar com o padrão de acesso e pagar só pelo que gera valor.',
         points: [
           '**Democratizar tecnologias avançadas**: consumir NoSQL, transcodificação ou ML como serviços gerenciados em vez de operá-los.',
           '**Ficar global em minutos**, **usar arquiteturas serverless**, **experimentar com mais frequência**.',
           '**Simpatia mecânica**: escolher o banco ou o armazenamento pelo padrão de acesso aos dados, não por costume.',
-          `**Custo** ([princípios](${pt.docs('wellarchitected/latest/framework/cost-dp.html')})): Cloud Financial Management, modelo de consumo, medir a eficiência geral, parar de gastar com trabalho pesado indiferenciado, analisar e atribuir gastos.`,
+          `**Custo** ([princípios](${pt.docs('wellarchitected/latest/framework/cost-design-principles.html')})): Cloud Financial Management, modelo de consumo, medir a eficiência geral, parar de gastar com trabalho pesado indiferenciado, analisar e atribuir gastos.`,
           '**Modelo de consumo**: desligar ambientes de dev e teste fora de uma semana de 40 horas economiza cerca de 75% (40 contra 168 horas).',
         ],
         tip: '"Consultas chave-valor em qualquer escala" é **simpatia mecânica** apontando para DynamoDB, não uma instância relacional maior. "Ambientes ociosos à noite" é o **modelo de consumo**: agende o desligamento.',
@@ -530,7 +530,7 @@ export const ptBR: readonly Topic[] = [
       {
         id: 'operations-sustainability',
         name: 'Operações e sustentabilidade',
-        link: pt.docs('wellarchitected/latest/framework/oe-design-principles.html'),
+        link: pt.docs('wellarchitected/latest/framework/ops-design-principles.html'),
         summary:
           'Os dois pilares sem domínio próprio. Mesmo assim decidem muitas respostas por meio de automação, serviços gerenciados e utilização.',
         points: [
